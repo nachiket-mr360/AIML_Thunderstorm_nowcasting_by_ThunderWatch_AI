@@ -1,0 +1,542 @@
+{
+  "model_file": "thunderstorm_nowcast_3h.joblib",
+  "artifact_type": "trained scikit-learn RandomForestClassifier bundle (dict) for one lead time",
+  "bundle_keys": [
+    "model",
+    "feature_names",
+    "target_column",
+    "lead_time_hours",
+    "decision_threshold",
+    "positive_class_label",
+    "negative_class_label",
+    "trained_at_utc",
+    "training_dataset_sha256",
+    "random_state",
+    "bundle_version",
+    "positive_class_meaning"
+  ],
+  "bundle_note": "The joblib artifact is a dict, not a bare estimator: load it with joblib.load(path)['model']. The dict carries the feature order and the validated decision threshold so inference cannot silently use a different threshold or column order.",
+  "phase": "Phase 6 -- genuine thunderstorm model training",
+  "created_at_utc": "2026-09-14T16:57:32.138556+00:00",
+  "trained_by": "train_thunderstorm_nowcast_phase6.py",
+  "target": {
+    "column": "target_3h",
+    "lead_time_hours": 3,
+    "definition": "genuine observed VOTV thunderstorm label at the clock hour exactly 3 hour(s) after the feature hour t; NaN (never 0) where that future hour carries no genuine present-weather observation",
+    "genuine_observation_label": true,
+    "surrogate_or_proxy_target": false,
+    "synthetic_labels_created": false,
+    "rows_dropped_for_unobserved_target": 10908
+  },
+  "features": {
+    "count": 28,
+    "feature_order": [
+      "temperature_2m",
+      "relative_humidity_2m",
+      "surface_pressure",
+      "wind_speed_10m",
+      "precipitation",
+      "cloud_cover",
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "wind_direction_sin",
+      "wind_direction_cos",
+      "temperature_change_1h",
+      "temperature_change_3h",
+      "humidity_change_1h",
+      "humidity_change_3h",
+      "pressure_change_1h",
+      "pressure_change_3h",
+      "wind_speed_change_1h",
+      "wind_speed_change_3h",
+      "precipitation_change_1h",
+      "precipitation_change_3h",
+      "precipitation_roll_sum_3h",
+      "precipitation_roll_sum_6h",
+      "humidity_roll_mean_3h",
+      "pressure_roll_mean_3h",
+      "temperature_roll_mean_3h",
+      "wind_speed_roll_mean_3h"
+    ],
+    "groups": {
+      "current_atmospheric": [
+        "temperature_2m",
+        "relative_humidity_2m",
+        "surface_pressure",
+        "wind_speed_10m",
+        "precipitation",
+        "cloud_cover"
+      ],
+      "cyclic_time": [
+        "hour_sin",
+        "hour_cos",
+        "month_sin",
+        "month_cos"
+      ],
+      "wind_direction_cyclic": [
+        "wind_direction_sin",
+        "wind_direction_cos"
+      ],
+      "temporal_change": [
+        "temperature_change_1h",
+        "temperature_change_3h",
+        "humidity_change_1h",
+        "humidity_change_3h",
+        "pressure_change_1h",
+        "pressure_change_3h",
+        "wind_speed_change_1h",
+        "wind_speed_change_3h",
+        "precipitation_change_1h",
+        "precipitation_change_3h"
+      ],
+      "historical_rolling": [
+        "precipitation_roll_sum_3h",
+        "precipitation_roll_sum_6h",
+        "humidity_roll_mean_3h",
+        "pressure_roll_mean_3h",
+        "temperature_roll_mean_3h",
+        "wind_speed_roll_mean_3h"
+      ]
+    },
+    "target_column_not_a_feature": true,
+    "weather_code_used": false,
+    "feature_time": "t (features are never shifted forward)",
+    "target_time": "t + 3 h"
+  },
+  "training_dataset": {
+    "csv": "votv_thunderstorm_nowcast_2014_2025.csv",
+    "path": "C:\\College\\SIH2\\dataset\\votv_thunderstorm_nowcast_2014_2025.csv",
+    "sha256": "b74b86f2f9f1c9218bca77dfe0afbe0339ba34687410b1299be094bbae0e1308",
+    "input_chain_check": {
+      "phase4_feature_table_sha256_recorded_in_phase5_metadata": "d18afa7cd04d91cf42d2802852245d2f92c41a74d6935f10cb5bc8b13f271b7d",
+      "phase4_feature_table_sha256_now": "d18afa7cd04d91cf42d2802852245d2f92c41a74d6935f10cb5bc8b13f271b7d",
+      "phase4_to_phase6_ancestry_intact": true
+    },
+    "rows_in_file": 82018,
+    "rows_used_for_this_lead_time": 71110,
+    "rows_dropped_unobserved_target": 10908,
+    "source": "dataset/votv_thunderstorm_nowcast_2014_2025.csv (Phase 5 output)",
+    "phase5_rows": 82018
+  },
+  "split": {
+    "strategy": "strict chronological, no shuffling",
+    "fractions": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "train": {
+      "n_rows": 49777,
+      "start_index": 0,
+      "end_index": 49776,
+      "start_timestamp_utc": "2014-01-01T13:00:00+00:00",
+      "end_timestamp_utc": "2022-06-30T16:00:00+00:00"
+    },
+    "validation": {
+      "n_rows": 10666,
+      "start_index": 49777,
+      "end_index": 60442,
+      "start_timestamp_utc": "2022-06-30T17:00:00+00:00",
+      "end_timestamp_utc": "2024-04-30T17:00:00+00:00"
+    },
+    "test": {
+      "n_rows": 10667,
+      "start_index": 60443,
+      "end_index": 71109,
+      "start_timestamp_utc": "2024-04-30T18:00:00+00:00",
+      "end_timestamp_utc": "2025-12-30T20:00:00+00:00"
+    },
+    "shuffled": false,
+    "test_used_for_tuning": false,
+    "boundary_label_overlap_rows": {
+      "train_rows_with_target_in_validation_period": 3,
+      "validation_rows_with_target_in_test_period": 3,
+      "note": "Inherent to a forward-shifted target: the last few rows of a partition have their target observation just inside the next period. No feature crosses the boundary - every feature is a function of hours <= t - so this cannot leak future atmospheric information into training; only the label pairing overlaps by at most the lead time."
+    }
+  },
+  "row_counts": {
+    "train": 49777,
+    "validation": 10666,
+    "test": 10667
+  },
+  "class_balance": {
+    "train": {
+      "n_samples": 49777,
+      "positives": 1858,
+      "negatives": 47919,
+      "positive_rate": 0.037326
+    },
+    "validation": {
+      "n_samples": 10666,
+      "positives": 351,
+      "negatives": 10315,
+      "positive_rate": 0.032908
+    },
+    "test": {
+      "n_samples": 10667,
+      "positives": 307,
+      "negatives": 10360,
+      "positive_rate": 0.02878
+    },
+    "handling": "class_weight='balanced' inside the Random Forest only. No SMOTE, no random oversampling, no synthetic rows, and the test set keeps its natural class distribution."
+  },
+  "model": {
+    "type": "sklearn.ensemble.RandomForestClassifier",
+    "params": {
+      "bootstrap": true,
+      "ccp_alpha": 0.0,
+      "class_weight": "balanced",
+      "criterion": "gini",
+      "max_depth": null,
+      "max_features": "sqrt",
+      "max_leaf_nodes": null,
+      "max_samples": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 1,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "n_estimators": 400,
+      "n_jobs": -1,
+      "oob_score": false,
+      "random_state": 42,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "random_state": 42,
+    "class_weight": "balanced",
+    "selection_basis": "baseline model specified by the project master document",
+    "not_the_phase1_surrogate_model": "models/storm_risk_model.joblib predicts a future-precipitation proxy and is not used, loaded, retrained or overwritten here"
+  },
+  "random_seed": 42,
+  "threshold": {
+    "criterion": "maximise F2 (beta=2.0, F2 weights recall twice as heavily as precision) on the validation set, subject to predicted positive rate <= 0.2",
+    "beta": 2.0,
+    "alert_rate_cap": 0.2,
+    "guardrail_binding": false,
+    "candidate_thresholds": 154,
+    "candidates_inside_guardrail": 136,
+    "selected_threshold": 0.0725,
+    "selected_validation_metrics": {
+      "precision": 0.16624472573839663,
+      "recall": 0.5612535612535613,
+      "f1": 0.2565104166666667,
+      "fbeta": 0.380455774430282,
+      "predicted_positive_rate": 0.11110069379336208,
+      "true_positives": 197,
+      "false_positives": 988
+    },
+    "unconstrained_fbeta_threshold": 0.0725,
+    "threshold_selected_on": "validation",
+    "test_data_used_for_threshold_selection": false,
+    "probability_threshold_percentile_in_validation": 0.8888993062066379,
+    "validation_metrics_at_selected_threshold": {
+      "threshold": 0.0725,
+      "accuracy": 0.892930808175511,
+      "precision": 0.16624472573839663,
+      "recall": 0.5612535612535613,
+      "f1": 0.2565104166666667,
+      "roc_auc": 0.8555806897542234,
+      "average_precision_pr_auc": 0.17112386313514388,
+      "baseline_positive_rate": 0.03290830676917307,
+      "predicted_positive_rate": 0.11110069379336208,
+      "confusion_matrix": [
+        [
+          9327,
+          988
+        ],
+        [
+          154,
+          197
+        ]
+      ],
+      "confusion_matrix_axis_note": "rows = actual [0, 1], columns = predicted [0, 1]",
+      "counts": {
+        "true_negatives": 9327,
+        "false_positives": 988,
+        "false_negatives": 154,
+        "true_positives": 197
+      },
+      "class_distribution": {
+        "n_samples": 10666,
+        "positives": 351,
+        "negatives": 10315,
+        "positive_rate": 0.032908
+      },
+      "false_alarms_per_hit": 5.0152284263959395
+    },
+    "validation_metrics_at_0.5_for_reference": {
+      "threshold": 0.5,
+      "accuracy": 0.9669979373710857,
+      "precision": 0.3333333333333333,
+      "recall": 0.002849002849002849,
+      "f1": 0.005649717514124294,
+      "roc_auc": 0.8555806897542234,
+      "average_precision_pr_auc": 0.17112386313514388,
+      "baseline_positive_rate": 0.03290830676917307,
+      "predicted_positive_rate": 0.0002812675792237015,
+      "confusion_matrix": [
+        [
+          10313,
+          2
+        ],
+        [
+          350,
+          1
+        ]
+      ],
+      "confusion_matrix_axis_note": "rows = actual [0, 1], columns = predicted [0, 1]",
+      "counts": {
+        "true_negatives": 10313,
+        "false_positives": 2,
+        "false_negatives": 350,
+        "true_positives": 1
+      },
+      "class_distribution": {
+        "n_samples": 10666,
+        "positives": 351,
+        "negatives": 10315,
+        "positive_rate": 0.032908
+      },
+      "false_alarms_per_hit": 2.0
+    }
+  },
+  "metrics": {
+    "train_diagnostic_only": {
+      "threshold": 0.0725,
+      "accuracy": 0.976655885248207,
+      "precision": 0.6152317880794702,
+      "recall": 1.0,
+      "f1": 0.7617876178761788,
+      "roc_auc": 1.0,
+      "average_precision_pr_auc": 1.0,
+      "baseline_positive_rate": 0.03732647608333166,
+      "predicted_positive_rate": 0.06067059083512465,
+      "confusion_matrix": [
+        [
+          46757,
+          1162
+        ],
+        [
+          0,
+          1858
+        ]
+      ],
+      "confusion_matrix_axis_note": "rows = actual [0, 1], columns = predicted [0, 1]",
+      "counts": {
+        "true_negatives": 46757,
+        "false_positives": 1162,
+        "false_negatives": 0,
+        "true_positives": 1858
+      },
+      "class_distribution": {
+        "n_samples": 49777,
+        "positives": 1858,
+        "negatives": 47919,
+        "positive_rate": 0.037326
+      },
+      "false_alarms_per_hit": 0.6254036598493004,
+      "note": "in-sample: reported for completeness only, it is not evidence of skill"
+    },
+    "validation": {
+      "threshold": 0.0725,
+      "accuracy": 0.892930808175511,
+      "precision": 0.16624472573839663,
+      "recall": 0.5612535612535613,
+      "f1": 0.2565104166666667,
+      "roc_auc": 0.8555806897542234,
+      "average_precision_pr_auc": 0.17112386313514388,
+      "baseline_positive_rate": 0.03290830676917307,
+      "predicted_positive_rate": 0.11110069379336208,
+      "confusion_matrix": [
+        [
+          9327,
+          988
+        ],
+        [
+          154,
+          197
+        ]
+      ],
+      "confusion_matrix_axis_note": "rows = actual [0, 1], columns = predicted [0, 1]",
+      "counts": {
+        "true_negatives": 9327,
+        "false_positives": 988,
+        "false_negatives": 154,
+        "true_positives": 197
+      },
+      "class_distribution": {
+        "n_samples": 10666,
+        "positives": 351,
+        "negatives": 10315,
+        "positive_rate": 0.032908
+      },
+      "false_alarms_per_hit": 5.0152284263959395
+    },
+    "test": {
+      "threshold": 0.0725,
+      "accuracy": 0.8605981063091779,
+      "precision": 0.10614152202937249,
+      "recall": 0.5179153094462541,
+      "f1": 0.17617728531855956,
+      "roc_auc": 0.8213386490259453,
+      "average_precision_pr_auc": 0.14537836814325555,
+      "baseline_positive_rate": 0.028780350614043312,
+      "predicted_positive_rate": 0.1404331114652667,
+      "confusion_matrix": [
+        [
+          9021,
+          1339
+        ],
+        [
+          148,
+          159
+        ]
+      ],
+      "confusion_matrix_axis_note": "rows = actual [0, 1], columns = predicted [0, 1]",
+      "counts": {
+        "true_negatives": 9021,
+        "false_positives": 1339,
+        "false_negatives": 148,
+        "true_positives": 159
+      },
+      "class_distribution": {
+        "n_samples": 10667,
+        "positives": 307,
+        "negatives": 10360,
+        "positive_rate": 0.02878
+      },
+      "false_alarms_per_hit": 8.421383647798741
+    },
+    "test_metrics_at_0.5_for_reference": {
+      "threshold": 0.5,
+      "accuracy": 0.9713133964563607,
+      "precision": 1.0,
+      "recall": 0.003257328990228013,
+      "f1": 0.006493506493506494,
+      "roc_auc": 0.8213386490259453,
+      "average_precision_pr_auc": 0.14537836814325555,
+      "baseline_positive_rate": 0.028780350614043312,
+      "predicted_positive_rate": 9.374707040404987e-05,
+      "confusion_matrix": [
+        [
+          10360,
+          0
+        ],
+        [
+          306,
+          1
+        ]
+      ],
+      "confusion_matrix_axis_note": "rows = actual [0, 1], columns = predicted [0, 1]",
+      "counts": {
+        "true_negatives": 10360,
+        "false_positives": 0,
+        "false_negatives": 306,
+        "true_positives": 1
+      },
+      "class_distribution": {
+        "n_samples": 10667,
+        "positives": 307,
+        "negatives": 10360,
+        "positive_rate": 0.02878
+      },
+      "false_alarms_per_hit": 0.0
+    }
+  },
+  "feature_importance": {
+    "csv": "outputs/thunderstorm_nowcast_3h_feature_importance.csv",
+    "method": "RF mean decrease in impurity (primary), plus permutation importance on the validation set scored by average precision (5 repeats, seed 42)",
+    "top_10": [
+      {
+        "feature": "precipitation_roll_sum_6h",
+        "rf_impurity_importance": 0.08227466484034546,
+        "permutation_importance_mean": 0.017043325416276754
+      },
+      {
+        "feature": "precipitation_roll_sum_3h",
+        "rf_impurity_importance": 0.07426117540432678,
+        "permutation_importance_mean": 0.01817375326339236
+      },
+      {
+        "feature": "wind_speed_roll_mean_3h",
+        "rf_impurity_importance": 0.05931956051892492,
+        "permutation_importance_mean": 0.005903439251352521
+      },
+      {
+        "feature": "wind_direction_cos",
+        "rf_impurity_importance": 0.050727747441576036,
+        "permutation_importance_mean": -0.00252013428932385
+      },
+      {
+        "feature": "temperature_roll_mean_3h",
+        "rf_impurity_importance": 0.047730325976267515,
+        "permutation_importance_mean": 0.01783179696430633
+      },
+      {
+        "feature": "wind_speed_10m",
+        "rf_impurity_importance": 0.04461481452234253,
+        "permutation_importance_mean": 0.005105175186852229
+      },
+      {
+        "feature": "month_sin",
+        "rf_impurity_importance": 0.04437513096297372,
+        "permutation_importance_mean": 0.0170546108859011
+      },
+      {
+        "feature": "month_cos",
+        "rf_impurity_importance": 0.042261947221649825,
+        "permutation_importance_mean": 0.008261718480434116
+      },
+      {
+        "feature": "precipitation",
+        "rf_impurity_importance": 0.03843935515159354,
+        "permutation_importance_mean": 0.0033812819122780225
+      },
+      {
+        "feature": "cloud_cover",
+        "rf_impurity_importance": 0.03832562566016295,
+        "permutation_importance_mean": 0.008678433131757257
+      }
+    ]
+  },
+  "artifacts": {
+    "model": "models/thunderstorm_nowcast_3h.joblib",
+    "metadata": "models/thunderstorm_nowcast_3h_metadata.json",
+    "evaluation": "outputs/thunderstorm_nowcast_3h_evaluation.json",
+    "feature_importance_csv": "outputs/thunderstorm_nowcast_3h_feature_importance.csv",
+    "confusion_matrix_png": "outputs/thunderstorm_nowcast_3h_confusion_matrix.png"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26220-SP0",
+    "numpy": "2.2.1",
+    "pandas": "3.0.5",
+    "scikit_learn": "1.6.1",
+    "joblib": "1.6.0"
+  },
+  "leakage_controls": {
+    "target_columns_excluded_from_features": [
+      "target_1h",
+      "target_1h_observed",
+      "target_2h",
+      "target_2h_observed",
+      "target_3h",
+      "target_3h_observed",
+      "thunderstorm_label",
+      "weather_code"
+    ],
+    "feature_names_referring_to_target": [],
+    "weather_code_used": false,
+    "future_atmospheric_variables_used": false,
+    "future_precipitation_used": false,
+    "target_derived_features_used": false,
+    "feature_matrix_nan_count": 0,
+    "feature_matrix_inf_count": 0,
+    "verdict": "PASS"
+  },
+  "no_model_selected_on_test": true,
+  "scientific_disclaimer": "Station-based thunderstorm nowcast prototype trained from VOTV aerodrome METAR present-weather observations paired with Open-Meteo archive/model-derived atmospheric features at a single grid cell about 2 km from the station. The output is a model probability that the VOTV station reports a thunderstorm in a future clock hour, combined with a decision threshold to give a yes/no alert. It is NOT a nationwide, radar-based, satellite-based, lightning-based or NWP-based thunderstorm forecast, it is not an IMD operational product, and a probability is not physical certainty about a thunderstorm. High accuracy figures are achievable by predicting the majority class and are not evidence of skill; the meaningful figures here are recall, precision, F1, PR-AUC and ROC-AUC relative to the reported base rate."
+}

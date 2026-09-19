@@ -1,0 +1,289 @@
+{
+  "phase": "Phase 9 -- frontend + map + spatial visualization",
+  "generated_at_utc": "2026-09-15T05:30:42.897357+00:00",
+  "python": "3.12.10",
+  "checks_total": 49,
+  "checks_passed": 49,
+  "checks_failed": 0,
+  "result": "PASS",
+  "checks": [
+    {
+      "check": "python app.py starts and answers /api/health",
+      "passed": true,
+      "evidence": "{\"base\": \"http://127.0.0.1:63009\"}"
+    },
+    {
+      "check": "GET / returns 200 HTML dashboard",
+      "passed": true,
+      "evidence": "{\"status\": 200, \"bytes\": 16670}"
+    },
+    {
+      "check": "dashboard HTML embeds the served grid coordinates",
+      "passed": true,
+      "evidence": "{\"has_8_471002\": true, \"has_76_93298\": true}"
+    },
+    {
+      "check": "dashboard references Leaflet and dashboard.js",
+      "passed": true,
+      "evidence": "{\"leaflet\": true, \"dashboard_js\": true}"
+    },
+    {
+      "check": "GET /api/prediction returns a live nowcast for the UI",
+      "passed": true,
+      "evidence": "{\"status\": 200, \"probability\": 0.0}"
+    },
+    {
+      "check": "live probability is in [0, 1]",
+      "passed": true,
+      "evidence": "0.0"
+    },
+    {
+      "check": "API threshold is 0.0775",
+      "passed": true,
+      "evidence": "0.0775"
+    },
+    {
+      "check": "API lead time is 1 hour",
+      "passed": true,
+      "evidence": "1"
+    },
+    {
+      "check": "API model identifier correct",
+      "passed": true,
+      "evidence": "thunderstorm_nowcast_1h"
+    },
+    {
+      "check": "API served grid matches training cell",
+      "passed": true,
+      "evidence": "{\"elevation_m\": 4.0, \"latitude\": 8.471002, \"longitude\": 76.93298}"
+    },
+    {
+      "check": "dashboard.js primary fetch is /api/prediction",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "check": "dashboard.js never references /api/prediction/proxy",
+      "passed": true,
+      "evidence": "absent"
+    },
+    {
+      "check": "spatial renderer (renderSpatialRisk) exists for point/multi-point API points",
+      "passed": true,
+      "evidence": "{\"has_renderSpatialRisk\": true}"
+    },
+    {
+      "check": "dashboard.js does not hard-code a 1 km resolution claim",
+      "passed": true,
+      "evidence": "ok"
+    },
+    {
+      "check": "dashboard loads with nowcast decision-support chrome",
+      "passed": true,
+      "evidence": "{\"title\": \"Thunderstorm Nowcast Decision Support \\u2014 SIH 2026\"}"
+    },
+    {
+      "check": "dashboard consumes GET /api/prediction as primary",
+      "passed": true,
+      "evidence": "[\"http://127.0.0.1:63009/api/prediction\", \"http://127.0.0.1:63009/api/history\"]"
+    },
+    {
+      "check": "dashboard does not call /api/prediction/proxy as primary refresh",
+      "passed": true,
+      "evidence": "[\"http://127.0.0.1:63009/api/prediction\"]"
+    },
+    {
+      "check": "live prediction object attached after successful render",
+      "passed": true,
+      "evidence": "{\"keys\": [\"api\", \"current_weather\", \"disclaimer\", \"domain_shift_note\", \"feature_completeness\", \"feature_timestamp\", \"features\", \"features_used_for_prediction\", \"freshness_policy\", \"generated_at_utc\", \"ground_truth_note\", \"input_atmospheric_conditions\", \"lead_time_hours\", \"leakage_guard\", \"location\", \"measured_skill_reference\", \"model\", \"model_identifier\", \"observation_timestamp_utc\", \"observed_outcome\"]}"
+    },
+    {
+      "check": "displayed prediction matches a live /api/prediction payload",
+      "passed": true,
+      "evidence": "{\"api_probability\": 0.0, \"ui_attached_probability\": 0, \"ui_probability_text\": \"0.00%\", \"risk_label\": \"No thunderstorm alert\"}"
+    },
+    {
+      "check": "locked threshold 0.0775 is displayed",
+      "passed": true,
+      "evidence": "0.0775"
+    },
+    {
+      "check": "1-hour lead time is displayed",
+      "passed": true,
+      "evidence": "1 hour"
+    },
+    {
+      "check": "model identifier thunderstorm_nowcast_1h is displayed",
+      "passed": true,
+      "evidence": "thunderstorm_nowcast_1h"
+    },
+    {
+      "check": "probability is not presented as confidence",
+      "passed": true,
+      "evidence": "Phase 6 measured test skill at threshold 0.0775: recall 0.604, precision 0.133. An alert is a screening signal, not a definite thunderstorm. Probability is a model score, not confidence."
+    },
+    {
+      "check": "served grid coordinates 8.471002 N, 76.93298 E are displayed",
+      "passed": true,
+      "evidence": "8.471002\u00b0 N, 76.93298\u00b0 E"
+    },
+    {
+      "check": "map labelled as point/location-based risk, not a forecast grid",
+      "passed": true,
+      "evidence": "Single validated point (not a forecast grid)"
+    },
+    {
+      "check": "dashboard does not invent a 1 km spatial resolution",
+      "passed": true,
+      "evidence": "no '1 km' / '1km' claims found"
+    },
+    {
+      "check": "seven atmospheric condition cards rendered",
+      "passed": true,
+      "evidence": "{\"count\": 7}"
+    },
+    {
+      "check": "exactly one risk marker on the map (no fake surrounding cells)",
+      "passed": true,
+      "evidence": "{\"risk_markers\": 1}"
+    },
+    {
+      "check": "Leaflet map container loaded",
+      "passed": true,
+      "evidence": "{\"leaflet\": true}"
+    },
+    {
+      "check": "refresh triggers loading state (pending status and disabled button)",
+      "passed": true,
+      "evidence": "{\"pending\": true, \"busy\": true, \"state\": \"pending\"}"
+    },
+    {
+      "check": "API failure shows error state and clears prediction values",
+      "passed": true,
+      "evidence": "{\"banner\": true, \"probability\": \"\\u2014\", \"status\": \"prediction_unavailable\"}"
+    },
+    {
+      "check": "API failure removes risk markers (no stale spatial values)",
+      "passed": true,
+      "evidence": "{\"markers\": 0}"
+    },
+    {
+      "check": "asset /static/style.css loads",
+      "passed": true,
+      "evidence": "{\"status\": 200, \"bytes\": 20030}"
+    },
+    {
+      "check": "asset /static/dashboard.js loads",
+      "passed": true,
+      "evidence": "{\"status\": 200, \"bytes\": 32253}"
+    },
+    {
+      "check": "no horizontal overflow at 375x812",
+      "passed": true,
+      "evidence": "{\"scrollWidth\": 375, \"clientWidth\": 375, \"overflow\": false}"
+    },
+    {
+      "check": "no horizontal overflow at 768x1024",
+      "passed": true,
+      "evidence": "{\"scrollWidth\": 768, \"clientWidth\": 768, \"overflow\": false}"
+    },
+    {
+      "check": "no horizontal overflow at 1366x768",
+      "passed": true,
+      "evidence": "{\"scrollWidth\": 1366, \"clientWidth\": 1366, \"overflow\": false}"
+    },
+    {
+      "check": "no uncaught JavaScript page errors",
+      "passed": true,
+      "evidence": "none"
+    },
+    {
+      "check": "no JavaScript console errors",
+      "passed": true,
+      "evidence": "none"
+    },
+    {
+      "check": "no broken network assets during dashboard session",
+      "passed": true,
+      "evidence": "none"
+    },
+    {
+      "check": "HTML states point/location-based risk capability",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "check": "IMD scientific disclaimer present",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "check": "main dashboard copy does not promote the proxy endpoint as primary",
+      "passed": true,
+      "evidence": "ok"
+    },
+    {
+      "check": "every declared protected artifact is present",
+      "passed": true,
+      "evidence": "{\"declared\": 114, \"present\": 114}"
+    },
+    {
+      "check": "Phase 6 decision threshold remains 0.0775",
+      "passed": true,
+      "evidence": "{\"threshold\": 0.0775}"
+    },
+    {
+      "check": "git-tracked Phase 1-8 science files match staged blobs",
+      "passed": true,
+      "evidence": "{\"compared\": 111, \"mismatches\": \"none\"}"
+    },
+    {
+      "check": "Phase 8 nowcast_service was not rewritten during Phase 9 (mtime guard)",
+      "passed": true,
+      "evidence": "{\"mtime_utc\": \"2026-09-15T05:03:58.447549+00:00\", \"guard_from\": \"2026-09-15T05:15:00+00:00\"}"
+    },
+    {
+      "check": "Phase 7 engine was not rewritten during Phase 9 (mtime guard)",
+      "passed": true,
+      "evidence": "{\"mtime_utc\": \"2026-09-15T04:27:07.887765+00:00\", \"guard_from\": \"2026-09-15T05:15:00+00:00\"}"
+    },
+    {
+      "check": "no protected artifact changed during verification",
+      "passed": true,
+      "evidence": "{\"changed\": \"none\"}"
+    }
+  ],
+  "evidence": {
+    "live_api_prediction": {
+      "probability": 0.0,
+      "predicted_class": 0,
+      "risk_label": "No thunderstorm alert",
+      "threshold": 0.0775,
+      "lead_time_hours": 1,
+      "model_identifier": "thunderstorm_nowcast_1h",
+      "feature_timestamp": "2026-09-15T05:00:00+00:00",
+      "served_grid_cell": {
+        "elevation_m": 4.0,
+        "latitude": 8.471002,
+        "longitude": 76.93298
+      }
+    },
+    "displayed_prediction": {
+      "probability": 0,
+      "probability_text": "0.00%",
+      "predicted_class": 0,
+      "risk_label": "No thunderstorm alert",
+      "threshold_text": "0.0775",
+      "lead_time_text": "1 hour",
+      "model_identifier": "thunderstorm_nowcast_1h",
+      "feature_timestamp_text": "2026-09-15 05:00:00 UTC",
+      "data_source_text": "Open-Meteo \u00b7 api.open-meteo.com \u00b7 live_open_meteo_forecast_endpoint",
+      "served_coords_text": "8.471002\u00b0 N, 76.93298\u00b0 E"
+    },
+    "console_errors": [
+      "error: Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    ],
+    "page_errors": [],
+    "failed_requests": []
+  }
+}

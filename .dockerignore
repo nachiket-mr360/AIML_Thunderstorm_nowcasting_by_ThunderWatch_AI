@@ -1,0 +1,42 @@
+# Build-context and image trimming for the deployment image.
+#
+# Everything the running application reads is kept: app.py, backend/, ml/,
+# templates/, static/, models/, outputs/, and dataset/ (which supplies the
+# Phase 4 feature module dataset/feature_engineering_phase4.py that the Phase 7
+# engine imports, plus dataset/weather_data_with_code.csv used by the legacy
+# surrogate endpoint).
+#
+# Only offline-only material is excluded.
+
+# Version control and agent state: not needed at runtime.
+.git
+.gitignore
+.ohmyagent
+
+# Bytecode and interpreter noise.
+__pycache__
+**/__pycache__
+*.pyc
+*.pyo
+
+# Runtime and verifier logs.
+*.log
+
+# Local cache of downloaded raw observations, rebuilt only by the offline
+# Phase 3 builders.
+dataset/.cache.sqlite
+
+# Phase 2/3 raw archives (~130 MB). Read by the offline dataset builders only;
+# the Phase 7 engine fetches live atmospheric input from Open-Meteo instead and
+# never opens these files.
+dataset/raw_metar
+dataset/raw_openmeteo
+
+# Throwaway probe scripts and the notebook from development sessions.
+dataset/_tmp_*.py
+dataset/_probe_openmeteo_net_phase3.py
+dataset/data_collection.ipynb
+
+# Build metadata itself.
+Dockerfile
+.dockerignore

@@ -1,0 +1,621 @@
+{
+  "generated_at_utc": "2026-09-14T14:06:23.795097+00:00",
+  "raw_records": 273139,
+  "records_excluded_as_non_observation": 1,
+  "records_used": 273125,
+  "duplicate_valid_rows_dropped": 13,
+  "unique_report_timestamps": 273125,
+  "report_timestamps_after_dedup_check": {
+    "before": 273125,
+    "after": 273125
+  },
+  "conflicting_duplicate_timestamps": 0,
+  "raw_date_range_utc": [
+    "2000-01-01 02:40:00+00:00",
+    "2025-12-30 23:30:00+00:00"
+  ],
+  "hourly_grid_hours": 227928,
+  "observed_hours": 170869,
+  "missing_hours": 57059,
+  "observed_hour_pct": 74.966,
+  "thunderstorm_reports_wxcodes": 6717,
+  "thunderstorm_reports_station_only": 6711,
+  "thunderstorm_reports_vcts_only": 6,
+  "positive_hours": 4604,
+  "positive_pct_of_observed_hours": 2.694,
+  "positive_pct_of_all_grid_hours": 2.02,
+  "positive_hours_strict": 4599,
+  "positive_hours_recovered": 4680,
+  "hourly_positive_hours_added_by_recovery": 76,
+  "recovered_observed_ts_reports": 111,
+  "recovered_ambiguous_ts_reports": 0,
+  "recovered_reports_by_year": {
+    "2005": 13,
+    "2006": 1,
+    "2007": 10,
+    "2008": 8,
+    "2009": 5,
+    "2010": 2,
+    "2011": 40,
+    "2012": 3,
+    "2013": 7,
+    "2014": 6,
+    "2015": 1,
+    "2019": 1,
+    "2020": 1,
+    "2021": 1,
+    "2022": 2,
+    "2023": 2,
+    "2024": 5,
+    "2025": 3
+  },
+  "hours_resting_only_on_partial_reports": 21269,
+  "hours_with_decodable_present_weather": 110939,
+  "hours_with_reports_but_no_present_weather_group": 59930,
+  "zero_labels_relying_on_no_present_weather_group": 59930,
+  "present_weather_observability_by_year": {
+    "2000": {
+      "reports": 3108,
+      "reports_with_present_weather_group": 0,
+      "present_weather_coverage_pct": 0.0,
+      "reports_with_full_routine_decode_pct": 0.0
+    },
+    "2001": {
+      "reports": 2595,
+      "reports_with_present_weather_group": 1,
+      "present_weather_coverage_pct": 0.04,
+      "reports_with_full_routine_decode_pct": 0.04
+    },
+    "2002": {
+      "reports": 2783,
+      "reports_with_present_weather_group": 0,
+      "present_weather_coverage_pct": 0.0,
+      "reports_with_full_routine_decode_pct": 0.0
+    },
+    "2003": {
+      "reports": 3837,
+      "reports_with_present_weather_group": 1099,
+      "present_weather_coverage_pct": 28.64,
+      "reports_with_full_routine_decode_pct": 59.27
+    },
+    "2004": {
+      "reports": 4574,
+      "reports_with_present_weather_group": 81,
+      "present_weather_coverage_pct": 1.77,
+      "reports_with_full_routine_decode_pct": 3.56
+    },
+    "2005": {
+      "reports": 5068,
+      "reports_with_present_weather_group": 1954,
+      "present_weather_coverage_pct": 38.56,
+      "reports_with_full_routine_decode_pct": 81.2
+    },
+    "2006": {
+      "reports": 5188,
+      "reports_with_present_weather_group": 325,
+      "present_weather_coverage_pct": 6.26,
+      "reports_with_full_routine_decode_pct": 14.8
+    },
+    "2007": {
+      "reports": 5106,
+      "reports_with_present_weather_group": 2395,
+      "present_weather_coverage_pct": 46.91,
+      "reports_with_full_routine_decode_pct": 97.83
+    },
+    "2008": {
+      "reports": 5153,
+      "reports_with_present_weather_group": 2416,
+      "present_weather_coverage_pct": 46.89,
+      "reports_with_full_routine_decode_pct": 82.92
+    },
+    "2009": {
+      "reports": 5662,
+      "reports_with_present_weather_group": 3028,
+      "present_weather_coverage_pct": 53.48,
+      "reports_with_full_routine_decode_pct": 96.15
+    },
+    "2010": {
+      "reports": 6305,
+      "reports_with_present_weather_group": 4085,
+      "present_weather_coverage_pct": 64.79,
+      "reports_with_full_routine_decode_pct": 97.49
+    },
+    "2011": {
+      "reports": 5285,
+      "reports_with_present_weather_group": 2900,
+      "present_weather_coverage_pct": 54.87,
+      "reports_with_full_routine_decode_pct": 98.05
+    },
+    "2012": {
+      "reports": 11310,
+      "reports_with_present_weather_group": 7991,
+      "present_weather_coverage_pct": 70.65,
+      "reports_with_full_routine_decode_pct": 99.43
+    },
+    "2013": {
+      "reports": 12244,
+      "reports_with_present_weather_group": 9328,
+      "present_weather_coverage_pct": 76.18,
+      "reports_with_full_routine_decode_pct": 99.53
+    },
+    "2014": {
+      "reports": 13423,
+      "reports_with_present_weather_group": 11482,
+      "present_weather_coverage_pct": 85.54,
+      "reports_with_full_routine_decode_pct": 99.62
+    },
+    "2015": {
+      "reports": 12452,
+      "reports_with_present_weather_group": 9327,
+      "present_weather_coverage_pct": 74.9,
+      "reports_with_full_routine_decode_pct": 99.44
+    },
+    "2016": {
+      "reports": 15456,
+      "reports_with_present_weather_group": 12522,
+      "present_weather_coverage_pct": 81.02,
+      "reports_with_full_routine_decode_pct": 99.77
+    },
+    "2017": {
+      "reports": 17093,
+      "reports_with_present_weather_group": 14248,
+      "present_weather_coverage_pct": 83.36,
+      "reports_with_full_routine_decode_pct": 99.91
+    },
+    "2018": {
+      "reports": 17064,
+      "reports_with_present_weather_group": 13837,
+      "present_weather_coverage_pct": 81.09,
+      "reports_with_full_routine_decode_pct": 99.95
+    },
+    "2019": {
+      "reports": 17087,
+      "reports_with_present_weather_group": 12912,
+      "present_weather_coverage_pct": 75.57,
+      "reports_with_full_routine_decode_pct": 99.96
+    },
+    "2020": {
+      "reports": 15681,
+      "reports_with_present_weather_group": 11223,
+      "present_weather_coverage_pct": 71.57,
+      "reports_with_full_routine_decode_pct": 99.98
+    },
+    "2021": {
+      "reports": 17213,
+      "reports_with_present_weather_group": 12759,
+      "present_weather_coverage_pct": 74.12,
+      "reports_with_full_routine_decode_pct": 99.95
+    },
+    "2022": {
+      "reports": 17170,
+      "reports_with_present_weather_group": 12484,
+      "present_weather_coverage_pct": 72.71,
+      "reports_with_full_routine_decode_pct": 99.98
+    },
+    "2023": {
+      "reports": 17221,
+      "reports_with_present_weather_group": 12714,
+      "present_weather_coverage_pct": 73.83,
+      "reports_with_full_routine_decode_pct": 99.99
+    },
+    "2024": {
+      "reports": 17661,
+      "reports_with_present_weather_group": 14968,
+      "present_weather_coverage_pct": 84.75,
+      "reports_with_full_routine_decode_pct": 99.99
+    },
+    "2025": {
+      "reports": 17386,
+      "reports_with_present_weather_group": 13352,
+      "present_weather_coverage_pct": 76.8,
+      "reports_with_full_routine_decode_pct": 99.99
+    }
+  },
+  "label_rate_by_era": {
+    "2000-2005": {
+      "observed_hours": 21943,
+      "positive_hours": 122,
+      "positive_pct_of_observed": 0.56
+    },
+    "2006-2011": {
+      "observed_hours": 30420,
+      "positive_hours": 466,
+      "positive_pct_of_observed": 1.53
+    },
+    "2012-2013": {
+      "observed_hours": 15690,
+      "positive_hours": 322,
+      "positive_pct_of_observed": 2.05
+    },
+    "2014-2015": {
+      "observed_hours": 16141,
+      "positive_hours": 676,
+      "positive_pct_of_observed": 4.19
+    },
+    "2016-2025": {
+      "observed_hours": 86675,
+      "positive_hours": 3018,
+      "positive_pct_of_observed": 3.48
+    }
+  },
+  "labels_by_year": {
+    "2000": {
+      "observed_hours": 3099,
+      "positive_hours": 0,
+      "positive_pct_of_observed": 0.0,
+      "grid_hours": 8784,
+      "missing_hours": 5685
+    },
+    "2001": {
+      "observed_hours": 2590,
+      "positive_hours": 0,
+      "positive_pct_of_observed": 0.0,
+      "grid_hours": 8760,
+      "missing_hours": 6170
+    },
+    "2002": {
+      "observed_hours": 2782,
+      "positive_hours": 0,
+      "positive_pct_of_observed": 0.0,
+      "grid_hours": 8760,
+      "missing_hours": 5978
+    },
+    "2003": {
+      "observed_hours": 3830,
+      "positive_hours": 36,
+      "positive_pct_of_observed": 0.94,
+      "grid_hours": 8760,
+      "missing_hours": 4930
+    },
+    "2004": {
+      "observed_hours": 4574,
+      "positive_hours": 2,
+      "positive_pct_of_observed": 0.044,
+      "grid_hours": 8784,
+      "missing_hours": 4210
+    },
+    "2005": {
+      "observed_hours": 5068,
+      "positive_hours": 84,
+      "positive_pct_of_observed": 1.657,
+      "grid_hours": 8760,
+      "missing_hours": 3692
+    },
+    "2006": {
+      "observed_hours": 5188,
+      "positive_hours": 6,
+      "positive_pct_of_observed": 0.116,
+      "grid_hours": 8760,
+      "missing_hours": 3572
+    },
+    "2007": {
+      "observed_hours": 5106,
+      "positive_hours": 79,
+      "positive_pct_of_observed": 1.547,
+      "grid_hours": 8760,
+      "missing_hours": 3654
+    },
+    "2008": {
+      "observed_hours": 5152,
+      "positive_hours": 106,
+      "positive_pct_of_observed": 2.057,
+      "grid_hours": 8784,
+      "missing_hours": 3632
+    },
+    "2009": {
+      "observed_hours": 5607,
+      "positive_hours": 88,
+      "positive_pct_of_observed": 1.569,
+      "grid_hours": 8760,
+      "missing_hours": 3153
+    },
+    "2010": {
+      "observed_hours": 5724,
+      "positive_hours": 135,
+      "positive_pct_of_observed": 2.358,
+      "grid_hours": 8760,
+      "missing_hours": 3036
+    },
+    "2011": {
+      "observed_hours": 3643,
+      "positive_hours": 52,
+      "positive_pct_of_observed": 1.427,
+      "grid_hours": 8760,
+      "missing_hours": 5117
+    },
+    "2012": {
+      "observed_hours": 7732,
+      "positive_hours": 152,
+      "positive_pct_of_observed": 1.966,
+      "grid_hours": 8784,
+      "missing_hours": 1052
+    },
+    "2013": {
+      "observed_hours": 7958,
+      "positive_hours": 170,
+      "positive_pct_of_observed": 2.136,
+      "grid_hours": 8760,
+      "missing_hours": 802
+    },
+    "2014": {
+      "observed_hours": 8189,
+      "positive_hours": 279,
+      "positive_pct_of_observed": 3.407,
+      "grid_hours": 8760,
+      "missing_hours": 571
+    },
+    "2015": {
+      "observed_hours": 7952,
+      "positive_hours": 397,
+      "positive_pct_of_observed": 4.992,
+      "grid_hours": 8760,
+      "missing_hours": 808
+    },
+    "2016": {
+      "observed_hours": 8568,
+      "positive_hours": 149,
+      "positive_pct_of_observed": 1.739,
+      "grid_hours": 8784,
+      "missing_hours": 216
+    },
+    "2017": {
+      "observed_hours": 8694,
+      "positive_hours": 291,
+      "positive_pct_of_observed": 3.347,
+      "grid_hours": 8760,
+      "missing_hours": 66
+    },
+    "2018": {
+      "observed_hours": 8649,
+      "positive_hours": 415,
+      "positive_pct_of_observed": 4.798,
+      "grid_hours": 8760,
+      "missing_hours": 111
+    },
+    "2019": {
+      "observed_hours": 8680,
+      "positive_hours": 293,
+      "positive_pct_of_observed": 3.376,
+      "grid_hours": 8760,
+      "missing_hours": 80
+    },
+    "2020": {
+      "observed_hours": 8672,
+      "positive_hours": 297,
+      "positive_pct_of_observed": 3.425,
+      "grid_hours": 8784,
+      "missing_hours": 112
+    },
+    "2021": {
+      "observed_hours": 8696,
+      "positive_hours": 426,
+      "positive_pct_of_observed": 4.899,
+      "grid_hours": 8760,
+      "missing_hours": 64
+    },
+    "2022": {
+      "observed_hours": 8669,
+      "positive_hours": 296,
+      "positive_pct_of_observed": 3.414,
+      "grid_hours": 8760,
+      "missing_hours": 91
+    },
+    "2023": {
+      "observed_hours": 8556,
+      "positive_hours": 331,
+      "positive_pct_of_observed": 3.869,
+      "grid_hours": 8760,
+      "missing_hours": 204
+    },
+    "2024": {
+      "observed_hours": 8756,
+      "positive_hours": 320,
+      "positive_pct_of_observed": 3.655,
+      "grid_hours": 8784,
+      "missing_hours": 28
+    },
+    "2025": {
+      "observed_hours": 8735,
+      "positive_hours": 200,
+      "positive_pct_of_observed": 2.29,
+      "grid_hours": 8760,
+      "missing_hours": 25
+    }
+  },
+  "labels_by_month_utc": {
+    "1": {
+      "observed_hours": 14564,
+      "positive_hours": 57,
+      "positive_pct_of_observed": 0.391
+    },
+    "2": {
+      "observed_hours": 13192,
+      "positive_hours": 54,
+      "positive_pct_of_observed": 0.409
+    },
+    "3": {
+      "observed_hours": 14276,
+      "positive_hours": 280,
+      "positive_pct_of_observed": 1.961
+    },
+    "4": {
+      "observed_hours": 13422,
+      "positive_hours": 996,
+      "positive_pct_of_observed": 7.421
+    },
+    "5": {
+      "observed_hours": 14120,
+      "positive_hours": 1005,
+      "positive_pct_of_observed": 7.118
+    },
+    "6": {
+      "observed_hours": 13804,
+      "positive_hours": 283,
+      "positive_pct_of_observed": 2.05
+    },
+    "7": {
+      "observed_hours": 14231,
+      "positive_hours": 61,
+      "positive_pct_of_observed": 0.429
+    },
+    "8": {
+      "observed_hours": 14572,
+      "positive_hours": 70,
+      "positive_pct_of_observed": 0.48
+    },
+    "9": {
+      "observed_hours": 14427,
+      "positive_hours": 182,
+      "positive_pct_of_observed": 1.262
+    },
+    "10": {
+      "observed_hours": 15002,
+      "positive_hours": 790,
+      "positive_pct_of_observed": 5.266
+    },
+    "11": {
+      "observed_hours": 14491,
+      "positive_hours": 664,
+      "positive_pct_of_observed": 4.582
+    },
+    "12": {
+      "observed_hours": 14768,
+      "positive_hours": 162,
+      "positive_pct_of_observed": 1.097
+    }
+  },
+  "reports_density_by_year": {
+    "2000": {
+      "raw_reports": 3108,
+      "reports_per_day": 8.56
+    },
+    "2001": {
+      "raw_reports": 2595,
+      "reports_per_day": 7.21
+    },
+    "2002": {
+      "raw_reports": 2783,
+      "reports_per_day": 7.86
+    },
+    "2003": {
+      "raw_reports": 3837,
+      "reports_per_day": 10.63
+    },
+    "2004": {
+      "raw_reports": 4574,
+      "reports_per_day": 12.53
+    },
+    "2005": {
+      "raw_reports": 5068,
+      "reports_per_day": 13.92
+    },
+    "2006": {
+      "raw_reports": 5188,
+      "reports_per_day": 14.25
+    },
+    "2007": {
+      "raw_reports": 5106,
+      "reports_per_day": 14.03
+    },
+    "2008": {
+      "raw_reports": 5153,
+      "reports_per_day": 14.12
+    },
+    "2009": {
+      "raw_reports": 5662,
+      "reports_per_day": 15.55
+    },
+    "2010": {
+      "raw_reports": 6305,
+      "reports_per_day": 17.51
+    },
+    "2011": {
+      "raw_reports": 5285,
+      "reports_per_day": 16.06
+    },
+    "2012": {
+      "raw_reports": 11310,
+      "reports_per_day": 30.99
+    },
+    "2013": {
+      "raw_reports": 12244,
+      "reports_per_day": 33.64
+    },
+    "2014": {
+      "raw_reports": 13423,
+      "reports_per_day": 36.98
+    },
+    "2015": {
+      "raw_reports": 12452,
+      "reports_per_day": 34.21
+    },
+    "2016": {
+      "raw_reports": 15456,
+      "reports_per_day": 42.35
+    },
+    "2017": {
+      "raw_reports": 17093,
+      "reports_per_day": 46.96
+    },
+    "2018": {
+      "raw_reports": 17064,
+      "reports_per_day": 47.01
+    },
+    "2019": {
+      "raw_reports": 17087,
+      "reports_per_day": 46.94
+    },
+    "2020": {
+      "raw_reports": 15681,
+      "reports_per_day": 42.96
+    },
+    "2021": {
+      "raw_reports": 17213,
+      "reports_per_day": 47.29
+    },
+    "2022": {
+      "raw_reports": 17170,
+      "reports_per_day": 47.17
+    },
+    "2023": {
+      "raw_reports": 17221,
+      "reports_per_day": 47.44
+    },
+    "2024": {
+      "raw_reports": 17661,
+      "reports_per_day": 48.39
+    },
+    "2025": {
+      "raw_reports": 17386,
+      "reports_per_day": 47.76
+    }
+  },
+  "observed_hour_coverage_pct_by_year": {
+    "2000": 35.28,
+    "2001": 29.57,
+    "2002": 31.76,
+    "2003": 43.72,
+    "2004": 52.07,
+    "2005": 57.85,
+    "2006": 59.22,
+    "2007": 58.29,
+    "2008": 58.65,
+    "2009": 64.01,
+    "2010": 65.34,
+    "2011": 41.59,
+    "2012": 88.02,
+    "2013": 90.84,
+    "2014": 93.48,
+    "2015": 90.78,
+    "2016": 97.54,
+    "2017": 99.25,
+    "2018": 98.73,
+    "2019": 99.09,
+    "2020": 98.72,
+    "2021": 99.27,
+    "2022": 98.96,
+    "2023": 97.67,
+    "2024": 99.68,
+    "2025": 99.71
+  }
+}

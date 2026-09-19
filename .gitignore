@@ -1,0 +1,17 @@
+﻿__pycache__/
+*.pyc
+*.log
+.env
+.venv/
+venv/
+*.tmp
+*.temp
+dataset/.cache.sqlite
+dataset/_tmp_*
+ERROR
+test.txt
+.ohmyagent/
+
+# Invalid V1 model stubs
+models/thunderstorm_nowcast_2h.joblib
+models/thunderstorm_nowcast_3h.joblib

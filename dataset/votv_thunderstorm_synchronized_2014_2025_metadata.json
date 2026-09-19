@@ -1,0 +1,450 @@
+{
+  "artifact": "votv_thunderstorm_synchronized_2014_2025.csv",
+  "artifact_type": "Phase 3 synchronized supervised dataset (features + observed thunderstorm labels)",
+  "phase": "Phase 3 -- data preprocessing and synchronization",
+  "created_at_utc": "2026-09-14T15:41:50.723825+00:00",
+  "built_by": "build_synchronized_dataset_phase3.py",
+  "inputs": {
+    "labels": {
+      "path": "dataset/historical_thunderstorm_labels_votv.csv",
+      "sha256": "5807c11130ac9a90a8b73e337184c4d1dfcda43a1158197cc09f4a769eb5cfb9",
+      "source": "Iowa Environmental Mesonet (IEM) ASOS/METAR archive request service",
+      "label_definition": "wxcodes (IEM pre-parsed OBSERVED present-weather group)",
+      "lead_time_shift_applied": false
+    },
+    "features": {
+      "paths": [
+        "dataset/raw_openmeteo/votv_openmeteo_2014.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2015.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2016.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2017.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2018.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2019.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2020.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2021.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2022.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2023.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2024.csv",
+        "dataset/raw_openmeteo/votv_openmeteo_2025.csv"
+      ],
+      "source": "Open-Meteo Historical Weather API (archive)",
+      "endpoint": "https://archive-api.open-meteo.com/v1/archive",
+      "per_year": {
+        "2014": {
+          "rows": 8760,
+          "first_timestamp_utc": "2014-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2014-12-31T23:00:00+00:00",
+          "sha256": "21461f15b7c5c2f1afb0a3d0b03e0bbb54fc0c4b35a1e1d77103ca7331195de9",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2015": {
+          "rows": 8760,
+          "first_timestamp_utc": "2015-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2015-12-31T23:00:00+00:00",
+          "sha256": "4b12c33cc64598eb2edbb019a56ba67e4fced071482559bf7597fd2d81f232a9",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2016": {
+          "rows": 8784,
+          "first_timestamp_utc": "2016-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2016-12-31T23:00:00+00:00",
+          "sha256": "dc691e94ef2dba0410d7286f959d74a91843125cc9718f56e2429c72f6740509",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2017": {
+          "rows": 8760,
+          "first_timestamp_utc": "2017-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2017-12-31T23:00:00+00:00",
+          "sha256": "5c563bd28ea257524a36a040d5a7d2fcefd3829cb1af5bc6bacfa079528e6877",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2018": {
+          "rows": 8760,
+          "first_timestamp_utc": "2018-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2018-12-31T23:00:00+00:00",
+          "sha256": "e673d75e2de44747056e69cc37efb9bab0e2adcc3024c9e1f08952744d99723f",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2019": {
+          "rows": 8760,
+          "first_timestamp_utc": "2019-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2019-12-31T23:00:00+00:00",
+          "sha256": "717293c3e217981021f596fc1205d7a558ea77f039e41bed657c63aabe38f171",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2020": {
+          "rows": 8784,
+          "first_timestamp_utc": "2020-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2020-12-31T23:00:00+00:00",
+          "sha256": "5fb383ef9416c1c3385fd8a7dd6692fed9e2c86370928c2752f22577d483156b",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2021": {
+          "rows": 8760,
+          "first_timestamp_utc": "2021-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2021-12-31T23:00:00+00:00",
+          "sha256": "ac9fbd70271278f337dd86454c8c4b444a02ac4acb10f311701c12c5442e3572",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2022": {
+          "rows": 8760,
+          "first_timestamp_utc": "2022-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2022-12-31T23:00:00+00:00",
+          "sha256": "5cee8bfaee50bbd4d305bb1fd5d1822ec6654ef3a7b1c33f9f5b5df92b04c610",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2023": {
+          "rows": 8760,
+          "first_timestamp_utc": "2023-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2023-12-31T23:00:00+00:00",
+          "sha256": "8937ed0219c0ae2866616d2222633e5fcb0872b377eb86be4aa679d373b50d15",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2024": {
+          "rows": 8784,
+          "first_timestamp_utc": "2024-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2024-12-31T23:00:00+00:00",
+          "sha256": "487dac5c2d1897d2faa9a6024d2db8b5d8504850298dd0a7f160c4134c81c9de",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        },
+        "2025": {
+          "rows": 8760,
+          "first_timestamp_utc": "2025-01-01T00:00:00+00:00",
+          "last_timestamp_utc": "2025-12-31T23:00:00+00:00",
+          "sha256": "321adb83ad3d6e062b653f8470ab6e8fd9725de5df65cb983dd7eab3a6787e9a",
+          "missing_values": {
+            "temperature_2m": 0,
+            "relative_humidity_2m": 0,
+            "surface_pressure": 0,
+            "wind_speed_10m": 0,
+            "wind_direction_10m": 0,
+            "precipitation": 0,
+            "cloud_cover": 0,
+            "weather_code": 0
+          }
+        }
+      },
+      "combined_raw_artifact": "dataset/raw_openmeteo/votv_openmeteo_hourly_2014_2025.csv"
+    }
+  },
+  "window": {
+    "start_utc": "2014-01-01T00:00:00+00:00",
+    "end_utc": "2025-12-31T23:00:00+00:00",
+    "years": [
+      2014,
+      2025
+    ],
+    "calendar_hours_in_window": 105192,
+    "rationale": "Phase 2 recommended modelling window (present-weather coverage >= 71.6% of reports in every year from 2014)."
+  },
+  "coordinates": {
+    "feature_request_point": {
+      "latitude": 8.482,
+      "longitude": 76.92
+    },
+    "feature_served_grid_cell": {
+      "requested_latitude": 8.482,
+      "requested_longitude": 76.92,
+      "served_latitude": 8.471001625061035,
+      "served_longitude": 76.9329833984375,
+      "served_elevation_m": 4.0,
+      "note": "Open-Meteo serves the archive grid cell containing the requested point. The 'served_*' values are the API-reported cell for this request and are the coordinates the delivered values belong to. No spatial resolution is claimed beyond what the API reports for this request."
+    },
+    "label_station_point": {
+      "latitude": 8.4667,
+      "longitude": 76.95
+    },
+    "distances_km": {
+      "served_cell_to_station": 1.932,
+      "request_point_to_station": 3.712,
+      "request_point_to_served_cell": 1.88
+    },
+    "note": "Features are the Open-Meteo archive grid cell containing the Phase 3 request point; labels are VOTV aerodrome observations, which IEM reports at 8.4667 N, 76.95 E. No spatial resolution is claimed beyond what the API returns.",
+    "distance_note": "The separation that applies to the delivered feature values is served_cell_to_station. request_point_to_station is the distance from the coordinate that was asked for, not from the cell that answered, and the two differ because the API serves the grid cell containing the request point."
+  },
+  "masking": {
+    "recipe": "wx_field_observed == 1 AND thunderstorm_label.notna()",
+    "why": "Only hours with genuine observation evidence are supervised. Hours without a report are NaN in the label source and are excluded, never relabelled 0. Hours with reports but no decodable present-weather group are excluded because in them a missing TS code reflects the report format, not an observed absence.",
+    "cohort": {
+      "window_grid_hours": 105192,
+      "label_observed_hours": 102816,
+      "label_unobserved_hours": 2376,
+      "hours_with_present_weather_group": 82021,
+      "hours_with_reports_but_no_present_weather_group": 20795
+    }
+  },
+  "counts": {
+    "rows": 82021,
+    "positive_hours": 3694,
+    "negative_hours": 78327,
+    "positive_rate": 0.045037,
+    "excluded_rows": 23171,
+    "excluded_unobserved_no_report": 2376,
+    "excluded_reports_without_present_weather_group": 20795,
+    "rows_per_year": {
+      "2014": 7118,
+      "2015": 6175,
+      "2016": 7128,
+      "2017": 7379,
+      "2018": 7143,
+      "2019": 6721,
+      "2020": 6367,
+      "2021": 6632,
+      "2022": 6493,
+      "2023": 6487,
+      "2024": 7545,
+      "2025": 6833
+    },
+    "positives_per_year": {
+      "2014": 279,
+      "2015": 397,
+      "2016": 149,
+      "2017": 291,
+      "2018": 415,
+      "2019": 293,
+      "2020": 297,
+      "2021": 426,
+      "2022": 296,
+      "2023": 331,
+      "2024": 320,
+      "2025": 200
+    }
+  },
+  "missing_values": {
+    "policy": "no imputation and no invented values; rows are retained and flagged",
+    "feature_missing_per_column": {
+      "temperature_2m": 0,
+      "relative_humidity_2m": 0,
+      "surface_pressure": 0,
+      "wind_speed_10m": 0,
+      "wind_direction_10m": 0,
+      "precipitation": 0,
+      "cloud_cover": 0,
+      "weather_code": 0
+    },
+    "total_missing_feature_values": 0,
+    "rows_with_any_missing_feature": 0,
+    "rows_with_all_features_missing": 0,
+    "recommended_phase4_handling": "Use features_complete == True rows for a first model, or apply an explicitly documented imputation; do not silently fill values."
+  },
+  "timestamp_alignment": {
+    "rows": 82021,
+    "duplicate_timestamps": 0,
+    "timestamps_sorted_ascending": true,
+    "timestamps_are_utc": true,
+    "all_timestamps_on_hour_boundary": true,
+    "contiguous_hourly_grid_within_window": true,
+    "join_is_exact_same_hour": true
+  },
+  "leakage_checks": {
+    "feature_columns": [
+      "temperature_2m",
+      "relative_humidity_2m",
+      "surface_pressure",
+      "wind_speed_10m",
+      "wind_direction_10m",
+      "precipitation",
+      "cloud_cover",
+      "weather_code"
+    ],
+    "label_and_audit_columns_excluded_from_features": [
+      "thunderstorm_label",
+      "thunderstorm_label_strict",
+      "thunderstorm_label_recovered",
+      "wxcodes_observed",
+      "n_reports",
+      "n_reports_full_decode",
+      "n_reports_with_wx",
+      "wx_field_observed",
+      "n_ts_reports"
+    ],
+    "observation_columns_are_not_features": true,
+    "label_is_same_hour_nowcast": true,
+    "lead_time_shift_applied": false,
+    "lead_time_note": "The label aggregates VOTV reports inside clock hour H and the features are the clock-hour-H Open-Meteo values, so the task encoded here is a same-hour nowcast. A lead time must be introduced in Phase 4 by shifting the label backwards (label(H) paired with features(H - L)), never by shifting features forwards.",
+    "weather_code_check": {
+      "ts_codes_considered": [
+        95,
+        96,
+        99
+      ],
+      "hours_with_ts_weather_code": 0,
+      "of_which_label_positive": 0,
+      "of_which_label_negative": 0,
+      "label_positive_hours": 3694,
+      "verdict": "No hour in this window carries a thunderstorm weather_code, so the code cannot leak the target through its 95/96/99 categories. The same measurement shows the archived code never even reaches the shower range at this cell (observed maximum code: 65), while 3694 hours are label-positive, so weather_code carries no detectable thunderstorm signal here regardless of the leakage question. It is retained in the file for transparency but is not recommended as a Phase 4 input.",
+      "precision_of_ts_code_as_predictor": null,
+      "recall_of_ts_code_as_predictor": 0.0,
+      "observed_weather_code_max": 65
+    },
+    "future_information": {
+      "max_abs_timestamp_offset_seconds": 0.0,
+      "no_forward_looking_aggregations": true,
+      "no_column_derived_from_later_hours": true,
+      "note": "Every feature column is a single-hour value for the same UTC hour as the label; the file contains no rolling, centred or forward-shifted columns."
+    }
+  },
+  "columns": {
+    "time": "timestamp_utc",
+    "features": [
+      "temperature_2m",
+      "relative_humidity_2m",
+      "surface_pressure",
+      "wind_speed_10m",
+      "wind_direction_10m",
+      "precipitation",
+      "cloud_cover",
+      "weather_code"
+    ],
+    "feature_flags": [
+      "features_complete"
+    ],
+    "label": [
+      "thunderstorm_label"
+    ],
+    "audit_only_never_features": [
+      "thunderstorm_label_strict",
+      "thunderstorm_label_recovered",
+      "wxcodes_observed",
+      "n_reports",
+      "n_reports_full_decode",
+      "n_reports_with_wx",
+      "wx_field_observed",
+      "n_ts_reports"
+    ]
+  },
+  "validation": {
+    "checks_run": [
+      "label and feature grids both restricted to the exact UTC hourly window",
+      "feature chunk schema, row count, tz, ordering and duplicate checks per year",
+      "one-to-one exact-timestamp inner join (no nearest-hour matching)",
+      "re-join of the synchronized timestamps reproduces identical feature values",
+      "chronological ordering of the output",
+      "duplicate timestamp count of the output",
+      "labels hold only {0,1} with no NaN",
+      "window cohorts partition the 2014-2025 grid exactly",
+      "strict/recovered label variants bracket the primary label",
+      "positives + negatives == rows",
+      "observation-derived columns are not feature columns",
+      "weather_code thunderstorm-code cross-tab against the label",
+      "protected Phase 1/Phase 2 files byte-identical before and after"
+    ],
+    "problems": [],
+    "status": "PASS"
+  },
+  "protected_files_sha256_before": {
+    "weather_data.csv": "72f439aa25e2dfedb1fe2f3a5f6b42f45da8a924dd3b9ff3dd608dccf8e9b453",
+    "weather_data_with_code.csv": "bb12b136c0eeae4531ee393c3a68632d008449c0e222c98b1bbad1437068d26e",
+    "historical_thunderstorm_labels_votv.csv": "5807c11130ac9a90a8b73e337184c4d1dfcda43a1158197cc09f4a769eb5cfb9"
+  },
+  "protected_files_sha256_after": {
+    "weather_data.csv": "72f439aa25e2dfedb1fe2f3a5f6b42f45da8a924dd3b9ff3dd608dccf8e9b453",
+    "weather_data_with_code.csv": "bb12b136c0eeae4531ee393c3a68632d008449c0e222c98b1bbad1437068d26e",
+    "historical_thunderstorm_labels_votv.csv": "5807c11130ac9a90a8b73e337184c4d1dfcda43a1158197cc09f4a769eb5cfb9"
+  },
+  "protected_files_unchanged": true,
+  "checksums": {
+    "csv_sha256": "6e0be102df5ef39ebda1847914acc7ed9554a137f00547998785054e384bbc4c"
+  },
+  "no_model_trained": true,
+  "scope_note": "Phase 3 only. The dashboard, backend, existing model and the Phase 1 datasets (weather_data.csv, weather_data_with_code.csv) were not modified, and no model was trained or re-trained."
+}

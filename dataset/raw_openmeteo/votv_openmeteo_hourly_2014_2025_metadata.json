@@ -1,0 +1,153 @@
+{
+  "artifact": "votv_openmeteo_hourly_2014_2025.csv",
+  "phase": "Phase 3 -- data preprocessing and synchronization (raw feature acquisition)",
+  "created_at_utc": "2026-09-14T15:28:15.180926+00:00",
+  "station_id": "VOTV",
+  "source": {
+    "name": "Open-Meteo Historical Weather API (archive)",
+    "endpoint": "https://archive-api.open-meteo.com/v1/archive",
+    "access_method": "openmeteo_requests SDK, falling back to a direct REST request",
+    "note": "Same endpoint, variables and timezone setting as the Phase 1 notebook dataset/data_collection.ipynb, which produced dataset/weather_data_with_code.csv. The request is split per calendar year for resumability; Open-Meteo is a deterministic archive, so chunking does not alter the returned values."
+  },
+  "request": {
+    "latitude": 8.482,
+    "longitude": 76.92,
+    "start_date": "2014-01-01",
+    "end_date": "2025-12-31",
+    "hourly_variables": [
+      "temperature_2m",
+      "relative_humidity_2m",
+      "surface_pressure",
+      "wind_speed_10m",
+      "wind_direction_10m",
+      "precipitation",
+      "cloud_cover",
+      "weather_code"
+    ],
+    "timezone": "GMT",
+    "example_request_url": "https://archive-api.open-meteo.com/v1/archive?latitude=8.482&longitude=76.92&start_date=2014-01-01&end_date=2014-12-31&hourly=temperature_2m%2Crelative_humidity_2m%2Csurface_pressure%2Cwind_speed_10m%2Cwind_direction_10m%2Cprecipitation%2Ccloud_cover%2Cweather_code&timezone=GMT"
+  },
+  "response": {
+    "returned_latitude": 8.471001625061035,
+    "returned_longitude": 76.9329833984375,
+    "returned_elevation_m": 4.0,
+    "returned_timezone": "None",
+    "returned_utc_offset_seconds": 0
+  },
+  "coordinates": {
+    "requested_latitude": 8.482,
+    "requested_longitude": 76.92,
+    "served_latitude": 8.471001625061035,
+    "served_longitude": 76.9329833984375,
+    "served_elevation_m": 4.0,
+    "note": "Open-Meteo serves the archive grid cell containing the requested point. The 'served_*' values are the API-reported cell for this request and are the coordinates the delivered values belong to. No spatial resolution is claimed beyond what the API reports for this request."
+  },
+  "coverage": {
+    "years": [
+      2014,
+      2025
+    ],
+    "expected_hours": 105192,
+    "actual_hours": 105192,
+    "first_timestamp_utc": "2014-01-01T00:00:00+00:00",
+    "last_timestamp_utc": "2025-12-31T23:00:00+00:00"
+  },
+  "quality": {
+    "duplicate_timestamps": 0,
+    "timestamps_sorted_ascending": true,
+    "missing_values_per_column": {
+      "temperature_2m": 0,
+      "relative_humidity_2m": 0,
+      "surface_pressure": 0,
+      "wind_speed_10m": 0,
+      "wind_direction_10m": 0,
+      "precipitation": 0,
+      "cloud_cover": 0,
+      "weather_code": 0
+    },
+    "total_missing_values": 0
+  },
+  "per_year": {
+    "2014": {
+      "rows": 8760,
+      "first_timestamp_utc": "2014-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2014-12-31T23:00:00+00:00",
+      "chunk_sha256": "21461f15b7c5c2f1afb0a3d0b03e0bbb54fc0c4b35a1e1d77103ca7331195de9"
+    },
+    "2015": {
+      "rows": 8760,
+      "first_timestamp_utc": "2015-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2015-12-31T23:00:00+00:00",
+      "chunk_sha256": "4b12c33cc64598eb2edbb019a56ba67e4fced071482559bf7597fd2d81f232a9"
+    },
+    "2016": {
+      "rows": 8784,
+      "first_timestamp_utc": "2016-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2016-12-31T23:00:00+00:00",
+      "chunk_sha256": "dc691e94ef2dba0410d7286f959d74a91843125cc9718f56e2429c72f6740509"
+    },
+    "2017": {
+      "rows": 8760,
+      "first_timestamp_utc": "2017-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2017-12-31T23:00:00+00:00",
+      "chunk_sha256": "5c563bd28ea257524a36a040d5a7d2fcefd3829cb1af5bc6bacfa079528e6877"
+    },
+    "2018": {
+      "rows": 8760,
+      "first_timestamp_utc": "2018-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2018-12-31T23:00:00+00:00",
+      "chunk_sha256": "e673d75e2de44747056e69cc37efb9bab0e2adcc3024c9e1f08952744d99723f"
+    },
+    "2019": {
+      "rows": 8760,
+      "first_timestamp_utc": "2019-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2019-12-31T23:00:00+00:00",
+      "chunk_sha256": "717293c3e217981021f596fc1205d7a558ea77f039e41bed657c63aabe38f171"
+    },
+    "2020": {
+      "rows": 8784,
+      "first_timestamp_utc": "2020-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2020-12-31T23:00:00+00:00",
+      "chunk_sha256": "5fb383ef9416c1c3385fd8a7dd6692fed9e2c86370928c2752f22577d483156b"
+    },
+    "2021": {
+      "rows": 8760,
+      "first_timestamp_utc": "2021-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2021-12-31T23:00:00+00:00",
+      "chunk_sha256": "ac9fbd70271278f337dd86454c8c4b444a02ac4acb10f311701c12c5442e3572"
+    },
+    "2022": {
+      "rows": 8760,
+      "first_timestamp_utc": "2022-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2022-12-31T23:00:00+00:00",
+      "chunk_sha256": "5cee8bfaee50bbd4d305bb1fd5d1822ec6654ef3a7b1c33f9f5b5df92b04c610"
+    },
+    "2023": {
+      "rows": 8760,
+      "first_timestamp_utc": "2023-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2023-12-31T23:00:00+00:00",
+      "chunk_sha256": "8937ed0219c0ae2866616d2222633e5fcb0872b377eb86be4aa679d373b50d15"
+    },
+    "2024": {
+      "rows": 8784,
+      "first_timestamp_utc": "2024-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2024-12-31T23:00:00+00:00",
+      "chunk_sha256": "487dac5c2d1897d2faa9a6024d2db8b5d8504850298dd0a7f160c4134c81c9de"
+    },
+    "2025": {
+      "rows": 8760,
+      "first_timestamp_utc": "2025-01-01T00:00:00+00:00",
+      "last_timestamp_utc": "2025-12-31T23:00:00+00:00",
+      "chunk_sha256": "321adb83ad3d6e062b653f8470ab6e8fd9725de5df65cb983dd7eab3a6787e9a"
+    }
+  },
+  "fetch_attempt_errors": [
+    "2014 attempt 1 fetch_year_via_sdk: OpenMeteoRequestsError: failed to request 'https://archive-api.open-meteo.com/v1/archive': HTTPSConnectionPool(host='archive-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/archive?latitude=8.482&longitude=76.92&start_date=2014-01-01&end_date=2014-12-31&hourly=temperature_2m%2Crelative_humidity_2m%2Csurface_pressure%2Cwind_speed_10m%2Cwind_direction_10m%2Cprecipitation%2Ccloud_cover%2Cweather_code&timezone=GMT&format=flatbuffers (Caused by ResponseError('too many 502 error responses'))",
+    "2014 attempt 1 fetch_year_via_rest: URLError: <urlopen error [WinError 10054] An existing connection was forcibly closed by the remote host>",
+    "2014 attempt 2 fetch_year_via_sdk: OpenMeteoRequestsError: failed to request 'https://archive-api.open-meteo.com/v1/archive': HTTPSConnectionPool(host='archive-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/archive?latitude=8.482&longitude=76.92&start_date=2014-01-01&end_date=2014-12-31&hourly=temperature_2m%2Crelative_humidity_2m%2Csurface_pressure%2Cwind_speed_10m%2Cwind_direction_10m%2Cprecipitation%2Ccloud_cover%2Cweather_code&timezone=GMT&format=flatbuffers (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001CC39F4F4A0>, 'Connection to archive-api.open-meteo.com timed out. (connect timeout=None)'))",
+    "2014 attempt 2 fetch_year_via_rest: URLError: <urlopen error [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond>"
+  ],
+  "checksums": {
+    "csv_sha256": "beca4c721cc193717c3d5d6a11547b288f41611eb7dfb655aeb8a386baf3cdae"
+  }
+}

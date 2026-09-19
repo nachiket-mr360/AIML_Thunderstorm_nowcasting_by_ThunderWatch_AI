@@ -1,0 +1,422 @@
+{
+  "phase": "Phase 8 -- Flask backend verification",
+  "generated_at_utc": "2026-09-15T05:05:21.055378+00:00",
+  "python": "3.12.10",
+  "checks_total": 56,
+  "checks_passed": 56,
+  "checks_failed": 0,
+  "result": "PASS",
+  "checks": [
+    {
+      "check": "python app.py starts a Flask server that answers /api/health",
+      "passed": true,
+      "evidence": "listening on http://127.0.0.1:62581"
+    },
+    {
+      "check": "GET / returns HTTP 200",
+      "passed": true,
+      "evidence": "{\"status\": 200, \"content_type\": \"text/html; charset=utf-8\"}"
+    },
+    {
+      "check": "GET / returns the dashboard document",
+      "passed": true,
+      "evidence": "{\"bytes\": 16744, \"mentions_nowcast_titles\": 9}"
+    },
+    {
+      "check": "GET /api/health returns HTTP 200 with status ok",
+      "passed": true,
+      "evidence": "{\"http_status\": 200, \"status\": \"ok\"}"
+    },
+    {
+      "check": "health confirms the application is running",
+      "passed": true,
+      "evidence": "{\"detail\": \"The Flask application answered this request.\", \"status\": \"ok\"}"
+    },
+    {
+      "check": "health confirms the primary Phase 6 model is available",
+      "passed": true,
+      "evidence": "{\"available\": true, \"artifact\": \"thunderstorm_nowcast_1h.joblib\", \"estimator\": \"RandomForestClassifier\", \"n_features\": 28, \"load_seconds\": 1.1537665999994715}"
+    },
+    {
+      "check": "health confirms the Phase 7 engine and its Phase 4 feature source are usable",
+      "passed": true,
+      "evidence": "{\"available\": true, \"feature_module_imported\": true, \"feature_count\": 28}"
+    },
+    {
+      "check": "health confirms the live-data dependency is reachable",
+      "passed": true,
+      "evidence": "{\"status\": \"reachable\", \"http_status\": 200, \"latency_ms\": 4977.7}"
+    },
+    {
+      "check": "GET /api/prediction returns HTTP 200 with a prediction",
+      "passed": true,
+      "evidence": "{\"http_status\": 200, \"code\": null}"
+    },
+    {
+      "check": "probability is a real number in [0, 1]",
+      "passed": true,
+      "evidence": "{\"probability\": 0.0}"
+    },
+    {
+      "check": "the threshold served is the locked Phase 6 value 0.0775",
+      "passed": true,
+      "evidence": "{\"threshold\": 0.0775}"
+    },
+    {
+      "check": "predicted_class is exactly the 0.0775 threshold comparison",
+      "passed": true,
+      "evidence": "{\"probability\": 0.0, \"threshold\": 0.0775, \"predicted_class\": 0, \"expected\": 0}"
+    },
+    {
+      "check": "risk_label is the label for that class",
+      "passed": true,
+      "evidence": "{\"predicted_class\": 0, \"risk_label\": \"No thunderstorm alert\"}"
+    },
+    {
+      "check": "lead time is 1 hour",
+      "passed": true,
+      "evidence": "{\"lead_time_hours\": 1}"
+    },
+    {
+      "check": "prediction timestamp, feature hour and target hour are coherent (target = feature + 1 h)",
+      "passed": true,
+      "evidence": "{\"prediction_timestamp\": \"2026-09-15T05:04:34.302328+00:00\", \"feature_timestamp\": \"2026-09-15T05:00:00+00:00\", \"target_timestamp\": \"2026-09-15T06:00:00+00:00\", \"target_minus_feature_hours\": 1.0}"
+    },
+    {
+      "check": "the feature hour is within the 3 h freshness policy",
+      "passed": true,
+      "evidence": "{\"data_age_hours\": 0.07619509111111111, \"policy\": {\"data_age_hours\": 0.07619509111111111, \"max_data_age_hours\": 3.0, \"status\": \"within_limit\"}}"
+    },
+    {
+      "check": "the data source is a real Open-Meteo request, not a replay",
+      "passed": true,
+      "evidence": "{\"frame_origin\": \"live_open_meteo_forecast_endpoint\", \"provider\": \"Open-Meteo\", \"endpoint\": \"https://api.open-meteo.com/v1/forecast\", \"hours_returned\": 96, \"requested_at_utc\": \"2026-09-15T05:04:38.348136+00:00\"}"
+    },
+    {
+      "check": "the served grid coordinates are reported and are the training cell",
+      "passed": true,
+      "evidence": "{\"elevation_m\": 4.0, \"latitude\": 8.471002, \"longitude\": 76.93298}"
+    },
+    {
+      "check": "the upstream request happened during this verification run (not a cached or static value)",
+      "passed": true,
+      "evidence": "{\"requested_at_utc\": \"2026-09-15T05:04:38.348136+00:00\"}"
+    },
+    {
+      "check": "the model identifier is the 1-hour thunderstorm nowcast",
+      "passed": true,
+      "evidence": "{\"model_identifier\": \"thunderstorm_nowcast_1h\", \"file\": \"thunderstorm_nowcast_1h.joblib\", \"estimator_class\": \"RandomForestClassifier\", \"n_features\": 28, \"target_column\": \"target_1h\", \"lead_time_hours\": 1}"
+    },
+    {
+      "check": "the payload states it came from the Phase 7 engine",
+      "passed": true,
+      "evidence": "{\"function\": \"predict_current_thunderstorm_risk\", \"model_artifact\": \"thunderstorm_nowcast_1h.joblib\", \"module\": \"ml.predict_thunderstorm_nowcast\", \"phase\": \"Phase 7 (real-time prediction engine)\", \"validated\": \"Phase 7 validator: 74/74 PASS\"}"
+    },
+    {
+      "check": "feature completeness is reported: 28/28 present, finite, nothing imputed",
+      "passed": true,
+      "evidence": "{\"all_features_finite\": true, \"feature_order_matches_training_metadata\": true, \"history_hours_used\": 77, \"history_sufficient\": true, \"missing_feature_names\": [], \"n_features_expected\": 28, \"n_features_missing\": 0, \"n_features_provided\": 28, \"raw_values_missing_in_window\": 0, \"required_preceding_hours\": 6, \"values_imputed\": 0}"
+    },
+    {
+      "check": "feature order matches the training metadata",
+      "passed": true,
+      "evidence": "{\"feature_order_matches_training_metadata\": true}"
+    },
+    {
+      "check": "the HTTP payload and an independent engine call describe the same feature hour",
+      "passed": true,
+      "evidence": "{\"api_feature_timestamp\": \"2026-09-15T05:00:00+00:00\", \"engine_feature_timestamp\": \"2026-09-15T05:00:00+00:00\"}"
+    },
+    {
+      "check": "the served probability equals the independently recomputed engine value",
+      "passed": true,
+      "evidence": "{\"api_probability\": 0.0, \"engine_probability\": 0.0, \"api_class\": 0, \"engine_class\": 0}"
+    },
+    {
+      "check": "the independent engine call was itself a live request (so equality is not a cached replay)",
+      "passed": true,
+      "evidence": "live_open_meteo_forecast_endpoint"
+    },
+    {
+      "check": "the Phase 1 surrogate proxy is still served at /api/prediction/proxy",
+      "passed": true,
+      "evidence": "{\"http_status\": 200, \"probability\": 0.015043897039976696, \"risk_label\": \"Low Risk\", \"threshold_mm_per_3h\": 2.0}"
+    },
+    {
+      "check": "the proxy endpoint still reports its own 3-hour horizon (distinct from the nowcast)",
+      "passed": true,
+      "evidence": "{\"horizon_hours\": 3}"
+    },
+    {
+      "check": "retained endpoint /api/history still works (recent hourly atmospheric data)",
+      "passed": true,
+      "evidence": "{\"http_status\": 200}"
+    },
+    {
+      "check": "retained endpoint /api/evaluation still works (Phase 1 metrics)",
+      "passed": true,
+      "evidence": "{\"http_status\": 200}"
+    },
+    {
+      "check": "retained endpoint /api/artifacts/confusion_matrix.png still works (whitelisted artifact)",
+      "passed": true,
+      "evidence": "{\"http_status\": 200}"
+    },
+    {
+      "check": "retained endpoint /api/scenario still works (historical scenario)",
+      "passed": true,
+      "evidence": "{\"http_status\": 200}"
+    },
+    {
+      "check": "an unknown path returns a JSON 404, not an HTML error page",
+      "passed": true,
+      "evidence": "{\"http_status\": 404, \"code\": \"not_found\"}"
+    },
+    {
+      "check": "probability is explicitly stated not to be a confidence",
+      "passed": true,
+      "evidence": "Model score for the positive class (thunderstorm reported at the station in hour t + 1 h). It is NOT a confidence, NOT a probability of being correct, and NOT a calibrated frequency of thunderstorms: the forest was train"
+    },
+    {
+      "check": "the payload states the future observation is unavailable, not zero",
+      "passed": true,
+      "evidence": "{\"available\": false, \"reason\": \"The genuine VOTV METAR observation for the predicted hour t + 1 h does not exist at prediction time, so no observed outcome is reported here. Phase 6 states the measured skill of exactly this model/threshold pair separately.\", \"target_timestamp_utc\": \"2026-09-15T06:00:00+00:00\"}"
+    },
+    {
+      "check": "leakage_guard confirms no future or target-derived value entered the features",
+      "passed": true,
+      "evidence": "{\"future_atmospheric_variables_used\": false, \"target_columns_used_as_features\": false, \"target_derived_statistics_used\": false, \"weather_code_requested\": false, \"weather_code_used_as_feature\": false}"
+    },
+    {
+      "check": "the inputs are described as latest available data, not a station observation",
+      "passed": true,
+      "evidence": "The seven atmospheric inputs are 'latest available atmospheric data' from a model-derived provider grid cell. They are NOT the VOTV aerodrome ground observation, and they are not presented as one."
+    },
+    {
+      "check": "a cross-origin GET is allowed by CORS",
+      "passed": true,
+      "evidence": "{\"Access-Control-Allow-Origin\": \"*\"}"
+    },
+    {
+      "check": "prediction responses are not cacheable",
+      "passed": true,
+      "evidence": "{\"Cache-Control\": \"no-store, no-cache, must-revalidate\"}"
+    },
+    {
+      "check": "content-type sniffing is disabled",
+      "passed": true,
+      "evidence": "{\"X-Content-Type-Options\": \"nosniff\"}"
+    },
+    {
+      "check": "preflight advertises a read-only method set",
+      "passed": true,
+      "evidence": "{\"status\": 200, \"methods\": \"GET, HEAD, OPTIONS\"}"
+    },
+    {
+      "check": "a write attempt against the prediction endpoint is refused with 405",
+      "passed": true,
+      "evidence": "{\"status\": 405}"
+    },
+    {
+      "check": "every simulated live-data failure returns an error and never a prediction",
+      "passed": true,
+      "evidence": "[{\"scenario\": \"provider unreachable (connection error)\", \"http_status\": 503, \"code\": \"upstream_unreachable\", \"probability\": null, \"predicted_class\": null, \"no_prediction_fields_are_null\": true, \"handled_safely\": true}, {\"scenario\": \"provider timeout\", \"http_status\": 503, \"code\": \"upstream_timeout\", \"probability\": null, \"predicted_class\": null, \"no_prediction_fields_are_null\": true, \"handled_safely\": true}, {\"scenario\": \"provider returns HTTP 503\", \"http_status\": 503, \"code\": \"upstream_status\", \"probability\": null, \"predicted_class\": null, \"no_prediction_fields_are_null\": true, \"handled_safely\": true}, {\"scenario\": \"provider returns a body that is not JSON\", \"http_status\": 503, \"code\": \"malformed_response\", \"probability\": null, \"predicted_class\": null, \"no_prediction_fields_are_null\": true, \"handled_safely\": true}, {\"scenario\": \"provider returns the wrong units for wind speed\", \"http_status\": 503, \"code\": \"unexpected_units\", \"probability\": null, \"predicted_class\": null, \"no_prediction_fields_are_null\": true, \"handled_safely\": true}, {\"scenario\": \"provider omits a required variable\", \"http_status\": 503, \"code\": \"missing_variables\", \"probability\": null, \"predicted_class\": null, \"no_pr"
+    },
+    {
+      "check": "the failure body explicitly marks that no prediction was produced",
+      "passed": true,
+      "evidence": "{\"no_prediction_produced\": true, \"non_null_prediction_fields\": \"none\", \"code\": \"upstream_unreachable\", \"message\": \"Could not obtain live atmospheric data from Open-Meteo: ConnectionError: simulated network failure\"}"
+    },
+    {
+      "check": "a failed prediction is an HTTP error, never 200",
+      "passed": true,
+      "evidence": "{\"http_status\": 503}"
+    },
+    {
+      "check": "health reports degraded (HTTP 503) when the live provider is unreachable",
+      "passed": true,
+      "evidence": "{\"http_status\": 503, \"status\": \"degraded\", \"live_dependency\": \"unreachable\"}"
+    },
+    {
+      "check": "health can be checked offline with ?live=0 and still reports model+engine",
+      "passed": true,
+      "evidence": "{\"http_status\": 200, \"status\": \"ok\", \"model_available\": true, \"engine_available\": true}"
+    },
+    {
+      "check": "every protected artifact is still present",
+      "passed": true,
+      "evidence": "{\"declared\": 107, \"present\": 107}"
+    },
+    {
+      "check": "recorded Phase 3->4->5 dataset hashes recompute exactly",
+      "passed": true,
+      "evidence": "[{\"file\": \"dataset/raw_openmeteo/votv_openmeteo_hourly_2014_2025.csv\", \"recorded\": \"beca4c721cc193717c3d5d6a11547b288f41611eb7dfb655aeb8a386baf3cdae\", \"recomputed\": \"beca4c721cc193717c3d5d6a11547b288f41611eb7dfb655aeb8a386baf3cdae\", \"matches\": true, \"meaning\": \"Phase 3 contiguous hourly context grid (recorded in Phase 4 and Phase 5 metadata)\"}, {\"file\": \"dataset/votv_thunderstorm_synchronized_2014_2025.csv\", \"recorded\": \"6e0be102df5ef39ebda1847914acc7ed9554a137f00547998785054e384bbc4c\", \"recomputed\": \"6e0be102df5ef39ebda1847914acc7ed9554a137f00547998785054e384bbc4c\", \"matches\": true, \"meaning\": \"Phase 3 synchronized label source (recorded in Phase 4 and Phase 5 metadata)\"}, {\"file\": \"dataset/votv_thunderstorm_features_2014_2025.csv\", \"recorded\": \"d18afa7cd04d91cf42d2802852245d2f92c41a74d6935f10cb5bc8b13f271b7d\", \"recomputed\": \"d18afa7cd04d91cf42d2802852245d2f92c41a74d6935f10cb5bc8b13f271b7d\", \"matches\": true, \"meaning\": \"Phase 4 feature table (recorded in Phase 5 metadata and in the Phase 6 bundle)\"}, {\"file\": \"dataset/votv_thunderstorm_nowcast_2014_2025.csv\", \"recorded\": \"b74b86f2f9f1c9218bca77dfe0afbe0339ba34687410b1299be094bbae0e1308\", \"recomputed\": \"b74b86f2f9f1c9218bca77dfe0af"
+    },
+    {
+      "check": "Phase 6 artifact's recorded training-dataset hash matches the dataset on disk",
+      "passed": true,
+      "evidence": "{\"artifact\": \"b74b86f2f9f1c9218bca77dfe0afbe0339ba34687410b1299be094bbae0e1308\", \"on_disk\": \"b74b86f2f9f1c9218bca77dfe0afbe0339ba34687410b1299be094bbae0e1308\"}"
+    },
+    {
+      "check": "locked decision threshold inside the artifact is still 0.0775",
+      "passed": true,
+      "evidence": "{\"artifact_threshold\": 0.0775}"
+    },
+    {
+      "check": "artifact still declares 28 features",
+      "passed": true,
+      "evidence": "{\"n_features\": 28}"
+    },
+    {
+      "check": "every git-tracked Phase 1-7 file is byte-identical to its staged blob",
+      "passed": true,
+      "evidence": "{\"files_compared\": 104, \"mismatches\": \"none\"}"
+    },
+    {
+      "check": "no protected artifact was written during Phase 8 (mtime guard)",
+      "passed": true,
+      "evidence": "{\"guard_from_utc\": \"2026-09-15T04:44:00+00:00\", \"violations\": \"none\"}"
+    },
+    {
+      "check": "no Phase 1-7 file has an unstaged modification in the working tree",
+      "passed": true,
+      "evidence": "{\"porcelain\": \"M  dataset/data_collection.ipynb\\nA  ml/train_thunderstorm_nowcast_phase6.py\\nA  models/thunderstorm_nowcast_1h.joblib\\nA  models/thunderstorm_nowcast_1h_metadata.json\\nA  models/thunderstorm_nowcast_2h.joblib\\nA  models/thunderstorm_nowcast_2h_metadata.json\\nA  models/thunderstorm_nowcast_3h.joblib\\nA  models/thunderstorm_nowcast_3h_metadata.json\\nA  outputs/PHASE6_MODEL_TRAINING_REPORT.md\\nA  outputs/thunderstorm_nowcast_1h_confusion_matrix.png\\nA  outputs/thunderstorm_nowcast_1h_evaluation.json\\nA  outputs/thunderstorm_nowcast_1h_feature_importance.csv\\nA  outputs/thunderstorm_nowcast_2h_confusion_matrix.png\\nA  outputs/thunderstorm_nowcast_2h_evaluation.json\\nA  outputs/thunderstorm_nowcast_2h_feature_importance.csv\\nA  outputs/thunderstorm_nowcast_3h_confusion_matrix.png\\nA  outputs/thunderstorm_nowcast_3h_evaluation.json\\nA  outputs/thunderstorm_nowcast_3h_feature_importance.csv\\nA  outputs/thunderstorm_nowcast_model_comparison.json\\nA  outputs/verify_phase6_models.py\\n?? ml/predict_thunderstorm_nowcast.py\\n?? ml/verify_prediction_engine_phase7.py\\n?? outputs/PHASE7_REALTIME_PREDICTION_ENGINE_REPORT.md\", \"unstaged\": \"none\", \"staged_pre_existing\": [\"M  dataset/d"
+    },
+    {
+      "check": "no protected artifact changed between the start and the end of the verification",
+      "passed": true,
+      "evidence": "{\"files_compared\": 107, \"changed\": \"none\"}"
+    }
+  ],
+  "evidence": {
+    "protected_files_checked": 107,
+    "dashboard_bytes": 16744,
+    "health": {
+      "status": "ok",
+      "model": {
+        "artifact": "thunderstorm_nowcast_1h.joblib",
+        "available": true,
+        "bundle_version": 1,
+        "decision_threshold": 0.0775,
+        "error": null,
+        "error_code": null,
+        "estimator_class": "RandomForestClassifier",
+        "lead_time_hours": 1,
+        "load_seconds": 1.1537665999994715,
+        "loaded_once_at_startup": true,
+        "n_features": 28,
+        "name": "thunderstorm_nowcast_1h",
+        "target_column": "target_1h",
+        "trained_at_utc": "2026-09-14T16:52:45.081850+00:00",
+        "training_dataset_sha256": "b74b86f2f9f1c9218bca77dfe0afbe0339ba34687410b1299be094bbae0e1308"
+      },
+      "engine_available": true,
+      "live_dependency": "reachable"
+    },
+    "live_prediction": {
+      "probability": 0.0,
+      "predicted_class": 0,
+      "risk_label": "No thunderstorm alert",
+      "threshold": 0.0775,
+      "lead_time_hours": 1,
+      "prediction_timestamp": "2026-09-15T05:04:34.302328+00:00",
+      "feature_timestamp": "2026-09-15T05:00:00+00:00",
+      "target_timestamp": "2026-09-15T06:00:00+00:00",
+      "model_identifier": "thunderstorm_nowcast_1h",
+      "served_grid_cell": {
+        "elevation_m": 4.0,
+        "latitude": 8.471002,
+        "longitude": 76.93298
+      },
+      "data_age_hours": 0.07619509111111111,
+      "independent_engine_probability": 0.0
+    },
+    "failure_scenarios": [
+      {
+        "scenario": "provider unreachable (connection error)",
+        "http_status": 503,
+        "code": "upstream_unreachable",
+        "probability": null,
+        "predicted_class": null,
+        "no_prediction_fields_are_null": true,
+        "handled_safely": true
+      },
+      {
+        "scenario": "provider timeout",
+        "http_status": 503,
+        "code": "upstream_timeout",
+        "probability": null,
+        "predicted_class": null,
+        "no_prediction_fields_are_null": true,
+        "handled_safely": true
+      },
+      {
+        "scenario": "provider returns HTTP 503",
+        "http_status": 503,
+        "code": "upstream_status",
+        "probability": null,
+        "predicted_class": null,
+        "no_prediction_fields_are_null": true,
+        "handled_safely": true
+      },
+      {
+        "scenario": "provider returns a body that is not JSON",
+        "http_status": 503,
+        "code": "malformed_response",
+        "probability": null,
+        "predicted_class": null,
+        "no_prediction_fields_are_null": true,
+        "handled_safely": true
+      },
+      {
+        "scenario": "provider returns the wrong units for wind speed",
+        "http_status": 503,
+        "code": "unexpected_units",
+        "probability": null,
+        "predicted_class": null,
+        "no_prediction_fields_are_null": true,
+        "handled_safely": true
+      },
+      {
+        "scenario": "provider omits a required variable",
+        "http_status": 503,
+        "code": "missing_variables",
+        "probability": null,
+        "predicted_class": null,
+        "no_prediction_fields_are_null": true,
+        "handled_safely": true
+      }
+    ],
+    "dataset_ancestry_chain": [
+      {
+        "file": "dataset/raw_openmeteo/votv_openmeteo_hourly_2014_2025.csv",
+        "recorded": "beca4c721cc193717c3d5d6a11547b288f41611eb7dfb655aeb8a386baf3cdae",
+        "recomputed": "beca4c721cc193717c3d5d6a11547b288f41611eb7dfb655aeb8a386baf3cdae",
+        "matches": true,
+        "meaning": "Phase 3 contiguous hourly context grid (recorded in Phase 4 and Phase 5 metadata)"
+      },
+      {
+        "file": "dataset/votv_thunderstorm_synchronized_2014_2025.csv",
+        "recorded": "6e0be102df5ef39ebda1847914acc7ed9554a137f00547998785054e384bbc4c",
+        "recomputed": "6e0be102df5ef39ebda1847914acc7ed9554a137f00547998785054e384bbc4c",
+        "matches": true,
+        "meaning": "Phase 3 synchronized label source (recorded in Phase 4 and Phase 5 metadata)"
+      },
+      {
+        "file": "dataset/votv_thunderstorm_features_2014_2025.csv",
+        "recorded": "d18afa7cd04d91cf42d2802852245d2f92c41a74d6935f10cb5bc8b13f271b7d",
+        "recomputed": "d18afa7cd04d91cf42d2802852245d2f92c41a74d6935f10cb5bc8b13f271b7d",
+        "matches": true,
+        "meaning": "Phase 4 feature table (recorded in Phase 5 metadata and in the Phase 6 bundle)"
+      },
+      {
+        "file": "dataset/votv_thunderstorm_nowcast_2014_2025.csv",
+        "recorded": "b74b86f2f9f1c9218bca77dfe0afbe0339ba34687410b1299be094bbae0e1308",
+        "recomputed": "b74b86f2f9f1c9218bca77dfe0afbe0339ba34687410b1299be094bbae0e1308",
+        "matches": true,
+        "meaning": "Phase 5 nowcast target table (recorded inside the Phase 6 model artifact)"
+      }
+    ],
+    "protected_files_changed_during_run": []
+  }
+}

@@ -1,0 +1,572 @@
+{
+  "artifact": "historical_thunderstorm_labels_votv.csv",
+  "artifact_type": "processed observed-thunderstorm label dataset",
+  "phase": "Phase 2 -- historical thunderstorm data acquisition (labels only)",
+  "created_at_utc": "2026-09-14T14:07:25.459527+00:00",
+  "source": {
+    "name": "Iowa Environmental Mesonet (IEM) ASOS/METAR archive request service",
+    "provider": "Iowa State University, Department of Agronomy",
+    "endpoint": "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py",
+    "underlying_observations": "Routine METAR and SPECI airport surface observations for VOTV, originating from the station's own GTS-distributed reports",
+    "access_method": "HTTP GET, comma-separated ('onlycomma') export, tz=UTC, report_type=3 (routine METAR) and report_type=4 (SPECI), data=all",
+    "why_this_source": "The export contains a dedicated, pre-parsed observed present-weather column ('wxcodes') from which thunderstorm codes can be read directly, instead of pattern-matching free-text METAR bodies.",
+    "download_script": "dataset/download_votv_metar_iem.py",
+    "build_script": "dataset/build_thunderstorm_labels.py",
+    "doc_script": "dataset/make_label_docs.py"
+  },
+  "station": {
+    "station_id": "VOTV",
+    "name": "Thiruvananthapuram International Airport, Kerala, India",
+    "wmo_icao": "VOTV",
+    "coordinates_used": {
+      "latitude": 8.4667,
+      "longitude": 76.95
+    },
+    "coordinate_source": "IEM station metadata as returned in every raw row (lon=76.9500, lat=8.4667)",
+    "note_on_coordinates": "The existing Open-Meteo dataset was fetched for 8.4855 N, 76.9492 E (a grid point ~2.1 km north of the aerodrome). The labels are station observations at the aerodrome coordinates; the offset is small relative to the hourly label resolution but must be acknowledged in Phase 3."
+  },
+  "coverage": {
+    "requested_range_utc": "2000-01-01 .. 2025-12-31",
+    "raw_observation_range_utc": [
+      "2000-01-01 02:40:00+00:00",
+      "2025-12-30 23:30:00+00:00"
+    ],
+    "hourly_grid_range_utc": [
+      "2000-01-01T00:00:00+00:00",
+      "2025-12-31T23:00:00+00:00"
+    ],
+    "hourly_grid_hours": 227928,
+    "hourly_grid_source": "exact UTC hour index of dataset/weather_data_with_code.csv (227,928 rows, 2000-01-01 00:00Z .. 2025-12-31 23:00Z)",
+    "raw_records_downloaded": 273139,
+    "raw_records_used": 273125,
+    "sub_hourly_reports": true
+  },
+  "temporal_resolution": {
+    "raw": "individual METAR/SPECI reports; nominal cadence is not fixed and changed over time",
+    "aggregated_label_grid": "1 hour, UTC hourly boundaries",
+    "hour_assignment_rule": "a report whose valid time t falls in [H, H+1) contributes to hour H; the label for hour H therefore describes the whole clock hour H",
+    "observed_cadence_eras": {
+      "2000-2005": "~7-14 reports/day, dominated by :40 past the hour",
+      "2006-2011": "~14-18 reports/day, dominated by :40 and :10 past the hour",
+      "2012-2015": "~31-37 reports/day, mixed :00/:10/:30/:40",
+      "2016-2025": "~42-48 reports/day, :00 and :30 (routine) plus irregular SPECI"
+    }
+  },
+  "label_definition": {
+    "evidence_field": "wxcodes (IEM pre-parsed OBSERVED present-weather group)",
+    "positive_rule": "thunderstorm_label = 1 for hour H when at least one valid observed report in [H, H+1) carries a TS-family present-weather code at the station (TS, TSRA, +TSRA, -TSRA, TSGR, TSDZ, TS/HZ, ...) or a vicinity code (VCTS).",
+    "zero_rule": "thunderstorm_label = 0 when hour H contains at least one valid observed report and none of them carries such a code.",
+    "missing_rule": "thunderstorm_label = NaN when hour H contains no valid observed report at all. Absence of a report is never treated as evidence of absence of a thunderstorm.",
+    "explicitly_not_used_as_label": [
+      "Open-Meteo weather_code",
+      "rainfall / precipitation thresholds",
+      "humidity or cloud-cover thresholds",
+      "blind regex search of raw METAR text for 'TS'",
+      "TS appearing only inside TEMPO, BECMG, NOSIG, PROBnn or other trend/forecast groups",
+      "RETS (recent thunderstorm, i.e. not occurring at observation time)"
+    ],
+    "vicinity_handling": {
+      "vcts_records": 6,
+      "decision": "VCTS is included in the primary label because IEM's wxcodes is the source's observed present-weather field, which is the condition the task allowed. The effect is negligible (single-digit records) and is isolated in the thunderstorm_label_strict column, which excludes vicinity-only reports."
+    },
+    "derived_columns": {
+      "thunderstorm_label": "primary label (0/1/NaN) as defined above",
+      "thunderstorm_label_strict": "same, but VCTS-only hours are 0 (station thunderstorm only)",
+      "thunderstorm_label_recovered": "audit/sensitivity variant that additionally sets 1 where a malformed pre-2012 body demonstrably encoded an observed TS that IEM's wxcodes failed to parse (e.g. '5000TS', 'TS/-DZ'); never a silent replacement for the primary label",
+      "wxcodes_observed": "distinct observed present-weather groups in the hour, for audit",
+      "n_reports": "number of valid observed reports in the hour",
+      "n_reports_full_decode": "reports in the hour carrying both altimeter and temperature groups",
+      "n_reports_with_wx": "reports in the hour carrying a decodable present-weather group",
+      "wx_field_observed": "1 when the hour has >=1 report with a decodable present-weather group",
+      "n_ts_reports": "number of reports in the hour carrying a TS-family code"
+    }
+  },
+  "missing_data_treatment": {
+    "unobserved_hours_are_nan": true,
+    "hours_marked_missing": 57059,
+    "observed_hours": 170869,
+    "observed_hour_percentage": 74.966,
+    "evidence_caveat": "A report that contains no present-weather group is not evidence that no thunderstorm occurred. Hours whose only reports lack a decodable present-weather group are exposed via wx_field_observed=0 and should be excluded or masked in modelling.",
+    "hours_with_decodable_present_weather": 110939,
+    "hours_with_reports_but_no_present_weather_group": 59930,
+    "zero_labels_relying_on_no_present_weather_group": 59930,
+    "recommended_masking_recipe": "df = df[(df.wx_field_observed == 1) & (df.thunderstorm_label.notna())]"
+  },
+  "counts": {
+    "raw_records_downloaded": 273139,
+    "raw_records_used_after_cleaning": 273125,
+    "records_excluded_as_non_observation": 1,
+    "duplicate_timestamp_rows_dropped": 13,
+    "conflicting_duplicate_timestamps": 0,
+    "observed_thunderstorm_reports_wxcodes": 6717,
+    "observed_thunderstorm_reports_station_only": 6711,
+    "observed_thunderstorm_reports_vcts_only": 6,
+    "thunderstorm_positive_hours": 4604,
+    "positive_percentage_of_observed_hours": 2.694,
+    "positive_percentage_of_all_grid_hours": 2.02,
+    "positive_hours_strict_variant": 4599,
+    "positive_hours_recovered_variant": 4680,
+    "hours_added_by_recovery_variant": 76,
+    "recovered_observed_ts_reports": 111,
+    "recovered_reports_by_year": {
+      "2005": 13,
+      "2006": 1,
+      "2007": 10,
+      "2008": 8,
+      "2009": 5,
+      "2010": 2,
+      "2011": 40,
+      "2012": 3,
+      "2013": 7,
+      "2014": 6,
+      "2015": 1,
+      "2019": 1,
+      "2020": 1,
+      "2021": 1,
+      "2022": 2,
+      "2023": 2,
+      "2024": 5,
+      "2025": 3
+    }
+  },
+  "report_density_and_stability": {
+    "reports_density_by_year": {
+      "2000": {
+        "raw_reports": 3108,
+        "reports_per_day": 8.56
+      },
+      "2001": {
+        "raw_reports": 2595,
+        "reports_per_day": 7.21
+      },
+      "2002": {
+        "raw_reports": 2783,
+        "reports_per_day": 7.86
+      },
+      "2003": {
+        "raw_reports": 3837,
+        "reports_per_day": 10.63
+      },
+      "2004": {
+        "raw_reports": 4574,
+        "reports_per_day": 12.53
+      },
+      "2005": {
+        "raw_reports": 5068,
+        "reports_per_day": 13.92
+      },
+      "2006": {
+        "raw_reports": 5188,
+        "reports_per_day": 14.25
+      },
+      "2007": {
+        "raw_reports": 5106,
+        "reports_per_day": 14.03
+      },
+      "2008": {
+        "raw_reports": 5153,
+        "reports_per_day": 14.12
+      },
+      "2009": {
+        "raw_reports": 5662,
+        "reports_per_day": 15.55
+      },
+      "2010": {
+        "raw_reports": 6305,
+        "reports_per_day": 17.51
+      },
+      "2011": {
+        "raw_reports": 5285,
+        "reports_per_day": 16.06
+      },
+      "2012": {
+        "raw_reports": 11310,
+        "reports_per_day": 30.99
+      },
+      "2013": {
+        "raw_reports": 12244,
+        "reports_per_day": 33.64
+      },
+      "2014": {
+        "raw_reports": 13423,
+        "reports_per_day": 36.98
+      },
+      "2015": {
+        "raw_reports": 12452,
+        "reports_per_day": 34.21
+      },
+      "2016": {
+        "raw_reports": 15456,
+        "reports_per_day": 42.35
+      },
+      "2017": {
+        "raw_reports": 17093,
+        "reports_per_day": 46.96
+      },
+      "2018": {
+        "raw_reports": 17064,
+        "reports_per_day": 47.01
+      },
+      "2019": {
+        "raw_reports": 17087,
+        "reports_per_day": 46.94
+      },
+      "2020": {
+        "raw_reports": 15681,
+        "reports_per_day": 42.96
+      },
+      "2021": {
+        "raw_reports": 17213,
+        "reports_per_day": 47.29
+      },
+      "2022": {
+        "raw_reports": 17170,
+        "reports_per_day": 47.17
+      },
+      "2023": {
+        "raw_reports": 17221,
+        "reports_per_day": 47.44
+      },
+      "2024": {
+        "raw_reports": 17661,
+        "reports_per_day": 48.39
+      },
+      "2025": {
+        "raw_reports": 17386,
+        "reports_per_day": 47.76
+      }
+    },
+    "observed_hour_coverage_pct_by_year": {
+      "2000": 35.28,
+      "2001": 29.57,
+      "2002": 31.76,
+      "2003": 43.72,
+      "2004": 52.07,
+      "2005": 57.85,
+      "2006": 59.22,
+      "2007": 58.29,
+      "2008": 58.65,
+      "2009": 64.01,
+      "2010": 65.34,
+      "2011": 41.59,
+      "2012": 88.02,
+      "2013": 90.84,
+      "2014": 93.48,
+      "2015": 90.78,
+      "2016": 97.54,
+      "2017": 99.25,
+      "2018": 98.73,
+      "2019": 99.09,
+      "2020": 98.72,
+      "2021": 99.27,
+      "2022": 98.96,
+      "2023": 97.67,
+      "2024": 99.68,
+      "2025": 99.71
+    },
+    "present_weather_observability_by_year": {
+      "2000": {
+        "reports": 3108,
+        "reports_with_present_weather_group": 0,
+        "present_weather_coverage_pct": 0.0,
+        "reports_with_full_routine_decode_pct": 0.0
+      },
+      "2001": {
+        "reports": 2595,
+        "reports_with_present_weather_group": 1,
+        "present_weather_coverage_pct": 0.04,
+        "reports_with_full_routine_decode_pct": 0.04
+      },
+      "2002": {
+        "reports": 2783,
+        "reports_with_present_weather_group": 0,
+        "present_weather_coverage_pct": 0.0,
+        "reports_with_full_routine_decode_pct": 0.0
+      },
+      "2003": {
+        "reports": 3837,
+        "reports_with_present_weather_group": 1099,
+        "present_weather_coverage_pct": 28.64,
+        "reports_with_full_routine_decode_pct": 59.27
+      },
+      "2004": {
+        "reports": 4574,
+        "reports_with_present_weather_group": 81,
+        "present_weather_coverage_pct": 1.77,
+        "reports_with_full_routine_decode_pct": 3.56
+      },
+      "2005": {
+        "reports": 5068,
+        "reports_with_present_weather_group": 1954,
+        "present_weather_coverage_pct": 38.56,
+        "reports_with_full_routine_decode_pct": 81.2
+      },
+      "2006": {
+        "reports": 5188,
+        "reports_with_present_weather_group": 325,
+        "present_weather_coverage_pct": 6.26,
+        "reports_with_full_routine_decode_pct": 14.8
+      },
+      "2007": {
+        "reports": 5106,
+        "reports_with_present_weather_group": 2395,
+        "present_weather_coverage_pct": 46.91,
+        "reports_with_full_routine_decode_pct": 97.83
+      },
+      "2008": {
+        "reports": 5153,
+        "reports_with_present_weather_group": 2416,
+        "present_weather_coverage_pct": 46.89,
+        "reports_with_full_routine_decode_pct": 82.92
+      },
+      "2009": {
+        "reports": 5662,
+        "reports_with_present_weather_group": 3028,
+        "present_weather_coverage_pct": 53.48,
+        "reports_with_full_routine_decode_pct": 96.15
+      },
+      "2010": {
+        "reports": 6305,
+        "reports_with_present_weather_group": 4085,
+        "present_weather_coverage_pct": 64.79,
+        "reports_with_full_routine_decode_pct": 97.49
+      },
+      "2011": {
+        "reports": 5285,
+        "reports_with_present_weather_group": 2900,
+        "present_weather_coverage_pct": 54.87,
+        "reports_with_full_routine_decode_pct": 98.05
+      },
+      "2012": {
+        "reports": 11310,
+        "reports_with_present_weather_group": 7991,
+        "present_weather_coverage_pct": 70.65,
+        "reports_with_full_routine_decode_pct": 99.43
+      },
+      "2013": {
+        "reports": 12244,
+        "reports_with_present_weather_group": 9328,
+        "present_weather_coverage_pct": 76.18,
+        "reports_with_full_routine_decode_pct": 99.53
+      },
+      "2014": {
+        "reports": 13423,
+        "reports_with_present_weather_group": 11482,
+        "present_weather_coverage_pct": 85.54,
+        "reports_with_full_routine_decode_pct": 99.62
+      },
+      "2015": {
+        "reports": 12452,
+        "reports_with_present_weather_group": 9327,
+        "present_weather_coverage_pct": 74.9,
+        "reports_with_full_routine_decode_pct": 99.44
+      },
+      "2016": {
+        "reports": 15456,
+        "reports_with_present_weather_group": 12522,
+        "present_weather_coverage_pct": 81.02,
+        "reports_with_full_routine_decode_pct": 99.77
+      },
+      "2017": {
+        "reports": 17093,
+        "reports_with_present_weather_group": 14248,
+        "present_weather_coverage_pct": 83.36,
+        "reports_with_full_routine_decode_pct": 99.91
+      },
+      "2018": {
+        "reports": 17064,
+        "reports_with_present_weather_group": 13837,
+        "present_weather_coverage_pct": 81.09,
+        "reports_with_full_routine_decode_pct": 99.95
+      },
+      "2019": {
+        "reports": 17087,
+        "reports_with_present_weather_group": 12912,
+        "present_weather_coverage_pct": 75.57,
+        "reports_with_full_routine_decode_pct": 99.96
+      },
+      "2020": {
+        "reports": 15681,
+        "reports_with_present_weather_group": 11223,
+        "present_weather_coverage_pct": 71.57,
+        "reports_with_full_routine_decode_pct": 99.98
+      },
+      "2021": {
+        "reports": 17213,
+        "reports_with_present_weather_group": 12759,
+        "present_weather_coverage_pct": 74.12,
+        "reports_with_full_routine_decode_pct": 99.95
+      },
+      "2022": {
+        "reports": 17170,
+        "reports_with_present_weather_group": 12484,
+        "present_weather_coverage_pct": 72.71,
+        "reports_with_full_routine_decode_pct": 99.98
+      },
+      "2023": {
+        "reports": 17221,
+        "reports_with_present_weather_group": 12714,
+        "present_weather_coverage_pct": 73.83,
+        "reports_with_full_routine_decode_pct": 99.99
+      },
+      "2024": {
+        "reports": 17661,
+        "reports_with_present_weather_group": 14968,
+        "present_weather_coverage_pct": 84.75,
+        "reports_with_full_routine_decode_pct": 99.99
+      },
+      "2025": {
+        "reports": 17386,
+        "reports_with_present_weather_group": 13352,
+        "present_weather_coverage_pct": 76.8,
+        "reports_with_full_routine_decode_pct": 99.99
+      }
+    },
+    "label_rate_by_era": {
+      "2000-2005": {
+        "observed_hours": 21943,
+        "positive_hours": 122,
+        "positive_pct_of_observed": 0.56
+      },
+      "2006-2011": {
+        "observed_hours": 30420,
+        "positive_hours": 466,
+        "positive_pct_of_observed": 1.53
+      },
+      "2012-2013": {
+        "observed_hours": 15690,
+        "positive_hours": 322,
+        "positive_pct_of_observed": 2.05
+      },
+      "2014-2015": {
+        "observed_hours": 16141,
+        "positive_hours": 676,
+        "positive_pct_of_observed": 4.19
+      },
+      "2016-2025": {
+        "observed_hours": 86675,
+        "positive_hours": 3018,
+        "positive_pct_of_observed": 3.48
+      }
+    },
+    "labelling_windows": [
+      {
+        "window": "2000-2025",
+        "grid_hours": 227928,
+        "observed_hours": 170869,
+        "hours_with_present_weather_group": 110939,
+        "present_weather_coverage_of_grid_pct": 48.67,
+        "positive_hours_all_observed": 4604,
+        "positive_hours_evidence_only": 4604,
+        "positive_pct_evidence_only": 4.15,
+        "missing_hours": 57059
+      },
+      {
+        "window": "2012-2025",
+        "grid_hours": 122736,
+        "observed_hours": 118506,
+        "hours_with_present_weather_group": 93752,
+        "present_weather_coverage_of_grid_pct": 76.39,
+        "positive_hours_all_observed": 4016,
+        "positive_hours_evidence_only": 4016,
+        "positive_pct_evidence_only": 4.284,
+        "missing_hours": 4230
+      },
+      {
+        "window": "2014-2025",
+        "grid_hours": 105192,
+        "observed_hours": 102816,
+        "hours_with_present_weather_group": 82021,
+        "present_weather_coverage_of_grid_pct": 77.97,
+        "positive_hours_all_observed": 3694,
+        "positive_hours_evidence_only": 3694,
+        "positive_pct_evidence_only": 4.504,
+        "missing_hours": 2376
+      },
+      {
+        "window": "2016-2025",
+        "grid_hours": 87672,
+        "observed_hours": 86675,
+        "hours_with_present_weather_group": 68728,
+        "present_weather_coverage_of_grid_pct": 78.39,
+        "positive_hours_all_observed": 3018,
+        "positive_hours_evidence_only": 3018,
+        "positive_pct_evidence_only": 4.391,
+        "missing_hours": 997
+      },
+      {
+        "window": "2017-2025",
+        "grid_hours": 78888,
+        "observed_hours": 78107,
+        "hours_with_present_weather_group": 61600,
+        "present_weather_coverage_of_grid_pct": 78.09,
+        "positive_hours_all_observed": 2869,
+        "positive_hours_evidence_only": 2869,
+        "positive_pct_evidence_only": 4.657,
+        "missing_hours": 781
+      }
+    ],
+    "conclusion": "2000-2013 is NOT suitable for modelling. The present-weather field is absent entirely in 2000-2002 (zero decodable present-weather groups in 8,486 reports) and present in only 1.8%-64.8% of reports up to 2013, with a label rate that swings between 0.0% and 2.4% per year for reasons that track encoding practice rather than weather (e.g. 2005 = 1.66% but 2006 = 0.12%). From 2014 the present-weather coverage is >=71.6% in every year and the label rate stabilises at 3.3%-5.0%. The recommended modelling window is 2014-2025 restricted to wx_field_observed == 1; 2016-2025 is the most homogeneous sub-window.",
+    "recommended_window": "2014-2025",
+    "recommended_window_stats": {
+      "window": "2014-2025",
+      "grid_hours": 105192,
+      "observed_hours": 102816,
+      "hours_with_present_weather_group": 82021,
+      "present_weather_coverage_of_grid_pct": 77.97,
+      "positive_hours_all_observed": 3694,
+      "positive_hours_evidence_only": 3694,
+      "positive_pct_evidence_only": 4.504,
+      "missing_hours": 2376
+    },
+    "stricter_alternative_window": "2016-2025"
+  },
+  "limitations": [
+    "Observations only describe the aerodrome point; a thunderstorm over the city or the catchment that is not within the station's vicinity is not labelled.",
+    "METAR present weather is a human/sensor judgement of 'thunderstorm observed at the station'; its detection range is finite and reporting practice varies between observers.",
+    "The hour label aggregates reports within [H, H+1), so it is a same-hour (nowcast-style) target, not a lead-time-shifted target. Phase 3 must apply any lead-time shift explicitly.",
+    "Pre-2012 reports use a legacy, frequently malformed encoding in which the present-weather group was sometimes glued to the visibility group ('5000TS') or written with slashes ('TS/-DZ'), causing IEM to leave wxcodes empty. 111 such observed TS reports were recovered into an audit-only column; they are not in the primary label.",
+    "~1,740 reports mention TS only in TEMPO/BECMG trend groups. These never produce a positive label. They were verified by cutting each body at the first trend marker.",
+    "The dataset is a label table only. It is deliberately NOT merged into the Open-Meteo features and no model was retrained in this phase.",
+    "IEM is a redistribution archive; no formal SLA and occasional ingestion duplicates exist (12 duplicate timestamps in Jan 2013 were de-duplicated, none conflicting).",
+    "Coverage ends 2025-12-30 23:30Z, so 2025-12-31 is entirely unobserved (NaN)."
+  ],
+  "validation": {
+    "run_by": "dataset/build_thunderstorm_labels.py (assertions) and an independent rebuild in the same phase",
+    "timestamps_parse": "PASS -- all 227,928 grid timestamps parse as UTC",
+    "timestamps_are_utc": "PASS -- tz is UTC, source requested with tz=UTC",
+    "no_duplicate_hourly_timestamps": "PASS -- grid is unique and strictly increasing",
+    "labels_only_0_1_nan": "PASS -- all three label columns hold only 0.0, 1.0 or NaN",
+    "label_monotonicity": "PASS -- recovered >= primary >= strict elementwise",
+    "no_future_information": "PASS -- each hour label uses only reports inside that same clock hour; no forward-looking window, no trend/forecast group",
+    "station_coordinates_consistent": "PASS -- single station_id, single lat/lon over all rows",
+    "source_field_preserved": "PASS -- wxcodes_observed retains the raw observed codes per hour",
+    "grid_matches_open_meteo": "PASS -- identical timestamp set to weather_data_with_code.csv",
+    "existing_project_files_unchanged": "PASS -- verified by SHA-256 before/after"
+  },
+  "files": {
+    "raw": {
+      "combined": "dataset/raw_metar/votv_metar_iem_raw.csv",
+      "per_year": "dataset/raw_metar/votv_metar_iem_2000.csv .. votv_metar_iem_2025.csv",
+      "download_log": "dataset/raw_metar/votv_metar_iem_download_log.json"
+    },
+    "processed": {
+      "labels": "dataset/historical_thunderstorm_labels_votv.csv",
+      "stats": "dataset/historical_thunderstorm_labels_votv_stats.json",
+      "metadata": "dataset/historical_thunderstorm_labels_votv_metadata.json",
+      "readme": "dataset/HISTORICAL_THUNDERSTORM_LABELS_README.md"
+    },
+    "scripts": [
+      "dataset/download_votv_metar_iem.py",
+      "dataset/build_thunderstorm_labels.py",
+      "dataset/make_label_docs.py"
+    ]
+  },
+  "checksums": {
+    "raw_combined_sha256": "c9a67da7006f99a243919729b0abc25a4a3dca2f448cd2bb5962ba2806e3dba1",
+    "labels_csv_sha256": "5807c11130ac9a90a8b73e337184c4d1dfcda43a1158197cc09f4a769eb5cfb9",
+    "reference_open_meteo_sha256": "bb12b136c0eeae4531ee393c3a68632d008449c0e222c98b1bbad1437068d26e"
+  },
+  "phase_3_ready": true,
+  "phase_3_note": "Ready for synchronization once the modelling window and the wx_field_observed mask are agreed. This phase intentionally did not merge labels into the ML dataset, did not retrain, and did not modify the existing model, dataset or outputs."
+}

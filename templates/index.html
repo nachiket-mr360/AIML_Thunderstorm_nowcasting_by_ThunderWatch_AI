@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }} — SIH 2026</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="{{ url_for('static', filename='dashboard.js') }}" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-main">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2 4.5 13.2h5.2L9.8 22l8.7-11.4h-5.3z"/>
+          </svg>
+        </span>
+        <div class="header-title">
+          <p class="eyebrow">SIH 2026 &middot; Problem SIH26072 &middot; Thunderstorm &amp; lightning nowcasting</p>
+          <h1>{{ page_title }}</h1>
+          <p class="header-meta">
+            <span class="header-loc">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21z"/>
+                <circle cx="12" cy="10.5" r="2.3"/>
+              </svg>
+              {{ location }}
+            </span>
+            <span class="dot-sep">&middot;</span>
+            <span class="mono">served grid {{ served_grid_latitude }}&deg; N, {{ served_grid_longitude }}&deg; E</span>
+            <span class="dot-sep">&middot;</span>
+            <span>1-hour nowcast &middot; locked threshold 0.0775</span>
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span id="live-status" class="status-pill status-pending" data-state="pending">
+          <span class="status-dot"></span><span id="live-status-text">Loading</span>
+        </span>
+        <button id="refresh-button" type="button" class="btn btn-primary">Refresh Nowcast</button>
+      </div>
+    </div>
+    <p class="header-note">{{ imd_disclaimer }}</p>
+  </header>
+
+  <div id="error-banner" class="error-banner" role="alert" aria-live="assertive" hidden>
+    <div class="error-banner-head">
+      <strong id="error-title">Prediction unavailable. No nowcast was generated.</strong>
+    </div>
+    <p id="error-detail" class="error-banner-detail"></p>
+  </div>
+
+  <main>
+    <!-- ================= PRIMARY RISK HERO ================= -->
+    <section class="card risk-card hero" id="risk-section" aria-live="polite">
+      <h2 class="visually-hidden">Current thunderstorm risk for {{ location }}</h2>
+
+      <div class="hero-loc-row">
+        <div class="hero-loc">
+          <span class="hero-pin" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+                 stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21.5s-6.6-5.5-6.6-10.7a6.6 6.6 0 1 1 13.2 0C18.6 16 12 21.5 12 21.5z"/>
+              <circle cx="12" cy="10.6" r="2.4"/>
+            </svg>
+          </span>
+          <span class="hero-loc-text">
+            <span class="hero-loc-name">{{ location }}</span>
+            <span class="hero-loc-sub mono">VOTV served grid {{ served_grid_latitude }}&deg; N, {{ served_grid_longitude }}&deg; E</span>
+          </span>
+        </div>
+        <div class="hero-tags">
+          <span class="chip chip-window">Window: next 1 hour</span>
+          <span class="chip chip-muted">Locked threshold 0.0775</span>
+          <span class="chip chip-muted">Model score, not confidence</span>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <!-- ---------- 1. ALERT DECISION ---------- -->
+        <div class="hero-decision" id="hero-decision">
+          <p class="hero-kicker">Alert status &mdash; next 1 hour</p>
+          <div class="hero-verdict">
+            <span id="risk-label" class="risk-label risk-label-empty">&mdash;</span>
+            <span class="verdict-icon" aria-hidden="true">
+              <svg class="verdict-glyph glyph-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3.6 1.8 20.4h20.4z"/><path d="M12 9.6v4.6"/><path d="M12 17.4h.01"/>
+              </svg>
+              <svg class="verdict-glyph glyph-clear" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/><path d="m8.2 12.4 2.6 2.6 5-5.4"/>
+              </svg>
+              <svg class="verdict-glyph glyph-pending" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.2l3.4 2"/>
+              </svg>
+            </span>
+          </div>
+          <p class="hero-verdict-sub">
+            Decision = model probability compared with the locked threshold
+            <strong class="mono">0.0775</strong>. Screening signal only &mdash; not an official IMD warning.
+          </p>
+        </div>
+
+        <!-- ---------- 2. PROBABILITY ---------- -->
+        <div class="hero-prob">
+          <p class="hero-kicker">Thunderstorm probability</p>
+          <div class="hero-prob-row">
+            <span id="probability" class="hero-prob-value">&mdash;</span>
+            <span class="hero-prob-unit">model score<br><span class="hero-prob-unit-note">not confidence</span></span>
+          </div>
+          <div class="prob-track prob-track-lg">
+            <div id="probability-bar" class="prob-fill"></div>
+            <span id="prob-threshold-mark" class="prob-threshold-mark" style="left: 7.75%"
+                  title="Locked decision threshold 0.0775"></span>
+          </div>
+          <div class="prob-scale">
+            <span>0%</span>
+            <span>alert threshold <b id="prob-threshold-mark-label" class="mono">0.0775</b></span>
+            <span>100%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-facts">
+        <div class="fact">
+          <span class="fact-label">Lead time</span>
+          <span id="lead-time" class="fact-value">&mdash;</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Locked threshold</span>
+          <span id="threshold" class="fact-value mono">&mdash;</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Feature hour (UTC)</span>
+          <span id="feature-timestamp" class="fact-value mono">&mdash;</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Prediction time (UTC)</span>
+          <span id="prediction-timestamp" class="fact-value mono">&mdash;</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Model</span>
+          <span id="model-identifier" class="fact-value mono">&mdash;</span>
+        </div>
+      </div>
+
+      <div class="meta-strip" id="prediction-meta">
+        <div><span class="meta-k">Data source</span> <span id="data-source" class="meta-v">&mdash;</span></div>
+        <div><span class="meta-k">Predicted hour (UTC)</span> <span id="target-timestamp" class="meta-v">&mdash;</span></div>
+        <div><span class="meta-k">Data age</span> <span id="data-age" class="meta-v">&mdash;</span></div>
+        <div><span class="meta-k">Feature completeness</span> <span id="feature-completeness" class="meta-v">&mdash;</span></div>
+      </div>
+
+      <p class="footnote" id="skill-note">
+        Measured Phase&nbsp;6 test skill for this locked threshold is shown after a live prediction loads.
+        An alert is a screening signal, not a definite thunderstorm forecast.
+      </p>
+    </section>
+
+    <!-- ================= MAP + ATMOSPHERE ================= -->
+    <div class="split-panel">
+      <section class="card map-card">
+        <div class="section-head">
+          <h2>Spatial Risk View</h2>
+          <span class="section-note" id="map-mode-note">Point / location-based risk</span>
+        </div>
+
+        <p class="panel-lead">
+          One marker, one grid cell. The marker is the <strong>single Open-Meteo grid cell</strong>
+          this nowcast was scored at, coloured by the current alert for that point. Surrounding
+          cells are not predicted, so no neighbouring risk values are estimated or drawn.
+        </p>
+
+        <div class="legend-box">
+          <span class="legend-title">Marker legend</span>
+          <div class="map-legend" id="map-legend">
+            <span class="legend-item"><span class="legend-dot legend-pending"></span> Awaiting prediction</span>
+            <span class="legend-item"><span class="legend-dot legend-low"></span> No thunderstorm alert</span>
+            <span class="legend-item"><span class="legend-dot legend-alert"></span> Thunderstorm alert</span>
+          </div>
+        </div>
+
+        <div id="map" class="map"
+             data-latitude="{{ served_grid_latitude }}"
+             data-longitude="{{ served_grid_longitude }}"
+             data-location="{{ location }}"
+             data-spatial-mode="point"
+             aria-label="Map of served Open-Meteo grid cell for the thunderstorm nowcast"></div>
+
+        <div class="map-coords">
+          <div>
+            <span class="meta-k">Served Open-Meteo grid cell</span>
+            <span id="served-coords" class="meta-v mono">{{ served_grid_latitude }}&deg; N, {{ served_grid_longitude }}&deg; E</span>
+          </div>
+          <div>
+            <span class="meta-k">Spatial coverage</span>
+            <span id="spatial-capability" class="meta-v">Single validated point (not a forecast grid)</span>
+          </div>
+        </div>
+
+        <p class="footnote">
+          Only this one trained grid cell is scored. This view does not claim 1&nbsp;km (or any
+          other) spatial resolution, and it never shows a risk value for a cell the model has not
+          scored. The layer is structured so multi-point predictions can be added later without
+          changing the map contract.
+        </p>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h2>Latest Available Atmosphere</h2>
+          <span id="conditions-note" class="section-note">Awaiting live data&hellip;</span>
+        </div>
+        <p class="panel-lead">
+          The seven variables below are exactly the atmospheric inputs this nowcast consumes,
+          read at the feature hour from the provider grid cell shown on the map.
+        </p>
+        <div id="conditions-grid" class="conditions-grid">
+          <!-- populated by dashboard.js -->
+        </div>
+        <p class="footnote">
+          Provider grid-cell values, not guaranteed direct VOTV aerodrome observations.
+          A blank card means the value was unavailable &mdash; nothing is filled in on the page.
+        </p>
+      </section>
+    </div>
+
+    <!-- ================= TRENDS ================= -->
+    <section class="card">
+      <div class="section-head">
+        <h2>Recent Atmospheric Evolution</h2>
+        <span id="trend-window" class="section-note">Recent hourly atmospheric data</span>
+      </div>
+      <p class="panel-lead">
+        Recent hourly history behind the feature hour above. These charts are context for the
+        current atmosphere &mdash; they are not model inputs and they are not a forecast.
+      </p>
+      <div id="trend-note" class="chart-note" hidden></div>
+      <div class="chart-pair">
+        <div>
+          <h3 class="chart-title">Temperature &amp; relative humidity</h3>
+          <div class="chart-box chart-box-tall"><canvas id="trend-chart"></canvas></div>
+          <p class="chart-caption">
+            Temperature on the left axis, relative humidity on the right axis, hour by hour.
+          </p>
+        </div>
+        <div>
+          <h3 class="chart-title">Hourly precipitation</h3>
+          <div class="chart-box chart-box-tall"><canvas id="precip-chart"></canvas></div>
+          <p class="chart-caption">
+            Precipitation reported for each hour in the same window.
+          </p>
+        </div>
+      </div>
+      <p class="footnote">
+        Hours at or before current UTC from Open-Meteo. Provider short-range output, not station
+        measurements. No values are interpolated or invented in the browser.
+      </p>
+    </section>
+
+    <!-- ================= PIPELINE (compact) ================= -->
+    <section class="card">
+      <div class="section-head">
+        <h2>Nowcast Pipeline</h2>
+        <span class="section-note">Phases 1&ndash;8 validated chain</span>
+      </div>
+      <p class="panel-lead">
+        How the alert at the top of the page is produced: measured station labels and provider
+        atmospheric data, engineered into causal features, scored by the nowcast model and
+        turned into an alert. Every stage below is implemented in this prototype.
+      </p>
+      <ol class="pipeline pipeline-compact">
+        <li><span class="stage">VOTV thunderstorm labels</span><span class="stage-note">Genuine METAR present-weather events</span></li>
+        <li><span class="stage">Synchronized 2014&ndash;2025 dataset</span><span class="stage-note">Open-Meteo + station labels</span></li>
+        <li><span class="stage">28 causal features</span><span class="stage-note">Phase 4, hours &le; t only</span></li>
+        <li><span class="stage">1-hour nowcast model</span><span class="stage-note">Random Forest, threshold 0.0775 locked</span></li>
+        <li><span class="stage">Phase 7 engine + Phase 8 API</span><span class="stage-note">Live atmospheric hour &rarr; probability / alert</span></li>
+      </ol>
+      <div class="integration-panel">
+        <h3 class="integration-title integration-active">Active in this prototype</h3>
+        <ul class="integration-list">
+          <li class="ok"><span class="mark">&#10003;</span> Live Open-Meteo atmospheric input</li>
+          <li class="ok"><span class="mark">&#10003;</span> Genuine thunderstorm nowcast model (threshold 0.0775 locked)</li>
+          <li class="ok"><span class="mark">&#10003;</span> Flask prediction API</li>
+          <li class="ok"><span class="mark">&#10003;</span> Point-based spatial marker</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= HOW TO INTERPRET THIS NOWCAST ================= -->
+    <section class="card interpret-card" id="interpret-section">
+      <div class="section-head">
+        <h2>How to Interpret This Nowcast</h2>
+        <span class="section-note">Reading the alert and the number above</span>
+      </div>
+
+      <div class="interpret-grid">
+        <div class="interpret-item interpret-low">
+          <span class="interpret-term">No thunderstorm alert</span>
+          <p class="interpret-body">
+            The model score for the next hour sits <strong>below</strong> the locked decision
+            threshold 0.0775. This is a no-alert decision, not proof that no thunderstorm will
+            occur.
+          </p>
+        </div>
+
+        <div class="interpret-item interpret-alert">
+          <span class="interpret-term">Thunderstorm alert</span>
+          <p class="interpret-body">
+            The model score for the next hour reaches or exceeds the locked threshold 0.0775.
+            It is a screening signal for that hour, not a definite thunderstorm forecast.
+          </p>
+        </div>
+
+        <div class="interpret-item">
+          <span class="interpret-term">Next 1 hour</span>
+          <p class="interpret-body">
+            Every value here refers to <strong>one future clock hour</strong>, t&nbsp;+&nbsp;1&nbsp;h,
+            counted from the feature hour shown above. No hour beyond that single hour is predicted.
+          </p>
+        </div>
+
+        <div class="interpret-item">
+          <span class="interpret-term">Probability (model score)</span>
+          <p class="interpret-body">
+            The number is the model's raw score for the positive class. It is deliberately
+            <strong>not</strong> a confidence and not a calibrated thunderstorm frequency: the model
+            was trained with class weighting, which shifts scores towards the rare class. Read it
+            against the locked threshold, never as a percentage of certainty.
+          </p>
+        </div>
+
+        <div class="interpret-item interpret-warn">
+          <span class="interpret-term">Not an official IMD warning</span>
+          <p class="interpret-body">
+            This dashboard is a research prototype and a decision-support aid only. It is not an
+            official India Meteorological Department thunderstorm or lightning warning and must not
+            be used as one. For official warnings, refer to IMD.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCALE-UP / FUTURE INTEGRATION ================= -->
+    <section class="card scaleup-card" id="scaleup-section">
+      <div class="section-head">
+        <h2>Scale-up / Future Integration</h2>
+        <span class="chip chip-plan">Planned &mdash; not integrated</span>
+      </div>
+      <p class="panel-lead">
+        The problem statement covers radar, satellite, lightning and NWP inputs over a spatial
+        grid. The live product on this page currently uses <strong>none</strong> of them: it is a
+        single-cell, 1-hour nowcast built from provider atmospheric fields. The capabilities below
+        are planned scale-up work, not working features.
+      </p>
+      <ul class="scaleup-list">
+        <li class="scaleup-item">
+          <span class="scaleup-name">Radar-derived features</span>
+          <span class="scaleup-note">Reflectivity and echo-motion predictors from Doppler weather radar.</span>
+        </li>
+        <li class="scaleup-item">
+          <span class="scaleup-name">Satellite observations</span>
+          <span class="scaleup-note">Cloud-top temperature and convection proxies from geostationary imagery.</span>
+        </li>
+        <li class="scaleup-item">
+          <span class="scaleup-name">Lightning observations</span>
+          <span class="scaleup-note">Strike density from ground-based lightning networks as a nowcast predictor.</span>
+        </li>
+        <li class="scaleup-item">
+          <span class="scaleup-name">NWP / model fields</span>
+          <span class="scaleup-note">Numerical weather prediction fields beyond the currently consumed variables.</span>
+        </li>
+        <li class="scaleup-item">
+          <span class="scaleup-name">Multi-cell spatial prediction</span>
+          <span class="scaleup-note">Extending the model from one validated grid cell to a surrounding grid of cells.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ================= REFERENCE: Phase 1 surrogate (demoted) ================= -->
+    <details class="card reference-panel reference-legacy">
+      <summary class="reference-summary">
+        <span class="reference-summary-text">
+          <span class="reference-tag">Legacy appendix</span>
+          Phase 1 high-precipitation proxy &mdash; not the thunderstorm nowcast
+        </span>
+        <span class="chip chip-legacy">Collapsed &middot; demonstration only</span>
+      </summary>
+
+      <p class="reference-warning">
+        Superseded reference material, kept for technical traceability. The primary product is the
+        1-hour thunderstorm nowcast at the top of this page; nothing in this appendix is a
+        thunderstorm or lightning result.
+      </p>
+
+      <p class="caveat">
+        {{ evaluation_caveat }} This section is retained for SIH demonstration only and must not be
+        read as thunderstorm skill.
+      </p>
+
+      <section class="nested-block">
+        <div class="section-head">
+          <h2 id="evaluation-title">{{ evaluation_title }}</h2>
+          <span class="section-note">Chronological hold-out test set</span>
+        </div>
+        <div id="metrics-note" class="caveat">{{ evaluation_caveat }}</div>
+        <div id="metrics-grid" class="metrics-grid"></div>
+        <p class="footnote" id="metrics-source">&mdash;</p>
+      </section>
+
+      <section class="nested-block">
+        <div class="section-head">
+          <h2>Feature Importance (Phase 1 proxy)</h2>
+        </div>
+        <div id="importance-list" class="importance-list"></div>
+        <p class="footnote" id="importance-source">&mdash;</p>
+      </section>
+
+      <section class="nested-block">
+        <div class="section-head">
+          <h2>Confusion Matrix &mdash; Surrogate Target</h2>
+        </div>
+        <div class="matrix-wrap">
+          <img id="confusion-image" class="confusion-image" alt="Phase 1 surrogate confusion matrix">
+          <div class="matrix-side">
+            <p class="footnote" id="matrix-decode">&mdash;</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="nested-block scenario-card" id="scenario-section">
+        <div class="section-head">
+          <h2>Historical Proxy Scenario</h2>
+          <span class="badge-demo">Demonstration Only</span>
+        </div>
+        <p class="scenario-intro">
+          Replays a real Phase&nbsp;1 test-set row for the high-precipitation proxy. It does not
+          replace or alter the live thunderstorm nowcast above.
+        </p>
+        <button id="scenario-button" type="button" class="btn btn-secondary">
+          Run Historical Scenario
+        </button>
+        <div id="scenario-error" class="scenario-error" role="alert" hidden></div>
+        <div id="scenario-result" hidden>
+          <p class="scenario-timestamp">
+            Historical timestamp (UTC): <strong id="scenario-timestamp">&mdash;</strong>
+          </p>
+          <div class="scenario-grid">
+            <div class="scenario-block">
+              <h3 class="block-title">Proxy Model Prediction</h3>
+              <div class="scenario-headline">
+                <div class="risk-stat">
+                  <span class="stat-label">Risk label</span>
+                  <span id="scenario-label" class="scenario-label">&mdash;</span>
+                </div>
+                <div class="risk-stat">
+                  <span class="stat-label">Proxy probability</span>
+                  <span id="scenario-probability" class="stat-value">&mdash;</span>
+                  <div class="prob-track"><div id="scenario-probability-bar" class="prob-fill"></div></div>
+                </div>
+                <div class="risk-stat">
+                  <span class="stat-label">Horizon</span>
+                  <span class="stat-value stat-value-sm">Next 3 Hours</span>
+                </div>
+              </div>
+              <h4 class="mini-title">Historical atmospheric inputs</h4>
+              <table class="data-table"><tbody id="scenario-inputs"></tbody></table>
+              <h4 class="mini-title">Historical lag &amp; rolling features</h4>
+              <table class="data-table"><tbody id="scenario-lags"></tbody></table>
+            </div>
+            <div class="scenario-block outcome-block">
+              <h3 class="block-title">Observed 3-Hour Proxy Outcome</h3>
+              <div class="outcome-grid">
+                <div class="outcome-stat">
+                  <span class="stat-label">Accumulated precipitation, next 3 h</span>
+                  <span id="scenario-future-precip" class="stat-value">&mdash;</span>
+                </div>
+                <div class="outcome-stat">
+                  <span class="stat-label">Observed proxy class</span>
+                  <span id="scenario-actual-label" class="stat-value stat-value-sm">&mdash;</span>
+                </div>
+              </div>
+              <p class="footnote" id="scenario-outcome-note">&mdash;</p>
+              <p class="leak-strip" id="scenario-leak-strip">&mdash;</p>
+            </div>
+          </div>
+          <p class="footnote" id="scenario-explanation">&mdash;</p>
+          <p class="scenario-caveat" id="scenario-caveat">&mdash;</p>
+        </div>
+      </section>
+    </details>
+  </main>
+
+  <footer class="app-footer">
+    <p class="footer-line">
+      <strong>SIH 2026</strong> &middot; {{ location }} &middot; Thunderstorm nowcast prototype
+    </p>
+    <p class="footer-disclaimer">{{ imd_disclaimer }}</p>
+    <p class="footer-fine">{{ disclaimer }}</p>
+    <p class="footer-fine">
+      Probability is a model score, not confidence. Latest available atmospheric data is not a
+      guaranteed station observation. A prediction is not an actual future thunderstorm observation.
+      This dashboard stores no prediction results.
+    </p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,229 @@
+{
+  "generated_at_utc": "2026-09-14T13:48:15.360198+00:00",
+  "source": "IEM ASOS/METAR archive request service",
+  "service_url": "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py",
+  "station": "VOTV",
+  "requested_range_utc": [
+    "2000-01-01",
+    "2025-12-31"
+  ],
+  "report_types": {
+    "3": "routine METAR",
+    "4": "SPECI"
+  },
+  "timezone_requested": "UTC",
+  "chunks": [
+    {
+      "year": 2000,
+      "file": "votv_metar_iem_2000.csv",
+      "data_rows": 3108,
+      "bytes": 561077,
+      "sha256": "050dbae61ba4d23b73c7dbb87d50c6b5b109286af18334c320123a81205deb4c",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2001,
+      "file": "votv_metar_iem_2001.csv",
+      "data_rows": 2595,
+      "bytes": 450187,
+      "sha256": "575773950e2a39a3134f5cca85ac3c8a14e5ae894ab95565d9c34b9b03ce175e",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2002,
+      "file": "votv_metar_iem_2002.csv",
+      "data_rows": 2783,
+      "bytes": 489962,
+      "sha256": "c864c9d5e423cb46ceadf57e0b2724a32af79c44cf967637b3b98bb8295a7730",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2003,
+      "file": "votv_metar_iem_2003.csv",
+      "data_rows": 3838,
+      "bytes": 736781,
+      "sha256": "40726dd952ceafdbfb8f69bec13d8f1cda72a1b655fd0f3f7750f74982a70f32",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2004,
+      "file": "votv_metar_iem_2004.csv",
+      "data_rows": 4574,
+      "bytes": 800667,
+      "sha256": "0c54e4a7370767658d0cfe8a2f051222f8f0d2b2ed3b98895cb30c75cf56bd0f",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2005,
+      "file": "votv_metar_iem_2005.csv",
+      "data_rows": 5068,
+      "bytes": 1023877,
+      "sha256": "d0c5a2aa31c160b121c99ad2ceae573bf5d6b39bd7962323c3070130f05d7706",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2006,
+      "file": "votv_metar_iem_2006.csv",
+      "data_rows": 5188,
+      "bytes": 987583,
+      "sha256": "859d812eccc156df619205811f37ff99b35f8ba4ed0c4007dc8b038cd14d1357",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2007,
+      "file": "votv_metar_iem_2007.csv",
+      "data_rows": 5106,
+      "bytes": 1047657,
+      "sha256": "266cdd4c2745863f81785d1f2b6621e19152964a858fd7cddd29e05a553959be",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2008,
+      "file": "votv_metar_iem_2008.csv",
+      "data_rows": 5153,
+      "bytes": 1073107,
+      "sha256": "e67a7b640aab3af8712af5a5d779bf20f5e3cc776464112581b921f3323aacb9",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2009,
+      "file": "votv_metar_iem_2009.csv",
+      "data_rows": 5662,
+      "bytes": 1165834,
+      "sha256": "7dd6eae9488a5b74d4ea77cc646d188a950f676a956f1ace072199f2689fbbb0",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2010,
+      "file": "votv_metar_iem_2010.csv",
+      "data_rows": 6305,
+      "bytes": 1323102,
+      "sha256": "74110c4a5b7ad9d8417163bc09577d847fda4ce09c3a0aefef725dd5688d3f1d",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2011,
+      "file": "votv_metar_iem_2011.csv",
+      "data_rows": 5285,
+      "bytes": 1091865,
+      "sha256": "e070dc230acb402cd2df7d8f7e09f7e1cb892a71c7a2c8022177896611be8596",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2012,
+      "file": "votv_metar_iem_2012.csv",
+      "data_rows": 11310,
+      "bytes": 2300935,
+      "sha256": "191ec431b98eca6f75468a78a53ca219c529bdc2496fd15ad7f997118f18f59b",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2013,
+      "file": "votv_metar_iem_2013.csv",
+      "data_rows": 12256,
+      "bytes": 2498570,
+      "sha256": "8e8c011428dd44f69660662a2490266447b85f07bad8bf51036e9293dd215a5d",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2014,
+      "file": "votv_metar_iem_2014.csv",
+      "data_rows": 13424,
+      "bytes": 2732727,
+      "sha256": "f13274be2157d8d63e70012249dca4b82d160376ae359abc1035de210caef564",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2015,
+      "file": "votv_metar_iem_2015.csv",
+      "data_rows": 12452,
+      "bytes": 2525703,
+      "sha256": "154161c0dfa5fd76bf90607924ad0c7383816c73b3de0699eba949d3da882890",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2016,
+      "file": "votv_metar_iem_2016.csv",
+      "data_rows": 15456,
+      "bytes": 3111736,
+      "sha256": "88545a3837550333c57744a79f8f7dd6f056799e300751a11988d9fcb05c37da",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2017,
+      "file": "votv_metar_iem_2017.csv",
+      "data_rows": 17093,
+      "bytes": 3491956,
+      "sha256": "29a831e21a28ba81a40cf526c67c1f3ac244e2a3eff1694401c9122402928b15",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2018,
+      "file": "votv_metar_iem_2018.csv",
+      "data_rows": 17064,
+      "bytes": 3459355,
+      "sha256": "9154d445f41876219cf69a860258a578e18bff5030e4ace6c3818720ac5a7268",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2019,
+      "file": "votv_metar_iem_2019.csv",
+      "data_rows": 17087,
+      "bytes": 3502982,
+      "sha256": "f8813cbbd98b8bb75a49ed0769a05978a832edd87e1f0fbae1e30ea5c2014ff5",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2020,
+      "file": "votv_metar_iem_2020.csv",
+      "data_rows": 15681,
+      "bytes": 3142354,
+      "sha256": "68f4332db2c2c57d29048f57fe981f68faaf42544c4782d6084650f6cd243f1f",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2021,
+      "file": "votv_metar_iem_2021.csv",
+      "data_rows": 17213,
+      "bytes": 3487299,
+      "sha256": "bbf2c85b2c90cd690e8ba066504d888f226a2d0708b147db770b62d5a899b1b6",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2022,
+      "file": "votv_metar_iem_2022.csv",
+      "data_rows": 17170,
+      "bytes": 3486753,
+      "sha256": "7546818c707cd42fc80f9327032e1e0c2b9e36588e893644cbd08a3def96d796",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2023,
+      "file": "votv_metar_iem_2023.csv",
+      "data_rows": 17221,
+      "bytes": 3507150,
+      "sha256": "0af03ee0617fc55caa68beaa7c4fe7a9baf589bcd9fc35afe61c13cd0370881c",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2024,
+      "file": "votv_metar_iem_2024.csv",
+      "data_rows": 17661,
+      "bytes": 3647625,
+      "sha256": "0918cd7302dc243c8a6bc3f734e9b035a475696941e865282e28f6fb8a793dbd",
+      "header_matches_expected": true
+    },
+    {
+      "year": 2025,
+      "file": "votv_metar_iem_2025.csv",
+      "data_rows": 17386,
+      "bytes": 3565242,
+      "sha256": "d071862f33ba565dbe74e1e5b06e98a94f31b8a1685ee2c6d4d44dcb30e6d047",
+      "header_matches_expected": true
+    }
+  ],
+  "combined_file": "votv_metar_iem_raw.csv",
+  "combined_rows": 273139,
+  "combined_sha256": "c9a67da7006f99a243919729b0abc25a4a3dca2f448cd2bb5962ba2806e3dba1",
+  "combined_bytes": 55205886
+}

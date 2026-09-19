@@ -1,0 +1,38 @@
+# Deployment requirements -- SIH 2026 / Problem SIH26072
+# Thunderstorm & lightning nowcasting (VOTV, Thiruvananthapuram)
+#
+# This is the manifest the Docker image installs. It contains only what the
+# deployed application actually imports at runtime:
+#
+#   Flask, requests            -- Phase 8 HTTP API and the live Open-Meteo call
+#   numpy, pandas              -- feature vector construction and validation
+#   scikit-learn, joblib       -- unpickling and evaluating the Phase 6 model
+#   gunicorn                   -- production WSGI server used by the Dockerfile
+#
+# Deliberately NOT included:
+#   matplotlib  -- only used by the offline training/plotting scripts
+#                  (ml/train_model.py imports it lazily inside
+#                  save_confusion_matrix_plot, which the API never calls).
+#                  The Phase 6 confusion-matrix PNGs are served as static
+#                  artifacts from outputs/, not regenerated at runtime.
+#
+# Pins match the environment the model was trained and verified in
+# (recorded in models/thunderstorm_nowcast_1h_metadata.json -> "environment":
+# Python 3.12.10, numpy 2.2.1, pandas 3.0.5, scikit-learn 1.6.1, joblib 1.6.0).
+# Exact pins are used for the numeric stack because the Phase 6 joblib
+# artifact must unpickle into the estimator class and array layout it was
+# written from.
+#
+# All packages resolve to manylinux cp312 wheels, so the image needs no
+# compiler or build toolchain. Transitive dependencies pulled in automatically:
+# scipy, threadpoolctl, cloudpickle, blinker, click, itsdangerous, jinja2,
+# markupsafe, werkzeug, python-dateutil, six, tzdata, charset-normalizer, idna,
+# urllib3, certifi, packaging.
+
+Flask==3.1.3
+requests==2.34.2
+numpy==2.2.1
+pandas==3.0.5
+scikit-learn==1.6.1
+joblib==1.6.0
+gunicorn==23.0.0

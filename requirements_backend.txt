@@ -1,0 +1,16 @@
+# Phase 2 backend (Flask) for the SIH 2026 high-precipitation risk proxy.
+# Phase 1 ML dependencies live in requirements_ml.txt; the list below is what
+# the backend itself needs to serve the existing trained model.
+#
+# Versions reflect the environment in which the backend was developed and
+# tested (Python 3.12).
+
+Flask>=3.0
+requests>=2.31
+
+# Required to load models/storm_risk_model.joblib and to build the model's
+# features from live weather. Installed via requirements_ml.txt in Phase 1.
+scikit-learn>=1.3
+joblib>=1.3
+pandas>=2.0
+numpy>=1.26,<3

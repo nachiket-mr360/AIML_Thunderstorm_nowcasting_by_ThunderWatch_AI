@@ -1,0 +1,565 @@
+{
+  "artifact": "votv_thunderstorm_nowcast_2014_2025.csv",
+  "artifact_type": "Phase 5 nowcast target table (Phase 4 causal features at t + genuine forward-shifted labels at t+1h/2h/3h)",
+  "phase": "Phase 5 -- thunderstorm target validation and nowcast target formulation",
+  "created_at_utc": "2026-09-14T16:20:03.468189+00:00",
+  "built_by": "nowcast_targets_phase5.py",
+  "task_definition": {
+    "feature_time": "t",
+    "target_time": "t + lead_time",
+    "formulation": "target_<L>h(t) = genuine observed thunderstorm_label(t + L hours)",
+    "lead_times_evaluated_hours": [
+      1,
+      2,
+      3
+    ],
+    "explicit_target_definitions": {
+      "target_1h": "genuine thunderstorm_label observed at the clock hour exactly 1 hour after the row's timestamp_utc",
+      "target_2h": "genuine thunderstorm_label observed at the clock hour exactly 2 hours after the row's timestamp_utc",
+      "target_3h": "genuine thunderstorm_label observed at the clock hour exactly 3 hours after the row's timestamp_utc"
+    },
+    "feature_target_relationship": "one row supplies features at t and all three forward targets; Phase 6 selects the lead time",
+    "lead_time_selected_in_this_phase": null,
+    "note": "All three lead times are shipped so Phase 6 can choose on data availability and measured model performance rather than on assumption."
+  },
+  "inputs": {
+    "feature_table": {
+      "path": "dataset/votv_thunderstorm_features_2014_2025.csv",
+      "sha256": "d18afa7cd04d91cf42d2802852245d2f92c41a74d6935f10cb5bc8b13f271b7d",
+      "role": "supplies the 28 causal features at t and the genuine same-hour label; copied unchanged",
+      "rows": 82018
+    },
+    "label_source": {
+      "path": "dataset/votv_thunderstorm_synchronized_2014_2025.csv",
+      "sha256": "6e0be102df5ef39ebda1847914acc7ed9554a137f00547998785054e384bbc4c",
+      "role": "authority for which clock hours carry a genuine observed thunderstorm label, and for its value",
+      "supervised_hours": 82021,
+      "positives": 3694,
+      "unobserved_hours_in_window": 23171
+    },
+    "contiguous_hourly_grid": {
+      "path": "dataset/raw_openmeteo/votv_openmeteo_hourly_2014_2025.csv",
+      "sha256": "beca4c721cc193717c3d5d6a11547b288f41611eb7dfb655aeb8a386baf3cdae",
+      "role": "clock-hour ruler: the label series is re-indexed onto this grid so a shift of L rows is exactly L clock hours, and NaN is carried through label gaps",
+      "rows": 105192,
+      "contiguity": "verified: exactly one hour between consecutive rows, no duplicate timestamp"
+    }
+  },
+  "outputs": {
+    "csv": {
+      "path": "dataset/votv_thunderstorm_nowcast_2014_2025.csv",
+      "rows": 82018,
+      "columns": 36
+    },
+    "metadata": {
+      "path": "dataset/votv_thunderstorm_nowcast_2014_2025_metadata.json"
+    }
+  },
+  "date_range": {
+    "first_timestamp_utc": "2014-01-01T12:00:00+00:00",
+    "last_timestamp_utc": "2025-12-30T23:00:00+00:00",
+    "window_used_for_missing_label_attribution": {
+      "start_utc": "2014-01-01T00:00:00+00:00",
+      "end_utc": "2025-12-31T23:00:00+00:00"
+    }
+  },
+  "row_counts": {
+    "output_rows": 82018,
+    "same_hour_label_rows": 82018,
+    "per_lead_time": {
+      "target_1h": {
+        "lead_time_hours": 1,
+        "total_rows": 82018,
+        "valid_rows": 77310,
+        "rows_without_genuine_future_label": 4708,
+        "rows_lost_fraction": 0.057402,
+        "positives": 3178,
+        "negatives": 74132,
+        "positive_rate": 0.041107,
+        "first_valid_timestamp_utc": "2014-01-01T12:00:00+00:00",
+        "last_valid_timestamp_utc": "2025-12-30T22:00:00+00:00",
+        "positives_per_year": {
+          "2014": {
+            "valid_rows": 6548,
+            "positives": 218,
+            "negatives": 6330,
+            "positive_rate": 0.033293
+          },
+          "2015": {
+            "valid_rows": 5366,
+            "positives": 299,
+            "negatives": 5067,
+            "positive_rate": 0.055721
+          },
+          "2016": {
+            "valid_rows": 6722,
+            "positives": 127,
+            "negatives": 6595,
+            "positive_rate": 0.018893
+          },
+          "2017": {
+            "valid_rows": 7094,
+            "positives": 270,
+            "negatives": 6824,
+            "positive_rate": 0.03806
+          },
+          "2018": {
+            "valid_rows": 6831,
+            "positives": 384,
+            "negatives": 6447,
+            "positive_rate": 0.056214
+          },
+          "2019": {
+            "valid_rows": 6370,
+            "positives": 245,
+            "negatives": 6125,
+            "positive_rate": 0.038462
+          },
+          "2020": {
+            "valid_rows": 5974,
+            "positives": 255,
+            "negatives": 5719,
+            "positive_rate": 0.042685
+          },
+          "2021": {
+            "valid_rows": 6281,
+            "positives": 368,
+            "negatives": 5913,
+            "positive_rate": 0.058589
+          },
+          "2022": {
+            "valid_rows": 6126,
+            "positives": 265,
+            "negatives": 5861,
+            "positive_rate": 0.043258
+          },
+          "2023": {
+            "valid_rows": 6139,
+            "positives": 277,
+            "negatives": 5862,
+            "positive_rate": 0.045121
+          },
+          "2024": {
+            "valid_rows": 7306,
+            "positives": 296,
+            "negatives": 7010,
+            "positive_rate": 0.040515
+          },
+          "2025": {
+            "valid_rows": 6553,
+            "positives": 174,
+            "negatives": 6379,
+            "positive_rate": 0.026553
+          }
+        }
+      },
+      "target_2h": {
+        "lead_time_hours": 2,
+        "total_rows": 82018,
+        "valid_rows": 74057,
+        "rows_without_genuine_future_label": 7961,
+        "rows_lost_fraction": 0.097064,
+        "positives": 2815,
+        "negatives": 71242,
+        "positive_rate": 0.038011,
+        "first_valid_timestamp_utc": "2014-01-01T12:00:00+00:00",
+        "last_valid_timestamp_utc": "2025-12-30T21:00:00+00:00",
+        "positives_per_year": {
+          "2014": {
+            "valid_rows": 6372,
+            "positives": 204,
+            "negatives": 6168,
+            "positive_rate": 0.032015
+          },
+          "2015": {
+            "valid_rows": 5119,
+            "positives": 281,
+            "negatives": 4838,
+            "positive_rate": 0.054894
+          },
+          "2016": {
+            "valid_rows": 6486,
+            "positives": 113,
+            "negatives": 6373,
+            "positive_rate": 0.017422
+          },
+          "2017": {
+            "valid_rows": 6852,
+            "positives": 254,
+            "negatives": 6598,
+            "positive_rate": 0.037069
+          },
+          "2018": {
+            "valid_rows": 6561,
+            "positives": 351,
+            "negatives": 6210,
+            "positive_rate": 0.053498
+          },
+          "2019": {
+            "valid_rows": 6060,
+            "positives": 198,
+            "negatives": 5862,
+            "positive_rate": 0.032673
+          },
+          "2020": {
+            "valid_rows": 5641,
+            "positives": 219,
+            "negatives": 5422,
+            "positive_rate": 0.038823
+          },
+          "2021": {
+            "valid_rows": 5966,
+            "positives": 317,
+            "negatives": 5649,
+            "positive_rate": 0.053134
+          },
+          "2022": {
+            "valid_rows": 5802,
+            "positives": 229,
+            "negatives": 5573,
+            "positive_rate": 0.039469
+          },
+          "2023": {
+            "valid_rows": 5818,
+            "positives": 226,
+            "negatives": 5592,
+            "positive_rate": 0.038845
+          },
+          "2024": {
+            "valid_rows": 7082,
+            "positives": 269,
+            "negatives": 6813,
+            "positive_rate": 0.037984
+          },
+          "2025": {
+            "valid_rows": 6298,
+            "positives": 154,
+            "negatives": 6144,
+            "positive_rate": 0.024452
+          }
+        }
+      },
+      "target_3h": {
+        "lead_time_hours": 3,
+        "total_rows": 82018,
+        "valid_rows": 71110,
+        "rows_without_genuine_future_label": 10908,
+        "rows_lost_fraction": 0.132995,
+        "positives": 2516,
+        "negatives": 68594,
+        "positive_rate": 0.035382,
+        "first_valid_timestamp_utc": "2014-01-01T13:00:00+00:00",
+        "last_valid_timestamp_utc": "2025-12-30T20:00:00+00:00",
+        "positives_per_year": {
+          "2014": {
+            "valid_rows": 6228,
+            "positives": 196,
+            "negatives": 6032,
+            "positive_rate": 0.031471
+          },
+          "2015": {
+            "valid_rows": 4869,
+            "positives": 257,
+            "negatives": 4612,
+            "positive_rate": 0.052783
+          },
+          "2016": {
+            "valid_rows": 6269,
+            "positives": 102,
+            "negatives": 6167,
+            "positive_rate": 0.016271
+          },
+          "2017": {
+            "valid_rows": 6635,
+            "positives": 243,
+            "negatives": 6392,
+            "positive_rate": 0.036624
+          },
+          "2018": {
+            "valid_rows": 6326,
+            "positives": 330,
+            "negatives": 5996,
+            "positive_rate": 0.052166
+          },
+          "2019": {
+            "valid_rows": 5782,
+            "positives": 165,
+            "negatives": 5617,
+            "positive_rate": 0.028537
+          },
+          "2020": {
+            "valid_rows": 5338,
+            "positives": 181,
+            "negatives": 5157,
+            "positive_rate": 0.033908
+          },
+          "2021": {
+            "valid_rows": 5688,
+            "positives": 270,
+            "negatives": 5418,
+            "positive_rate": 0.047468
+          },
+          "2022": {
+            "valid_rows": 5508,
+            "positives": 195,
+            "negatives": 5313,
+            "positive_rate": 0.035403
+          },
+          "2023": {
+            "valid_rows": 5529,
+            "positives": 190,
+            "negatives": 5339,
+            "positive_rate": 0.034364
+          },
+          "2024": {
+            "valid_rows": 6878,
+            "positives": 253,
+            "negatives": 6625,
+            "positive_rate": 0.036784
+          },
+          "2025": {
+            "valid_rows": 6060,
+            "positives": 134,
+            "negatives": 5926,
+            "positive_rate": 0.022112
+          }
+        }
+      },
+      "rows_valid_for_all_three_lead_times": 68742,
+      "rows_valid_for_no_lead_time": 3160
+    },
+    "missing_future_label_counts": {
+      "target_1h": {
+        "unobserved_future_label_rows": 4708,
+        "reason_breakdown": {
+          "hour_present_in_window_but_no_genuine_observation": 4708
+        }
+      },
+      "target_2h": {
+        "unobserved_future_label_rows": 7961,
+        "reason_breakdown": {
+          "hour_present_in_window_but_no_genuine_observation": 7961
+        }
+      },
+      "target_3h": {
+        "unobserved_future_label_rows": 10908,
+        "reason_breakdown": {
+          "hour_present_in_window_but_no_genuine_observation": 10908
+        }
+      }
+    },
+    "drop_policy": "No row is dropped. A row whose future label was not genuinely observed keeps NaN in that target column and carries target_Lh_observed = 0. Removing rows here would hide the loss and force a single lead time; Phase 6 drops NaN per the lead time it selects."
+  },
+  "targets": {
+    "target_columns": [
+      "target_1h",
+      "target_2h",
+      "target_3h"
+    ],
+    "observation_flag_columns": [
+      "target_1h_observed",
+      "target_2h_observed",
+      "target_3h_observed"
+    ],
+    "dtype": "binary float 0/1, NaN where the future hour was not genuinely observed",
+    "missing_encoding": "NaN (empty field in CSV); never 0, never imputed",
+    "per_lead_time": {
+      "target_1h": {
+        "lead_time_hours": 1,
+        "valid_rows": 77310,
+        "positives": 3178,
+        "negatives": 74132,
+        "positive_rate": 0.041107,
+        "rows_without_genuine_future_label": 4708,
+        "first_valid_timestamp_utc": "2014-01-01T12:00:00+00:00",
+        "last_valid_timestamp_utc": "2025-12-30T22:00:00+00:00"
+      },
+      "target_2h": {
+        "lead_time_hours": 2,
+        "valid_rows": 74057,
+        "positives": 2815,
+        "negatives": 71242,
+        "positive_rate": 0.038011,
+        "rows_without_genuine_future_label": 7961,
+        "first_valid_timestamp_utc": "2014-01-01T12:00:00+00:00",
+        "last_valid_timestamp_utc": "2025-12-30T21:00:00+00:00"
+      },
+      "target_3h": {
+        "lead_time_hours": 3,
+        "valid_rows": 71110,
+        "positives": 2516,
+        "negatives": 68594,
+        "positive_rate": 0.035382,
+        "rows_without_genuine_future_label": 10908,
+        "first_valid_timestamp_utc": "2014-01-01T13:00:00+00:00",
+        "last_valid_timestamp_utc": "2025-12-30T20:00:00+00:00"
+      }
+    },
+    "rows_valid_for_all_three_lead_times": 68742,
+    "rows_valid_for_no_lead_time": 3160
+  },
+  "preserved_audit_columns": {
+    "thunderstorm_label": {
+      "role": "audit only; the genuine same-hour label at t, copied verbatim from Phase 4 / Phase 3",
+      "positives": 3694,
+      "negatives": 78324,
+      "positive_rate": 0.045039,
+      "never_a_model_input": true
+    },
+    "observation_flags": {
+      "columns": [
+        "target_1h_observed",
+        "target_2h_observed",
+        "target_3h_observed"
+      ],
+      "definition": "1 when the required future hour carries a genuine observed label, else 0",
+      "role": "audit: makes the exclusion of unobserved future hours explicit; never a model input"
+    },
+    "not_included": {
+      "weather_code": "not carried into this file: Phase 3 showed it carries no thunderstorm signal here (max code 65, zero 95/96/99 hours) while 3694 hours are label-positive",
+      "phase3_observation_counters": "not carried: n_reports, wx_field_observed and the strict/recovered label variants are not needed for nowcasting and would invite accidental use as features",
+      "features_complete": "not carried: Phase 4 retained only rows with a complete feature vector"
+    }
+  },
+  "features": {
+    "count": 28,
+    "feature_order": [
+      "temperature_2m",
+      "relative_humidity_2m",
+      "surface_pressure",
+      "wind_speed_10m",
+      "precipitation",
+      "cloud_cover",
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "wind_direction_sin",
+      "wind_direction_cos",
+      "temperature_change_1h",
+      "temperature_change_3h",
+      "humidity_change_1h",
+      "humidity_change_3h",
+      "pressure_change_1h",
+      "pressure_change_3h",
+      "wind_speed_change_1h",
+      "wind_speed_change_3h",
+      "precipitation_change_1h",
+      "precipitation_change_3h",
+      "precipitation_roll_sum_3h",
+      "precipitation_roll_sum_6h",
+      "humidity_roll_mean_3h",
+      "pressure_roll_mean_3h",
+      "temperature_roll_mean_3h",
+      "wind_speed_roll_mean_3h"
+    ],
+    "source": "copied verbatim from the Phase 4 feature table; no feature was recomputed, shifted or derived in this phase",
+    "features_remain_at_time_t": true,
+    "feature_matrix_identical_to_phase4": true,
+    "copy_method": "the timestamp, feature and same-hour-label cells are copied as the literal text of the Phase 4 CSV and never pass through a float parse/serialise cycle, so those 30 columns are byte-identical to Phase 4",
+    "why_text_passthrough": "with this pandas/numpy build a read-then-write cycle is not round-trip exact: re-serialising the parsed values changes about 404,000 of the 2.3 million feature cells by one unit in the last place. That is numerically negligible but it would break the byte-identity claim, so the cells are passed through as text",
+    "verbatim_copy_mismatches_after_write": 0
+  },
+  "leakage_policy": {
+    "direction": "target moved forward, features stay at t",
+    "features_at_time_t": true,
+    "target_at_time_t_plus_L": [
+      1,
+      2,
+      3
+    ],
+    "features_shifted": false,
+    "target_shift_rule": "label(t + L) placed on row t via a -L row shift of the contiguous hourly label series",
+    "shift_evaluated_on_contiguous_hourly_grid": true,
+    "why_not_shifted_on_masked_rows": "The supervised table is masked: 23,171 of the 105,192 window hours carry no genuine label. A -L shift on those compacted rows would pair t with the next labelled row, up to 57 clock hours away, and would misstate the lead time. Shifting the contiguous hourly grid keeps every step exactly one clock hour.",
+    "features_at_or_before_t_only": true,
+    "future_atmospheric_variable_used_as_feature": false,
+    "future_label_used_as_feature": false,
+    "centred_or_forward_rolling_features": false,
+    "missing_future_label_treated_as_negative": false,
+    "missing_future_label_encoded_as": "NaN with an explicit target_Lh_observed = 0 flag",
+    "same_hour_label_role": "audit only, never a model input",
+    "target_derived_statistic_used_as_feature": false,
+    "internal_direction_check": {
+      "method": "for every row, target_Lh is compared against the genuine label looked up at timestamp + L hours",
+      "lead_times_checked": [
+        1,
+        2,
+        3
+      ],
+      "disagreements": 0,
+      "verdict": "PASS"
+    },
+    "note": "A model trained on this table uses information available at hour t to predict an observation at hour t+L. The forward shift is the whole point of the nowcast formulation; it is applied to the TARGET only."
+  },
+  "missing_values": {
+    "feature_columns": {
+      "total_missing": 0,
+      "total_infinite": 0,
+      "policy": "Phase 4 already dropped rows without complete history; the feature matrix stays finite"
+    },
+    "target_columns": {
+      "target_1h": {
+        "missing": 4708,
+        "reason_breakdown": {
+          "hour_present_in_window_but_no_genuine_observation": 4708
+        }
+      },
+      "target_2h": {
+        "missing": 7961,
+        "reason_breakdown": {
+          "hour_present_in_window_but_no_genuine_observation": 7961
+        }
+      },
+      "target_3h": {
+        "missing": 10908,
+        "reason_breakdown": {
+          "hour_present_in_window_but_no_genuine_observation": 10908
+        }
+      }
+    },
+    "imputation_applied": false
+  },
+  "timestamp_integrity": {
+    "duplicate_timestamps": 0,
+    "timestamps_sorted_ascending": true,
+    "timezone": "UTC",
+    "all_timestamps_on_hour_boundary": true,
+    "timestamps_identical_to_phase4": true,
+    "gaps": "Internal gaps are inherited from Phase 3 supervision masking (hours without a decodable present-weather group). They are not new here and they are exactly why some future labels are unobserved rather than negative."
+  },
+  "provenance": {
+    "phase4_status": "PASS",
+    "phase4_rows": 82018,
+    "label_definition": "genuine VOTV METAR present-weather observation label from Phase 2, unchanged",
+    "synthetic_labels_created": false,
+    "open_meteo_weather_code_used_as_label": false,
+    "radar_satellite_lightning_nwp_data_added": false,
+    "no_model_trained": true
+  },
+  "protected_files": {
+    "snapshot_method": "sha256 of every file under dataset/ taken before and after the build; this script's own two outputs are excluded, so a non-empty changed_files list means a Phase 1-4 artifact was touched",
+    "changed_files": [],
+    "new_files": [],
+    "phase1_to_phase4_files_unchanged": true
+  },
+  "validation": {
+    "status": "PASS",
+    "checks_run": [
+      "Phase 4 timestamps lie on the contiguous hourly grid",
+      "same-hour label in the Phase 4 table matches the Phase 3 label source exactly",
+      "label source is binary, duplicate-free and free of missing labels",
+      "targets built by shifting the label series on a verified contiguous hourly grid",
+      "forward-shift self-test: target_Lh(t) equals the genuine label at t+L for every row",
+      "observed/unobserved flags agree with the label source for every row and lead time",
+      "no unobserved future label was written as 0; no observed future label was written as NaN",
+      "features and timestamps are copied verbatim (text, not float re-serialised) from the Phase 4 table and remain at t",
+      "the written file reproduces every Phase 4 timestamp, feature and label cell character for character",
+      "output has no duplicate timestamp and is chronological",
+      "feature matrix contains no NaN and no infinite value",
+      "no file under dataset/ other than the two Phase 5 outputs was modified"
+    ],
+    "problems": []
+  },
+  "scope_note": "Phase 5 only. No model was trained. The Flask backend, dashboard, frontend and existing model were not modified, no radar/satellite/lightning/NWP source was added, and the Phase 1-4 outputs were left byte-identical. The genuine thunderstorm label was preserved, not recreated."
+}

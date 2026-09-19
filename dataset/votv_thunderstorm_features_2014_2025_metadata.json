@@ -1,0 +1,398 @@
+{
+  "artifact": "votv_thunderstorm_features_2014_2025.csv",
+  "artifact_type": "Phase 4 engineered feature table (causal atmospheric + temporal features + genuine thunderstorm label)",
+  "phase": "Phase 4 -- feature engineering",
+  "created_at_utc": "2026-09-14T16:04:02.207700+00:00",
+  "built_by": "feature_engineering_phase4.py",
+  "inputs": {
+    "supervision_source": {
+      "path": "dataset/votv_thunderstorm_synchronized_2014_2025.csv",
+      "sha256": "6e0be102df5ef39ebda1847914acc7ed9554a137f00547998785054e384bbc4c",
+      "role": "defines supervised hours, supplies the target and the diagnostic columns",
+      "rows": 82021
+    },
+    "hourly_context_grid": {
+      "path": "dataset/raw_openmeteo/votv_openmeteo_hourly_2014_2025.csv",
+      "sha256": "beca4c721cc193717c3d5d6a11547b288f41611eb7dfb655aeb8a386baf3cdae",
+      "role": "contiguous hourly Open-Meteo series of the same window, used only as the context grid on which lags and trailing rolling windows are evaluated so that no window straddles a label gap",
+      "rows": 105192,
+      "contiguity": "exactly one hour between consecutive rows, no duplicate timestamps",
+      "reason_not_computed_on_masked_rows": "Phase 3 masking removed 23171 hours that have atmospheric values but no decodable present-weather group. Compacting them away would make shift()/rolling() compare unrelated clock hours and would misreport every tendency feature."
+    },
+    "input_agreement_check": {
+      "columns": {
+        "temperature_2m": {
+          "mismatches": 0,
+          "max_abs_difference": 0.0
+        },
+        "relative_humidity_2m": {
+          "mismatches": 0,
+          "max_abs_difference": 0.0
+        },
+        "surface_pressure": {
+          "mismatches": 0,
+          "max_abs_difference": 0.0
+        },
+        "wind_speed_10m": {
+          "mismatches": 0,
+          "max_abs_difference": 0.0
+        },
+        "precipitation": {
+          "mismatches": 0,
+          "max_abs_difference": 0.0
+        },
+        "cloud_cover": {
+          "mismatches": 0,
+          "max_abs_difference": 0.0
+        },
+        "weather_code": {
+          "mismatches": 0,
+          "max_abs_difference": 0.0
+        },
+        "wind_direction_10m": {
+          "mismatches": 0,
+          "max_abs_difference": 0.0
+        }
+      },
+      "mismatch_total": 0,
+      "absolute_tolerance": 1e-12
+    }
+  },
+  "outputs": {
+    "csv": {
+      "path": "dataset/votv_thunderstorm_features_2014_2025.csv",
+      "rows": 82018,
+      "columns": 33
+    },
+    "metadata": {
+      "path": "dataset/votv_thunderstorm_features_2014_2025_metadata.json"
+    }
+  },
+  "date_range": {
+    "first_timestamp_utc": "2014-01-01T12:00:00+00:00",
+    "last_timestamp_utc": "2025-12-30T23:00:00+00:00"
+  },
+  "row_counts": {
+    "input_rows": 82021,
+    "rows_dropped_for_insufficient_history": 3,
+    "positives_among_dropped": 0,
+    "dropped_timestamps_utc": [
+      "2014-01-01T00:00:00+00:00",
+      "2014-01-01T01:00:00+00:00",
+      "2014-01-01T02:00:00+00:00"
+    ],
+    "output_rows": 82018,
+    "drop_policy": "The first 6 hours of the 2014-2025 window have no earlier hourly values, so 3h differences and the 6h precipitation accumulation are undefined there. Those rows are removed rather than imputed; the remaining table contains no missing or infinite feature value."
+  },
+  "target": {
+    "name": "thunderstorm_label",
+    "definition": "genuine observed VOTV thunderstorm label inherited unchanged from Phase 3",
+    "positives": 3694,
+    "negatives": 78324,
+    "positive_rate": 0.045039,
+    "dtype": "binary 0/1",
+    "missing_values": 0,
+    "labels_filled_or_imputed": false,
+    "note": "Label values are copied verbatim; no row is relabelled and no missing label is filled with 0."
+  },
+  "features": {
+    "count": 28,
+    "feature_order": [
+      "temperature_2m",
+      "relative_humidity_2m",
+      "surface_pressure",
+      "wind_speed_10m",
+      "precipitation",
+      "cloud_cover",
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "wind_direction_sin",
+      "wind_direction_cos",
+      "temperature_change_1h",
+      "temperature_change_3h",
+      "humidity_change_1h",
+      "humidity_change_3h",
+      "pressure_change_1h",
+      "pressure_change_3h",
+      "wind_speed_change_1h",
+      "wind_speed_change_3h",
+      "precipitation_change_1h",
+      "precipitation_change_3h",
+      "precipitation_roll_sum_3h",
+      "precipitation_roll_sum_6h",
+      "humidity_roll_mean_3h",
+      "pressure_roll_mean_3h",
+      "temperature_roll_mean_3h",
+      "wind_speed_roll_mean_3h"
+    ],
+    "groups": {
+      "current_atmospheric": [
+        "temperature_2m",
+        "relative_humidity_2m",
+        "surface_pressure",
+        "wind_speed_10m",
+        "precipitation",
+        "cloud_cover"
+      ],
+      "cyclic_time": [
+        "hour_sin",
+        "hour_cos",
+        "month_sin",
+        "month_cos"
+      ],
+      "wind_direction_cyclic": [
+        "wind_direction_sin",
+        "wind_direction_cos"
+      ],
+      "temporal_change": [
+        "temperature_change_1h",
+        "temperature_change_3h",
+        "humidity_change_1h",
+        "humidity_change_3h",
+        "pressure_change_1h",
+        "pressure_change_3h",
+        "wind_speed_change_1h",
+        "wind_speed_change_3h",
+        "precipitation_change_1h",
+        "precipitation_change_3h"
+      ],
+      "historical_rolling": [
+        "precipitation_roll_sum_3h",
+        "precipitation_roll_sum_6h",
+        "humidity_roll_mean_3h",
+        "pressure_roll_mean_3h",
+        "temperature_roll_mean_3h",
+        "wind_speed_roll_mean_3h"
+      ]
+    },
+    "diagnostic_columns_not_features": [
+      "weather_code",
+      "wind_direction_10m",
+      "features_complete"
+    ],
+    "diagnostic_note": "wind_direction_10m is kept for traceability only; its circular encoding (wind_direction_sin/cos) replaces it in the model matrix because raw degrees are discontinuous at 0/360.",
+    "rounding": "none: every feature is stored at full float64 precision, so each derived column is exactly reproducible from the base columns in the same file",
+    "derived_feature_definitions": {
+      "hour_sin/hour_cos": "sin/cos of 2*pi*hour_utc/24",
+      "month_sin/month_cos": "sin/cos of 2*pi*(month-1)/12, January at phase 0",
+      "wind_direction_sin/cos": "sin/cos of the wind direction in radians (0 deg = north, meteorological convention preserved from the source)",
+      "<var>_change_1h": "value(t) - value(t-1), a 1-hour tendency",
+      "<var>_change_3h": "value(t) - value(t-3), a 3-hour tendency",
+      "precipitation_change_*h": "difference of the hourly precipitation accumulation, i.e. the change in precipitation rate; precipitation is never a future-accumulated quantity here",
+      "precipitation_roll_sum_3h/6h": "sum of the hourly precipitation accumulation over the 3/6 most recent hours including the current hour",
+      "<var>_roll_mean_3h": "mean of the variable over the 3 most recent hours including the current hour"
+    }
+  },
+  "rolling_window_methodology": {
+    "grid": "contiguous ascending UTC hourly series from raw_openmeteo/votv_openmeteo_hourly_2014_2025.csv",
+    "window_type": "trailing (backward-looking), current hour included",
+    "centred_windows": false,
+    "min_periods": "equal to the window length, so a window is only produced from complete past history",
+    "shift_units": "rows, which are exactly 1 hour apart on the verified contiguous grid",
+    "reduction": {
+      "precipitation_roll_sum_3h": "sum over t-2..t",
+      "precipitation_roll_sum_6h": "sum over t-5..t",
+      "humidity_roll_mean_3h": "mean over t-2..t",
+      "pressure_roll_mean_3h": "mean over t-2..t",
+      "temperature_roll_mean_3h": "mean over t-2..t",
+      "wind_speed_roll_mean_3h": "mean over t-2..t"
+    },
+    "why_sum_for_precipitation": "precipitation is an hourly accumulation, so a windowed sum is the physically meaningful wetness total; a mean would rescale it.",
+    "why_mean_for_state_variables": "temperature, humidity, pressure and wind speed are instantaneous state variables, so a windowed mean is the meaningful recent-condition summary.",
+    "target_used_in_rolling": false,
+    "future_rows_used": false
+  },
+  "missing_values": {
+    "policy": "no imputation; rows lacking complete history or a genuine label are not modelled",
+    "feature_missing_per_column": {
+      "temperature_2m": 0,
+      "relative_humidity_2m": 0,
+      "surface_pressure": 0,
+      "wind_speed_10m": 0,
+      "precipitation": 0,
+      "cloud_cover": 0,
+      "hour_sin": 0,
+      "hour_cos": 0,
+      "month_sin": 0,
+      "month_cos": 0,
+      "wind_direction_sin": 0,
+      "wind_direction_cos": 0,
+      "temperature_change_1h": 0,
+      "temperature_change_3h": 0,
+      "humidity_change_1h": 0,
+      "humidity_change_3h": 0,
+      "pressure_change_1h": 0,
+      "pressure_change_3h": 0,
+      "wind_speed_change_1h": 0,
+      "wind_speed_change_3h": 0,
+      "precipitation_change_1h": 0,
+      "precipitation_change_3h": 0,
+      "precipitation_roll_sum_3h": 0,
+      "precipitation_roll_sum_6h": 0,
+      "humidity_roll_mean_3h": 0,
+      "pressure_roll_mean_3h": 0,
+      "temperature_roll_mean_3h": 0,
+      "wind_speed_roll_mean_3h": 0
+    },
+    "total_missing_feature_values": 0,
+    "infinite_feature_values": 0,
+    "target_missing": 0,
+    "rows_with_any_missing_feature": 0
+  },
+  "timestamp_integrity": {
+    "duplicate_timestamps": 0,
+    "timestamps_sorted_ascending": true,
+    "timezone": "UTC",
+    "all_timestamps_on_hour_boundary": true,
+    "minimum_timestamp_utc": "2014-01-01T12:00:00+00:00",
+    "maximum_timestamp_utc": "2025-12-30T23:00:00+00:00",
+    "all_deltas_exact_multiple_of_3600s": true,
+    "consecutive_hour_steps": 77310,
+    "gap_steps": 4707,
+    "largest_gap_hours": 57.0,
+    "hourly_continuity": "The feature grid is a subset of the Phase 3 supervised hours, so it is strictly ascending with every step an exact multiple of one hour (no sub-hourly or reversed steps). Internal gaps are label-availability gaps inherited from Phase 3 masking (hours with no decodable present-weather group); the underlying Open-Meteo series that lags and rolling windows are evaluated on is fully contiguous hourly."
+  },
+  "duplicate_count": {
+    "duplicate_timestamps": 0,
+    "fully_duplicated_rows": 0
+  },
+  "leakage_audit": {
+    "target_name": "thunderstorm_label",
+    "target_in_feature_list": false,
+    "target_used_in_any_feature_computation": false,
+    "any_feature_name_mentions_label_or_target": [],
+    "observation_audit_columns_used_as_features": [],
+    "observation_audit_columns_present_in_output": [
+      "features_complete"
+    ],
+    "weather_code_excluded_from_features": true,
+    "weather_code_role": "retained in the output file as a diagnostic column only; Phase 3 found zero hours with thunderstorm codes 95/96/99 (observed maximum code 65) while 3694 hours are label-positive, so it carries no detectable thunderstorm signal and is not used as a model input",
+    "future_information": {
+      "centred_windows_used": false,
+      "forward_shifts_used": false,
+      "rolling_windows_are_trailing_and_include_current_hour": true,
+      "lags_are_backward_only": true,
+      "label_alignment": "same-hour nowcast: features(H) are paired with label(H), matching Phase 3",
+      "lead_time_shift_applied": false,
+      "note": "No column reads a later hour. If a lead time is later required for operational use, it must be introduced by pairing label(H) with features(H - L) in the modelling phase; features are never shifted forward."
+    },
+    "future_precipitation_used": false,
+    "post_event_information_used": false,
+    "target_derived_statistic_used": false,
+    "causality_probe": {
+      "method": "recompute features from a truncated copy of the raw hourly grid (rows <= t) and compare with the shipped value at t",
+      "rows_probed": 20,
+      "feature_values_compared": 560,
+      "absolute_tolerance": 1e-12,
+      "max_abs_difference": 0.0,
+      "mismatches": 0,
+      "mismatch_examples": [],
+      "verdict": "PASS"
+    },
+    "feature_target_pearson": {
+      "temperature_2m": 0.063493,
+      "relative_humidity_2m": 0.054573,
+      "surface_pressure": -0.087979,
+      "wind_speed_10m": -0.063055,
+      "precipitation": 0.132769,
+      "cloud_cover": 0.092123,
+      "hour_sin": 0.012721,
+      "hour_cos": -0.150883,
+      "month_sin": 0.051525,
+      "month_cos": -0.018258,
+      "wind_direction_sin": -0.030751,
+      "wind_direction_cos": -0.106534,
+      "temperature_change_1h": -0.085573,
+      "temperature_change_3h": -0.09262,
+      "humidity_change_1h": 0.072901,
+      "humidity_change_3h": 0.088839,
+      "pressure_change_1h": -0.002654,
+      "pressure_change_3h": -0.03804,
+      "wind_speed_change_1h": -0.02944,
+      "wind_speed_change_3h": -0.031636,
+      "precipitation_change_1h": -0.002772,
+      "precipitation_change_3h": 0.004294,
+      "precipitation_roll_sum_3h": 0.16309,
+      "precipitation_roll_sum_6h": 0.164424,
+      "humidity_roll_mean_3h": 0.03037,
+      "pressure_roll_mean_3h": -0.086301,
+      "temperature_roll_mean_3h": 0.097948,
+      "wind_speed_roll_mean_3h": -0.055233
+    },
+    "max_abs_feature_target_correlation": 0.164424,
+    "suspiciously_predictive_feature": []
+  },
+  "source_coordinates": {
+    "feature_request_point": {
+      "latitude": 8.482,
+      "longitude": 76.92
+    },
+    "feature_served_grid_cell": {
+      "requested_latitude": 8.482,
+      "requested_longitude": 76.92,
+      "served_latitude": 8.471001625061035,
+      "served_longitude": 76.9329833984375,
+      "served_elevation_m": 4.0,
+      "note": "Open-Meteo serves the archive grid cell containing the requested point. The 'served_*' values are the API-reported cell for this request and are the coordinates the delivered values belong to. No spatial resolution is claimed beyond what the API reports for this request."
+    },
+    "label_station_point": {
+      "latitude": 8.4667,
+      "longitude": 76.95
+    },
+    "distances_km": {
+      "served_cell_to_station": 1.932,
+      "request_point_to_station": 3.712,
+      "request_point_to_served_cell": 1.88
+    },
+    "note": "Features are the Open-Meteo archive grid cell containing the Phase 3 request point; labels are VOTV aerodrome observations, which IEM reports at 8.4667 N, 76.95 E. No spatial resolution is claimed beyond what the API returns.",
+    "distance_note": "The separation that applies to the delivered feature values is served_cell_to_station. request_point_to_station is the distance from the coordinate that was asked for, not from the cell that answered, and the two differ because the API serves the grid cell containing the request point."
+  },
+  "provenance": {
+    "phase3_status": "PASS",
+    "phase3_rows": 82021,
+    "phase3_weather_code_finding": {
+      "ts_codes_considered": [
+        95,
+        96,
+        99
+      ],
+      "hours_with_ts_weather_code": 0,
+      "of_which_label_positive": 0,
+      "of_which_label_negative": 0,
+      "label_positive_hours": 3694,
+      "verdict": "No hour in this window carries a thunderstorm weather_code, so the code cannot leak the target through its 95/96/99 categories. The same measurement shows the archived code never even reaches the shower range at this cell (observed maximum code: 65), while 3694 hours are label-positive, so weather_code carries no detectable thunderstorm signal here regardless of the leakage question. It is retained in the file for transparency but is not recommended as a Phase 4 input.",
+      "precision_of_ts_code_as_predictor": null,
+      "recall_of_ts_code_as_predictor": 0.0,
+      "observed_weather_code_max": 65
+    },
+    "synthetic_or_invented_variables": false,
+    "radar_satellite_lightning_derived_features": false,
+    "nwp_derived_features": false,
+    "variable_provenance_note": "Every feature is a deterministic transformation of the Open-Meteo hourly variables already present in Phase 3. No external dataset was fetched and no physical variable absent from the source was constructed."
+  },
+  "protected_files": {
+    "snapshot_method": "sha256 of every file under dataset/ taken before and after the build. The two Phase 4 outputs are excluded from the snapshot because they are this script's own products; a non-empty changed_files list would therefore mean a Phase 1/2/3 artifact was touched.",
+    "changed_files": [],
+    "new_files": [],
+    "phase1_phase2_phase3_files_unchanged": true
+  },
+  "validation": {
+    "status": "PASS",
+    "checks_run": [
+      "Phase 3 feature values reproduced bit-for-bit from the hourly context grid",
+      "context grid verified contiguous hourly with no duplicate timestamps",
+      "every derived column computed from the current and earlier hours only",
+      "truncation causality probe reproduces sampled features from rows <= t",
+      "feature matrix contains no NaN and no infinite value",
+      "target preserved verbatim, binary, and free of missing values",
+      "no observation-derived or target-derived column is a feature",
+      "output timestamps ascending, hour-aligned, duplicate-free",
+      "no file under dataset/ other than the two Phase 4 outputs was modified"
+    ],
+    "problems": []
+  },
+  "no_model_trained": true,
+  "scope_note": "Phase 4 only. Phase 1/2/3 datasets, the Flask backend, the dashboard, the frontend and the existing model were not modified, and no model was trained or re-trained. Rolling features are causal; the label was not used to build any feature."
+}
