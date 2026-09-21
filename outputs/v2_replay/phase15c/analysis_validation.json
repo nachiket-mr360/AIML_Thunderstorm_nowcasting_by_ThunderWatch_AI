@@ -1,0 +1,61 @@
+{
+  "phase": "15C",
+  "input_rows": 34720,
+  "complete_rows": 34130,
+  "unavailable_rows": 590,
+  "duplicate_station_timestamp": 0,
+  "probabilities_in_unit_interval": true,
+  "alerts_match_threshold_0.065": true,
+  "missing_targets_excluded_not_zero": true,
+  "unavailable_not_in_labeled_metrics": true,
+  "valid_labeled_n": {
+    "1h": 31949,
+    "2h": 31876,
+    "3h": 31581
+  },
+  "confusion": {
+    "1h": {
+      "TP": 695,
+      "FP": 3552,
+      "FN": 251,
+      "TN": 27451,
+      "n": 31949
+    },
+    "2h": {
+      "TP": 702,
+      "FP": 3463,
+      "FN": 267,
+      "TN": 27444,
+      "n": 31876
+    },
+    "3h": {
+      "TP": 691,
+      "FP": 3679,
+      "FN": 261,
+      "TN": 26950,
+      "n": 31581
+    }
+  },
+  "stations_in_complete": [
+    "VABB",
+    "VECC",
+    "VIDP",
+    "VOCI",
+    "VOTV"
+  ],
+  "all_five_stations_present": true,
+  "bin_coverage_ok": true,
+  "phase15b_eval_n": {
+    "1h": 31949,
+    "2h": 31876,
+    "3h": 31581
+  },
+  "confusion_matches_15b_n": {
+    "1h": true,
+    "2h": true,
+    "3h": true
+  },
+  "deterministic": true,
+  "threshold": 0.065,
+  "note": "Phase 15C is an observational analysis of the frozen V2 Model B replay outputs. It does not modify the model."
+}

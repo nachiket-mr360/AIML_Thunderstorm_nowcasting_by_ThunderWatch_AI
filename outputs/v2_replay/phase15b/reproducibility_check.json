@@ -1,0 +1,7 @@
+{
+  "metrics_recomputed_identical": true,
+  "sampling_interval_hours": 6,
+  "deterministic_timestamp_rule": "UTC hour % interval_hours == 0; no random sampling",
+  "n_prediction_rows": 34720,
+  "n_complete": 34130
+}

@@ -1,0 +1,193 @@
+{
+  "horizon": "target_2h",
+  "features": [
+    "temperature_2m",
+    "relative_humidity_2m",
+    "surface_pressure",
+    "wind_speed_10m",
+    "precipitation",
+    "cloud_cover",
+    "hour_sin",
+    "hour_cos",
+    "month_sin",
+    "month_cos",
+    "wind_direction_sin",
+    "wind_direction_cos",
+    "wind_u_10m",
+    "wind_v_10m",
+    "temperature_lag_1h",
+    "temperature_lag_3h",
+    "temperature_lag_6h",
+    "temperature_lag_12h",
+    "temperature_lag_24h",
+    "humidity_lag_1h",
+    "humidity_lag_3h",
+    "humidity_lag_6h",
+    "humidity_lag_12h",
+    "humidity_lag_24h",
+    "pressure_lag_1h",
+    "pressure_lag_3h",
+    "pressure_lag_6h",
+    "pressure_lag_12h",
+    "pressure_lag_24h",
+    "wind_speed_lag_1h",
+    "wind_speed_lag_3h",
+    "wind_speed_lag_6h",
+    "wind_speed_lag_12h",
+    "wind_speed_lag_24h",
+    "precipitation_lag_1h",
+    "precipitation_lag_3h",
+    "precipitation_lag_6h",
+    "precipitation_lag_12h",
+    "precipitation_lag_24h",
+    "cloud_cover_lag_1h",
+    "cloud_cover_lag_3h",
+    "cloud_cover_lag_6h",
+    "cloud_cover_lag_12h",
+    "cloud_cover_lag_24h",
+    "temperature_change_1h",
+    "temperature_change_3h",
+    "humidity_change_1h",
+    "humidity_change_3h",
+    "pressure_change_1h",
+    "pressure_change_3h",
+    "wind_speed_change_1h",
+    "wind_speed_change_3h",
+    "precipitation_change_1h",
+    "precipitation_change_3h",
+    "cloud_cover_change_1h",
+    "cloud_cover_change_3h",
+    "precipitation_roll_sum_3h",
+    "precipitation_roll_sum_6h",
+    "precipitation_roll_sum_12h",
+    "precipitation_roll_sum_24h",
+    "humidity_roll_mean_3h",
+    "humidity_roll_mean_6h",
+    "pressure_roll_mean_3h",
+    "pressure_roll_mean_6h",
+    "temperature_roll_mean_3h",
+    "temperature_roll_mean_6h",
+    "wind_speed_roll_mean_3h",
+    "wind_speed_roll_mean_6h",
+    "cloud_cover_roll_mean_3h",
+    "cloud_cover_roll_mean_6h",
+    "latitude",
+    "longitude",
+    "elevation_m"
+  ],
+  "hyperparameters": {
+    "n_estimators": 200,
+    "criterion": "gini",
+    "max_features": "sqrt",
+    "class_weight": "balanced",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "split_boundaries": {
+    "train_start": "2014-01-02T00:00:00+00:00",
+    "train_end": "2022-05-27T01:00:00+00:00",
+    "validation_start": "2022-05-27T02:00:00+00:00",
+    "validation_end": "2024-03-14T11:00:00+00:00",
+    "test_start": "2024-03-14T12:00:00+00:00",
+    "test_end": "2025-12-30T23:00:00+00:00"
+  },
+  "threshold": 0.065,
+  "training_rows": 334388,
+  "validation_rows": 72559,
+  "test_rows": 73689,
+  "target_counts": {
+    "train_pos": 9204,
+    "validation_pos": 1965,
+    "test_pos": 2172
+  },
+  "metrics_test": {
+    "threshold": 0.065,
+    "accuracy": 0.8769558550122813,
+    "precision": 0.1246597713663582,
+    "recall": 0.5271639042357275,
+    "f1": 0.20163775644976667,
+    "roc_auc": 0.8422635369493598,
+    "pr_auc": 0.14345815451872213,
+    "positive_rate": 0.029475226967389977,
+    "predicted_alert_rate": 0.12464546947305569,
+    "false_positives": 8040,
+    "false_negatives": 1027,
+    "true_positives": 1145,
+    "true_negatives": 63477,
+    "confusion_matrix": [
+      [
+        63477,
+        8040
+      ],
+      [
+        1027,
+        1145
+      ]
+    ],
+    "n_samples": 73689,
+    "positives": 2172,
+    "negatives": 71517
+  },
+  "feature_importance_top15": [
+    {
+      "feature": "precipitation_roll_sum_6h",
+      "impurity_importance": 0.05471231714835251
+    },
+    {
+      "feature": "precipitation_roll_sum_3h",
+      "impurity_importance": 0.053461243243617805
+    },
+    {
+      "feature": "precipitation_roll_sum_12h",
+      "impurity_importance": 0.052894822691929085
+    },
+    {
+      "feature": "precipitation_roll_sum_24h",
+      "impurity_importance": 0.04250558933956507
+    },
+    {
+      "feature": "precipitation",
+      "impurity_importance": 0.023405617736945737
+    },
+    {
+      "feature": "cloud_cover",
+      "impurity_importance": 0.02166492910219935
+    },
+    {
+      "feature": "temperature_lag_3h",
+      "impurity_importance": 0.020736842183814615
+    },
+    {
+      "feature": "temperature_roll_mean_6h",
+      "impurity_importance": 0.019633162403082584
+    },
+    {
+      "feature": "cloud_cover_lag_3h",
+      "impurity_importance": 0.018599715512059155
+    },
+    {
+      "feature": "cloud_cover_roll_mean_6h",
+      "impurity_importance": 0.017991395031687042
+    },
+    {
+      "feature": "cloud_cover_roll_mean_3h",
+      "impurity_importance": 0.017803984329154046
+    },
+    {
+      "feature": "temperature_lag_24h",
+      "impurity_importance": 0.01687494216708331
+    },
+    {
+      "feature": "temperature_roll_mean_3h",
+      "impurity_importance": 0.01644710164083425
+    },
+    {
+      "feature": "cloud_cover_lag_1h",
+      "impurity_importance": 0.015916562605367317
+    },
+    {
+      "feature": "wind_u_10m",
+      "impurity_importance": 0.015828715052907515
+    }
+  ]
+}

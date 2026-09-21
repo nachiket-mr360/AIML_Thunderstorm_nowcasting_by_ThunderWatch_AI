@@ -1,0 +1,58 @@
+{
+  "phase": "2A",
+  "stations": [
+    {
+      "station_id": "VOTV",
+      "rows": 105192,
+      "expected": 105192,
+      "missing": 0,
+      "served_lat": 8.471001625061035,
+      "served_lon": 76.9329833984375
+    },
+    {
+      "station_id": "VECC",
+      "rows": 105192,
+      "expected": 105192,
+      "missing": 0,
+      "served_lat": 22.67135238647461,
+      "served_lon": 88.40956115722656
+    },
+    {
+      "station_id": "VIDP",
+      "rows": 105192,
+      "expected": 105192,
+      "missing": 0,
+      "served_lat": 28.576448440551758,
+      "served_lon": 77.08428192138672
+    },
+    {
+      "station_id": "VOCI",
+      "rows": 105192,
+      "expected": 105192,
+      "missing": 0,
+      "served_lat": 10.158172607421875,
+      "served_lon": 76.42105102539062
+    },
+    {
+      "station_id": "VABB",
+      "rows": 105192,
+      "expected": 105192,
+      "missing": 0,
+      "served_lat": 19.08611488342285,
+      "served_lon": 72.85291290283203
+    }
+  ],
+  "hourly_variables": [
+    "temperature_2m",
+    "relative_humidity_2m",
+    "surface_pressure",
+    "wind_speed_10m",
+    "wind_direction_10m",
+    "precipitation",
+    "cloud_cover"
+  ],
+  "period": {
+    "start": "2014-01-01",
+    "end": "2025-12-31"
+  }
+}

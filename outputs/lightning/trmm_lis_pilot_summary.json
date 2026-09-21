@@ -1,0 +1,1419 @@
+{
+  "phase": "9B",
+  "n_nc_files": 101,
+  "n_opened": 101,
+  "open_failures": [],
+  "backend": "netCDF4",
+  "identified_variables": {
+    "lightning_events_lat": "/lightning_event_lat",
+    "lightning_events_lon": "/lightning_event_lon",
+    "lightning_groups_lat": "/lightning_group_lat",
+    "lightning_groups_lon": "/lightning_group_lon",
+    "lightning_flashes_lat": "/lightning_flash_lat",
+    "lightning_flashes_lon": "/lightning_flash_lon",
+    "time_event": "/lightning_event_TAI93_time",
+    "time_group": "/lightning_group_TAI93_time",
+    "time_flash": "/lightning_flash_TAI93_time",
+    "time_orbit": "/orbit_summary_TAI93_start",
+    "all_lat_vars": [
+      "/bg_summary_lat",
+      "/lightning_area_lat",
+      "/lightning_flash_lat",
+      "/lightning_group_lat",
+      "/lightning_event_lat",
+      "/viewtime_lat",
+      "/one_second_platform_alert"
+    ],
+    "all_lon_vars": [
+      "/orbit_summary_start_longitude",
+      "/orbit_summary_end_longitude",
+      "/bg_summary_lon",
+      "/lightning_area_lon",
+      "/lightning_area_oblong_index",
+      "/lightning_flash_lon",
+      "/lightning_flash_oblong_index",
+      "/lightning_group_lon",
+      "/lightning_group_oblong_index",
+      "/lightning_event_lon",
+      "/viewtime_lon"
+    ],
+    "all_time_vars": [
+      "/orbit_summary_TAI93_start",
+      "/orbit_summary_TAI93_end",
+      "/bg_summary_TAI93_time",
+      "/lightning_area_TAI93_time",
+      "/lightning_area_delta_time",
+      "/lightning_area_observe_time",
+      "/lightning_flash_TAI93_time",
+      "/lightning_flash_delta_time",
+      "/lightning_flash_observe_time",
+      "/lightning_group_TAI93_time",
+      "/lightning_group_observe_time",
+      "/lightning_event_TAI93_time",
+      "/lightning_event_observe_time",
+      "/viewtime_location",
+      "/viewtime_lat",
+      "/viewtime_lon",
+      "/viewtime_TAI93_start",
+      "/viewtime_TAI93_end",
+      "/viewtime_effective_obs",
+      "/viewtime_alert_flag",
+      "/viewtime_approx_threshold",
+      "/one_second_TAI93_time"
+    ]
+  },
+  "variable_catalog": [
+    {
+      "path": "/raster_image",
+      "shape": [
+        500,
+        720
+      ],
+      "dtype": "uint8",
+      "long_name": "raster summary image",
+      "units": "1"
+    },
+    {
+      "path": "/raster_image_color_table",
+      "shape": [
+        256,
+        3
+      ],
+      "dtype": "uint8",
+      "long_name": "color table for raster summary image",
+      "units": "1"
+    },
+    {
+      "path": "/orbit_summary_id_number",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "orbit ID",
+      "units": "1"
+    },
+    {
+      "path": "/orbit_summary_TAI93_start",
+      "shape": [],
+      "dtype": "float64",
+      "long_name": "TAI93 start time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/orbit_summary_UTC_start",
+      "shape": [],
+      "dtype": "<class 'str'>",
+      "long_name": "UTC start time",
+      "units": null
+    },
+    {
+      "path": "/orbit_summary_GPS_start",
+      "shape": [],
+      "dtype": "float64",
+      "long_name": "GPS start time",
+      "units": "seconds"
+    },
+    {
+      "path": "/orbit_summary_TAI93_end",
+      "shape": [],
+      "dtype": "float64",
+      "long_name": "TAI93 end time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/orbit_summary_start_longitude",
+      "shape": [],
+      "dtype": "float32",
+      "long_name": "start longitude",
+      "units": "degrees_east"
+    },
+    {
+      "path": "/orbit_summary_end_longitude",
+      "shape": [],
+      "dtype": "float32",
+      "long_name": "end longitude",
+      "units": "degrees_east"
+    },
+    {
+      "path": "/orbit_summary_point_data_count",
+      "shape": [],
+      "dtype": "int16",
+      "long_name": "number of point data records",
+      "units": "count"
+    },
+    {
+      "path": "/orbit_summary_point_data_address",
+      "shape": [],
+      "dtype": "int16",
+      "long_name": "point data child record number",
+      "units": "1"
+    },
+    {
+      "path": "/orbit_summary_one_second_count",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "number of one second records",
+      "units": "count"
+    },
+    {
+      "path": "/orbit_summary_one_second_address",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "one-second child record number",
+      "units": "1"
+    },
+    {
+      "path": "/orbit_summary_summary_image_count",
+      "shape": [],
+      "dtype": "int16",
+      "long_name": "number of summary GIF images",
+      "units": "count"
+    },
+    {
+      "path": "/orbit_summary_summary_image_address",
+      "shape": [],
+      "dtype": "int16",
+      "long_name": "summary GIF image record number",
+      "units": "1"
+    },
+    {
+      "path": "/orbit_summary_inspection_code",
+      "shape": [],
+      "dtype": "uint16",
+      "long_name": "inspection code",
+      "units": "1"
+    },
+    {
+      "path": "/orbit_summary_configuration_code",
+      "shape": [],
+      "dtype": "uint16",
+      "long_name": "configuration code",
+      "units": "1"
+    },
+    {
+      "path": "/point_summary_parent_address",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "parent record number",
+      "units": "1"
+    },
+    {
+      "path": "/point_summary_event_count",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "number of events",
+      "units": "count"
+    },
+    {
+      "path": "/point_summary_event_address",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "event record number",
+      "units": "1"
+    },
+    {
+      "path": "/point_summary_group_count",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "number of groups",
+      "units": "count"
+    },
+    {
+      "path": "/point_summary_group_address",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "group record number",
+      "units": "1"
+    },
+    {
+      "path": "/point_summary_flash_count",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "number of flashes",
+      "units": "count"
+    },
+    {
+      "path": "/point_summary_flash_address",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "flash record number",
+      "units": "1"
+    },
+    {
+      "path": "/point_summary_area_count",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "number of areas",
+      "units": "count"
+    },
+    {
+      "path": "/point_summary_area_address",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "area record number",
+      "units": "1"
+    },
+    {
+      "path": "/point_summary_bg_count",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "number of backgrounds",
+      "units": "count"
+    },
+    {
+      "path": "/point_summary_bg_address",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "background image summary record number",
+      "units": "1"
+    },
+    {
+      "path": "/point_summary_vt_count",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "number of viewtime granules",
+      "units": "count"
+    },
+    {
+      "path": "/point_summary_vt_address",
+      "shape": [],
+      "dtype": "int32",
+      "long_name": "viewtime granule record number",
+      "units": "1"
+    },
+    {
+      "path": "/bg_summary_TAI93_time",
+      "shape": [
+        115
+      ],
+      "dtype": "float64",
+      "long_name": "background image start time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/bg_summary_address",
+      "shape": [
+        115
+      ],
+      "dtype": "int32",
+      "long_name": "background image number",
+      "units": "1"
+    },
+    {
+      "path": "/bg_summary_boresight",
+      "shape": [
+        115,
+        2
+      ],
+      "dtype": "float32",
+      "long_name": "background image boresight position",
+      "units": "degrees"
+    },
+    {
+      "path": "/bg_summary_lat",
+      "shape": [
+        115
+      ],
+      "dtype": "float32",
+      "long_name": "background image boresight latitude",
+      "units": "degrees_north"
+    },
+    {
+      "path": "/bg_summary_lon",
+      "shape": [
+        115
+      ],
+      "dtype": "float32",
+      "long_name": "background image boresight longitude",
+      "units": "degrees_east"
+    },
+    {
+      "path": "/bg_summary_corners",
+      "shape": [
+        115,
+        8
+      ],
+      "dtype": "float32",
+      "long_name": "background image corner positions",
+      "units": "degree"
+    },
+    {
+      "path": "/lightning_area_TAI93_time",
+      "shape": [
+        17
+      ],
+      "dtype": "float64",
+      "long_name": "area time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/lightning_area_delta_time",
+      "shape": [
+        17
+      ],
+      "dtype": "float32",
+      "long_name": "area point data time span",
+      "units": "seconds"
+    },
+    {
+      "path": "/lightning_area_observe_time",
+      "shape": [
+        17
+      ],
+      "dtype": "int16",
+      "long_name": "area duration of observation",
+      "units": "seconds"
+    },
+    {
+      "path": "/lightning_area_location",
+      "shape": [
+        17,
+        2
+      ],
+      "dtype": "float32",
+      "long_name": "area geolocated position",
+      "units": "degree"
+    },
+    {
+      "path": "/lightning_area_lat",
+      "shape": [
+        17
+      ],
+      "dtype": "float32",
+      "long_name": "area latitude",
+      "units": "degrees_north"
+    },
+    {
+      "path": "/lightning_area_lon",
+      "shape": [
+        17
+      ],
+      "dtype": "float32",
+      "long_name": "area longitude",
+      "units": "degrees_east"
+    },
+    {
+      "path": "/lightning_area_net_radiance",
+      "shape": [
+        17
+      ],
+      "dtype": "float32",
+      "long_name": "area calibrated radiance",
+      "units": "uJ/sr/m2/um"
+    },
+    {
+      "path": "/lightning_area_footprint",
+      "shape": [
+        17
+      ],
+      "dtype": "float32",
+      "long_name": "area footprint size",
+      "units": "km2"
+    },
+    {
+      "path": "/lightning_area_address",
+      "shape": [
+        17
+      ],
+      "dtype": "int32",
+      "long_name": "area record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_area_parent_address",
+      "shape": [
+        17
+      ],
+      "dtype": "int32",
+      "long_name": "area parent record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_area_child_address",
+      "shape": [
+        17
+      ],
+      "dtype": "int32",
+      "long_name": "area child record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_area_child_count",
+      "shape": [
+        17
+      ],
+      "dtype": "int32",
+      "long_name": "area child record count",
+      "units": "count"
+    },
+    {
+      "path": "/lightning_area_grandchild_count",
+      "shape": [
+        17
+      ],
+      "dtype": "int32",
+      "long_name": "area grandchild record count",
+      "units": "count"
+    },
+    {
+      "path": "/lightning_area_greatgrandchild_count",
+      "shape": [
+        17
+      ],
+      "dtype": "int32",
+      "long_name": "area greatgrandchild record count",
+      "units": "count"
+    },
+    {
+      "path": "/lightning_area_approx_threshold",
+      "shape": [
+        17
+      ],
+      "dtype": "int8",
+      "long_name": "area 8-bit threshold",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_area_alert_flag",
+      "shape": [
+        17
+      ],
+      "dtype": "uint8",
+      "long_name": "area alert flag",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_area_cluster_index",
+      "shape": [
+        17
+      ],
+      "dtype": "int8",
+      "long_name": "area clustering probability",
+      "units": "percent"
+    },
+    {
+      "path": "/lightning_area_density_index",
+      "shape": [
+        17
+      ],
+      "dtype": "int8",
+      "long_name": "area lightning activity",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_area_noise_index",
+      "shape": [
+        17
+      ],
+      "dtype": "int8",
+      "long_name": "area noise index",
+      "units": "100percent"
+    },
+    {
+      "path": "/lightning_area_oblong_index",
+      "shape": [
+        17
+      ],
+      "dtype": "float32",
+      "long_name": "area eccentricity",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_area_grouping_sequence",
+      "shape": [
+        17
+      ],
+      "dtype": "int32",
+      "long_name": "area time order",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_area_grouping_status",
+      "shape": [
+        17
+      ],
+      "dtype": "int8",
+      "long_name": "area grouping_status",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_TAI93_time",
+      "shape": [
+        25
+      ],
+      "dtype": "float64",
+      "long_name": "flash time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/lightning_flash_delta_time",
+      "shape": [
+        25
+      ],
+      "dtype": "float32",
+      "long_name": "flash point data time span",
+      "units": "seconds"
+    },
+    {
+      "path": "/lightning_flash_observe_time",
+      "shape": [
+        25
+      ],
+      "dtype": "int16",
+      "long_name": "flash duration of observation",
+      "units": "seconds"
+    },
+    {
+      "path": "/lightning_flash_location",
+      "shape": [
+        25,
+        2
+      ],
+      "dtype": "float32",
+      "long_name": "flash geolocated position",
+      "units": "degrees"
+    },
+    {
+      "path": "/lightning_flash_lat",
+      "shape": [
+        25
+      ],
+      "dtype": "float32",
+      "long_name": "flash latitude",
+      "units": "degrees_north"
+    },
+    {
+      "path": "/lightning_flash_lon",
+      "shape": [
+        25
+      ],
+      "dtype": "float32",
+      "long_name": "flash longitude",
+      "units": "degrees_east"
+    },
+    {
+      "path": "/lightning_flash_radiance",
+      "shape": [
+        25
+      ],
+      "dtype": "float32",
+      "long_name": "flash calibrated radiance",
+      "units": "uJ/sr/m2/um"
+    },
+    {
+      "path": "/lightning_flash_footprint",
+      "shape": [
+        25
+      ],
+      "dtype": "float32",
+      "long_name": "flash footprint size",
+      "units": "km2"
+    },
+    {
+      "path": "/lightning_flash_address",
+      "shape": [
+        25
+      ],
+      "dtype": "int32",
+      "long_name": "flash record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_parent_address",
+      "shape": [
+        25
+      ],
+      "dtype": "int32",
+      "long_name": "flash parent record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_child_address",
+      "shape": [
+        25
+      ],
+      "dtype": "int32",
+      "long_name": "flash child record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_child_count",
+      "shape": [
+        25
+      ],
+      "dtype": "int32",
+      "long_name": "flash child record count",
+      "units": "count"
+    },
+    {
+      "path": "/lightning_flash_grandchild_count",
+      "shape": [
+        25
+      ],
+      "dtype": "int32",
+      "long_name": "flash grandchild record count",
+      "units": "count"
+    },
+    {
+      "path": "/lightning_flash_approx_threshold",
+      "shape": [
+        25
+      ],
+      "dtype": "int8",
+      "long_name": "flash 8-bit threshold",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_alert_flag",
+      "shape": [
+        25
+      ],
+      "dtype": "uint8",
+      "long_name": "flash alert flag",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_cluster_index",
+      "shape": [
+        25
+      ],
+      "dtype": "int8",
+      "long_name": "flash clustering probability",
+      "units": "percent"
+    },
+    {
+      "path": "/lightning_flash_density_index",
+      "shape": [
+        25
+      ],
+      "dtype": "int8",
+      "long_name": "flash lightning activity",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_noise_index",
+      "shape": [
+        25
+      ],
+      "dtype": "int8",
+      "long_name": "flash noise index",
+      "units": "100percent"
+    },
+    {
+      "path": "/lightning_flash_oblong_index",
+      "shape": [
+        25
+      ],
+      "dtype": "float32",
+      "long_name": "flash eccentricity",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_grouping_sequence",
+      "shape": [
+        25
+      ],
+      "dtype": "int32",
+      "long_name": "flash time order",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_grouping_status",
+      "shape": [
+        25
+      ],
+      "dtype": "int8",
+      "long_name": "flash grouping_status",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_flash_glint_index",
+      "shape": [
+        25
+      ],
+      "dtype": "float32",
+      "long_name": "flash solar glint cosine",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_TAI93_time",
+      "shape": [
+        390
+      ],
+      "dtype": "float64",
+      "long_name": "group time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/lightning_group_observe_time",
+      "shape": [
+        390
+      ],
+      "dtype": "int16",
+      "long_name": "length of observation",
+      "units": "seconds"
+    },
+    {
+      "path": "/lightning_group_location",
+      "shape": [
+        390,
+        2
+      ],
+      "dtype": "float32",
+      "long_name": "group geolocated position",
+      "units": "degrees"
+    },
+    {
+      "path": "/lightning_group_lat",
+      "shape": [
+        390
+      ],
+      "dtype": "float32",
+      "long_name": "group latitude",
+      "units": "degrees_north"
+    },
+    {
+      "path": "/lightning_group_lon",
+      "shape": [
+        390
+      ],
+      "dtype": "float32",
+      "long_name": "group longitude",
+      "units": "degrees_east"
+    },
+    {
+      "path": "/lightning_group_radiance",
+      "shape": [
+        390
+      ],
+      "dtype": "float32",
+      "long_name": "group calibrated radiance",
+      "units": "uJ/sr/m2/um"
+    },
+    {
+      "path": "/lightning_group_footprint",
+      "shape": [
+        390
+      ],
+      "dtype": "float32",
+      "long_name": "group footprint size",
+      "units": "km2"
+    },
+    {
+      "path": "/lightning_group_address",
+      "shape": [
+        390
+      ],
+      "dtype": "int32",
+      "long_name": "group record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_parent_address",
+      "shape": [
+        390
+      ],
+      "dtype": "int32",
+      "long_name": "group parent record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_child_address",
+      "shape": [
+        390
+      ],
+      "dtype": "int32",
+      "long_name": "group child record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_child_count",
+      "shape": [
+        390
+      ],
+      "dtype": "int32",
+      "long_name": "group child record count",
+      "units": "count"
+    },
+    {
+      "path": "/lightning_group_approx_threshold",
+      "shape": [
+        390
+      ],
+      "dtype": "int8",
+      "long_name": "group 8-bit threshold",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_alert_flag",
+      "shape": [
+        390
+      ],
+      "dtype": "uint8",
+      "long_name": "group alert flag",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_cluster_index",
+      "shape": [
+        390
+      ],
+      "dtype": "int8",
+      "long_name": "group clustering probability",
+      "units": "percent"
+    },
+    {
+      "path": "/lightning_group_density_index",
+      "shape": [
+        390
+      ],
+      "dtype": "int8",
+      "long_name": "group lightning activity",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_noise_index",
+      "shape": [
+        390
+      ],
+      "dtype": "int8",
+      "long_name": "group noise index",
+      "units": "100percent"
+    },
+    {
+      "path": "/lightning_group_oblong_index",
+      "shape": [
+        390
+      ],
+      "dtype": "float32",
+      "long_name": "group eccentricity",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_grouping_sequence",
+      "shape": [
+        390
+      ],
+      "dtype": "int32",
+      "long_name": "group time order",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_grouping_status",
+      "shape": [
+        390
+      ],
+      "dtype": "int8",
+      "long_name": "group grouping_status",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_group_glint_index",
+      "shape": [
+        390
+      ],
+      "dtype": "float32",
+      "long_name": "group solar glint cosine",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_TAI93_time",
+      "shape": [
+        1987
+      ],
+      "dtype": "float64",
+      "long_name": "event time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/lightning_event_observe_time",
+      "shape": [
+        1987
+      ],
+      "dtype": "int16",
+      "long_name": "event duration of observation",
+      "units": "seconds"
+    },
+    {
+      "path": "/lightning_event_location",
+      "shape": [
+        1987,
+        2
+      ],
+      "dtype": "float32",
+      "long_name": "event geolocated position",
+      "units": "degree"
+    },
+    {
+      "path": "/lightning_event_lat",
+      "shape": [
+        1987
+      ],
+      "dtype": "float32",
+      "long_name": "event latitude",
+      "units": "degrees_north"
+    },
+    {
+      "path": "/lightning_event_lon",
+      "shape": [
+        1987
+      ],
+      "dtype": "float32",
+      "long_name": "event longitude",
+      "units": "degrees_east"
+    },
+    {
+      "path": "/lightning_event_radiance",
+      "shape": [
+        1987
+      ],
+      "dtype": "float32",
+      "long_name": "event calibrated radiance",
+      "units": "uJ/sr/m2/um"
+    },
+    {
+      "path": "/lightning_event_footprint",
+      "shape": [
+        1987
+      ],
+      "dtype": "float32",
+      "long_name": "event footprint size",
+      "units": "km2"
+    },
+    {
+      "path": "/lightning_event_address",
+      "shape": [
+        1987
+      ],
+      "dtype": "int32",
+      "long_name": "event record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_parent_address",
+      "shape": [
+        1987
+      ],
+      "dtype": "int32",
+      "long_name": "event parent record number",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_x_pixel",
+      "shape": [
+        1987
+      ],
+      "dtype": "int8",
+      "long_name": "event CCD pixel column",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_y_pixel",
+      "shape": [
+        1987
+      ],
+      "dtype": "int8",
+      "long_name": "event CCD pixel row",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_bg_value",
+      "shape": [
+        1987
+      ],
+      "dtype": "int16",
+      "long_name": "event background illumination",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_bg_radiance",
+      "shape": [
+        1987
+      ],
+      "dtype": "int16",
+      "long_name": "event background radiance",
+      "units": "W/sr/m2/um"
+    },
+    {
+      "path": "/lightning_event_approx_threshold",
+      "shape": [
+        1987
+      ],
+      "dtype": "int8",
+      "long_name": "event 8-bit threshold",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_alert_flag",
+      "shape": [
+        1987
+      ],
+      "dtype": "uint8",
+      "long_name": "event alert flag",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_cluster_index",
+      "shape": [
+        1987
+      ],
+      "dtype": "int8",
+      "long_name": "event clustering probability",
+      "units": "percent"
+    },
+    {
+      "path": "/lightning_event_density_index",
+      "shape": [
+        1987
+      ],
+      "dtype": "int8",
+      "long_name": "event lightning activity",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_noise_index",
+      "shape": [
+        1987
+      ],
+      "dtype": "int8",
+      "long_name": "event noise index",
+      "units": "100percent"
+    },
+    {
+      "path": "/lightning_event_grouping_sequence",
+      "shape": [
+        1987
+      ],
+      "dtype": "int32",
+      "long_name": "event time order",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_amplitude",
+      "shape": [
+        1987
+      ],
+      "dtype": "int8",
+      "long_name": "event 7-bit amplitude",
+      "units": "1"
+    },
+    {
+      "path": "/lightning_event_sza_index",
+      "shape": [
+        1987
+      ],
+      "dtype": "uint8",
+      "long_name": "event solar zenith angle",
+      "units": "degree"
+    },
+    {
+      "path": "/lightning_event_glint_index",
+      "shape": [
+        1987
+      ],
+      "dtype": "uint8",
+      "long_name": "event solar glint cosine",
+      "units": "degrees"
+    },
+    {
+      "path": "/lightning_event_bg_value_flag",
+      "shape": [
+        1987
+      ],
+      "dtype": "int8",
+      "long_name": "event background illumination flag",
+      "units": "1"
+    },
+    {
+      "path": "/viewtime_location",
+      "shape": [
+        10938,
+        2
+      ],
+      "dtype": "float32",
+      "long_name": "viewtime grid cell position",
+      "units": "degree"
+    },
+    {
+      "path": "/viewtime_lat",
+      "shape": [
+        10938
+      ],
+      "dtype": "float32",
+      "long_name": "viewtime latitude",
+      "units": "degrees_north"
+    },
+    {
+      "path": "/viewtime_lon",
+      "shape": [
+        10938
+      ],
+      "dtype": "float32",
+      "long_name": "viewtime longitude",
+      "units": "degrees_east"
+    },
+    {
+      "path": "/viewtime_TAI93_start",
+      "shape": [
+        10938
+      ],
+      "dtype": "int32",
+      "long_name": "viewtime start time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/viewtime_TAI93_end",
+      "shape": [
+        10938
+      ],
+      "dtype": "int32",
+      "long_name": "viewtime end time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/viewtime_effective_obs",
+      "shape": [
+        10938
+      ],
+      "dtype": "float32",
+      "long_name": "effective viewtime",
+      "units": "seconds"
+    },
+    {
+      "path": "/viewtime_alert_flag",
+      "shape": [
+        10938
+      ],
+      "dtype": "uint8",
+      "long_name": "viewtime alert flag",
+      "units": "1"
+    },
+    {
+      "path": "/viewtime_approx_threshold",
+      "shape": [
+        10938
+      ],
+      "dtype": "int8",
+      "long_name": "viewtime 8-bit threshold",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_TAI93_time",
+      "shape": [
+        4081
+      ],
+      "dtype": "float64",
+      "long_name": "one second granule start time",
+      "units": "seconds since 1993-01-01 00:00:00.000"
+    },
+    {
+      "path": "/one_second_alert_summary",
+      "shape": [
+        4081
+      ],
+      "dtype": "uint8",
+      "long_name": "one second granule alert summary flag",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_instrument_alert",
+      "shape": [
+        4081
+      ],
+      "dtype": "uint8",
+      "long_name": "one second granule instrument alert flag",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_platform_alert",
+      "shape": [
+        4081
+      ],
+      "dtype": "uint8",
+      "long_name": "one second granule platform alert flag",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_external_alert",
+      "shape": [
+        4081
+      ],
+      "dtype": "uint8",
+      "long_name": "one second granule external alert flag",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_processing_alert",
+      "shape": [
+        4081
+      ],
+      "dtype": "uint8",
+      "long_name": "one second granule processing alert flag",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_position_vector",
+      "shape": [
+        4081,
+        3
+      ],
+      "dtype": "float32",
+      "long_name": "one second granule platform coordinates",
+      "units": "m"
+    },
+    {
+      "path": "/one_second_velocity_vector",
+      "shape": [
+        4081,
+        3
+      ],
+      "dtype": "float32",
+      "long_name": "one second granule platform velocity",
+      "units": "m/s"
+    },
+    {
+      "path": "/one_second_transform_matrix",
+      "shape": [
+        4081,
+        9
+      ],
+      "dtype": "float32",
+      "long_name": "one second granule transform matrix",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_solar_vector",
+      "shape": [
+        4081,
+        3
+      ],
+      "dtype": "float32",
+      "long_name": "one second granule solar vector",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_ephemeris_quality_flag",
+      "shape": [
+        4081
+      ],
+      "dtype": "int32",
+      "long_name": "one second granule ephemeris quality flag",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_attitude_quality_flag",
+      "shape": [
+        4081
+      ],
+      "dtype": "int32",
+      "long_name": "one second granule attituide quality flag",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_boresight_threshold",
+      "shape": [
+        4081
+      ],
+      "dtype": "int8",
+      "long_name": "one second granule threshold estimate",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_thresholds",
+      "shape": [
+        4081,
+        16
+      ],
+      "dtype": "int8",
+      "long_name": "one second granule 8-bit threshold values",
+      "units": "1"
+    },
+    {
+      "path": "/one_second_noise_index",
+      "shape": [
+        4081
+      ],
+      "dtype": "int8",
+      "long_name": "one second granule noise index",
+      "units": "100percent"
+    },
+    {
+      "path": "/one_second_event_count",
+      "shape": [
+        4081,
+        6
+      ],
+      "dtype": "int16",
+      "long_name": "one second granule event count",
+      "units": "count"
+    }
+  ],
+  "stations": {
+    "VOTV": {
+      "name": "Thiruvananthapuram",
+      "latitude": 8.4667,
+      "longitude": 76.95,
+      "coordinate_source": "dataset/multilocation/iem_station_metadata.json (IEM IN__ASOS)",
+      "files_swath_reaches_50km": 8,
+      "n_lightning_observations_within_50km": 0,
+      "files_with_lightning_within_50km": 0,
+      "earliest_observation_time": "NA",
+      "latest_observation_time": "NA",
+      "n_distinct_orbits_with_lightning": 0,
+      "n_distinct_orbits_with_swath": 8
+    },
+    "VECC": {
+      "name": "Kolkata",
+      "latitude": 22.6547,
+      "longitude": 88.4467,
+      "coordinate_source": "dataset/multilocation/iem_station_metadata.json (IEM IN__ASOS)",
+      "files_swath_reaches_50km": 10,
+      "n_lightning_observations_within_50km": 0,
+      "files_with_lightning_within_50km": 0,
+      "earliest_observation_time": "NA",
+      "latest_observation_time": "NA",
+      "n_distinct_orbits_with_lightning": 0,
+      "n_distinct_orbits_with_swath": 10
+    },
+    "VIDP": {
+      "name": "Delhi",
+      "latitude": 28.5667,
+      "longitude": 77.1167,
+      "coordinate_source": "dataset/multilocation/iem_station_metadata.json (IEM IN__ASOS)",
+      "files_swath_reaches_50km": 15,
+      "n_lightning_observations_within_50km": 0,
+      "files_with_lightning_within_50km": 0,
+      "earliest_observation_time": "NA",
+      "latest_observation_time": "NA",
+      "n_distinct_orbits_with_lightning": 0,
+      "n_distinct_orbits_with_swath": 15
+    },
+    "VOCI": {
+      "name": "Kochi",
+      "latitude": 10.15,
+      "longitude": 76.4,
+      "coordinate_source": "dataset/multilocation/iem_station_metadata.json (IEM IN__ASOS)",
+      "files_swath_reaches_50km": 7,
+      "n_lightning_observations_within_50km": 0,
+      "files_with_lightning_within_50km": 0,
+      "earliest_observation_time": "NA",
+      "latest_observation_time": "NA",
+      "n_distinct_orbits_with_lightning": 0,
+      "n_distinct_orbits_with_swath": 7
+    },
+    "VABB": {
+      "name": "Mumbai",
+      "latitude": 19.1005,
+      "longitude": 72.8585,
+      "coordinate_source": "dataset/multilocation/iem_station_metadata.json (IEM IN__ASOS)",
+      "files_swath_reaches_50km": 8,
+      "n_lightning_observations_within_50km": 0,
+      "files_with_lightning_within_50km": 0,
+      "earliest_observation_time": "NA",
+      "latest_observation_time": "NA",
+      "n_distinct_orbits_with_lightning": 0,
+      "n_distinct_orbits_with_swath": 8
+    }
+  },
+  "classification": "REFERENCE_ONLY",
+  "downloaded_new_data": false,
+  "trained": false
+}

@@ -1,0 +1,6 @@
+station_id,timestamp_utc,lead_1h_probability,lead_1h_alert,lead_2h_probability,lead_2h_alert,lead_3h_probability,lead_3h_alert,model_version,data_completeness,data_status,historical_reference_target_1h,historical_reference_target_2h,historical_reference_target_3h
+VOTV,2021-04-01 00:00:00+00:00,0.015,0,0.005,0,0.0,0,V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH,1.0,COMPLETE,0.0,0.0,0.0
+VECC,2021-04-01 00:00:00+00:00,0.01,0,0.0,0,0.005,0,V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH,1.0,COMPLETE,0.0,0.0,0.0
+VIDP,2021-04-01 00:00:00+00:00,0.005,0,0.01,0,0.0,0,V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH,1.0,COMPLETE,0.0,0.0,0.0
+VOCI,2021-04-01 00:00:00+00:00,0.0,0,0.0,0,0.01,0,V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH,1.0,COMPLETE,0.0,0.0,0.0
+VABB,2021-04-01 00:00:00+00:00,0.0,0,0.0,0,0.0,0,V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH,1.0,COMPLETE,0.0,0.0,0.0

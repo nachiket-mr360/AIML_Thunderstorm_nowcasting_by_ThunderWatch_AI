@@ -1,0 +1,37 @@
+{
+  "phase": "13B",
+  "passed": true,
+  "model_version": "V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH",
+  "n_features": 83,
+  "feature_order_matches_phase13a": true,
+  "phase13a_contract_unchanged": true,
+  "frozen_model_hashes_before": {
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed"
+  },
+  "frozen_model_hashes_after": {
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed"
+  },
+  "frozen_model_hashes_unchanged": true,
+  "no_training": true,
+  "thresholds": {
+    "1h": 0.065,
+    "2h": 0.065,
+    "3h": 0.065
+  },
+  "tests": [
+    "valid_complete_vector",
+    "missing_feature",
+    "nan_feature",
+    "infinite_feature",
+    "wrong_feature_count",
+    "unknown_station",
+    "threshold_0.065_alert",
+    "output_schema",
+    "model_version",
+    "frozen_hashes"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "phase": "14B",
+  "title": "V2 data-source and latency audit",
+  "generated_at_local": "2026-09-21",
+  "audit_only": true,
+  "production": false,
+  "live_system_built": false,
+  "simulated_feeds": false,
+  "ml_pipeline_modified": false,
+  "methodology": {
+    "evidence": [
+      "docs/PHASE7_NWP_DATA_AUDIT.md",
+      "docs/PHASE7B_NWP_PILOT_REPORT.md",
+      "docs/PHASE7C_FULL_NWP_DATA_REPORT.md",
+      "docs/PHASE8A_NWP_JOIN_AUDIT.md",
+      "docs/PHASE9A_LIGHTNING_SOURCE_AUDIT.md",
+      "docs/PHASE9C_COMBINED_LIS_THUNDER_HOUR_AUDIT.md",
+      "docs/PHASE12A_MULTIMODAL_FUSION_READINESS.md",
+      "docs/PHASE13A_INFERENCE_CONTRACT.md",
+      "docs/PHASE14A_FEATURE_BUILDER.md",
+      "docs/PHASE1B_MULTIYEAR_METAR_AUDIT.md",
+      "docs/ARCHITECTURE.md",
+      "dataset/fetch_votv_openmeteo_phase3.py",
+      "dataset/multilocation/feature_engineering_phase3.py"
+    ],
+    "not_done": [
+      "no large dataset download",
+      "no MOSDAC login",
+      "no radar portal login",
+      "no lightning grant",
+      "no Flask/dashboard",
+      "no fake live timestamps"
+    ],
+    "latency_rule": "If undocumented write NOT DOCUMENTED. If unverified write NOT VERIFIED."
+  },
+  "modes": {
+    "MODE_A_historical_replay": {
+      "legitimately_possible": true,
+      "layers": ["Open-Meteo archive atmosphere", "Open-Meteo Historical Forecast gfs_global NWP", "Phase 14A builder", "Phase 13B engine", "METAR labels for evaluation only"],
+      "note": "This is the only mode fully supported by in-repo validated data."
+    },
+    "MODE_B_near_real_time_demo": {
+      "legitimately_possible": false,
+      "status": "NOT CLAIMED",
+      "reason": "Forecast API atmosphere is a different product than the training archive. Previous-Runs NWP is not the Phase 8B valid-time series. Satellite/radar/lightning not accessible. No measured latency contract."
+    },
+    "MODE_C_operational_live_prototype": {
+      "legitimately_possible": false,
+      "status": "NOT CLAIMED",
+      "reason": "No operational NWP latency contract, no MOSDAC/radar/LLN access, Model B is a research complete-case RF not a production nowcast."
+    }
+  },
+  "integrity_before": {
+    "outputs/v2_inference/phase13a/inference_contract.json": "a3aad93b211aff6a2da9b6a5e859c9649928a60ea2667f9888d854168d884940",
+    "src/inference/v2_inference_engine.py": "ef9c55e395df5dec1aac646ac447c96d2c449888930640c3303f5cfa43a6f3d3",
+    "src/features/v2_feature_builder.py": "05aa33c092758e728bc4f2d97f605b95038e4814457b1fdec244ab3a9629c0cf",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed"
+  },
+  "csv": "outputs/v2_data_sources/phase14b/data_source_audit.csv",
+  "final_matrix": [
+    {
+      "layer": "Atmospheric observations",
+      "current_status": "REPLAY_READY (archive); Forecast API is NEAR_REAL_TIME_CANDIDATE with product mismatch",
+      "prediction_time_usable": "YES (archive replay); CONDITIONAL (forecast API)",
+      "future_action": "Keep archive as training truth; if a demo is designed later, document Forecast API vs archive differences and latency as NOT DOCUMENTED until measured"
+    },
+    {
+      "layer": "NWP",
+      "current_status": "REPLAY_READY Historical Forecast gfs_global; Previous Runs NEAR_REAL_TIME_CANDIDATE; public GRIB OPERATIONAL_CANDIDATE not collected",
+      "prediction_time_usable": "YES (historical valid-time replay); CONDITIONAL (previous run / live GRIB); NO as live Historical Forecast latency contract",
+      "future_action": "Do not replace Phase 8 table. Any live NWP needs init-time vs valid-time contract."
+    },
+    {
+      "layer": "Satellite",
+      "current_status": "ACCESS_PENDING MOSDAC INSAT-3DR 3RIMG_L2B_CMK",
+      "prediction_time_usable": "UNKNOWN",
+      "future_action": "Account/approval then timestamp/latency verification; no columns until then"
+    },
+    {
+      "layer": "Radar",
+      "current_status": "INSTITUTIONAL_ACCESS_REQUIRED",
+      "prediction_time_usable": "UNKNOWN",
+      "future_action": "College letter / Radar Data Supply Portal; no tile scraping"
+    },
+    {
+      "layer": "Real-time lightning",
+      "current_status": "IITM/IMD/WWLLN INSTITUTIONAL_ACCESS_REQUIRED; NASA LIS REFERENCE_ONLY; annual thunder hours REFERENCE_ONLY",
+      "prediction_time_usable": "NO in current Model B; CONDITIONAL after grant; NO for climatology",
+      "future_action": "Do not promote annual_thunder_hours; no synthetic lightning"
+    },
+    {
+      "layer": "Historical labels",
+      "current_status": "REFERENCE_ONLY (training/eval METAR)",
+      "prediction_time_usable": "NO as predictor",
+      "future_action": "Keep genuine TS present-weather definition; do not use as live input"
+    }
+  ]
+}

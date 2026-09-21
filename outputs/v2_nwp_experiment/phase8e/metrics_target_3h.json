@@ -1,0 +1,130 @@
+{
+  "experiment": "B_atmospheric_nwp_train_median_impute",
+  "horizon": "target_3h",
+  "impute_columns": [
+    "nwp_convective_inhibition",
+    "nwp_precipitation"
+  ],
+  "train_medians": {
+    "nwp_convective_inhibition": -6.0,
+    "nwp_precipitation": 0.0
+  },
+  "imputed_value_counts": {
+    "train": {
+      "nwp_convective_inhibition": 0,
+      "nwp_precipitation": 0
+    },
+    "validation": {
+      "nwp_convective_inhibition": 1625,
+      "nwp_precipitation": 1658
+    },
+    "test": {
+      "nwp_convective_inhibition": 0,
+      "nwp_precipitation": 0
+    }
+  },
+  "n_train": 46499,
+  "n_validation": 72560,
+  "n_test": 73684,
+  "positives_train": 1721,
+  "positives_validation": 1965,
+  "positives_test": 2172,
+  "threshold": 0.065,
+  "threshold_selection": {
+    "criterion": "maximise F2 (beta=2.0) on validation, subject to predicted positive rate <= 0.2; tie-break lower threshold",
+    "selected_threshold": 0.065,
+    "threshold_selected_on": "validation",
+    "test_data_used_for_threshold_selection": false,
+    "guardrail_binding": false,
+    "selected_validation_fbeta": 0.3311641758120554,
+    "selected_validation_predicted_positive_rate": 0.14157938257993385
+  },
+  "metrics_validation": {
+    "threshold": 0.065,
+    "accuracy": 0.8644432194046306,
+    "precision": 0.11690840066192933,
+    "recall": 0.6111959287531806,
+    "f1": 0.19627390096420985,
+    "roc_auc": 0.8591087173060249,
+    "pr_auc": 0.15747095467943759,
+    "positive_rate": 0.02708103638368247,
+    "predicted_alert_rate": 0.14157938257993385,
+    "false_positives": 9072,
+    "false_negatives": 764,
+    "true_positives": 1201,
+    "true_negatives": 61523,
+    "confusion_matrix": [
+      [
+        61523,
+        9072
+      ],
+      [
+        764,
+        1201
+      ]
+    ],
+    "n_samples": 72560,
+    "positives": 1965,
+    "negatives": 70595
+  },
+  "metrics_test": {
+    "threshold": 0.065,
+    "accuracy": 0.8323245209272027,
+    "precision": 0.10294002963425096,
+    "recall": 0.6077348066298343,
+    "f1": 0.1760586862287429,
+    "roc_auc": 0.8371870439856635,
+    "pr_auc": 0.13168203945689588,
+    "positive_rate": 0.02947722707779165,
+    "predicted_alert_rate": 0.17402692579121654,
+    "false_positives": 11503,
+    "false_negatives": 852,
+    "true_positives": 1320,
+    "true_negatives": 60009,
+    "confusion_matrix": [
+      [
+        60009,
+        11503
+      ],
+      [
+        852,
+        1320
+      ]
+    ],
+    "n_samples": 73684,
+    "positives": 2172,
+    "negatives": 71512
+  },
+  "model_path": "models/v2/nwp_experiment/phase8e/B_nwp_imputed_target_3h.joblib",
+  "phase8d_complete_case_test": {
+    "threshold": 0.065,
+    "accuracy": 0.8323245209272027,
+    "precision": 0.10294002963425096,
+    "recall": 0.6077348066298343,
+    "f1": 0.1760586862287429,
+    "roc_auc": 0.8371870439856635,
+    "pr_auc": 0.13168203945689588,
+    "positive_rate": 0.02947722707779165,
+    "predicted_alert_rate": 0.17402692579121654,
+    "false_positives": 11503,
+    "false_negatives": 852,
+    "true_positives": 1320,
+    "true_negatives": 60009,
+    "confusion_matrix": [
+      [
+        60009,
+        11503
+      ],
+      [
+        852,
+        1320
+      ]
+    ],
+    "n_samples": 73684,
+    "positives": 2172,
+    "negatives": 71512
+  },
+  "phase8d_n_train": 46499,
+  "phase8d_n_validation": 69277,
+  "phase8d_n_test": 73684
+}

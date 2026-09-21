@@ -1,0 +1,18 @@
+{
+  "lead_time": "1h nowcast (features at t, genuine METAR at t+1h)",
+  "station": "VOTV only",
+  "model": "RandomForestClassifier n_estimators=400 class_weight=balanced random_state=42",
+  "test_recall": 0.604,
+  "test_precision": 0.1332,
+  "test_f1": 0.2183,
+  "test_pr_auc": 0.206,
+  "test_roc_auc": 0.8453,
+  "locked_threshold": 0.0775,
+  "test_confusion": {
+    "tn": 9630,
+    "fp": 1568,
+    "fn": 158,
+    "tp": 241
+  },
+  "note": "V1 is a different task (1h lead, VOTV-only, 28 features). These numbers are a historical reference, not a claim that V2 pooled same-hour models are superior."
+}

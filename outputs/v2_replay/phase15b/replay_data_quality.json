@@ -1,0 +1,40 @@
+{
+  "phase": "15B",
+  "sampling_interval_hours": 6,
+  "period_start_utc": "2021-04-01T00:00:00+00:00",
+  "period_end_utc": "2025-12-31T23:00:00+00:00",
+  "candidate_timestamps": 34720,
+  "successful_replay_timestamps": 34130,
+  "unavailable_timestamps": 590,
+  "unavailable_due_to_missing_history": 20,
+  "unavailable_due_to_missing_nwp": 570,
+  "unavailable_due_to_invalid_input": 0,
+  "unavailable_other": 0,
+  "target_1h_missing": 2181,
+  "target_2h_missing": 2254,
+  "target_3h_missing": 2549,
+  "evaluation_sample_count_per_lead": {
+    "1h": 31949,
+    "2h": 31876,
+    "3h": 31581
+  },
+  "station_candidate_counts": {
+    "VOTV": 6944,
+    "VECC": 6944,
+    "VIDP": 6944,
+    "VOCI": 6944,
+    "VABB": 6944
+  },
+  "first_evaluated_timestamp_utc": "2021-04-01T00:00:00+00:00",
+  "last_evaluated_timestamp_utc": "2025-12-31T18:00:00+00:00",
+  "yearly_successful_replay_counts": {
+    "2021": 5480,
+    "2022": 7015,
+    "2023": 7015,
+    "2024": 7320,
+    "2025": 7300
+  },
+  "frozen_threshold": 0.065,
+  "replay_mode": "HISTORICAL_REPLAY",
+  "note": "Phase 15B evaluates the frozen V2 Model B through historical replay. It does not retrain, retune, or modify the model."
+}

@@ -1,0 +1,173 @@
+{
+  "phase": "13C",
+  "passed": true,
+  "not_model_evaluation": true,
+  "data_source": "dataset/multilocation/features_nwp/multilocation_features_nwp_overlap_2021_2025.csv",
+  "selection": "complete-case (all 83 finite), sort station_id+timestamp_utc, first row per station",
+  "n_samples": 5,
+  "stations": [
+    "VOTV",
+    "VECC",
+    "VIDP",
+    "VOCI",
+    "VABB"
+  ],
+  "timestamps": [
+    "2021-04-01 00:00:00+00:00",
+    "2021-04-01 00:00:00+00:00",
+    "2021-04-01 00:00:00+00:00",
+    "2021-04-01 00:00:00+00:00",
+    "2021-04-01 00:00:00+00:00"
+  ],
+  "feature_count": 83,
+  "historical_targets_not_inputs": true,
+  "hashes_before": {
+    "contract": "a3aad93b211aff6a2da9b6a5e859c9649928a60ea2667f9888d854168d884940",
+    "engine": "ef9c55e395df5dec1aac646ac447c96d2c449888930640c3303f5cfa43a6f3d3",
+    "B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed"
+  },
+  "hashes_after": {
+    "contract": "a3aad93b211aff6a2da9b6a5e859c9649928a60ea2667f9888d854168d884940",
+    "engine": "ef9c55e395df5dec1aac646ac447c96d2c449888930640c3303f5cfa43a6f3d3",
+    "B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed"
+  },
+  "integrity_unchanged": true,
+  "samples": [
+    {
+      "station_id": "VOTV",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "lead_1h_probability": 0.015,
+      "lead_1h_alert": 0,
+      "lead_2h_probability": 0.005,
+      "lead_2h_alert": 0,
+      "lead_3h_probability": 0.0,
+      "lead_3h_alert": 0,
+      "model_version": "V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH",
+      "data_completeness": 1.0,
+      "data_status": "COMPLETE",
+      "historical_reference_target_1h": 0.0,
+      "historical_reference_target_2h": 0.0,
+      "historical_reference_target_3h": 0.0
+    },
+    {
+      "station_id": "VECC",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "lead_1h_probability": 0.01,
+      "lead_1h_alert": 0,
+      "lead_2h_probability": 0.0,
+      "lead_2h_alert": 0,
+      "lead_3h_probability": 0.005,
+      "lead_3h_alert": 0,
+      "model_version": "V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH",
+      "data_completeness": 1.0,
+      "data_status": "COMPLETE",
+      "historical_reference_target_1h": 0.0,
+      "historical_reference_target_2h": 0.0,
+      "historical_reference_target_3h": 0.0
+    },
+    {
+      "station_id": "VIDP",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "lead_1h_probability": 0.005,
+      "lead_1h_alert": 0,
+      "lead_2h_probability": 0.01,
+      "lead_2h_alert": 0,
+      "lead_3h_probability": 0.0,
+      "lead_3h_alert": 0,
+      "model_version": "V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH",
+      "data_completeness": 1.0,
+      "data_status": "COMPLETE",
+      "historical_reference_target_1h": 0.0,
+      "historical_reference_target_2h": 0.0,
+      "historical_reference_target_3h": 0.0
+    },
+    {
+      "station_id": "VOCI",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "lead_1h_probability": 0.0,
+      "lead_1h_alert": 0,
+      "lead_2h_probability": 0.0,
+      "lead_2h_alert": 0,
+      "lead_3h_probability": 0.01,
+      "lead_3h_alert": 0,
+      "model_version": "V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH",
+      "data_completeness": 1.0,
+      "data_status": "COMPLETE",
+      "historical_reference_target_1h": 0.0,
+      "historical_reference_target_2h": 0.0,
+      "historical_reference_target_3h": 0.0
+    },
+    {
+      "station_id": "VABB",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "lead_1h_probability": 0.0,
+      "lead_1h_alert": 0,
+      "lead_2h_probability": 0.0,
+      "lead_2h_alert": 0,
+      "lead_3h_probability": 0.0,
+      "lead_3h_alert": 0,
+      "model_version": "V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH",
+      "data_completeness": 1.0,
+      "data_status": "COMPLETE",
+      "historical_reference_target_1h": 0.0,
+      "historical_reference_target_2h": 0.0,
+      "historical_reference_target_3h": 0.0
+    }
+  ],
+  "checks": [
+    {
+      "station_id": "VOTV",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "n_features": 83,
+      "names_match": true,
+      "all_finite": true,
+      "data_status": "COMPLETE",
+      "alerts_follow_threshold": true,
+      "targets_not_in_features": true
+    },
+    {
+      "station_id": "VECC",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "n_features": 83,
+      "names_match": true,
+      "all_finite": true,
+      "data_status": "COMPLETE",
+      "alerts_follow_threshold": true,
+      "targets_not_in_features": true
+    },
+    {
+      "station_id": "VIDP",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "n_features": 83,
+      "names_match": true,
+      "all_finite": true,
+      "data_status": "COMPLETE",
+      "alerts_follow_threshold": true,
+      "targets_not_in_features": true
+    },
+    {
+      "station_id": "VOCI",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "n_features": 83,
+      "names_match": true,
+      "all_finite": true,
+      "data_status": "COMPLETE",
+      "alerts_follow_threshold": true,
+      "targets_not_in_features": true
+    },
+    {
+      "station_id": "VABB",
+      "timestamp_utc": "2021-04-01 00:00:00+00:00",
+      "n_features": 83,
+      "names_match": true,
+      "all_finite": true,
+      "data_status": "COMPLETE",
+      "alerts_follow_threshold": true,
+      "targets_not_in_features": true
+    }
+  ]
+}

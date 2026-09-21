@@ -1,0 +1,33 @@
+{
+  "phase": "14A",
+  "status": "PASS",
+  "production": false,
+  "live_pipeline": false,
+  "n_features": 83,
+  "feature_order_match": true,
+  "integration_station": "VOTV",
+  "integration_timestamp_utc": "2021-04-09T08:00:00+00:00",
+  "max_abs_difference": 1.1368683772161603e-13,
+  "atol": 1e-08,
+  "mismatched_columns": {},
+  "engine_compatible": true,
+  "hashes_before": {
+    "outputs/v2_inference/phase13a/inference_contract.json": "a3aad93b211aff6a2da9b6a5e859c9649928a60ea2667f9888d854168d884940",
+    "src/inference/v2_inference_engine.py": "ef9c55e395df5dec1aac646ac447c96d2c449888930640c3303f5cfa43a6f3d3",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed",
+    "outputs/v2_inference/phase13c/e2e_prediction_samples.csv": "6d014924354a46cd068d1c1a4edb7820dca00f70cbc581a01913d66ec336fdb7",
+    "outputs/v2_inference/phase13c/e2e_validation.json": "edf55a4c04f449f23f2efa036368c02bdaa97619059342062227d5b5134022c9"
+  },
+  "hashes_after": {
+    "outputs/v2_inference/phase13a/inference_contract.json": "a3aad93b211aff6a2da9b6a5e859c9649928a60ea2667f9888d854168d884940",
+    "src/inference/v2_inference_engine.py": "ef9c55e395df5dec1aac646ac447c96d2c449888930640c3303f5cfa43a6f3d3",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed",
+    "outputs/v2_inference/phase13c/e2e_prediction_samples.csv": "6d014924354a46cd068d1c1a4edb7820dca00f70cbc581a01913d66ec336fdb7",
+    "outputs/v2_inference/phase13c/e2e_validation.json": "edf55a4c04f449f23f2efa036368c02bdaa97619059342062227d5b5134022c9"
+  },
+  "integrity_unchanged": true
+}

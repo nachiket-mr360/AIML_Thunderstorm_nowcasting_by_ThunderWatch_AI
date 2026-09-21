@@ -9,8 +9,7 @@ decision-support dashboard, and deployable in a container.
 > see [Planned but not integrated](#planned-but-not-integrated).
 
 ---
-## Demo link: https://ai-based-thunderstorm-nowcasting-by.onrender.com/
-
+## Demo link: https://aiml-thunderstorm-nowcasting-by.onrender.com/
 ## Problem statement .
 
 **Smart India Hackathon 2026 — SIH26072**

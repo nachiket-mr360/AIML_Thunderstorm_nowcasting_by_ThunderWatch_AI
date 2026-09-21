@@ -1,0 +1,1918 @@
+{
+  "results": {
+    "target_1h": {
+      "A": {
+        "experiment": "A_atmospheric",
+        "horizon": "target_1h",
+        "n_features": 73,
+        "feature_list": [
+          "temperature_2m",
+          "relative_humidity_2m",
+          "surface_pressure",
+          "wind_speed_10m",
+          "precipitation",
+          "cloud_cover",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "wind_u_10m",
+          "wind_v_10m",
+          "temperature_lag_1h",
+          "temperature_lag_3h",
+          "temperature_lag_6h",
+          "temperature_lag_12h",
+          "temperature_lag_24h",
+          "humidity_lag_1h",
+          "humidity_lag_3h",
+          "humidity_lag_6h",
+          "humidity_lag_12h",
+          "humidity_lag_24h",
+          "pressure_lag_1h",
+          "pressure_lag_3h",
+          "pressure_lag_6h",
+          "pressure_lag_12h",
+          "pressure_lag_24h",
+          "wind_speed_lag_1h",
+          "wind_speed_lag_3h",
+          "wind_speed_lag_6h",
+          "wind_speed_lag_12h",
+          "wind_speed_lag_24h",
+          "precipitation_lag_1h",
+          "precipitation_lag_3h",
+          "precipitation_lag_6h",
+          "precipitation_lag_12h",
+          "precipitation_lag_24h",
+          "cloud_cover_lag_1h",
+          "cloud_cover_lag_3h",
+          "cloud_cover_lag_6h",
+          "cloud_cover_lag_12h",
+          "cloud_cover_lag_24h",
+          "temperature_change_1h",
+          "temperature_change_3h",
+          "humidity_change_1h",
+          "humidity_change_3h",
+          "pressure_change_1h",
+          "pressure_change_3h",
+          "wind_speed_change_1h",
+          "wind_speed_change_3h",
+          "precipitation_change_1h",
+          "precipitation_change_3h",
+          "cloud_cover_change_1h",
+          "cloud_cover_change_3h",
+          "precipitation_roll_sum_3h",
+          "precipitation_roll_sum_6h",
+          "precipitation_roll_sum_12h",
+          "precipitation_roll_sum_24h",
+          "humidity_roll_mean_3h",
+          "humidity_roll_mean_6h",
+          "pressure_roll_mean_3h",
+          "pressure_roll_mean_6h",
+          "temperature_roll_mean_3h",
+          "temperature_roll_mean_6h",
+          "wind_speed_roll_mean_3h",
+          "wind_speed_roll_mean_6h",
+          "cloud_cover_roll_mean_3h",
+          "cloud_cover_roll_mean_6h",
+          "latitude",
+          "longitude",
+          "elevation_m"
+        ],
+        "hyperparameters": {
+          "n_estimators": 200,
+          "criterion": "gini",
+          "max_features": "sqrt",
+          "class_weight": "balanced",
+          "random_state": 42,
+          "n_jobs": -1
+        },
+        "sklearn_version": "1.6.1",
+        "threshold": 0.07,
+        "threshold_selection": {
+          "criterion": "maximise F2 (beta=2.0) on validation, subject to predicted positive rate <= 0.2; tie-break lower threshold",
+          "selected_threshold": 0.07,
+          "threshold_selected_on": "validation",
+          "test_data_used_for_threshold_selection": false,
+          "guardrail_binding": false,
+          "selected_validation_fbeta": 0.33409852338999874,
+          "selected_validation_predicted_positive_rate": 0.12284728537814156
+        },
+        "n_train": 46501,
+        "n_validation": 69273,
+        "n_test": 73694,
+        "positives_train": 1721,
+        "positives_validation": 1902,
+        "positives_test": 2172,
+        "metrics_validation": {
+          "threshold": 0.07,
+          "accuracy": 0.8807904955754767,
+          "precision": 0.12655699177438307,
+          "recall": 0.5662460567823344,
+          "f1": 0.20687668075297733,
+          "roc_auc": 0.8546034333387633,
+          "pr_auc": 0.1569800216286517,
+          "positive_rate": 0.02745658481659521,
+          "predicted_alert_rate": 0.12284728537814156,
+          "false_positives": 7433,
+          "false_negatives": 825,
+          "true_positives": 1077,
+          "true_negatives": 59938,
+          "confusion_matrix": [
+            [
+              59938,
+              7433
+            ],
+            [
+              825,
+              1077
+            ]
+          ],
+          "n_samples": 69273,
+          "positives": 1902,
+          "negatives": 67371
+        },
+        "metrics_test": {
+          "threshold": 0.07,
+          "accuracy": 0.8529459657502646,
+          "precision": 0.11361812182288415,
+          "recall": 0.5865561694290976,
+          "f1": 0.1903623459096003,
+          "roc_auc": 0.8360408834783697,
+          "pr_auc": 0.13187749593340437,
+          "positive_rate": 0.0294732271283958,
+          "predicted_alert_rate": 0.1521562135316308,
+          "false_positives": 9939,
+          "false_negatives": 898,
+          "true_positives": 1274,
+          "true_negatives": 61583,
+          "confusion_matrix": [
+            [
+              61583,
+              9939
+            ],
+            [
+              898,
+              1274
+            ]
+          ],
+          "n_samples": 73694,
+          "positives": 2172,
+          "negatives": 71522
+        },
+        "metrics_test_by_location": {
+          "VOTV": {
+            "threshold": 0.07,
+            "accuracy": 0.815024420497713,
+            "precision": 0.13581684128831975,
+            "recall": 0.68762278978389,
+            "f1": 0.22683084899546338,
+            "roc_auc": 0.8460645428295523,
+            "pr_auc": 0.18648273019568634,
+            "positive_rate": 0.039460423288627026,
+            "predicted_alert_rate": 0.19978292890921776,
+            "false_positives": 2227,
+            "false_negatives": 159,
+            "true_positives": 350,
+            "true_negatives": 10163,
+            "confusion_matrix": [
+              [
+                10163,
+                2227
+              ],
+              [
+                159,
+                350
+              ]
+            ],
+            "n_samples": 12899,
+            "positives": 509,
+            "negatives": 12390
+          },
+          "VECC": {
+            "threshold": 0.07,
+            "accuracy": 0.7711012990337237,
+            "precision": 0.11457787100157316,
+            "recall": 0.6860282574568289,
+            "f1": 0.19636036845652663,
+            "roc_auc": 0.8193866554678525,
+            "pr_auc": 0.12630287455615516,
+            "positive_rate": 0.04076278236385743,
+            "predicted_alert_rate": 0.24406475971075703,
+            "false_positives": 3377,
+            "false_negatives": 200,
+            "true_positives": 437,
+            "true_negatives": 11613,
+            "confusion_matrix": [
+              [
+                11613,
+                3377
+              ],
+              [
+                200,
+                437
+              ]
+            ],
+            "n_samples": 15627,
+            "positives": 637,
+            "negatives": 14990
+          },
+          "VIDP": {
+            "threshold": 0.07,
+            "accuracy": 0.9128954089986246,
+            "precision": 0.09343434343434344,
+            "recall": 0.30494505494505497,
+            "f1": 0.14304123711340205,
+            "roc_auc": 0.8035724423178298,
+            "pr_auc": 0.07225161614255438,
+            "positive_rate": 0.023839151221429038,
+            "predicted_alert_rate": 0.0778047023380706,
+            "false_positives": 1077,
+            "false_negatives": 253,
+            "true_positives": 111,
+            "true_negatives": 13828,
+            "confusion_matrix": [
+              [
+                13828,
+                1077
+              ],
+              [
+                253,
+                111
+              ]
+            ],
+            "n_samples": 15269,
+            "positives": 364,
+            "negatives": 14905
+          },
+          "VOCI": {
+            "threshold": 0.07,
+            "accuracy": 0.8787065703474373,
+            "precision": 0.10750279955207166,
+            "recall": 0.5318559556786704,
+            "f1": 0.17885421518397765,
+            "roc_auc": 0.8072403061748972,
+            "pr_auc": 0.1385045848021855,
+            "positive_rate": 0.02483660130718954,
+            "predicted_alert_rate": 0.12287581699346405,
+            "false_positives": 1594,
+            "false_negatives": 169,
+            "true_positives": 192,
+            "true_negatives": 12580,
+            "confusion_matrix": [
+              [
+                12580,
+                1594
+              ],
+              [
+                169,
+                192
+              ]
+            ],
+            "n_samples": 14535,
+            "positives": 361,
+            "negatives": 14174
+          },
+          "VABB": {
+            "threshold": 0.07,
+            "accuracy": 0.8840796667534496,
+            "precision": 0.09956709956709957,
+            "recall": 0.6112956810631229,
+            "f1": 0.17124243834341554,
+            "roc_auc": 0.8791884715424454,
+            "pr_auc": 0.11602751569512149,
+            "positive_rate": 0.01959125227805259,
+            "predicted_alert_rate": 0.12028117677688102,
+            "false_positives": 1664,
+            "false_negatives": 117,
+            "true_positives": 184,
+            "true_negatives": 13399,
+            "confusion_matrix": [
+              [
+                13399,
+                1664
+              ],
+              [
+                117,
+                184
+              ]
+            ],
+            "n_samples": 15364,
+            "positives": 301,
+            "negatives": 15063
+          }
+        },
+        "model_path": "models/v2/nwp_experiment/A_atmospheric_target_1h.joblib",
+        "model_bytes": 49327849
+      },
+      "B": {
+        "experiment": "B_atmospheric_nwp",
+        "horizon": "target_1h",
+        "n_features": 83,
+        "feature_list": [
+          "temperature_2m",
+          "relative_humidity_2m",
+          "surface_pressure",
+          "wind_speed_10m",
+          "precipitation",
+          "cloud_cover",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "wind_u_10m",
+          "wind_v_10m",
+          "temperature_lag_1h",
+          "temperature_lag_3h",
+          "temperature_lag_6h",
+          "temperature_lag_12h",
+          "temperature_lag_24h",
+          "humidity_lag_1h",
+          "humidity_lag_3h",
+          "humidity_lag_6h",
+          "humidity_lag_12h",
+          "humidity_lag_24h",
+          "pressure_lag_1h",
+          "pressure_lag_3h",
+          "pressure_lag_6h",
+          "pressure_lag_12h",
+          "pressure_lag_24h",
+          "wind_speed_lag_1h",
+          "wind_speed_lag_3h",
+          "wind_speed_lag_6h",
+          "wind_speed_lag_12h",
+          "wind_speed_lag_24h",
+          "precipitation_lag_1h",
+          "precipitation_lag_3h",
+          "precipitation_lag_6h",
+          "precipitation_lag_12h",
+          "precipitation_lag_24h",
+          "cloud_cover_lag_1h",
+          "cloud_cover_lag_3h",
+          "cloud_cover_lag_6h",
+          "cloud_cover_lag_12h",
+          "cloud_cover_lag_24h",
+          "temperature_change_1h",
+          "temperature_change_3h",
+          "humidity_change_1h",
+          "humidity_change_3h",
+          "pressure_change_1h",
+          "pressure_change_3h",
+          "wind_speed_change_1h",
+          "wind_speed_change_3h",
+          "precipitation_change_1h",
+          "precipitation_change_3h",
+          "cloud_cover_change_1h",
+          "cloud_cover_change_3h",
+          "precipitation_roll_sum_3h",
+          "precipitation_roll_sum_6h",
+          "precipitation_roll_sum_12h",
+          "precipitation_roll_sum_24h",
+          "humidity_roll_mean_3h",
+          "humidity_roll_mean_6h",
+          "pressure_roll_mean_3h",
+          "pressure_roll_mean_6h",
+          "temperature_roll_mean_3h",
+          "temperature_roll_mean_6h",
+          "wind_speed_roll_mean_3h",
+          "wind_speed_roll_mean_6h",
+          "cloud_cover_roll_mean_3h",
+          "cloud_cover_roll_mean_6h",
+          "latitude",
+          "longitude",
+          "elevation_m",
+          "nwp_cape",
+          "nwp_convective_inhibition",
+          "nwp_lifted_index",
+          "nwp_temperature_2m",
+          "nwp_relative_humidity_2m",
+          "nwp_surface_pressure",
+          "nwp_wind_speed_10m",
+          "nwp_wind_direction_10m",
+          "nwp_precipitation",
+          "nwp_cloud_cover"
+        ],
+        "hyperparameters": {
+          "n_estimators": 200,
+          "criterion": "gini",
+          "max_features": "sqrt",
+          "class_weight": "balanced",
+          "random_state": 42,
+          "n_jobs": -1
+        },
+        "sklearn_version": "1.6.1",
+        "threshold": 0.065,
+        "threshold_selection": {
+          "criterion": "maximise F2 (beta=2.0) on validation, subject to predicted positive rate <= 0.2; tie-break lower threshold",
+          "selected_threshold": 0.065,
+          "threshold_selected_on": "validation",
+          "test_data_used_for_threshold_selection": false,
+          "guardrail_binding": false,
+          "selected_validation_fbeta": 0.35655929038281975,
+          "selected_validation_predicted_positive_rate": 0.13754276557966308
+        },
+        "n_train": 46501,
+        "n_validation": 69273,
+        "n_test": 73694,
+        "positives_train": 1721,
+        "positives_validation": 1902,
+        "positives_test": 2172,
+        "metrics_validation": {
+          "threshold": 0.065,
+          "accuracy": 0.8702813505983572,
+          "precision": 0.12825356842989086,
+          "recall": 0.6424815983175605,
+          "f1": 0.21382327209098861,
+          "roc_auc": 0.8733243534424733,
+          "pr_auc": 0.16703120776085387,
+          "positive_rate": 0.02745658481659521,
+          "predicted_alert_rate": 0.13754276557966308,
+          "false_positives": 8306,
+          "false_negatives": 680,
+          "true_positives": 1222,
+          "true_negatives": 59065,
+          "confusion_matrix": [
+            [
+              59065,
+              8306
+            ],
+            [
+              680,
+              1222
+            ]
+          ],
+          "n_samples": 69273,
+          "positives": 1902,
+          "negatives": 67371
+        },
+        "metrics_test": {
+          "threshold": 0.065,
+          "accuracy": 0.838100795180069,
+          "precision": 0.11004555262526972,
+          "recall": 0.6339779005524862,
+          "f1": 0.18753830439223698,
+          "roc_auc": 0.8510302249335585,
+          "pr_auc": 0.14446885020431388,
+          "positive_rate": 0.0294732271283958,
+          "predicted_alert_rate": 0.16979672700626916,
+          "false_positives": 11136,
+          "false_negatives": 795,
+          "true_positives": 1377,
+          "true_negatives": 60386,
+          "confusion_matrix": [
+            [
+              60386,
+              11136
+            ],
+            [
+              795,
+              1377
+            ]
+          ],
+          "n_samples": 73694,
+          "positives": 2172,
+          "negatives": 71522
+        },
+        "metrics_test_by_location": {
+          "VOTV": {
+            "threshold": 0.065,
+            "accuracy": 0.8247926195829134,
+            "precision": 0.14853472501003612,
+            "recall": 0.7269155206286837,
+            "f1": 0.24666666666666667,
+            "roc_auc": 0.8696531837735927,
+            "pr_auc": 0.23280331909874294,
+            "positive_rate": 0.039460423288627026,
+            "predicted_alert_rate": 0.19311574540662066,
+            "false_positives": 2121,
+            "false_negatives": 139,
+            "true_positives": 370,
+            "true_negatives": 10269,
+            "confusion_matrix": [
+              [
+                10269,
+                2121
+              ],
+              [
+                139,
+                370
+              ]
+            ],
+            "n_samples": 12899,
+            "positives": 509,
+            "negatives": 12390
+          },
+          "VECC": {
+            "threshold": 0.065,
+            "accuracy": 0.7515198054649005,
+            "precision": 0.11023054755043228,
+            "recall": 0.7205651491365777,
+            "f1": 0.1912101645490523,
+            "roc_auc": 0.8228102356044794,
+            "pr_auc": 0.12735153024441104,
+            "positive_rate": 0.04076278236385743,
+            "predicted_alert_rate": 0.26646189287771166,
+            "false_positives": 3705,
+            "false_negatives": 178,
+            "true_positives": 459,
+            "true_negatives": 11285,
+            "confusion_matrix": [
+              [
+                11285,
+                3705
+              ],
+              [
+                178,
+                459
+              ]
+            ],
+            "n_samples": 15627,
+            "positives": 637,
+            "negatives": 14990
+          },
+          "VIDP": {
+            "threshold": 0.065,
+            "accuracy": 0.9023511690353003,
+            "precision": 0.08717948717948718,
+            "recall": 0.3269230769230769,
+            "f1": 0.13765182186234817,
+            "roc_auc": 0.8230900096213749,
+            "pr_auc": 0.07315314402095058,
+            "positive_rate": 0.023839151221429038,
+            "predicted_alert_rate": 0.0893968170803589,
+            "false_positives": 1246,
+            "false_negatives": 245,
+            "true_positives": 119,
+            "true_negatives": 13659,
+            "confusion_matrix": [
+              [
+                13659,
+                1246
+              ],
+              [
+                245,
+                119
+              ]
+            ],
+            "n_samples": 15269,
+            "positives": 364,
+            "negatives": 14905
+          },
+          "VOCI": {
+            "threshold": 0.065,
+            "accuracy": 0.8527691778465772,
+            "precision": 0.09659863945578231,
+            "recall": 0.590027700831025,
+            "f1": 0.16601714731098988,
+            "roc_auc": 0.830369151585342,
+            "pr_auc": 0.14794019051646615,
+            "positive_rate": 0.02483660130718954,
+            "predicted_alert_rate": 0.15170278637770898,
+            "false_positives": 1992,
+            "false_negatives": 148,
+            "true_positives": 213,
+            "true_negatives": 12182,
+            "confusion_matrix": [
+              [
+                12182,
+                1992
+              ],
+              [
+                148,
+                213
+              ]
+            ],
+            "n_samples": 14535,
+            "positives": 361,
+            "negatives": 14174
+          },
+          "VABB": {
+            "threshold": 0.065,
+            "accuracy": 0.8596068732101015,
+            "precision": 0.0944055944055944,
+            "recall": 0.717607973421927,
+            "f1": 0.16685979142526072,
+            "roc_auc": 0.8994012522819441,
+            "pr_auc": 0.11876435423183795,
+            "positive_rate": 0.01959125227805259,
+            "predicted_alert_rate": 0.14891955219994793,
+            "false_positives": 2072,
+            "false_negatives": 85,
+            "true_positives": 216,
+            "true_negatives": 12991,
+            "confusion_matrix": [
+              [
+                12991,
+                2072
+              ],
+              [
+                85,
+                216
+              ]
+            ],
+            "n_samples": 15364,
+            "positives": 301,
+            "negatives": 15063
+          }
+        },
+        "model_path": "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib",
+        "model_bytes": 47166729
+      }
+    },
+    "target_2h": {
+      "A": {
+        "experiment": "A_atmospheric",
+        "horizon": "target_2h",
+        "n_features": 73,
+        "feature_list": [
+          "temperature_2m",
+          "relative_humidity_2m",
+          "surface_pressure",
+          "wind_speed_10m",
+          "precipitation",
+          "cloud_cover",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "wind_u_10m",
+          "wind_v_10m",
+          "temperature_lag_1h",
+          "temperature_lag_3h",
+          "temperature_lag_6h",
+          "temperature_lag_12h",
+          "temperature_lag_24h",
+          "humidity_lag_1h",
+          "humidity_lag_3h",
+          "humidity_lag_6h",
+          "humidity_lag_12h",
+          "humidity_lag_24h",
+          "pressure_lag_1h",
+          "pressure_lag_3h",
+          "pressure_lag_6h",
+          "pressure_lag_12h",
+          "pressure_lag_24h",
+          "wind_speed_lag_1h",
+          "wind_speed_lag_3h",
+          "wind_speed_lag_6h",
+          "wind_speed_lag_12h",
+          "wind_speed_lag_24h",
+          "precipitation_lag_1h",
+          "precipitation_lag_3h",
+          "precipitation_lag_6h",
+          "precipitation_lag_12h",
+          "precipitation_lag_24h",
+          "cloud_cover_lag_1h",
+          "cloud_cover_lag_3h",
+          "cloud_cover_lag_6h",
+          "cloud_cover_lag_12h",
+          "cloud_cover_lag_24h",
+          "temperature_change_1h",
+          "temperature_change_3h",
+          "humidity_change_1h",
+          "humidity_change_3h",
+          "pressure_change_1h",
+          "pressure_change_3h",
+          "wind_speed_change_1h",
+          "wind_speed_change_3h",
+          "precipitation_change_1h",
+          "precipitation_change_3h",
+          "cloud_cover_change_1h",
+          "cloud_cover_change_3h",
+          "precipitation_roll_sum_3h",
+          "precipitation_roll_sum_6h",
+          "precipitation_roll_sum_12h",
+          "precipitation_roll_sum_24h",
+          "humidity_roll_mean_3h",
+          "humidity_roll_mean_6h",
+          "pressure_roll_mean_3h",
+          "pressure_roll_mean_6h",
+          "temperature_roll_mean_3h",
+          "temperature_roll_mean_6h",
+          "wind_speed_roll_mean_3h",
+          "wind_speed_roll_mean_6h",
+          "cloud_cover_roll_mean_3h",
+          "cloud_cover_roll_mean_6h",
+          "latitude",
+          "longitude",
+          "elevation_m"
+        ],
+        "hyperparameters": {
+          "n_estimators": 200,
+          "criterion": "gini",
+          "max_features": "sqrt",
+          "class_weight": "balanced",
+          "random_state": 42,
+          "n_jobs": -1
+        },
+        "sklearn_version": "1.6.1",
+        "threshold": 0.08,
+        "threshold_selection": {
+          "criterion": "maximise F2 (beta=2.0) on validation, subject to predicted positive rate <= 0.2; tie-break lower threshold",
+          "selected_threshold": 0.08,
+          "threshold_selected_on": "validation",
+          "test_data_used_for_threshold_selection": false,
+          "guardrail_binding": false,
+          "selected_validation_fbeta": 0.32272117962466484,
+          "selected_validation_predicted_positive_rate": 0.10555034283652111
+        },
+        "n_train": 46500,
+        "n_validation": 69275,
+        "n_test": 73689,
+        "positives_train": 1721,
+        "positives_validation": 1902,
+        "positives_test": 2172,
+        "metrics_validation": {
+          "threshold": 0.08,
+          "accuracy": 0.8947961024900758,
+          "precision": 0.13170131291028447,
+          "recall": 0.5063091482649842,
+          "f1": 0.2090297373561971,
+          "roc_auc": 0.8492472256442987,
+          "pr_auc": 0.1523756619446519,
+          "positive_rate": 0.027455792132804042,
+          "predicted_alert_rate": 0.10555034283652111,
+          "false_positives": 6349,
+          "false_negatives": 939,
+          "true_positives": 963,
+          "true_negatives": 61024,
+          "confusion_matrix": [
+            [
+              61024,
+              6349
+            ],
+            [
+              939,
+              963
+            ]
+          ],
+          "n_samples": 69275,
+          "positives": 1902,
+          "negatives": 67373
+        },
+        "metrics_test": {
+          "threshold": 0.08,
+          "accuracy": 0.8671579204494565,
+          "precision": 0.11331099604020713,
+          "recall": 0.5138121546961326,
+          "f1": 0.1856750686298977,
+          "roc_auc": 0.8262236153667541,
+          "pr_auc": 0.12596948259853852,
+          "positive_rate": 0.029475226967389977,
+          "predicted_alert_rate": 0.1336563123396979,
+          "false_positives": 8733,
+          "false_negatives": 1056,
+          "true_positives": 1116,
+          "true_negatives": 62784,
+          "confusion_matrix": [
+            [
+              62784,
+              8733
+            ],
+            [
+              1056,
+              1116
+            ]
+          ],
+          "n_samples": 73689,
+          "positives": 2172,
+          "negatives": 71517
+        },
+        "metrics_test_by_location": {
+          "VOTV": {
+            "threshold": 0.08,
+            "accuracy": 0.835013180338037,
+            "precision": 0.14292015880017644,
+            "recall": 0.6365422396856582,
+            "f1": 0.2334293948126801,
+            "roc_auc": 0.8348564327852153,
+            "pr_auc": 0.18859882886283602,
+            "positive_rate": 0.03946348271049775,
+            "predicted_alert_rate": 0.17576368429213832,
+            "false_positives": 1943,
+            "false_negatives": 185,
+            "true_positives": 324,
+            "true_negatives": 10446,
+            "confusion_matrix": [
+              [
+                10446,
+                1943
+              ],
+              [
+                185,
+                324
+              ]
+            ],
+            "n_samples": 12898,
+            "positives": 509,
+            "negatives": 12389
+          },
+          "VECC": {
+            "threshold": 0.08,
+            "accuracy": 0.788237552796621,
+            "precision": 0.11784897025171624,
+            "recall": 0.6467817896389325,
+            "f1": 0.19937091700943624,
+            "roc_auc": 0.8117100106797313,
+            "pr_auc": 0.12076860713294608,
+            "positive_rate": 0.04076539101497504,
+            "predicted_alert_rate": 0.22372968130039678,
+            "false_positives": 3084,
+            "false_negatives": 225,
+            "true_positives": 412,
+            "true_negatives": 11905,
+            "confusion_matrix": [
+              [
+                11905,
+                3084
+              ],
+              [
+                225,
+                412
+              ]
+            ],
+            "n_samples": 15626,
+            "positives": 637,
+            "negatives": 14989
+          },
+          "VIDP": {
+            "threshold": 0.08,
+            "accuracy": 0.9232381451401624,
+            "precision": 0.06652360515021459,
+            "recall": 0.17032967032967034,
+            "f1": 0.09567901234567901,
+            "roc_auc": 0.7871665287879056,
+            "pr_auc": 0.06123016835007382,
+            "positive_rate": 0.023840712601519518,
+            "predicted_alert_rate": 0.06104270369400053,
+            "false_positives": 870,
+            "false_negatives": 302,
+            "true_positives": 62,
+            "true_negatives": 14034,
+            "confusion_matrix": [
+              [
+                14034,
+                870
+              ],
+              [
+                302,
+                62
+              ]
+            ],
+            "n_samples": 15268,
+            "positives": 364,
+            "negatives": 14904
+          },
+          "VOCI": {
+            "threshold": 0.08,
+            "accuracy": 0.8942479702765929,
+            "precision": 0.10747663551401869,
+            "recall": 0.44598337950138506,
+            "f1": 0.17321140398063475,
+            "roc_auc": 0.8003014979322589,
+            "pr_auc": 0.11805760275357371,
+            "positive_rate": 0.02483831016925829,
+            "predicted_alert_rate": 0.10306866657492776,
+            "false_positives": 1337,
+            "false_negatives": 200,
+            "true_positives": 161,
+            "true_negatives": 12836,
+            "confusion_matrix": [
+              [
+                12836,
+                1337
+              ],
+              [
+                200,
+                161
+              ]
+            ],
+            "n_samples": 14534,
+            "positives": 361,
+            "negatives": 14173
+          },
+          "VABB": {
+            "threshold": 0.08,
+            "accuracy": 0.8930547419123869,
+            "precision": 0.09480676328502416,
+            "recall": 0.521594684385382,
+            "f1": 0.1604496678589678,
+            "roc_auc": 0.8762297454022818,
+            "pr_auc": 0.10188908097874748,
+            "positive_rate": 0.0195925275011391,
+            "predicted_alert_rate": 0.10779144698301113,
+            "false_positives": 1499,
+            "false_negatives": 144,
+            "true_positives": 157,
+            "true_negatives": 13563,
+            "confusion_matrix": [
+              [
+                13563,
+                1499
+              ],
+              [
+                144,
+                157
+              ]
+            ],
+            "n_samples": 15363,
+            "positives": 301,
+            "negatives": 15062
+          }
+        },
+        "model_path": "models/v2/nwp_experiment/A_atmospheric_target_2h.joblib",
+        "model_bytes": 49844009
+      },
+      "B": {
+        "experiment": "B_atmospheric_nwp",
+        "horizon": "target_2h",
+        "n_features": 83,
+        "feature_list": [
+          "temperature_2m",
+          "relative_humidity_2m",
+          "surface_pressure",
+          "wind_speed_10m",
+          "precipitation",
+          "cloud_cover",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "wind_u_10m",
+          "wind_v_10m",
+          "temperature_lag_1h",
+          "temperature_lag_3h",
+          "temperature_lag_6h",
+          "temperature_lag_12h",
+          "temperature_lag_24h",
+          "humidity_lag_1h",
+          "humidity_lag_3h",
+          "humidity_lag_6h",
+          "humidity_lag_12h",
+          "humidity_lag_24h",
+          "pressure_lag_1h",
+          "pressure_lag_3h",
+          "pressure_lag_6h",
+          "pressure_lag_12h",
+          "pressure_lag_24h",
+          "wind_speed_lag_1h",
+          "wind_speed_lag_3h",
+          "wind_speed_lag_6h",
+          "wind_speed_lag_12h",
+          "wind_speed_lag_24h",
+          "precipitation_lag_1h",
+          "precipitation_lag_3h",
+          "precipitation_lag_6h",
+          "precipitation_lag_12h",
+          "precipitation_lag_24h",
+          "cloud_cover_lag_1h",
+          "cloud_cover_lag_3h",
+          "cloud_cover_lag_6h",
+          "cloud_cover_lag_12h",
+          "cloud_cover_lag_24h",
+          "temperature_change_1h",
+          "temperature_change_3h",
+          "humidity_change_1h",
+          "humidity_change_3h",
+          "pressure_change_1h",
+          "pressure_change_3h",
+          "wind_speed_change_1h",
+          "wind_speed_change_3h",
+          "precipitation_change_1h",
+          "precipitation_change_3h",
+          "cloud_cover_change_1h",
+          "cloud_cover_change_3h",
+          "precipitation_roll_sum_3h",
+          "precipitation_roll_sum_6h",
+          "precipitation_roll_sum_12h",
+          "precipitation_roll_sum_24h",
+          "humidity_roll_mean_3h",
+          "humidity_roll_mean_6h",
+          "pressure_roll_mean_3h",
+          "pressure_roll_mean_6h",
+          "temperature_roll_mean_3h",
+          "temperature_roll_mean_6h",
+          "wind_speed_roll_mean_3h",
+          "wind_speed_roll_mean_6h",
+          "cloud_cover_roll_mean_3h",
+          "cloud_cover_roll_mean_6h",
+          "latitude",
+          "longitude",
+          "elevation_m",
+          "nwp_cape",
+          "nwp_convective_inhibition",
+          "nwp_lifted_index",
+          "nwp_temperature_2m",
+          "nwp_relative_humidity_2m",
+          "nwp_surface_pressure",
+          "nwp_wind_speed_10m",
+          "nwp_wind_direction_10m",
+          "nwp_precipitation",
+          "nwp_cloud_cover"
+        ],
+        "hyperparameters": {
+          "n_estimators": 200,
+          "criterion": "gini",
+          "max_features": "sqrt",
+          "class_weight": "balanced",
+          "random_state": 42,
+          "n_jobs": -1
+        },
+        "sklearn_version": "1.6.1",
+        "threshold": 0.065,
+        "threshold_selection": {
+          "criterion": "maximise F2 (beta=2.0) on validation, subject to predicted positive rate <= 0.2; tie-break lower threshold",
+          "selected_threshold": 0.065,
+          "threshold_selected_on": "validation",
+          "test_data_used_for_threshold_selection": false,
+          "guardrail_binding": false,
+          "selected_validation_fbeta": 0.3432965757399884,
+          "selected_validation_predicted_positive_rate": 0.1388957055214724
+        },
+        "n_train": 46500,
+        "n_validation": 69275,
+        "n_test": 73689,
+        "positives_train": 1721,
+        "positives_validation": 1902,
+        "positives_test": 2172,
+        "metrics_validation": {
+          "threshold": 0.065,
+          "accuracy": 0.867802237459401,
+          "precision": 0.12294741218041987,
+          "recall": 0.6219768664563617,
+          "f1": 0.20531065602221452,
+          "roc_auc": 0.8623694145075511,
+          "pr_auc": 0.1584791965466321,
+          "positive_rate": 0.027455792132804042,
+          "predicted_alert_rate": 0.1388957055214724,
+          "false_positives": 8439,
+          "false_negatives": 719,
+          "true_positives": 1183,
+          "true_negatives": 58934,
+          "confusion_matrix": [
+            [
+              58934,
+              8439
+            ],
+            [
+              719,
+              1183
+            ]
+          ],
+          "n_samples": 69275,
+          "positives": 1902,
+          "negatives": 67373
+        },
+        "metrics_test": {
+          "threshold": 0.065,
+          "accuracy": 0.8363527799264476,
+          "precision": 0.10744064162630032,
+          "recall": 0.6229281767955801,
+          "f1": 0.18327124957670166,
+          "roc_auc": 0.8442637085270019,
+          "pr_auc": 0.13677056007899618,
+          "positive_rate": 0.029475226967389977,
+          "predicted_alert_rate": 0.1708938918970267,
+          "false_positives": 11240,
+          "false_negatives": 819,
+          "true_positives": 1353,
+          "true_negatives": 60277,
+          "confusion_matrix": [
+            [
+              60277,
+              11240
+            ],
+            [
+              819,
+              1353
+            ]
+          ],
+          "n_samples": 73689,
+          "positives": 2172,
+          "negatives": 71517
+        },
+        "metrics_test_by_location": {
+          "VOTV": {
+            "threshold": 0.065,
+            "accuracy": 0.8225306249030857,
+            "precision": 0.14794303797468356,
+            "recall": 0.7347740667976425,
+            "f1": 0.2462956865327626,
+            "roc_auc": 0.8705343529124083,
+            "pr_auc": 0.2242287995996668,
+            "positive_rate": 0.03946348271049775,
+            "predicted_alert_rate": 0.19599937974879827,
+            "false_positives": 2154,
+            "false_negatives": 135,
+            "true_positives": 374,
+            "true_negatives": 10235,
+            "confusion_matrix": [
+              [
+                10235,
+                2154
+              ],
+              [
+                135,
+                374
+              ]
+            ],
+            "n_samples": 12898,
+            "positives": 509,
+            "negatives": 12389
+          },
+          "VECC": {
+            "threshold": 0.065,
+            "accuracy": 0.7444003583770639,
+            "precision": 0.10663229435200375,
+            "recall": 0.7142857142857143,
+            "f1": 0.18556280587275692,
+            "roc_auc": 0.8134101061867138,
+            "pr_auc": 0.12290648530009748,
+            "positive_rate": 0.04076539101497504,
+            "predicted_alert_rate": 0.27307052348649685,
+            "false_positives": 3812,
+            "false_negatives": 182,
+            "true_positives": 455,
+            "true_negatives": 11177,
+            "confusion_matrix": [
+              [
+                11177,
+                3812
+              ],
+              [
+                182,
+                455
+              ]
+            ],
+            "n_samples": 15626,
+            "positives": 637,
+            "negatives": 14989
+          },
+          "VIDP": {
+            "threshold": 0.065,
+            "accuracy": 0.8957951270631386,
+            "precision": 0.07247386759581882,
+            "recall": 0.2857142857142857,
+            "f1": 0.11561978877153975,
+            "roc_auc": 0.8065175732748197,
+            "pr_auc": 0.0669225627274612,
+            "positive_rate": 0.023840712601519518,
+            "predicted_alert_rate": 0.09398742467906733,
+            "false_positives": 1331,
+            "false_negatives": 260,
+            "true_positives": 104,
+            "true_negatives": 13573,
+            "confusion_matrix": [
+              [
+                13573,
+                1331
+              ],
+              [
+                260,
+                104
+              ]
+            ],
+            "n_samples": 15268,
+            "positives": 364,
+            "negatives": 14904
+          },
+          "VOCI": {
+            "threshold": 0.065,
+            "accuracy": 0.8601898995458924,
+            "precision": 0.09696092619392185,
+            "recall": 0.556786703601108,
+            "f1": 0.16516023007395234,
+            "roc_auc": 0.8235694728359667,
+            "pr_auc": 0.12555206797909446,
+            "positive_rate": 0.02483831016925829,
+            "predicted_alert_rate": 0.14263107196917574,
+            "false_positives": 1872,
+            "false_negatives": 160,
+            "true_positives": 201,
+            "true_negatives": 12301,
+            "confusion_matrix": [
+              [
+                12301,
+                1872
+              ],
+              [
+                160,
+                201
+              ]
+            ],
+            "n_samples": 14534,
+            "positives": 361,
+            "negatives": 14173
+          },
+          "VABB": {
+            "threshold": 0.065,
+            "accuracy": 0.8598581006313871,
+            "precision": 0.09563318777292576,
+            "recall": 0.7275747508305648,
+            "f1": 0.1690467001157854,
+            "roc_auc": 0.8937057945651882,
+            "pr_auc": 0.10766250990894284,
+            "positive_rate": 0.0195925275011391,
+            "predicted_alert_rate": 0.14905942849703835,
+            "false_positives": 2071,
+            "false_negatives": 82,
+            "true_positives": 219,
+            "true_negatives": 12991,
+            "confusion_matrix": [
+              [
+                12991,
+                2071
+              ],
+              [
+                82,
+                219
+              ]
+            ],
+            "n_samples": 15363,
+            "positives": 301,
+            "negatives": 15062
+          }
+        },
+        "model_path": "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib",
+        "model_bytes": 47384169
+      }
+    },
+    "target_3h": {
+      "A": {
+        "experiment": "A_atmospheric",
+        "horizon": "target_3h",
+        "n_features": 73,
+        "feature_list": [
+          "temperature_2m",
+          "relative_humidity_2m",
+          "surface_pressure",
+          "wind_speed_10m",
+          "precipitation",
+          "cloud_cover",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "wind_u_10m",
+          "wind_v_10m",
+          "temperature_lag_1h",
+          "temperature_lag_3h",
+          "temperature_lag_6h",
+          "temperature_lag_12h",
+          "temperature_lag_24h",
+          "humidity_lag_1h",
+          "humidity_lag_3h",
+          "humidity_lag_6h",
+          "humidity_lag_12h",
+          "humidity_lag_24h",
+          "pressure_lag_1h",
+          "pressure_lag_3h",
+          "pressure_lag_6h",
+          "pressure_lag_12h",
+          "pressure_lag_24h",
+          "wind_speed_lag_1h",
+          "wind_speed_lag_3h",
+          "wind_speed_lag_6h",
+          "wind_speed_lag_12h",
+          "wind_speed_lag_24h",
+          "precipitation_lag_1h",
+          "precipitation_lag_3h",
+          "precipitation_lag_6h",
+          "precipitation_lag_12h",
+          "precipitation_lag_24h",
+          "cloud_cover_lag_1h",
+          "cloud_cover_lag_3h",
+          "cloud_cover_lag_6h",
+          "cloud_cover_lag_12h",
+          "cloud_cover_lag_24h",
+          "temperature_change_1h",
+          "temperature_change_3h",
+          "humidity_change_1h",
+          "humidity_change_3h",
+          "pressure_change_1h",
+          "pressure_change_3h",
+          "wind_speed_change_1h",
+          "wind_speed_change_3h",
+          "precipitation_change_1h",
+          "precipitation_change_3h",
+          "cloud_cover_change_1h",
+          "cloud_cover_change_3h",
+          "precipitation_roll_sum_3h",
+          "precipitation_roll_sum_6h",
+          "precipitation_roll_sum_12h",
+          "precipitation_roll_sum_24h",
+          "humidity_roll_mean_3h",
+          "humidity_roll_mean_6h",
+          "pressure_roll_mean_3h",
+          "pressure_roll_mean_6h",
+          "temperature_roll_mean_3h",
+          "temperature_roll_mean_6h",
+          "wind_speed_roll_mean_3h",
+          "wind_speed_roll_mean_6h",
+          "cloud_cover_roll_mean_3h",
+          "cloud_cover_roll_mean_6h",
+          "latitude",
+          "longitude",
+          "elevation_m"
+        ],
+        "hyperparameters": {
+          "n_estimators": 200,
+          "criterion": "gini",
+          "max_features": "sqrt",
+          "class_weight": "balanced",
+          "random_state": 42,
+          "n_jobs": -1
+        },
+        "sklearn_version": "1.6.1",
+        "threshold": 0.065,
+        "threshold_selection": {
+          "criterion": "maximise F2 (beta=2.0) on validation, subject to predicted positive rate <= 0.2; tie-break lower threshold",
+          "selected_threshold": 0.065,
+          "threshold_selected_on": "validation",
+          "test_data_used_for_threshold_selection": false,
+          "guardrail_binding": false,
+          "selected_validation_fbeta": 0.31529209621993126,
+          "selected_validation_predicted_positive_rate": 0.14221170085309698
+        },
+        "n_train": 46499,
+        "n_validation": 69277,
+        "n_test": 73684,
+        "positives_train": 1721,
+        "positives_validation": 1902,
+        "positives_test": 2172,
+        "metrics_validation": {
+          "threshold": 0.065,
+          "accuracy": 0.8621187407075942,
+          "precision": 0.11175395858708892,
+          "recall": 0.5788643533123028,
+          "f1": 0.18734047983665136,
+          "roc_auc": 0.8367651510274312,
+          "pr_auc": 0.1487350854909667,
+          "positive_rate": 0.027454999494781817,
+          "predicted_alert_rate": 0.14221170085309698,
+          "false_positives": 8751,
+          "false_negatives": 801,
+          "true_positives": 1101,
+          "true_negatives": 58624,
+          "confusion_matrix": [
+            [
+              58624,
+              8751
+            ],
+            [
+              801,
+              1101
+            ]
+          ],
+          "n_samples": 69277,
+          "positives": 1902,
+          "negatives": 67375
+        },
+        "metrics_test": {
+          "threshold": 0.065,
+          "accuracy": 0.8284159383312524,
+          "precision": 0.09804222648752399,
+          "recall": 0.5879373848987108,
+          "f1": 0.16805948542475488,
+          "roc_auc": 0.8180385429523658,
+          "pr_auc": 0.1241841666756427,
+          "positive_rate": 0.02947722707779165,
+          "predicted_alert_rate": 0.17676836219532055,
+          "false_positives": 11748,
+          "false_negatives": 895,
+          "true_positives": 1277,
+          "true_negatives": 59764,
+          "confusion_matrix": [
+            [
+              59764,
+              11748
+            ],
+            [
+              895,
+              1277
+            ]
+          ],
+          "n_samples": 73684,
+          "positives": 2172,
+          "negatives": 71512
+        },
+        "metrics_test_by_location": {
+          "VOTV": {
+            "threshold": 0.065,
+            "accuracy": 0.7952236954330465,
+            "precision": 0.1222537207654146,
+            "recall": 0.6777996070726916,
+            "f1": 0.20714500150105072,
+            "roc_auc": 0.8292069040766366,
+            "pr_auc": 0.1900718409177024,
+            "positive_rate": 0.039466542606807785,
+            "predicted_alert_rate": 0.2188105761029697,
+            "false_positives": 2477,
+            "false_negatives": 164,
+            "true_positives": 345,
+            "true_negatives": 9911,
+            "confusion_matrix": [
+              [
+                9911,
+                2477
+              ],
+              [
+                164,
+                345
+              ]
+            ],
+            "n_samples": 12897,
+            "positives": 509,
+            "negatives": 12388
+          },
+          "VECC": {
+            "threshold": 0.065,
+            "accuracy": 0.73088,
+            "precision": 0.10443458980044346,
+            "recall": 0.7394034536891679,
+            "f1": 0.1830192345055372,
+            "roc_auc": 0.807613542429967,
+            "pr_auc": 0.13045565290694838,
+            "positive_rate": 0.040768,
+            "predicted_alert_rate": 0.28864,
+            "false_positives": 4039,
+            "false_negatives": 166,
+            "true_positives": 471,
+            "true_negatives": 10949,
+            "confusion_matrix": [
+              [
+                10949,
+                4039
+              ],
+              [
+                166,
+                471
+              ]
+            ],
+            "n_samples": 15625,
+            "positives": 637,
+            "negatives": 14988
+          },
+          "VIDP": {
+            "threshold": 0.065,
+            "accuracy": 0.8976223226567106,
+            "precision": 0.061448427212874905,
+            "recall": 0.23076923076923078,
+            "f1": 0.09705372616984402,
+            "roc_auc": 0.7650912715413152,
+            "pr_auc": 0.0539559321167986,
+            "positive_rate": 0.02384227418615314,
+            "predicted_alert_rate": 0.0895395297045916,
+            "false_positives": 1283,
+            "false_negatives": 280,
+            "true_positives": 84,
+            "true_negatives": 13620,
+            "confusion_matrix": [
+              [
+                13620,
+                1283
+              ],
+              [
+                280,
+                84
+              ]
+            ],
+            "n_samples": 15267,
+            "positives": 364,
+            "negatives": 14903
+          },
+          "VOCI": {
+            "threshold": 0.065,
+            "accuracy": 0.8645840500928921,
+            "precision": 0.09357612544258978,
+            "recall": 0.5124653739612188,
+            "f1": 0.15825491873396064,
+            "roc_auc": 0.794501643050985,
+            "pr_auc": 0.11116668854812381,
+            "positive_rate": 0.024840019266496937,
+            "predicted_alert_rate": 0.1360352301658295,
+            "false_positives": 1792,
+            "false_negatives": 176,
+            "true_positives": 185,
+            "true_negatives": 12380,
+            "confusion_matrix": [
+              [
+                12380,
+                1792
+              ],
+              [
+                176,
+                185
+              ]
+            ],
+            "n_samples": 14533,
+            "positives": 361,
+            "negatives": 14172
+          },
+          "VABB": {
+            "threshold": 0.065,
+            "accuracy": 0.8524931649524802,
+            "precision": 0.08173690932311622,
+            "recall": 0.6378737541528239,
+            "f1": 0.1449056603773585,
+            "roc_auc": 0.8715732102517315,
+            "pr_auc": 0.08988571367529134,
+            "positive_rate": 0.019593802890248667,
+            "predicted_alert_rate": 0.15290977737273792,
+            "false_positives": 2157,
+            "false_negatives": 109,
+            "true_positives": 192,
+            "true_negatives": 12904,
+            "confusion_matrix": [
+              [
+                12904,
+                2157
+              ],
+              [
+                109,
+                192
+              ]
+            ],
+            "n_samples": 15362,
+            "positives": 301,
+            "negatives": 15061
+          }
+        },
+        "model_path": "models/v2/nwp_experiment/A_atmospheric_target_3h.joblib",
+        "model_bytes": 49989929
+      },
+      "B": {
+        "experiment": "B_atmospheric_nwp",
+        "horizon": "target_3h",
+        "n_features": 83,
+        "feature_list": [
+          "temperature_2m",
+          "relative_humidity_2m",
+          "surface_pressure",
+          "wind_speed_10m",
+          "precipitation",
+          "cloud_cover",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "wind_u_10m",
+          "wind_v_10m",
+          "temperature_lag_1h",
+          "temperature_lag_3h",
+          "temperature_lag_6h",
+          "temperature_lag_12h",
+          "temperature_lag_24h",
+          "humidity_lag_1h",
+          "humidity_lag_3h",
+          "humidity_lag_6h",
+          "humidity_lag_12h",
+          "humidity_lag_24h",
+          "pressure_lag_1h",
+          "pressure_lag_3h",
+          "pressure_lag_6h",
+          "pressure_lag_12h",
+          "pressure_lag_24h",
+          "wind_speed_lag_1h",
+          "wind_speed_lag_3h",
+          "wind_speed_lag_6h",
+          "wind_speed_lag_12h",
+          "wind_speed_lag_24h",
+          "precipitation_lag_1h",
+          "precipitation_lag_3h",
+          "precipitation_lag_6h",
+          "precipitation_lag_12h",
+          "precipitation_lag_24h",
+          "cloud_cover_lag_1h",
+          "cloud_cover_lag_3h",
+          "cloud_cover_lag_6h",
+          "cloud_cover_lag_12h",
+          "cloud_cover_lag_24h",
+          "temperature_change_1h",
+          "temperature_change_3h",
+          "humidity_change_1h",
+          "humidity_change_3h",
+          "pressure_change_1h",
+          "pressure_change_3h",
+          "wind_speed_change_1h",
+          "wind_speed_change_3h",
+          "precipitation_change_1h",
+          "precipitation_change_3h",
+          "cloud_cover_change_1h",
+          "cloud_cover_change_3h",
+          "precipitation_roll_sum_3h",
+          "precipitation_roll_sum_6h",
+          "precipitation_roll_sum_12h",
+          "precipitation_roll_sum_24h",
+          "humidity_roll_mean_3h",
+          "humidity_roll_mean_6h",
+          "pressure_roll_mean_3h",
+          "pressure_roll_mean_6h",
+          "temperature_roll_mean_3h",
+          "temperature_roll_mean_6h",
+          "wind_speed_roll_mean_3h",
+          "wind_speed_roll_mean_6h",
+          "cloud_cover_roll_mean_3h",
+          "cloud_cover_roll_mean_6h",
+          "latitude",
+          "longitude",
+          "elevation_m",
+          "nwp_cape",
+          "nwp_convective_inhibition",
+          "nwp_lifted_index",
+          "nwp_temperature_2m",
+          "nwp_relative_humidity_2m",
+          "nwp_surface_pressure",
+          "nwp_wind_speed_10m",
+          "nwp_wind_direction_10m",
+          "nwp_precipitation",
+          "nwp_cloud_cover"
+        ],
+        "hyperparameters": {
+          "n_estimators": 200,
+          "criterion": "gini",
+          "max_features": "sqrt",
+          "class_weight": "balanced",
+          "random_state": 42,
+          "n_jobs": -1
+        },
+        "sklearn_version": "1.6.1",
+        "threshold": 0.065,
+        "threshold_selection": {
+          "criterion": "maximise F2 (beta=2.0) on validation, subject to predicted positive rate <= 0.2; tie-break lower threshold",
+          "selected_threshold": 0.065,
+          "threshold_selected_on": "validation",
+          "test_data_used_for_threshold_selection": false,
+          "guardrail_binding": false,
+          "selected_validation_fbeta": 0.33031674208144796,
+          "selected_validation_predicted_positive_rate": 0.14538735799760383
+        },
+        "n_train": 46499,
+        "n_validation": 69277,
+        "n_test": 73684,
+        "positives_train": 1721,
+        "positives_validation": 1902,
+        "positives_test": 2172,
+        "metrics_validation": {
+          "threshold": 0.065,
+          "accuracy": 0.8608773474601961,
+          "precision": 0.11596505162827642,
+          "recall": 0.6140904311251314,
+          "f1": 0.19508936028060797,
+          "roc_auc": 0.8572461055543525,
+          "pr_auc": 0.1576034130904044,
+          "positive_rate": 0.027454999494781817,
+          "predicted_alert_rate": 0.14538735799760383,
+          "false_positives": 8904,
+          "false_negatives": 734,
+          "true_positives": 1168,
+          "true_negatives": 58471,
+          "confusion_matrix": [
+            [
+              58471,
+              8904
+            ],
+            [
+              734,
+              1168
+            ]
+          ],
+          "n_samples": 69277,
+          "positives": 1902,
+          "negatives": 67375
+        },
+        "metrics_test": {
+          "threshold": 0.065,
+          "accuracy": 0.8323245209272027,
+          "precision": 0.10294002963425096,
+          "recall": 0.6077348066298343,
+          "f1": 0.1760586862287429,
+          "roc_auc": 0.8371870439856635,
+          "pr_auc": 0.13168203945689588,
+          "positive_rate": 0.02947722707779165,
+          "predicted_alert_rate": 0.17402692579121654,
+          "false_positives": 11503,
+          "false_negatives": 852,
+          "true_positives": 1320,
+          "true_negatives": 60009,
+          "confusion_matrix": [
+            [
+              60009,
+              11503
+            ],
+            [
+              852,
+              1320
+            ]
+          ],
+          "n_samples": 73684,
+          "positives": 2172,
+          "negatives": 71512
+        },
+        "metrics_test_by_location": {
+          "VOTV": {
+            "threshold": 0.065,
+            "accuracy": 0.8236023881522835,
+            "precision": 0.1465172137710168,
+            "recall": 0.7190569744597249,
+            "f1": 0.2434319920186232,
+            "roc_auc": 0.8672072694723901,
+            "pr_auc": 0.21601325643014968,
+            "positive_rate": 0.039466542606807785,
+            "predicted_alert_rate": 0.1936884546793828,
+            "false_positives": 2132,
+            "false_negatives": 143,
+            "true_positives": 366,
+            "true_negatives": 10256,
+            "confusion_matrix": [
+              [
+                10256,
+                2132
+              ],
+              [
+                143,
+                366
+              ]
+            ],
+            "n_samples": 12897,
+            "positives": 509,
+            "negatives": 12388
+          },
+          "VECC": {
+            "threshold": 0.065,
+            "accuracy": 0.724672,
+            "precision": 0.10015273838097316,
+            "recall": 0.7205651491365777,
+            "f1": 0.17586206896551723,
+            "roc_auc": 0.8067953577932989,
+            "pr_auc": 0.12065788516171587,
+            "positive_rate": 0.040768,
+            "predicted_alert_rate": 0.293312,
+            "false_positives": 4124,
+            "false_negatives": 178,
+            "true_positives": 459,
+            "true_negatives": 10864,
+            "confusion_matrix": [
+              [
+                10864,
+                4124
+              ],
+              [
+                178,
+                459
+              ]
+            ],
+            "n_samples": 15625,
+            "positives": 637,
+            "negatives": 14988
+          },
+          "VIDP": {
+            "threshold": 0.065,
+            "accuracy": 0.8950677932796227,
+            "precision": 0.06469760900140648,
+            "recall": 0.25274725274725274,
+            "f1": 0.10302351623740201,
+            "roc_auc": 0.7910164300572272,
+            "pr_auc": 0.06152597970281536,
+            "positive_rate": 0.02384227418615314,
+            "predicted_alert_rate": 0.09314207113381803,
+            "false_positives": 1330,
+            "false_negatives": 272,
+            "true_positives": 92,
+            "true_negatives": 13573,
+            "confusion_matrix": [
+              [
+                13573,
+                1330
+              ],
+              [
+                272,
+                92
+              ]
+            ],
+            "n_samples": 15267,
+            "positives": 364,
+            "negatives": 14903
+          },
+          "VOCI": {
+            "threshold": 0.065,
+            "accuracy": 0.8566022156471479,
+            "precision": 0.09458823529411765,
+            "recall": 0.556786703601108,
+            "f1": 0.16170555108608206,
+            "roc_auc": 0.8147765911949981,
+            "pr_auc": 0.11690756985104682,
+            "positive_rate": 0.024840019266496937,
+            "predicted_alert_rate": 0.1462189499759169,
+            "false_positives": 1924,
+            "false_negatives": 160,
+            "true_positives": 201,
+            "true_negatives": 12248,
+            "confusion_matrix": [
+              [
+                12248,
+                1924
+              ],
+              [
+                160,
+                201
+              ]
+            ],
+            "n_samples": 14533,
+            "positives": 361,
+            "negatives": 14172
+          },
+          "VABB": {
+            "threshold": 0.065,
+            "accuracy": 0.8638198151282385,
+            "precision": 0.09202733485193622,
+            "recall": 0.6710963455149501,
+            "f1": 0.16185897435897437,
+            "roc_auc": 0.8860704011879929,
+            "pr_auc": 0.10286803768793465,
+            "positive_rate": 0.019593802890248667,
+            "predicted_alert_rate": 0.14288504101028512,
+            "false_positives": 1993,
+            "false_negatives": 99,
+            "true_positives": 202,
+            "true_negatives": 13068,
+            "confusion_matrix": [
+              [
+                13068,
+                1993
+              ],
+              [
+                99,
+                202
+              ]
+            ],
+            "n_samples": 15362,
+            "positives": 301,
+            "negatives": 15061
+          }
+        },
+        "model_path": "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib",
+        "model_bytes": 48071689
+      }
+    }
+  },
+  "sanity": {
+    "target_1h": {
+      "identical_train_keys": true,
+      "identical_val_keys": true,
+      "identical_test_keys": true,
+      "n_train_keys": 46501,
+      "n_val_keys": 69273,
+      "n_test_keys": 73694,
+      "identical_targets_train": true,
+      "identical_targets_val": true,
+      "identical_targets_test": true,
+      "nwp_missing_in_used_rows": 0,
+      "y_train_sum": 1721,
+      "y_val_sum": 1902,
+      "y_test_sum": 2172
+    },
+    "target_2h": {
+      "identical_train_keys": true,
+      "identical_val_keys": true,
+      "identical_test_keys": true,
+      "n_train_keys": 46500,
+      "n_val_keys": 69275,
+      "n_test_keys": 73689,
+      "identical_targets_train": true,
+      "identical_targets_val": true,
+      "identical_targets_test": true,
+      "nwp_missing_in_used_rows": 0,
+      "y_train_sum": 1721,
+      "y_val_sum": 1902,
+      "y_test_sum": 2172
+    },
+    "target_3h": {
+      "identical_train_keys": true,
+      "identical_val_keys": true,
+      "identical_test_keys": true,
+      "n_train_keys": 46499,
+      "n_val_keys": 69277,
+      "n_test_keys": 73684,
+      "identical_targets_train": true,
+      "identical_targets_val": true,
+      "identical_targets_test": true,
+      "nwp_missing_in_used_rows": 0,
+      "y_train_sum": 1721,
+      "y_val_sum": 1902,
+      "y_test_sum": 2172
+    }
+  },
+  "protected_ok": true
+}

@@ -1,0 +1,315 @@
+{
+  "experiment": "B_atmospheric_nwp",
+  "horizon": "target_2h",
+  "n_features": 83,
+  "feature_list": [
+    "temperature_2m",
+    "relative_humidity_2m",
+    "surface_pressure",
+    "wind_speed_10m",
+    "precipitation",
+    "cloud_cover",
+    "hour_sin",
+    "hour_cos",
+    "month_sin",
+    "month_cos",
+    "wind_direction_sin",
+    "wind_direction_cos",
+    "wind_u_10m",
+    "wind_v_10m",
+    "temperature_lag_1h",
+    "temperature_lag_3h",
+    "temperature_lag_6h",
+    "temperature_lag_12h",
+    "temperature_lag_24h",
+    "humidity_lag_1h",
+    "humidity_lag_3h",
+    "humidity_lag_6h",
+    "humidity_lag_12h",
+    "humidity_lag_24h",
+    "pressure_lag_1h",
+    "pressure_lag_3h",
+    "pressure_lag_6h",
+    "pressure_lag_12h",
+    "pressure_lag_24h",
+    "wind_speed_lag_1h",
+    "wind_speed_lag_3h",
+    "wind_speed_lag_6h",
+    "wind_speed_lag_12h",
+    "wind_speed_lag_24h",
+    "precipitation_lag_1h",
+    "precipitation_lag_3h",
+    "precipitation_lag_6h",
+    "precipitation_lag_12h",
+    "precipitation_lag_24h",
+    "cloud_cover_lag_1h",
+    "cloud_cover_lag_3h",
+    "cloud_cover_lag_6h",
+    "cloud_cover_lag_12h",
+    "cloud_cover_lag_24h",
+    "temperature_change_1h",
+    "temperature_change_3h",
+    "humidity_change_1h",
+    "humidity_change_3h",
+    "pressure_change_1h",
+    "pressure_change_3h",
+    "wind_speed_change_1h",
+    "wind_speed_change_3h",
+    "precipitation_change_1h",
+    "precipitation_change_3h",
+    "cloud_cover_change_1h",
+    "cloud_cover_change_3h",
+    "precipitation_roll_sum_3h",
+    "precipitation_roll_sum_6h",
+    "precipitation_roll_sum_12h",
+    "precipitation_roll_sum_24h",
+    "humidity_roll_mean_3h",
+    "humidity_roll_mean_6h",
+    "pressure_roll_mean_3h",
+    "pressure_roll_mean_6h",
+    "temperature_roll_mean_3h",
+    "temperature_roll_mean_6h",
+    "wind_speed_roll_mean_3h",
+    "wind_speed_roll_mean_6h",
+    "cloud_cover_roll_mean_3h",
+    "cloud_cover_roll_mean_6h",
+    "latitude",
+    "longitude",
+    "elevation_m",
+    "nwp_cape",
+    "nwp_convective_inhibition",
+    "nwp_lifted_index",
+    "nwp_temperature_2m",
+    "nwp_relative_humidity_2m",
+    "nwp_surface_pressure",
+    "nwp_wind_speed_10m",
+    "nwp_wind_direction_10m",
+    "nwp_precipitation",
+    "nwp_cloud_cover"
+  ],
+  "hyperparameters": {
+    "n_estimators": 200,
+    "criterion": "gini",
+    "max_features": "sqrt",
+    "class_weight": "balanced",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "sklearn_version": "1.6.1",
+  "threshold": 0.065,
+  "threshold_selection": {
+    "criterion": "maximise F2 (beta=2.0) on validation, subject to predicted positive rate <= 0.2; tie-break lower threshold",
+    "selected_threshold": 0.065,
+    "threshold_selected_on": "validation",
+    "test_data_used_for_threshold_selection": false,
+    "guardrail_binding": false,
+    "selected_validation_fbeta": 0.3432965757399884,
+    "selected_validation_predicted_positive_rate": 0.1388957055214724
+  },
+  "n_train": 46500,
+  "n_validation": 69275,
+  "n_test": 73689,
+  "positives_train": 1721,
+  "positives_validation": 1902,
+  "positives_test": 2172,
+  "metrics_validation": {
+    "threshold": 0.065,
+    "accuracy": 0.867802237459401,
+    "precision": 0.12294741218041987,
+    "recall": 0.6219768664563617,
+    "f1": 0.20531065602221452,
+    "roc_auc": 0.8623694145075511,
+    "pr_auc": 0.1584791965466321,
+    "positive_rate": 0.027455792132804042,
+    "predicted_alert_rate": 0.1388957055214724,
+    "false_positives": 8439,
+    "false_negatives": 719,
+    "true_positives": 1183,
+    "true_negatives": 58934,
+    "confusion_matrix": [
+      [
+        58934,
+        8439
+      ],
+      [
+        719,
+        1183
+      ]
+    ],
+    "n_samples": 69275,
+    "positives": 1902,
+    "negatives": 67373
+  },
+  "metrics_test": {
+    "threshold": 0.065,
+    "accuracy": 0.8363527799264476,
+    "precision": 0.10744064162630032,
+    "recall": 0.6229281767955801,
+    "f1": 0.18327124957670166,
+    "roc_auc": 0.8442637085270019,
+    "pr_auc": 0.13677056007899618,
+    "positive_rate": 0.029475226967389977,
+    "predicted_alert_rate": 0.1708938918970267,
+    "false_positives": 11240,
+    "false_negatives": 819,
+    "true_positives": 1353,
+    "true_negatives": 60277,
+    "confusion_matrix": [
+      [
+        60277,
+        11240
+      ],
+      [
+        819,
+        1353
+      ]
+    ],
+    "n_samples": 73689,
+    "positives": 2172,
+    "negatives": 71517
+  },
+  "metrics_test_by_location": {
+    "VOTV": {
+      "threshold": 0.065,
+      "accuracy": 0.8225306249030857,
+      "precision": 0.14794303797468356,
+      "recall": 0.7347740667976425,
+      "f1": 0.2462956865327626,
+      "roc_auc": 0.8705343529124083,
+      "pr_auc": 0.2242287995996668,
+      "positive_rate": 0.03946348271049775,
+      "predicted_alert_rate": 0.19599937974879827,
+      "false_positives": 2154,
+      "false_negatives": 135,
+      "true_positives": 374,
+      "true_negatives": 10235,
+      "confusion_matrix": [
+        [
+          10235,
+          2154
+        ],
+        [
+          135,
+          374
+        ]
+      ],
+      "n_samples": 12898,
+      "positives": 509,
+      "negatives": 12389
+    },
+    "VECC": {
+      "threshold": 0.065,
+      "accuracy": 0.7444003583770639,
+      "precision": 0.10663229435200375,
+      "recall": 0.7142857142857143,
+      "f1": 0.18556280587275692,
+      "roc_auc": 0.8134101061867138,
+      "pr_auc": 0.12290648530009748,
+      "positive_rate": 0.04076539101497504,
+      "predicted_alert_rate": 0.27307052348649685,
+      "false_positives": 3812,
+      "false_negatives": 182,
+      "true_positives": 455,
+      "true_negatives": 11177,
+      "confusion_matrix": [
+        [
+          11177,
+          3812
+        ],
+        [
+          182,
+          455
+        ]
+      ],
+      "n_samples": 15626,
+      "positives": 637,
+      "negatives": 14989
+    },
+    "VIDP": {
+      "threshold": 0.065,
+      "accuracy": 0.8957951270631386,
+      "precision": 0.07247386759581882,
+      "recall": 0.2857142857142857,
+      "f1": 0.11561978877153975,
+      "roc_auc": 0.8065175732748197,
+      "pr_auc": 0.0669225627274612,
+      "positive_rate": 0.023840712601519518,
+      "predicted_alert_rate": 0.09398742467906733,
+      "false_positives": 1331,
+      "false_negatives": 260,
+      "true_positives": 104,
+      "true_negatives": 13573,
+      "confusion_matrix": [
+        [
+          13573,
+          1331
+        ],
+        [
+          260,
+          104
+        ]
+      ],
+      "n_samples": 15268,
+      "positives": 364,
+      "negatives": 14904
+    },
+    "VOCI": {
+      "threshold": 0.065,
+      "accuracy": 0.8601898995458924,
+      "precision": 0.09696092619392185,
+      "recall": 0.556786703601108,
+      "f1": 0.16516023007395234,
+      "roc_auc": 0.8235694728359667,
+      "pr_auc": 0.12555206797909446,
+      "positive_rate": 0.02483831016925829,
+      "predicted_alert_rate": 0.14263107196917574,
+      "false_positives": 1872,
+      "false_negatives": 160,
+      "true_positives": 201,
+      "true_negatives": 12301,
+      "confusion_matrix": [
+        [
+          12301,
+          1872
+        ],
+        [
+          160,
+          201
+        ]
+      ],
+      "n_samples": 14534,
+      "positives": 361,
+      "negatives": 14173
+    },
+    "VABB": {
+      "threshold": 0.065,
+      "accuracy": 0.8598581006313871,
+      "precision": 0.09563318777292576,
+      "recall": 0.7275747508305648,
+      "f1": 0.1690467001157854,
+      "roc_auc": 0.8937057945651882,
+      "pr_auc": 0.10766250990894284,
+      "positive_rate": 0.0195925275011391,
+      "predicted_alert_rate": 0.14905942849703835,
+      "false_positives": 2071,
+      "false_negatives": 82,
+      "true_positives": 219,
+      "true_negatives": 12991,
+      "confusion_matrix": [
+        [
+          12991,
+          2071
+        ],
+        [
+          82,
+          219
+        ]
+      ],
+      "n_samples": 15363,
+      "positives": 301,
+      "negatives": 15062
+    }
+  },
+  "model_path": "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib",
+  "model_bytes": 47384169
+}

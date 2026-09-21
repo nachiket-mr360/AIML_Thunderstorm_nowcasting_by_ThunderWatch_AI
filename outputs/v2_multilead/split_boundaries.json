@@ -1,0 +1,6 @@
+{
+  "source": "Phase 4 frozen UTC cutoffs",
+  "train_end": "2022-05-27T01:00:00+00:00",
+  "validation_end": "2024-03-14T11:00:00+00:00",
+  "test_start": "2024-03-14T12:00:00+00:00"
+}

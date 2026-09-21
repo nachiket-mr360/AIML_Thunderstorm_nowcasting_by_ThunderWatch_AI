@@ -1,0 +1,277 @@
+{
+  "phase": "12A",
+  "title": "V2 multimodal fusion readiness inventory",
+  "generated_at_local": "2026-09-21",
+  "training": false,
+  "phase3_6_8_datasets_modified": false,
+  "satellite_merged": false,
+  "radar_merged": false,
+  "synthetic_data": false,
+  "join_keys_observation_nwp": ["station_id", "timestamp_utc"],
+  "lightning_join_key": "station",
+  "lightning_join_note": "Static climatology; not hourly; map station -> annual_thunder_hours",
+  "timezone": "UTC",
+  "timestamp_dtype_after_utc_parse": "datetime64[us, UTC]",
+  "nwp_time_shift": false,
+  "nwp_source": "Open-Meteo Historical Forecast gfs_global (not observation, not ERA5)",
+  "lightning_source": "NASA Combined ISS LIS + TRMM LIS annual thunder hours",
+  "sources": {
+    "atmospheric_location": {
+      "phase": "3",
+      "csv": "dataset/multilocation/features/multilocation_features_2014_2025.csv",
+      "metadata": "dataset/multilocation/features/multilocation_features_2014_2025_metadata.json",
+      "rows": 525840,
+      "feature_count": 73,
+      "time_start_utc": "2014-01-02T00:00:00+00:00",
+      "time_end_utc": "2025-12-31T23:00:00+00:00",
+      "duplicate_station_timestamp": 0
+    },
+    "nwp_overlap": {
+      "phase": "8B",
+      "csv": "dataset/multilocation/features_nwp/multilocation_features_nwp_overlap_2021_2025.csv",
+      "metadata": "dataset/multilocation/features_nwp/multilocation_features_nwp_overlap_2021_2025_metadata.json",
+      "rows": 208320,
+      "time_start_utc": "2021-04-01T00:00:00+00:00",
+      "time_end_utc": "2025-12-31T23:00:00+00:00",
+      "duplicate_station_timestamp": 0,
+      "nwp_column_count": 10
+    },
+    "lightning_climatology": {
+      "phase": "9C",
+      "csv": "outputs/lightning/combined_lis_thunder_hour_locations.csv",
+      "rows": 5,
+      "hourly": false
+    }
+  },
+  "stations": ["VABB", "VECC", "VIDP", "VOCI", "VOTV"],
+  "common_key_audit": {
+    "inner_join_phase3_nwp_rows": 208320,
+    "phase3_only_rows": 317520,
+    "nwp_only_rows": 0,
+    "phase3_only_reason": "structurally_unavailable_nwp_before_2021-04-01",
+    "phase3_only_span_utc": ["2014-01-02T00:00:00+00:00", "2021-03-31T23:00:00+00:00"],
+    "lightning_station_coverage_match": true
+  },
+  "feature_groups": {
+    "atmospheric": {
+      "count": 66,
+      "status": "available",
+      "columns": [
+        "temperature_2m",
+        "relative_humidity_2m",
+        "surface_pressure",
+        "wind_speed_10m",
+        "precipitation",
+        "cloud_cover",
+        "wind_direction_sin",
+        "wind_direction_cos",
+        "wind_u_10m",
+        "wind_v_10m",
+        "temperature_lag_1h",
+        "temperature_lag_3h",
+        "temperature_lag_6h",
+        "temperature_lag_12h",
+        "temperature_lag_24h",
+        "humidity_lag_1h",
+        "humidity_lag_3h",
+        "humidity_lag_6h",
+        "humidity_lag_12h",
+        "humidity_lag_24h",
+        "pressure_lag_1h",
+        "pressure_lag_3h",
+        "pressure_lag_6h",
+        "pressure_lag_12h",
+        "pressure_lag_24h",
+        "wind_speed_lag_1h",
+        "wind_speed_lag_3h",
+        "wind_speed_lag_6h",
+        "wind_speed_lag_12h",
+        "wind_speed_lag_24h",
+        "precipitation_lag_1h",
+        "precipitation_lag_3h",
+        "precipitation_lag_6h",
+        "precipitation_lag_12h",
+        "precipitation_lag_24h",
+        "cloud_cover_lag_1h",
+        "cloud_cover_lag_3h",
+        "cloud_cover_lag_6h",
+        "cloud_cover_lag_12h",
+        "cloud_cover_lag_24h",
+        "temperature_change_1h",
+        "temperature_change_3h",
+        "humidity_change_1h",
+        "humidity_change_3h",
+        "pressure_change_1h",
+        "pressure_change_3h",
+        "wind_speed_change_1h",
+        "wind_speed_change_3h",
+        "precipitation_change_1h",
+        "precipitation_change_3h",
+        "cloud_cover_change_1h",
+        "cloud_cover_change_3h",
+        "precipitation_roll_sum_3h",
+        "precipitation_roll_sum_6h",
+        "precipitation_roll_sum_12h",
+        "precipitation_roll_sum_24h",
+        "humidity_roll_mean_3h",
+        "humidity_roll_mean_6h",
+        "pressure_roll_mean_3h",
+        "pressure_roll_mean_6h",
+        "temperature_roll_mean_3h",
+        "temperature_roll_mean_6h",
+        "wind_speed_roll_mean_3h",
+        "wind_speed_roll_mean_6h",
+        "cloud_cover_roll_mean_3h",
+        "cloud_cover_roll_mean_6h"
+      ]
+    },
+    "location_temporal": {
+      "count": 7,
+      "status": "available",
+      "columns": [
+        "hour_sin",
+        "hour_cos",
+        "month_sin",
+        "month_cos",
+        "latitude",
+        "longitude",
+        "elevation_m"
+      ]
+    },
+    "nwp": {
+      "count": 10,
+      "status": "available_on_overlap_2021_04_01_onward",
+      "columns": [
+        "nwp_cape",
+        "nwp_convective_inhibition",
+        "nwp_lifted_index",
+        "nwp_temperature_2m",
+        "nwp_relative_humidity_2m",
+        "nwp_surface_pressure",
+        "nwp_wind_speed_10m",
+        "nwp_wind_direction_10m",
+        "nwp_precipitation",
+        "nwp_cloud_cover"
+      ]
+    },
+    "lightning_climatology": {
+      "count": 1,
+      "status": "available_static_per_station",
+      "model_columns": ["annual_thunder_hours"],
+      "csv_columns": [
+        "station",
+        "city",
+        "station_lat",
+        "station_lon",
+        "grid_lat",
+        "grid_lon",
+        "distance_km",
+        "annual_thunder_hours"
+      ],
+      "values": [
+        {"station": "VOTV", "city": "Thiruvananthapuram", "annual_thunder_hours": 332.0780944824219},
+        {"station": "VECC", "city": "Kolkata", "annual_thunder_hours": 370.5028991699219},
+        {"station": "VIDP", "city": "Delhi", "annual_thunder_hours": 227.69419860839844},
+        {"station": "VOCI", "city": "Kochi", "annual_thunder_hours": 385.9404296875},
+        {"station": "VABB", "city": "Mumbai", "annual_thunder_hours": 129.1292266845703}
+      ]
+    },
+    "satellite": {
+      "count": 0,
+      "status": "future_pending_mosdac",
+      "interface": ["station_id", "timestamp_utc", "<satellite_features...>"],
+      "placeholder_columns_in_training_data": false
+    },
+    "radar": {
+      "count": 0,
+      "status": "future_pending_access",
+      "interface": ["station_id", "timestamp_utc", "<radar_features...>"],
+      "placeholder_columns_in_training_data": false
+    }
+  },
+  "not_features": {
+    "identity": ["station_id", "timestamp_utc"],
+    "phase3_labels": ["thunderstorm_target", "label_status"],
+    "phase8_labels": ["target_1h", "target_2h", "target_3h"]
+  },
+  "missingness": {
+    "atmospheric": {
+      "universe": "phase3_525840_rows",
+      "all_columns_missing_count": 0,
+      "class": "complete_after_24h_lookback"
+    },
+    "location_temporal": {
+      "universe": "phase3_525840_rows",
+      "all_columns_missing_count": 0,
+      "class": "complete"
+    },
+    "nwp": {
+      "universe": "overlap_208320_rows",
+      "structurally_unavailable_phase3_rows_before_nwp": 317520,
+      "per_column": {
+        "nwp_cape": {"missing_count": 0, "missing_pct": 0.0, "class": "present"},
+        "nwp_convective_inhibition": {"missing_count": 1735, "missing_pct": 0.8329, "class": "genuinely_missing"},
+        "nwp_lifted_index": {"missing_count": 0, "missing_pct": 0.0, "class": "present"},
+        "nwp_temperature_2m": {"missing_count": 0, "missing_pct": 0.0, "class": "present"},
+        "nwp_relative_humidity_2m": {"missing_count": 0, "missing_pct": 0.0, "class": "present"},
+        "nwp_surface_pressure": {"missing_count": 0, "missing_pct": 0.0, "class": "present"},
+        "nwp_wind_speed_10m": {"missing_count": 0, "missing_pct": 0.0, "class": "present"},
+        "nwp_wind_direction_10m": {"missing_count": 0, "missing_pct": 0.0, "class": "present"},
+        "nwp_precipitation": {"missing_count": 1725, "missing_pct": 0.8281, "class": "genuinely_missing"},
+        "nwp_cloud_cover": {"missing_count": 0, "missing_pct": 0.0, "class": "present"}
+      },
+      "rows_all_nwp_present": 204860,
+      "rows_any_nwp_missing": 3460
+    },
+    "lightning_climatology": {
+      "universe": "5_stations",
+      "annual_thunder_hours": {"missing_count": 0, "missing_pct": 0.0, "class": "complete"}
+    },
+    "labels_not_features": {
+      "thunderstorm_target": {"n": 525840, "missing_count": 45195, "missing_pct": 8.5948, "class": "unavailable_metar_not_zero_filled"},
+      "target_1h": {"n": 208320, "missing_count": 15567, "missing_pct": 7.4726, "class": "unavailable_metar_not_zero_filled"},
+      "target_2h": {"n": 208320, "missing_count": 15572, "missing_pct": 7.475, "class": "unavailable_metar_not_zero_filled"},
+      "target_3h": {"n": 208320, "missing_count": 15577, "missing_pct": 7.4774, "class": "unavailable_metar_not_zero_filled"}
+    },
+    "satellite": {"class": "not_applicable_pending"},
+    "radar": {"class": "not_applicable_pending"}
+  },
+  "candidate_experiments": {
+    "A": {
+      "groups": ["atmospheric", "location_temporal"],
+      "feature_count": 73,
+      "train_now": false
+    },
+    "B": {
+      "groups": ["atmospheric", "location_temporal", "nwp"],
+      "feature_count": 83,
+      "train_now": false
+    },
+    "C": {
+      "groups": ["atmospheric", "location_temporal", "nwp", "lightning_climatology"],
+      "feature_count": 84,
+      "train_now": false
+    },
+    "D_future": {
+      "groups": ["atmospheric", "location_temporal", "nwp", "lightning_climatology", "satellite"],
+      "train_now": false
+    },
+    "E_future": {
+      "groups": ["atmospheric", "location_temporal", "nwp", "lightning_climatology", "satellite", "radar"],
+      "train_now": false
+    }
+  },
+  "leakage_checks": {
+    "future_targets_as_features": false,
+    "future_nwp_valid_times_as_features": false,
+    "lightning_treated_as_hourly": false,
+    "future_timestamp_in_predictors": false,
+    "phase3_formulas_altered": false,
+    "nwp_aligned_to_observation_timestamp_utc": true
+  },
+  "recommended_next_experiment": "Phase 12B: Model C vs Model B on NWP overlap; station-level annual_thunder_hours only; no satellite/radar",
+  "frozen_phase6_cutoffs_utc": {
+    "train_end": "2022-05-27T01:00:00+00:00",
+    "validation_end": "2024-03-14T11:00:00+00:00"
+  }
+}

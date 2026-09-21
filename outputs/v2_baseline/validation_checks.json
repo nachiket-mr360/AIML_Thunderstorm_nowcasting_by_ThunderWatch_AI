@@ -1,0 +1,16 @@
+{
+  "phase_status": "READY",
+  "checks": {
+    "no_future_leakage_time_cutoffs": true,
+    "chronological_split": true,
+    "no_na_targets_in_training": true,
+    "threshold_frozen_before_test": true,
+    "all_five_locations_represented": true,
+    "models_reload": true,
+    "weather_code_not_used": true,
+    "v1_untouched": true,
+    "random_split_not_used": true,
+    "na_not_converted_to_negatives": true
+  },
+  "preferred_by_val_pr_auc": "B_atmospheric_plus_location"
+}

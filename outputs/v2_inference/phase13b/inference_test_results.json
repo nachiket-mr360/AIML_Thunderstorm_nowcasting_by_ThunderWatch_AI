@@ -1,0 +1,40 @@
+{
+  "cases": [
+    {
+      "name": "valid_complete",
+      "data_status": "COMPLETE",
+      "schema_ok": true
+    },
+    {
+      "name": "missing_feature",
+      "data_status": "UNAVAILABLE",
+      "schema_ok": true
+    },
+    {
+      "name": "nan_feature",
+      "data_status": "UNAVAILABLE",
+      "schema_ok": true
+    },
+    {
+      "name": "infinite_feature",
+      "data_status": "UNAVAILABLE",
+      "schema_ok": true
+    },
+    {
+      "name": "wrong_count",
+      "data_status": "UNAVAILABLE",
+      "schema_ok": true
+    },
+    {
+      "name": "unknown_station",
+      "data_status": "UNAVAILABLE",
+      "schema_ok": true
+    },
+    {
+      "name": "threshold",
+      "data_status": "n/a",
+      "schema_ok": false,
+      "alert_at_0.065": 1
+    }
+  ]
+}

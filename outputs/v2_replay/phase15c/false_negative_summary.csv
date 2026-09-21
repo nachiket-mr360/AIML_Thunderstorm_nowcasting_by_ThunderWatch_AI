@@ -1,0 +1,4 @@
+lead,class,count,prob_min,prob_median,prob_mean,prob_max,median_distance_below_threshold,mean_distance_below_threshold,n_within_0.02_of_threshold,n_VOTV,n_VECC,n_VIDP,n_VOCI,n_VABB,n_year_2021,n_year_2022,n_year_2023,n_year_2024,n_year_2025,n_month_01,n_month_02,n_month_03,n_month_04,n_month_05,n_month_06,n_month_07,n_month_08,n_month_09,n_month_10,n_month_11,n_month_12
+1h,FN,251,0.0,0.035,0.03280876494023905,0.06,0.03,0.03219123505976095,67,36,61,78,49,27,0,31,81,74,65,5,3,18,21,39,35,28,23,34,23,16,6
+2h,FN,267,0.0,0.035,0.03610486891385768,0.06,0.03,0.02889513108614232,88,42,58,94,47,26,0,31,90,77,69,8,6,19,25,37,34,34,24,32,25,17,6
+3h,FN,261,0.0,0.035,0.03461685823754789,0.06,0.03,0.03038314176245211,75,44,53,92,41,31,0,41,83,71,66,9,6,20,19,32,52,29,27,25,22,13,7

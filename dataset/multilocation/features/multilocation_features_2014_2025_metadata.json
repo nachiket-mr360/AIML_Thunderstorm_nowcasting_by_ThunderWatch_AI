@@ -1,0 +1,829 @@
+{
+  "phase": "3",
+  "version": "SIH26072-V2-phase3-features-2014-2025",
+  "created_at_utc": "2026-09-19T17:08:25.043755+00:00",
+  "causal": true,
+  "max_history_hours": 24,
+  "target": {
+    "name": "thunderstorm_target",
+    "missing_filled_with_zero": false,
+    "label_status_values": [
+      "observed_thunderstorm",
+      "observed_non_thunderstorm",
+      "unavailable"
+    ]
+  },
+  "forbidden": [
+    "future predictors",
+    "future targets",
+    "target-derived features",
+    "Open-Meteo weather_code",
+    "test-set statistics"
+  ],
+  "feature_count": 73,
+  "feature_order": [
+    "temperature_2m",
+    "relative_humidity_2m",
+    "surface_pressure",
+    "wind_speed_10m",
+    "precipitation",
+    "cloud_cover",
+    "hour_sin",
+    "hour_cos",
+    "month_sin",
+    "month_cos",
+    "wind_direction_sin",
+    "wind_direction_cos",
+    "wind_u_10m",
+    "wind_v_10m",
+    "temperature_lag_1h",
+    "temperature_lag_3h",
+    "temperature_lag_6h",
+    "temperature_lag_12h",
+    "temperature_lag_24h",
+    "humidity_lag_1h",
+    "humidity_lag_3h",
+    "humidity_lag_6h",
+    "humidity_lag_12h",
+    "humidity_lag_24h",
+    "pressure_lag_1h",
+    "pressure_lag_3h",
+    "pressure_lag_6h",
+    "pressure_lag_12h",
+    "pressure_lag_24h",
+    "wind_speed_lag_1h",
+    "wind_speed_lag_3h",
+    "wind_speed_lag_6h",
+    "wind_speed_lag_12h",
+    "wind_speed_lag_24h",
+    "precipitation_lag_1h",
+    "precipitation_lag_3h",
+    "precipitation_lag_6h",
+    "precipitation_lag_12h",
+    "precipitation_lag_24h",
+    "cloud_cover_lag_1h",
+    "cloud_cover_lag_3h",
+    "cloud_cover_lag_6h",
+    "cloud_cover_lag_12h",
+    "cloud_cover_lag_24h",
+    "temperature_change_1h",
+    "temperature_change_3h",
+    "humidity_change_1h",
+    "humidity_change_3h",
+    "pressure_change_1h",
+    "pressure_change_3h",
+    "wind_speed_change_1h",
+    "wind_speed_change_3h",
+    "precipitation_change_1h",
+    "precipitation_change_3h",
+    "cloud_cover_change_1h",
+    "cloud_cover_change_3h",
+    "precipitation_roll_sum_3h",
+    "precipitation_roll_sum_6h",
+    "precipitation_roll_sum_12h",
+    "precipitation_roll_sum_24h",
+    "humidity_roll_mean_3h",
+    "humidity_roll_mean_6h",
+    "pressure_roll_mean_3h",
+    "pressure_roll_mean_6h",
+    "temperature_roll_mean_3h",
+    "temperature_roll_mean_6h",
+    "wind_speed_roll_mean_3h",
+    "wind_speed_roll_mean_6h",
+    "cloud_cover_roll_mean_3h",
+    "cloud_cover_roll_mean_6h",
+    "latitude",
+    "longitude",
+    "elevation_m"
+  ],
+  "feature_catalog": {
+    "temperature_2m": {
+      "group": "current_atmospheric",
+      "formula": "temperature_2m(T) from Open-Meteo archive hour T",
+      "lookback_hours": 0,
+      "source": "Open-Meteo"
+    },
+    "relative_humidity_2m": {
+      "group": "current_atmospheric",
+      "formula": "relative_humidity_2m(T) from Open-Meteo archive hour T",
+      "lookback_hours": 0,
+      "source": "Open-Meteo"
+    },
+    "surface_pressure": {
+      "group": "current_atmospheric",
+      "formula": "surface_pressure(T) from Open-Meteo archive hour T",
+      "lookback_hours": 0,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_10m": {
+      "group": "current_atmospheric",
+      "formula": "wind_speed_10m(T) from Open-Meteo archive hour T",
+      "lookback_hours": 0,
+      "source": "Open-Meteo"
+    },
+    "precipitation": {
+      "group": "current_atmospheric",
+      "formula": "precipitation(T) from Open-Meteo archive hour T",
+      "lookback_hours": 0,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover": {
+      "group": "current_atmospheric",
+      "formula": "cloud_cover(T) from Open-Meteo archive hour T",
+      "lookback_hours": 0,
+      "source": "Open-Meteo"
+    },
+    "hour_sin": {
+      "group": "cyclic_time",
+      "formula": "sin(2\u03c0 \u00b7 hour_utc(T) / 24)",
+      "lookback_hours": 0,
+      "source": "timestamp_utc"
+    },
+    "hour_cos": {
+      "group": "cyclic_time",
+      "formula": "cos(2\u03c0 \u00b7 hour_utc(T) / 24)",
+      "lookback_hours": 0,
+      "source": "timestamp_utc"
+    },
+    "month_sin": {
+      "group": "cyclic_time",
+      "formula": "sin(2\u03c0 \u00b7 (month(T)\u22121) / 12)",
+      "lookback_hours": 0,
+      "source": "timestamp_utc"
+    },
+    "month_cos": {
+      "group": "cyclic_time",
+      "formula": "cos(2\u03c0 \u00b7 (month(T)\u22121) / 12)",
+      "lookback_hours": 0,
+      "source": "timestamp_utc"
+    },
+    "wind_direction_sin": {
+      "group": "wind_vector",
+      "formula": "sin(radians(wind_direction_10m(T))); meteorological FROM direction",
+      "lookback_hours": 0,
+      "source": "Open-Meteo wind_direction_10m"
+    },
+    "wind_direction_cos": {
+      "group": "wind_vector",
+      "formula": "cos(radians(wind_direction_10m(T)))",
+      "lookback_hours": 0,
+      "source": "Open-Meteo wind_direction_10m"
+    },
+    "wind_u_10m": {
+      "group": "wind_vector",
+      "formula": "\u2212wind_speed_10m(T) \u00b7 sin(radians(wind_direction_10m(T)))  (eastward, met. convention)",
+      "lookback_hours": 0,
+      "source": "Open-Meteo"
+    },
+    "wind_v_10m": {
+      "group": "wind_vector",
+      "formula": "\u2212wind_speed_10m(T) \u00b7 cos(radians(wind_direction_10m(T)))  (northward, met. convention)",
+      "lookback_hours": 0,
+      "source": "Open-Meteo"
+    },
+    "temperature_lag_1h": {
+      "group": "lag",
+      "formula": "temperature_2m(T\u22121h) on the contiguous UTC hourly grid",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "temperature_lag_3h": {
+      "group": "lag",
+      "formula": "temperature_2m(T\u22123h) on the contiguous UTC hourly grid",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "temperature_lag_6h": {
+      "group": "lag",
+      "formula": "temperature_2m(T\u22126h) on the contiguous UTC hourly grid",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "temperature_lag_12h": {
+      "group": "lag",
+      "formula": "temperature_2m(T\u221212h) on the contiguous UTC hourly grid",
+      "lookback_hours": 12,
+      "source": "Open-Meteo"
+    },
+    "temperature_lag_24h": {
+      "group": "lag",
+      "formula": "temperature_2m(T\u221224h) on the contiguous UTC hourly grid",
+      "lookback_hours": 24,
+      "source": "Open-Meteo"
+    },
+    "humidity_lag_1h": {
+      "group": "lag",
+      "formula": "relative_humidity_2m(T\u22121h) on the contiguous UTC hourly grid",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "humidity_lag_3h": {
+      "group": "lag",
+      "formula": "relative_humidity_2m(T\u22123h) on the contiguous UTC hourly grid",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "humidity_lag_6h": {
+      "group": "lag",
+      "formula": "relative_humidity_2m(T\u22126h) on the contiguous UTC hourly grid",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "humidity_lag_12h": {
+      "group": "lag",
+      "formula": "relative_humidity_2m(T\u221212h) on the contiguous UTC hourly grid",
+      "lookback_hours": 12,
+      "source": "Open-Meteo"
+    },
+    "humidity_lag_24h": {
+      "group": "lag",
+      "formula": "relative_humidity_2m(T\u221224h) on the contiguous UTC hourly grid",
+      "lookback_hours": 24,
+      "source": "Open-Meteo"
+    },
+    "pressure_lag_1h": {
+      "group": "lag",
+      "formula": "surface_pressure(T\u22121h) on the contiguous UTC hourly grid",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "pressure_lag_3h": {
+      "group": "lag",
+      "formula": "surface_pressure(T\u22123h) on the contiguous UTC hourly grid",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "pressure_lag_6h": {
+      "group": "lag",
+      "formula": "surface_pressure(T\u22126h) on the contiguous UTC hourly grid",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "pressure_lag_12h": {
+      "group": "lag",
+      "formula": "surface_pressure(T\u221212h) on the contiguous UTC hourly grid",
+      "lookback_hours": 12,
+      "source": "Open-Meteo"
+    },
+    "pressure_lag_24h": {
+      "group": "lag",
+      "formula": "surface_pressure(T\u221224h) on the contiguous UTC hourly grid",
+      "lookback_hours": 24,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_lag_1h": {
+      "group": "lag",
+      "formula": "wind_speed_10m(T\u22121h) on the contiguous UTC hourly grid",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_lag_3h": {
+      "group": "lag",
+      "formula": "wind_speed_10m(T\u22123h) on the contiguous UTC hourly grid",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_lag_6h": {
+      "group": "lag",
+      "formula": "wind_speed_10m(T\u22126h) on the contiguous UTC hourly grid",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_lag_12h": {
+      "group": "lag",
+      "formula": "wind_speed_10m(T\u221212h) on the contiguous UTC hourly grid",
+      "lookback_hours": 12,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_lag_24h": {
+      "group": "lag",
+      "formula": "wind_speed_10m(T\u221224h) on the contiguous UTC hourly grid",
+      "lookback_hours": 24,
+      "source": "Open-Meteo"
+    },
+    "precipitation_lag_1h": {
+      "group": "lag",
+      "formula": "precipitation(T\u22121h) on the contiguous UTC hourly grid",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "precipitation_lag_3h": {
+      "group": "lag",
+      "formula": "precipitation(T\u22123h) on the contiguous UTC hourly grid",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "precipitation_lag_6h": {
+      "group": "lag",
+      "formula": "precipitation(T\u22126h) on the contiguous UTC hourly grid",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "precipitation_lag_12h": {
+      "group": "lag",
+      "formula": "precipitation(T\u221212h) on the contiguous UTC hourly grid",
+      "lookback_hours": 12,
+      "source": "Open-Meteo"
+    },
+    "precipitation_lag_24h": {
+      "group": "lag",
+      "formula": "precipitation(T\u221224h) on the contiguous UTC hourly grid",
+      "lookback_hours": 24,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover_lag_1h": {
+      "group": "lag",
+      "formula": "cloud_cover(T\u22121h) on the contiguous UTC hourly grid",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover_lag_3h": {
+      "group": "lag",
+      "formula": "cloud_cover(T\u22123h) on the contiguous UTC hourly grid",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover_lag_6h": {
+      "group": "lag",
+      "formula": "cloud_cover(T\u22126h) on the contiguous UTC hourly grid",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover_lag_12h": {
+      "group": "lag",
+      "formula": "cloud_cover(T\u221212h) on the contiguous UTC hourly grid",
+      "lookback_hours": 12,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover_lag_24h": {
+      "group": "lag",
+      "formula": "cloud_cover(T\u221224h) on the contiguous UTC hourly grid",
+      "lookback_hours": 24,
+      "source": "Open-Meteo"
+    },
+    "temperature_change_1h": {
+      "group": "tendency",
+      "formula": "temperature_2m(T) \u2212 temperature_2m(T\u22121h)",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "temperature_change_3h": {
+      "group": "tendency",
+      "formula": "temperature_2m(T) \u2212 temperature_2m(T\u22123h)",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "humidity_change_1h": {
+      "group": "tendency",
+      "formula": "relative_humidity_2m(T) \u2212 relative_humidity_2m(T\u22121h)",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "humidity_change_3h": {
+      "group": "tendency",
+      "formula": "relative_humidity_2m(T) \u2212 relative_humidity_2m(T\u22123h)",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "pressure_change_1h": {
+      "group": "tendency",
+      "formula": "surface_pressure(T) \u2212 surface_pressure(T\u22121h)",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "pressure_change_3h": {
+      "group": "tendency",
+      "formula": "surface_pressure(T) \u2212 surface_pressure(T\u22123h)",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_change_1h": {
+      "group": "tendency",
+      "formula": "wind_speed_10m(T) \u2212 wind_speed_10m(T\u22121h)",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_change_3h": {
+      "group": "tendency",
+      "formula": "wind_speed_10m(T) \u2212 wind_speed_10m(T\u22123h)",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "precipitation_change_1h": {
+      "group": "tendency",
+      "formula": "precipitation(T) \u2212 precipitation(T\u22121h)",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "precipitation_change_3h": {
+      "group": "tendency",
+      "formula": "precipitation(T) \u2212 precipitation(T\u22123h)",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover_change_1h": {
+      "group": "tendency",
+      "formula": "cloud_cover(T) \u2212 cloud_cover(T\u22121h)",
+      "lookback_hours": 1,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover_change_3h": {
+      "group": "tendency",
+      "formula": "cloud_cover(T) \u2212 cloud_cover(T\u22123h)",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "precipitation_roll_sum_3h": {
+      "group": "rolling",
+      "formula": "sum(precipitation(T\u22123+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "precipitation_roll_sum_6h": {
+      "group": "rolling",
+      "formula": "sum(precipitation(T\u22126+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "precipitation_roll_sum_12h": {
+      "group": "rolling",
+      "formula": "sum(precipitation(T\u221212+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 12,
+      "source": "Open-Meteo"
+    },
+    "precipitation_roll_sum_24h": {
+      "group": "rolling",
+      "formula": "sum(precipitation(T\u221224+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 24,
+      "source": "Open-Meteo"
+    },
+    "humidity_roll_mean_3h": {
+      "group": "rolling",
+      "formula": "mean(relative_humidity_2m(T\u22123+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "humidity_roll_mean_6h": {
+      "group": "rolling",
+      "formula": "mean(relative_humidity_2m(T\u22126+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "pressure_roll_mean_3h": {
+      "group": "rolling",
+      "formula": "mean(surface_pressure(T\u22123+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "pressure_roll_mean_6h": {
+      "group": "rolling",
+      "formula": "mean(surface_pressure(T\u22126+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "temperature_roll_mean_3h": {
+      "group": "rolling",
+      "formula": "mean(temperature_2m(T\u22123+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "temperature_roll_mean_6h": {
+      "group": "rolling",
+      "formula": "mean(temperature_2m(T\u22126+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_roll_mean_3h": {
+      "group": "rolling",
+      "formula": "mean(wind_speed_10m(T\u22123+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "wind_speed_roll_mean_6h": {
+      "group": "rolling",
+      "formula": "mean(wind_speed_10m(T\u22126+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover_roll_mean_3h": {
+      "group": "rolling",
+      "formula": "mean(cloud_cover(T\u22123+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 3,
+      "source": "Open-Meteo"
+    },
+    "cloud_cover_roll_mean_6h": {
+      "group": "rolling",
+      "formula": "mean(cloud_cover(T\u22126+1 \u2026 T)) trailing, current hour included",
+      "lookback_hours": 6,
+      "source": "Open-Meteo"
+    },
+    "latitude": {
+      "group": "location",
+      "formula": "IEM IN__ASOS station latitude (constant per station)",
+      "lookback_hours": 0,
+      "source": "iem_station_metadata.json"
+    },
+    "longitude": {
+      "group": "location",
+      "formula": "IEM IN__ASOS station longitude (constant per station)",
+      "lookback_hours": 0,
+      "source": "iem_station_metadata.json"
+    },
+    "elevation_m": {
+      "group": "location",
+      "formula": "IEM IN__ASOS station elevation_m (constant per station)",
+      "lookback_hours": 0,
+      "source": "iem_station_metadata.json"
+    }
+  },
+  "station_coordinates": {
+    "VOTV": {
+      "latitude": 8.4667,
+      "longitude": 76.95,
+      "elevation_m": 8.0
+    },
+    "VECC": {
+      "latitude": 22.6547,
+      "longitude": 88.4467,
+      "elevation_m": 6.0
+    },
+    "VIDP": {
+      "latitude": 28.5667,
+      "longitude": 77.1167,
+      "elevation_m": 233.0
+    },
+    "VOCI": {
+      "latitude": 10.15,
+      "longitude": 76.4,
+      "elevation_m": 8.0
+    },
+    "VABB": {
+      "latitude": 19.1005,
+      "longitude": 72.8585,
+      "elevation_m": 8.0
+    }
+  },
+  "row_counts": {
+    "combined_rows": 525840,
+    "stations": {
+      "VOTV": {
+        "station_id": "VOTV",
+        "input_rows": 105192,
+        "output_rows": 105168,
+        "feature_count": 73,
+        "rows_lost_lookback": 24,
+        "first_input_timestamp_utc": "2014-01-01T00:00:00+00:00",
+        "first_valid_feature_timestamp_utc": "2014-01-02T00:00:00+00:00",
+        "last_timestamp_utc": "2025-12-31T23:00:00+00:00",
+        "lookback_check": "first valid timestamp = station start + 24h (max lag/roll window)",
+        "expected_first_valid_utc": "2014-01-02T00:00:00+00:00",
+        "missing_feature_values_total": 0,
+        "missing_features_nonzero": {},
+        "duplicate_rows": 0,
+        "duplicate_timestamps": 0,
+        "timestamps_sorted": true,
+        "contiguous_input": true,
+        "target_positives": 3694,
+        "target_negatives": 78313,
+        "target_unavailable": 23161,
+        "labels_filled_with_zero": false,
+        "causality_probe": {
+          "method": "recompute features from truncated station grid (rows <= T) vs shipped row T",
+          "rows_probed": 12,
+          "max_abs_difference": 0.0,
+          "mismatches": 0,
+          "mismatch_examples": [],
+          "verdict": "PASS"
+        },
+        "csv": "dataset/multilocation/features/votv_features_2014_2025.csv"
+      },
+      "VECC": {
+        "station_id": "VECC",
+        "input_rows": 105192,
+        "output_rows": 105168,
+        "feature_count": 73,
+        "rows_lost_lookback": 24,
+        "first_input_timestamp_utc": "2014-01-01T00:00:00+00:00",
+        "first_valid_feature_timestamp_utc": "2014-01-02T00:00:00+00:00",
+        "last_timestamp_utc": "2025-12-31T23:00:00+00:00",
+        "lookback_check": "first valid timestamp = station start + 24h (max lag/roll window)",
+        "expected_first_valid_utc": "2014-01-02T00:00:00+00:00",
+        "missing_feature_values_total": 0,
+        "missing_features_nonzero": {},
+        "duplicate_rows": 0,
+        "duplicate_timestamps": 0,
+        "timestamps_sorted": true,
+        "contiguous_input": true,
+        "target_positives": 3755,
+        "target_negatives": 100282,
+        "target_unavailable": 1131,
+        "labels_filled_with_zero": false,
+        "causality_probe": {
+          "method": "recompute features from truncated station grid (rows <= T) vs shipped row T",
+          "rows_probed": 12,
+          "max_abs_difference": 0.0,
+          "mismatches": 0,
+          "mismatch_examples": [],
+          "verdict": "PASS"
+        },
+        "csv": "dataset/multilocation/features/vecc_features_2014_2025.csv"
+      },
+      "VIDP": {
+        "station_id": "VIDP",
+        "input_rows": 105192,
+        "output_rows": 105168,
+        "feature_count": 73,
+        "rows_lost_lookback": 24,
+        "first_input_timestamp_utc": "2014-01-01T00:00:00+00:00",
+        "first_valid_feature_timestamp_utc": "2014-01-02T00:00:00+00:00",
+        "last_timestamp_utc": "2025-12-31T23:00:00+00:00",
+        "lookback_check": "first valid timestamp = station start + 24h (max lag/roll window)",
+        "expected_first_valid_utc": "2014-01-02T00:00:00+00:00",
+        "missing_feature_values_total": 0,
+        "missing_features_nonzero": {},
+        "duplicate_rows": 0,
+        "duplicate_timestamps": 0,
+        "timestamps_sorted": true,
+        "contiguous_input": true,
+        "target_positives": 2031,
+        "target_negatives": 99430,
+        "target_unavailable": 3707,
+        "labels_filled_with_zero": false,
+        "causality_probe": {
+          "method": "recompute features from truncated station grid (rows <= T) vs shipped row T",
+          "rows_probed": 12,
+          "max_abs_difference": 0.0,
+          "mismatches": 0,
+          "mismatch_examples": [],
+          "verdict": "PASS"
+        },
+        "csv": "dataset/multilocation/features/vidp_features_2014_2025.csv"
+      },
+      "VOCI": {
+        "station_id": "VOCI",
+        "input_rows": 105192,
+        "output_rows": 105168,
+        "feature_count": 73,
+        "rows_lost_lookback": 24,
+        "first_input_timestamp_utc": "2014-01-01T00:00:00+00:00",
+        "first_valid_feature_timestamp_utc": "2014-01-02T00:00:00+00:00",
+        "last_timestamp_utc": "2025-12-31T23:00:00+00:00",
+        "lookback_check": "first valid timestamp = station start + 24h (max lag/roll window)",
+        "expected_first_valid_utc": "2014-01-02T00:00:00+00:00",
+        "missing_feature_values_total": 0,
+        "missing_features_nonzero": {},
+        "duplicate_rows": 0,
+        "duplicate_timestamps": 0,
+        "timestamps_sorted": true,
+        "contiguous_input": true,
+        "target_positives": 2327,
+        "target_negatives": 90179,
+        "target_unavailable": 12662,
+        "labels_filled_with_zero": false,
+        "causality_probe": {
+          "method": "recompute features from truncated station grid (rows <= T) vs shipped row T",
+          "rows_probed": 12,
+          "max_abs_difference": 0.0,
+          "mismatches": 0,
+          "mismatch_examples": [],
+          "verdict": "PASS"
+        },
+        "csv": "dataset/multilocation/features/voci_features_2014_2025.csv"
+      },
+      "VABB": {
+        "station_id": "VABB",
+        "input_rows": 105192,
+        "output_rows": 105168,
+        "feature_count": 73,
+        "rows_lost_lookback": 24,
+        "first_input_timestamp_utc": "2014-01-01T00:00:00+00:00",
+        "first_valid_feature_timestamp_utc": "2014-01-02T00:00:00+00:00",
+        "last_timestamp_utc": "2025-12-31T23:00:00+00:00",
+        "lookback_check": "first valid timestamp = station start + 24h (max lag/roll window)",
+        "expected_first_valid_utc": "2014-01-02T00:00:00+00:00",
+        "missing_feature_values_total": 0,
+        "missing_features_nonzero": {},
+        "duplicate_rows": 0,
+        "duplicate_timestamps": 0,
+        "timestamps_sorted": true,
+        "contiguous_input": true,
+        "target_positives": 1534,
+        "target_negatives": 99100,
+        "target_unavailable": 4534,
+        "labels_filled_with_zero": false,
+        "causality_probe": {
+          "method": "recompute features from truncated station grid (rows <= T) vs shipped row T",
+          "rows_probed": 12,
+          "max_abs_difference": 0.0,
+          "mismatches": 0,
+          "mismatch_examples": [],
+          "verdict": "PASS"
+        },
+        "csv": "dataset/multilocation/features/vabb_features_2014_2025.csv"
+      }
+    }
+  },
+  "v1_comparison": {
+    "v1_feature_count": 28,
+    "v2_feature_count": 73,
+    "v1_columns_reproduced": [
+      "temperature_2m",
+      "relative_humidity_2m",
+      "surface_pressure",
+      "wind_speed_10m",
+      "precipitation",
+      "cloud_cover",
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "wind_direction_sin",
+      "wind_direction_cos",
+      "temperature_change_1h",
+      "temperature_change_3h",
+      "humidity_change_1h",
+      "humidity_change_3h",
+      "pressure_change_1h",
+      "pressure_change_3h",
+      "wind_speed_change_1h",
+      "wind_speed_change_3h",
+      "precipitation_change_1h",
+      "precipitation_change_3h",
+      "precipitation_roll_sum_3h",
+      "precipitation_roll_sum_6h",
+      "humidity_roll_mean_3h",
+      "pressure_roll_mean_3h",
+      "temperature_roll_mean_3h",
+      "wind_speed_roll_mean_3h"
+    ],
+    "v2_additions": [
+      "wind_u_10m",
+      "wind_v_10m",
+      "temperature_lag_1h",
+      "temperature_lag_3h",
+      "temperature_lag_6h",
+      "temperature_lag_12h",
+      "temperature_lag_24h",
+      "humidity_lag_1h",
+      "humidity_lag_3h",
+      "humidity_lag_6h",
+      "humidity_lag_12h",
+      "humidity_lag_24h",
+      "pressure_lag_1h",
+      "pressure_lag_3h",
+      "pressure_lag_6h",
+      "pressure_lag_12h",
+      "pressure_lag_24h",
+      "wind_speed_lag_1h",
+      "wind_speed_lag_3h",
+      "wind_speed_lag_6h",
+      "wind_speed_lag_12h",
+      "wind_speed_lag_24h",
+      "precipitation_lag_1h",
+      "precipitation_lag_3h",
+      "precipitation_lag_6h",
+      "precipitation_lag_12h",
+      "precipitation_lag_24h",
+      "cloud_cover_lag_1h",
+      "cloud_cover_lag_3h",
+      "cloud_cover_lag_6h",
+      "cloud_cover_lag_12h",
+      "cloud_cover_lag_24h",
+      "cloud_cover_change_1h",
+      "cloud_cover_change_3h",
+      "precipitation_roll_sum_12h",
+      "precipitation_roll_sum_24h",
+      "humidity_roll_mean_6h",
+      "pressure_roll_mean_6h",
+      "temperature_roll_mean_6h",
+      "wind_speed_roll_mean_6h",
+      "cloud_cover_roll_mean_3h",
+      "cloud_cover_roll_mean_6h",
+      "latitude",
+      "longitude",
+      "elevation_m"
+    ],
+    "v1_formulas_matched": {
+      "cyclic_time": "identical sin/cos hour and (month-1)/12",
+      "wind_direction": "identical sin/cos of degrees",
+      "change_1h_3h": "identical x(T)-x(T-h) for T, RH, P, wind_speed, precipitation",
+      "rolling": "identical trailing mean/sum with current hour included for V1 3h/6h set",
+      "cloud_cover_change": "V2 addition (not in V1 28)",
+      "lags": "V2 addition; V1 encoded 1h/3h via change features only",
+      "wind_uv": "V2 addition; meteorological u/v",
+      "location": "V2 addition for pooled training"
+    },
+    "note": "V1 Phase 4 dropped unsupervised hours then dropped first 6h of window; V2 keeps unavailable targets and drops first 24h per station for the longer lookback.",
+    "value_overlap_rows": 82007,
+    "value_mismatches_atol_1e-6": {},
+    "value_compare_verdict": "MATCH"
+  },
+  "problems": [],
+  "v1_protected_unchanged": true,
+  "combined_csv": "dataset/multilocation/features/multilocation_features_2014_2025.csv",
+  "combined_sha256": "5e9af9245523b7b42296891f2a11f4571edb8758dcfad0056e88ff9b48c1e9a4",
+  "station_separation": {
+    "unique_station_timestamp": true,
+    "features_computed_within_station_only": true
+  }
+}

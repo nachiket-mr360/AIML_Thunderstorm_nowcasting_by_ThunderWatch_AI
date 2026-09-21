@@ -1,0 +1,165 @@
+{
+  "phase": "13A",
+  "generated_at_utc": "2026-09-21T05:19:24.369321+00:00",
+  "passed": true,
+  "stop": false,
+  "n_checks": 31,
+  "n_failed": 0,
+  "checks": [
+    {
+      "name": "exactly_83_features",
+      "passed": true,
+      "detail": "83 unique Model B columns"
+    },
+    {
+      "name": "artifact_exists_target_1h",
+      "passed": true,
+      "detail": "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib"
+    },
+    {
+      "name": "metrics_exists_target_1h",
+      "passed": true,
+      "detail": "outputs/v2_nwp_experiment/metrics_B_atmospheric_nwp_target_1h.json"
+    },
+    {
+      "name": "artifact_exists_target_2h",
+      "passed": true,
+      "detail": "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib"
+    },
+    {
+      "name": "metrics_exists_target_2h",
+      "passed": true,
+      "detail": "outputs/v2_nwp_experiment/metrics_B_atmospheric_nwp_target_2h.json"
+    },
+    {
+      "name": "artifact_exists_target_3h",
+      "passed": true,
+      "detail": "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib"
+    },
+    {
+      "name": "metrics_exists_target_3h",
+      "passed": true,
+      "detail": "outputs/v2_nwp_experiment/metrics_B_atmospheric_nwp_target_3h.json"
+    },
+    {
+      "name": "feature_order_matches_metrics_target_1h",
+      "passed": true,
+      "detail": "exact order match"
+    },
+    {
+      "name": "metrics_n_features_target_1h",
+      "passed": true,
+      "detail": "83"
+    },
+    {
+      "name": "threshold_target_1h",
+      "passed": true,
+      "detail": "0.065"
+    },
+    {
+      "name": "horizon_label_target_1h",
+      "passed": true,
+      "detail": "target_1h"
+    },
+    {
+      "name": "joblib_n_features_in_target_1h",
+      "passed": true,
+      "detail": "83"
+    },
+    {
+      "name": "joblib_feature_names_target_1h",
+      "passed": true,
+      "detail": "feature_names_in_ absent; order taken from Phase 8D metrics feature_list"
+    },
+    {
+      "name": "feature_order_matches_metrics_target_2h",
+      "passed": true,
+      "detail": "exact order match"
+    },
+    {
+      "name": "metrics_n_features_target_2h",
+      "passed": true,
+      "detail": "83"
+    },
+    {
+      "name": "threshold_target_2h",
+      "passed": true,
+      "detail": "0.065"
+    },
+    {
+      "name": "horizon_label_target_2h",
+      "passed": true,
+      "detail": "target_2h"
+    },
+    {
+      "name": "joblib_n_features_in_target_2h",
+      "passed": true,
+      "detail": "83"
+    },
+    {
+      "name": "joblib_feature_names_target_2h",
+      "passed": true,
+      "detail": "feature_names_in_ absent; order taken from Phase 8D metrics feature_list"
+    },
+    {
+      "name": "feature_order_matches_metrics_target_3h",
+      "passed": true,
+      "detail": "exact order match"
+    },
+    {
+      "name": "metrics_n_features_target_3h",
+      "passed": true,
+      "detail": "83"
+    },
+    {
+      "name": "threshold_target_3h",
+      "passed": true,
+      "detail": "0.065"
+    },
+    {
+      "name": "horizon_label_target_3h",
+      "passed": true,
+      "detail": "target_3h"
+    },
+    {
+      "name": "joblib_n_features_in_target_3h",
+      "passed": true,
+      "detail": "83"
+    },
+    {
+      "name": "joblib_feature_names_target_3h",
+      "passed": true,
+      "detail": "feature_names_in_ absent; order taken from Phase 8D metrics feature_list"
+    },
+    {
+      "name": "no_target_or_forbidden_in_predictors",
+      "passed": true,
+      "detail": "no target/label/sat/radar/lightning/thunder_hours"
+    },
+    {
+      "name": "no_future_tplus_predictors",
+      "passed": true,
+      "detail": "no T+1/T+2/T+3 predictor columns"
+    },
+    {
+      "name": "no_annual_thunder_hours",
+      "passed": true,
+      "detail": "absent"
+    },
+    {
+      "name": "identity_station_id",
+      "passed": true,
+      "detail": "required identity, not a model feature"
+    },
+    {
+      "name": "identity_timestamp_utc",
+      "passed": true,
+      "detail": "required identity, not a model feature"
+    },
+    {
+      "name": "model_artifacts_unmodified",
+      "passed": true,
+      "detail": "sha256 unchanged"
+    }
+  ]
+}

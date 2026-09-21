@@ -1,0 +1,16 @@
+{
+  "phase_status": "READY",
+  "checks": {
+    "models_reload": true,
+    "models_not_stubs": true,
+    "chronological_split": true,
+    "same_utc_boundaries_all_horizons": true,
+    "no_future_feature_leakage": true,
+    "no_na_targets_in_training": true,
+    "thresholds_frozen_before_test": true,
+    "station_boundaries_respected": true,
+    "three_horizons_trained": true,
+    "v1_untouched": true,
+    "weather_code_not_used": true
+  }
+}
