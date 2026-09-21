@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------
 # SIH 2026 / Problem SIH26072 -- Thunderstorm Nowcast Decision Support (VOTV)
 #
-# Production image for the existing Phase 8 Flask application.
+# Production image for ThunderWatch AI V2 historical-replay Flask app.
 #
 # Deployment only: this image serves the artefact that was already trained and
 # verified. It does not train, retrain, tune, or re-threshold anything, and it
@@ -62,4 +62,4 @@ EXPOSE 10000
 #   default that a cold first request could otherwise trip.
 # --access-logfile -/--error-logfile - send the logs to stdout/stderr so the
 #   platform's log stream shows them.
-CMD ["sh", "-c", "exec gunicorn --bind 0.0.0.0:${PORT:-10000} --workers 1 --threads 4 --timeout 120 --graceful-timeout 30 --preload --forwarded-allow-ips='*' --access-logfile - --error-logfile - app:app"]
+CMD ["sh", "-c", "exec gunicorn --bind 0.0.0.0:${PORT:-10000} --workers 1 --threads 4 --timeout 180 --graceful-timeout 30 --preload --forwarded-allow-ips='*' --access-logfile - --error-logfile - app:app"]

@@ -1,0 +1,24 @@
+{
+  "phase": "9A",
+  "title": "Lightning source audit",
+  "date": "2026-09-20",
+  "audit_only": true,
+  "data_downloaded": false,
+  "accounts_created": false,
+  "v2_window": {"start": "2014-01-01", "end": "2025-12-31", "locations": ["VOTV", "VECC", "VIDP", "VOCI", "VABB"]},
+  "training_ready_count": 0,
+  "sources": [
+    {"id": "imd_lln", "observation": true, "status": "CONDITIONAL", "open_archive": false},
+    {"id": "iitm_lln_damini", "observation": true, "status": "CONDITIONAL", "open_archive": false},
+    {"id": "mosdac_insat", "observation": false, "status": "REJECT"},
+    {"id": "ndem_nrsc", "observation": false, "status": "REJECT"},
+    {"id": "nwp_lightning", "observation": false, "status": "REJECT"},
+    {"id": "trmm_lis", "observation": true, "status": "REFERENCE", "overlap": "2014-01 to 2015-04 overpass only"},
+    {"id": "iss_lis", "observation": true, "status": "REFERENCE", "overlap": "2017-03 to 2023-11 overpass only"},
+    {"id": "glm_mtg", "observation": true, "status": "REJECT", "india": false},
+    {"id": "wwlln", "observation": true, "status": "CONDITIONAL", "role": "backup"},
+    {"id": "commercial_gld360_entln", "observation": true, "status": "REJECT"},
+    {"id": "kaggle_blitzortung", "observation": false, "status": "REJECT"},
+    {"id": "metar_ts", "observation": false, "status": "REJECT", "note": "not lightning flashes"}
+  ]
+}

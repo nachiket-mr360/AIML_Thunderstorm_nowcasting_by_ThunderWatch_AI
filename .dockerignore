@@ -1,42 +1,99 @@
-# Build-context and image trimming for the deployment image.
-#
-# Everything the running application reads is kept: app.py, backend/, ml/,
-# templates/, static/, models/, outputs/, and dataset/ (which supplies the
-# Phase 4 feature module dataset/feature_engineering_phase4.py that the Phase 7
-# engine imports, plus dataset/weather_data_with_code.csv used by the legacy
-# surrogate endpoint).
-#
-# Only offline-only material is excluded.
-
-# Version control and agent state: not needed at runtime.
+# ============================================================
+# Git / local tooling
+# ============================================================
 .git
 .gitignore
+.gitattributes
 .ohmyagent
+.monkeycode
 
-# Bytecode and interpreter noise.
+# ============================================================
+# Python / local environment
+# ============================================================
 __pycache__
 **/__pycache__
 *.pyc
 *.pyo
-
-# Runtime and verifier logs.
 *.log
+.pytest_cache
+.venv
+venv
+env
+.env
+*.tmp
+*.temp
 
-# Local cache of downloaded raw observations, rebuilt only by the offline
-# Phase 3 builders.
-dataset/.cache.sqlite
+# ============================================================
+# Development / research-only directories
+# ============================================================
+tests
+docs
+ml
+backend
+frontend
 
-# Phase 2/3 raw archives (~130 MB). Read by the offline dataset builders only;
-# the Phase 7 engine fetches live atmospheric input from Open-Meteo instead and
-# never opens these files.
-dataset/raw_metar
-dataset/raw_openmeteo
+# ============================================================
+# Outputs
+# Keep ONLY the inference contract required at runtime
+# ============================================================
+outputs/*
+!outputs/v2_inference/
+outputs/v2_inference/*
+!outputs/v2_inference/phase13a/
+outputs/v2_inference/phase13a/*
+!outputs/v2_inference/phase13a/inference_contract.json
 
-# Throwaway probe scripts and the notebook from development sessions.
-dataset/_tmp_*.py
-dataset/_probe_openmeteo_net_phase3.py
-dataset/data_collection.ipynb
+# ============================================================
+# Dataset
+# Keep ONLY the validated NWP overlap CSV required by replay
+# ============================================================
+dataset/*
+!dataset/multilocation/
+dataset/multilocation/*
+!dataset/multilocation/feature_engineering_phase3.py
+!dataset/multilocation/features_nwp/
+dataset/multilocation/features_nwp/*
+!dataset/multilocation/features_nwp/multilocation_features_nwp_overlap_2021_2025.csv
 
-# Build metadata itself.
+# ============================================================
+# Models
+# Keep ONLY the three validated Model B NWP models
+# ============================================================
+models/*
+!models/v2/
+models/v2/*
+!models/v2/nwp_experiment/
+models/v2/nwp_experiment/*
+!models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib
+!models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib
+!models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib
+
+# ============================================================
+# Invalid / legacy V1 models
+# ============================================================
+models/thunderstorm_nowcast_2h.joblib
+models/thunderstorm_nowcast_3h.joblib
+
+# ============================================================
+# Docker / deployment files not required INSIDE image
+# ============================================================
 Dockerfile
 .dockerignore
+render.yaml
+
+# ============================================================
+# Unnecessary large research data
+# ============================================================
+dataset/raw_metar
+dataset/raw_openmeteo
+dataset/lightning
+dataset/multilocation/nwp_full
+dataset/multilocation/nwp_pilot
+
+# ============================================================
+# Miscellaneous development artifacts
+# ============================================================
+dataset/.cache.sqlite
+dataset/_tmp_*
+dataset/_probe_openmeteo_net_phase3.py
+dataset/data_collection.ipynb

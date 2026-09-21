@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: thunderwatch-ai
+    runtime: docker
+    healthCheckPath: /health
+    envVars:
+      - key: MAPTILER_API_KEY
+        sync: false

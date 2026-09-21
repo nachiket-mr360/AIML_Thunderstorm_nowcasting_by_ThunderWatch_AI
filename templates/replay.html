@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THUNDERWATCH AI — FANTASTIC6 · SIH26072</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='tw.css') }}">
+</head>
+<body class="tw-body intro-lock" data-default-ts="{{ default_ts }}">
+  <canvas id="wx-canvas" aria-hidden="true"></canvas>
+  <div class="clouds c1" aria-hidden="true"></div>
+  <div class="clouds c2" aria-hidden="true"></div>
+  <div class="fog-layer" aria-hidden="true"></div>
+  <div class="horizon" aria-hidden="true"></div>
+
+  <div id="landing" class="landing" role="dialog" aria-modal="true" aria-label="System initialization">
+    <button type="button" id="skip-intro" class="skip-btn">SKIP</button>
+    <div class="bolt" aria-hidden="true"></div>
+    <div class="landing-core">
+      <p class="land-team">FANTASTIC6</p>
+      <h1 class="land-product">THUNDERWATCH <span>AI</span></h1>
+      <p class="land-sub">AI-POWERED THUNDERSTORM INTELLIGENCE</p>
+      <p class="land-sih">SIH26072</p>
+      <p class="land-tag">FROM DATA TO A SAFER TOMORROW</p>
+    </div>
+    <div class="land-features">
+      <span><svg viewBox="0 0 24 24"><path d="M4 14c4-8 12-8 16 0" fill="none" stroke="currentColor"/></svg>ATMOSPHERE</span>
+      <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor"/><path d="M12 8v4l3 2" fill="none" stroke="currentColor"/></svg>AI MODELS</span>
+      <span><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z" fill="none" stroke="currentColor"/></svg>INDIA</span>
+      <span><svg viewBox="0 0 24 24"><path d="M12 21s-6-4.5-6-9a6 6 0 1 1 12 0c0 4.5-6 9-6 9z" fill="none" stroke="currentColor"/></svg>SAFER COMMUNITIES</span>
+    </div>
+    <div class="land-init">
+      <p>INITIALIZING SYSTEM…</p>
+      <div class="bar"><i id="init-bar"></i></div>
+      <ul>
+        <li data-step="0">Atmospheric Engine</li>
+        <li data-step="1">Model Engine</li>
+        <li data-step="2">Location Engine</li>
+        <li data-step="3">Data Layers</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="app" class="app" hidden>
+    <header class="hdr">
+      <div class="brand-block">
+        <span class="team-mark">FANTASTIC6</span>
+        <div>
+          <h1>THUNDERWATCH AI</h1>
+          <p class="hdr-sub">Multi-Location Thunderstorm Risk</p>
+        </div>
+      </div>
+      <div class="hdr-mid">
+        <span class="pill">SIH26072</span>
+        <span class="pill gold">HISTORICAL REPLAY</span>
+        <span class="pill cyan">V2 MODEL B</span>
+        <span class="pill live" title="Research application status, not live forecasting">SYSTEM ONLINE</span>
+      </div>
+      <div class="hdr-tools">
+        <label class="tiny" for="hist-time">T (UTC)</label>
+        <input id="hist-time" type="datetime-local" value="2023-06-15T12:00">
+        <button id="run-all" type="button">RUN 5-LOCATION REPLAY</button>
+        <select id="motion" aria-label="Animation intensity">
+          <option value="full">FULL</option>
+          <option value="reduced">REDUCED</option>
+          <option value="off">OFF</option>
+        </select>
+        <button type="button" id="replay-intro" class="ghost">REPLAY INTRO</button>
+      </div>
+    </header>
+
+    <aside class="nav" aria-label="Primary">
+      <button class="nav-item active" data-view="overview">◉ OVERVIEW</button>
+      <button class="nav-item" data-view="replay">◷ HISTORICAL REPLAY</button>
+      <button class="nav-item" data-view="live">⚡ LIVE PREDICTION <em class="build">BUILDING</em></button>
+      <button class="nav-item" data-view="locations">⌖ LOCATIONS</button>
+      <button class="nav-item" data-view="layers">▦ DATA LAYERS</button>
+      <button class="nav-item" data-view="model">▣ AI MODEL</button>
+      <button class="nav-item" data-view="status">◎ SYSTEM STATUS</button>
+      <button class="nav-item" data-view="about">◆ ABOUT</button>
+    </aside>
+
+    <main class="main">
+      <p id="dash-error" class="dash-error hidden" role="alert"></p>
+      <section class="view view-overview active" data-view="overview">
+        <div class="desk">
+          <article class="panel map-panel">
+            <div class="panel-h">
+              <h2>INDIA STATION RISK MAP</h2>
+              <p class="cap">STATION-BASED MODEL PROBABILITY · Geographic basemap · station-based model probability overlay · not radar</p>
+            </div>
+            <div class="map-wrap" id="map-wrap">
+              <div id="india-gl" class="india-gl" aria-label="India station risk map"></div>
+              <svg id="india-fallback" class="india-fallback" hidden viewBox="0 0 360 380" aria-label="Fallback geographic view">
+                <path id="fb-land" fill="#163e58" stroke="#6ad4ff" stroke-width="1.4"/>
+                <g id="fb-stations"></g>
+              </svg>
+              <div id="map-tip" class="map-tip" hidden></div>
+              <div id="map-callout" class="map-callout" hidden></div>
+              <div class="map-layers" aria-label="Map layers">
+                <p>LAYERS</p>
+                <span class="on">Geographic basemap</span>
+                <span class="on">Station locations</span>
+                <span class="on">Model probability</span>
+                <span class="off">RADAR — NOT CONNECTED</span>
+                <span class="off">SATELLITE — NOT CONNECTED</span>
+                <span class="off">LIGHTNING — NOT CONNECTED</span>
+              </div>
+              <div class="map-tools">
+                <button type="button" id="map-zoom-in" aria-label="Zoom in">+</button>
+                <button type="button" id="map-zoom-out" aria-label="Zoom out">−</button>
+                <button type="button" id="map-reset">RESET VIEW</button>
+                <button type="button" id="map-basemap" hidden>BASEMAP</button>
+              </div>
+              <p id="map-mode" class="map-mode"></p>
+            </div>
+          </article>
+
+          <div class="right-col">
+            <article class="panel hero-risk" id="hero-risk">
+              <p class="kicker">HIGHEST MODEL RISK</p>
+              <div class="hero-row">
+                <div>
+                  <h2 id="hero-loc">AWAITING REPLAY</h2>
+                  <p class="icao" id="hero-icao">—</p>
+                </div>
+                <p class="big" id="hero-pct">--</p>
+              </div>
+              <p class="lead-lab">THUNDERSTORM RISK (+1H)</p>
+              <p class="thr" id="hero-thr">Threshold: 6.5%</p>
+              <p class="state" id="hero-state">AWAITING REPLAY</p>
+              <div class="rings">
+                <div class="ring"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32"/><circle class="arc" cx="40" cy="40" r="32"/></svg><strong id="r1">--</strong><span>+1H</span></div>
+                <div class="ring"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32"/><circle class="arc" cx="40" cy="40" r="32"/></svg><strong id="r2">--</strong><span>+2H</span></div>
+                <div class="ring"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32"/><circle class="arc" cx="40" cy="40" r="32"/></svg><strong id="r3">--</strong><span>+3H</span></div>
+              </div>
+            </article>
+            <article class="panel atmo-panel">
+              <h2>ATMOSPHERIC SIGNALS</h2>
+              <div id="atmo-grid" class="atmo-grid"><p class="muted">AWAITING REPLAY</p></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="bottom-grid">
+          <article class="panel">
+            <div class="panel-h"><h2>LOCATION RISK</h2><span class="cap">ALL STATIONS</span></div>
+            <div class="table-wrap">
+            <table class="risk-table">
+              <thead><tr><th>#</th><th>Location</th><th>+1H</th><th>+2H</th><th>+3H</th><th>Status</th></tr></thead>
+              <tbody id="loc-body">
+                {% for sid, name in station_labels.items() %}
+                <tr data-sid="{{ sid }}"><td>—</td><td>{{ name }} <span class="icao">{{ sid }}</span></td><td>—</td><td>—</td><td>—</td><td>AWAITING REPLAY</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            </div>
+          </article>
+          <article class="panel">
+            <h2>MULTIMODAL INTELLIGENCE</h2>
+            <div class="mm-grid">
+              <div class="mm ok"><h3>ATMOSPHERIC OBSERVATIONS</h3><p class="st">CONNECTED</p></div>
+              <div class="mm ok"><h3>NWP</h3><p class="st">CONNECTED WHERE VALIDATED</p></div>
+              <div class="mm build" title="Integration planned. Data source validation pending."><h3>SATELLITE</h3><p class="st">BUILDING</p><p class="cap">INSAT-3DR</p></div>
+              <div class="mm build" title="Integration planned. Data source validation pending."><h3>RADAR</h3><p class="st">BUILDING</p><p class="cap">IMD radar</p></div>
+              <div class="mm build" title="Integration planned. Data source validation pending."><h3>GROUND LIGHTNING</h3><p class="st">BUILDING</p><p class="cap">Access pending</p></div>
+            </div>
+          </article>
+          <article class="panel status-panel">
+            <h2>MODEL &amp; SYSTEM</h2>
+            <dl>
+              <dt>MODEL</dt><dd>V2 MODEL B</dd>
+              <dt>LEADS</dt><dd>1h / 2h / 3h</dd>
+              <dt>THRESHOLD</dt><dd>0.065</dd>
+              <dt>MODEL TYPE</dt><dd>Random Forest</dd>
+              <dt>MODE</dt><dd>Historical Replay</dd>
+              <dt>NWP</dt><dd>Available where validated</dd>
+              <dt>SATELLITE</dt><dd class="off">Not connected</dd>
+              <dt>RADAR</dt><dd class="off">Not connected</dd>
+              <dt>LIGHTNING</dt><dd class="off">Not connected</dd>
+              <dt>STATUS</dt><dd>Research Prototype</dd>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" data-view="replay">
+        <article class="panel lab">
+          <h2>HISTORICAL REPLAY</h2>
+          <p class="banner">Research prototype. This demonstration uses historical atmospheric and NWP data. It is not a live, near-real-time, or operational forecasting system.</p>
+          <p class="cap">Quick verified scenarios</p>
+          <div class="quick">
+            {% for case in demo_cases %}
+            <button type="button" class="demo" data-ts="{{ case.timestamp_utc }}">{{ case.label }}</button>
+            {% endfor %}
+          </div>
+          <div id="scan" class="scan hidden" role="status"></div>
+          <p id="page-error" class="error hidden"></p>
+        </article>
+        <article class="panel">
+          <h2>MODEL PREDICTION vs OBSERVATION</h2>
+          <p class="cap">Historical outcomes are revealed after prediction and are not model inputs.</p>
+          <div id="verify-body"><p class="muted">AWAITING REPLAY</p></div>
+        </article>
+      </section>
+
+      <section class="view" data-view="live">
+        <article class="panel live-arch">
+          <p class="build">BUILDING</p>
+          <h2>LIVE PREDICTION ENGINE</h2>
+          <p>INTEGRATION IN PROGRESS</p>
+          <ol class="pipe">
+            <li>ATMOSPHERIC FEEDS</li><li>NWP / FORECAST INPUTS</li><li>SATELLITE</li>
+            <li>RADAR</li><li>LIGHTNING</li><li>FEATURE ENGINE</li><li>AI MODEL</li><li>1H / 2H / 3H RISK</li>
+          </ol>
+        </article>
+      </section>
+      <section class="view" data-view="locations">
+        <article class="panel"><h2>LOCATIONS</h2>
+          <ul class="loc-list">{% for sid, name in station_labels.items() %}<li><strong>{{ name }}</strong> {{ sid }}</li>{% endfor %}</ul>
+        </article>
+      </section>
+      <section class="view" data-view="layers"><article class="panel"><h2>DATA LAYERS</h2><p class="cap">Atmospheric + validated NWP. Satellite, radar, lightning: BUILDING.</p></article></section>
+      <section class="view" data-view="model"><article class="panel"><h2>AI MODEL</h2><p>V2 MODEL B · Random Forest · threshold 0.065 · Historical Replay.</p></article></section>
+      <section class="view" data-view="status"><article class="panel"><h2>SYSTEM STATUS</h2><p>Research application online. Not live forecasting.</p></article></section>
+      <section class="view" data-view="about">
+        <article class="panel about">
+          <p class="kicker">BUILT BY</p>
+          <h2>FANTASTIC6</h2>
+          <p>THUNDERWATCH AI · SIH26072</p>
+          <p class="tag">FROM DATA TO A SAFER TOMORROW</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="foot">FANTASTIC6 · SIH26072 · THUNDERWATCH AI · Research Prototype · Historical Replay Mode</footer>
+    <nav class="mob-nav" aria-label="Mobile">
+      <button data-view="overview">HOME</button>
+      <button data-view="replay">REPLAY</button>
+      <button data-view="live">LIVE</button>
+      <button data-view="about">TEAM</button>
+    </nav>
+  </div>
+
+  <div class="tech-compat" hidden>
+  {% if result %}
+    <h2>Single-station replay (compatibility)</h2>
+    <p>Replay mode {{ result.replay_mode }} · Model version {{ result.model_version }}</p>
+    {% if display.unavailable %}
+    <p>Replay unavailable — {{ display.reason }}</p>
+    {% else %}
+      {% for lead in display.leads %}
+      <p>{{ lead.title }} Risk probability {{ lead.probability_pct }}% Threshold: {{ lead.threshold_pct }} {{ lead.status }}</p>
+      {% endfor %}
+    <h3>Historical Verification</h3>
+    <p>The following observations are revealed only after the replay prediction and are not inputs to the model.</p>
+    {% endif %}
+  {% endif %}
+  {% if error %}<p>{{ error }}</p>{% endif %}
+  </div>
+
+  <script>
+    window.TW = { stations: {{ station_labels | tojson }} };
+  </script>
+  <script src="{{ url_for('static', filename='india-map.js') }}"></script>
+  <script src="{{ url_for('static', filename='geo-map.js') }}"></script>
+  <script src="{{ url_for('static', filename='tw.js') }}"></script>
+  <script defer src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+</body>
+</html>
