@@ -1,0 +1,1031 @@
+{
+  "phase": "10B-A",
+  "audit_only": true,
+  "search_only": true,
+  "authenticated": false,
+  "downloaded_granules": 0,
+  "search_endpoint": "https://mosdac.gov.in/apios/datasets.json",
+  "datasetId": "3RIMG_L2B_CMK",
+  "period": {
+    "startTime": "2016-10-11",
+    "endTime": "2025-12-31"
+  },
+  "mdapi_source": {
+    "zip": "https://www.mosdac.gov.in/software/mdapi.zip",
+    "manual": "https://mosdac.gov.in/downloadapi-manual",
+    "search_requires_login": false,
+    "download_requires_login": true
+  },
+  "search_full_period_no_bbox": {
+    "request_url": "https://mosdac.gov.in/apios/datasets.json?datasetId=3RIMG_L2B_CMK&startTime=2016-10-11&endTime=2025-12-31",
+    "status_code": 200,
+    "ok": true,
+    "response_type": "dict",
+    "top_level_keys": [
+      "author",
+      "entries",
+      "itemsPerPage",
+      "links",
+      "message",
+      "query",
+      "startIndex",
+      "title",
+      "totalResults",
+      "totalSizeMB",
+      "updated"
+    ],
+    "totalResults": 153845,
+    "totalSizeMB": 1397877,
+    "itemsPerPage": 100,
+    "startIndex": 1,
+    "n_entries_returned": 100,
+    "sample_entries": [
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905652",
+        "identifier": "3RIMG_31DEC2025_2345_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T23:45:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2345_L2B_CMK_V01R00.h5",
+          "id": "16905652",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T23:45:00Z",
+          "dcDate": "2025-12-31T23:45:00Z/2026-01-01T00:15:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905652",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905652",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905714",
+        "identifier": "3RIMG_31DEC2025_2344_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T23:44:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2344_L2B_CMK_V01R00.h5",
+          "id": "16905714",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T23:44:00Z",
+          "dcDate": "2025-12-31T23:44:00Z/2026-01-01T00:14:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905714",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905714",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905476",
+        "identifier": "3RIMG_31DEC2025_2315_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T23:15:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2315_L2B_CMK_V01R00.h5",
+          "id": "16905476",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T23:15:00Z",
+          "dcDate": "2025-12-31T23:15:00Z/2025-12-31T23:45:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905476",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905476",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905586",
+        "identifier": "3RIMG_31DEC2025_2314_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T23:14:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2314_L2B_CMK_V01R00.h5",
+          "id": "16905586",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T23:14:00Z",
+          "dcDate": "2025-12-31T23:14:00Z/2025-12-31T23:44:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905586",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905586",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905384",
+        "identifier": "3RIMG_31DEC2025_2245_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T22:45:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2245_L2B_CMK_V01R00.h5",
+          "id": "16905384",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T22:45:00Z",
+          "dcDate": "2025-12-31T22:45:00Z/2025-12-31T23:15:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905384",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905384",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905436",
+        "identifier": "3RIMG_31DEC2025_2244_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T22:44:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2244_L2B_CMK_V01R00.h5",
+          "id": "16905436",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T22:44:00Z",
+          "dcDate": "2025-12-31T22:44:00Z/2025-12-31T23:14:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905436",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905436",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905286",
+        "identifier": "3RIMG_31DEC2025_2215_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T22:15:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2215_L2B_CMK_V01R00.h5",
+          "id": "16905286",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T22:15:00Z",
+          "dcDate": "2025-12-31T22:15:00Z/2025-12-31T22:45:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905286",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905286",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905166",
+        "identifier": "3RIMG_31DEC2025_2145_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T21:45:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2145_L2B_CMK_V01R00.h5",
+          "id": "16905166",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T21:45:00Z",
+          "dcDate": "2025-12-31T21:45:00Z/2025-12-31T22:15:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905166",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905166",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      }
+    ],
+    "raw_truncated": {
+      "title": "MOSDAC Opensearch Response",
+      "updated": "2026-09-22T21:05:38Z",
+      "author": {
+        "name": "MOSDAC,SAC-ISRO,India",
+        "email": "admin@mosdac.gov.in"
+      },
+      "links": [
+        {
+          "type": "application/opensearchdescription+xml",
+          "href": "https://mosdac.gov.in/apios/osdd.xml",
+          "rel": "search"
+        },
+        {
+          "type": "application/json",
+          "href": "https://mosdac.gov.in/apios/datasets.json?datasetId=3RIMG_L2B_CMK",
+          "rel": "self"
+        },
+        {
+          "type": "application/json",
+          "href": "https://mosdac.gov.in/apios/datasets.json?datasetId=3RIMG_L2B_CMK",
+          "rel": "up"
+        }
+      ],
+      "startIndex": 1,
+      "itemsPerPage": 100,
+      "totalResults": 153845,
+      "totalSizeMB": 1397877,
+      "message": "Your search yielded following matches",
+      "query": {
+        "role": "request",
+        "name": "3RIMG_L2B_CMK"
+      },
+      "first_entry": {
+        "identifier": "3RIMG_31DEC2025_2345_L2B_CMK_V01R00.h5",
+        "id": "16905652",
+        "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+        "updated": "2025-12-31T23:45:00Z",
+        "dcDate": "2025-12-31T23:45:00Z/2026-01-01T00:15:00Z",
+        "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905652",
+        "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905652",
+        "boundbox": [
+          {
+            "west": "-7.15",
+            "south": "-81.04",
+            "east": "155.15",
+            "north": "81.04"
+          }
+        ]
+      },
+      "last_entry_in_page": {
+        "identifier": "3RIMG_30DEC2025_0115_L2B_CMK_V01R00.h5",
+        "id": "16894614",
+        "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+        "updated": "2025-12-30T01:15:00Z",
+        "dcDate": "2025-12-30T01:15:00Z/2025-12-30T01:45:00Z",
+        "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16894614",
+        "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16894614",
+        "boundbox": [
+          {
+            "west": "-7.15",
+            "south": "-81.04",
+            "east": "155.15",
+            "north": "81.04"
+          }
+        ]
+      }
+    }
+  },
+  "search_one_day_2024_01_01": {
+    "request_url": "https://mosdac.gov.in/apios/datasets.json?datasetId=3RIMG_L2B_CMK&startTime=2024-01-01&endTime=2024-01-01",
+    "status_code": 200,
+    "ok": true,
+    "response_type": "dict",
+    "top_level_keys": [
+      "author",
+      "entries",
+      "itemsPerPage",
+      "links",
+      "message",
+      "query",
+      "startIndex",
+      "title",
+      "totalResults",
+      "totalSizeMB",
+      "updated"
+    ],
+    "totalResults": 44,
+    "totalSizeMB": 403,
+    "itemsPerPage": 100,
+    "startIndex": 1,
+    "n_entries_returned": 44,
+    "sample_entries": [
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "12888092",
+        "identifier": "3RIMG_01JAN2024_2345_L2B_CMK_V01R00.h5",
+        "updated": "2024-01-01T23:45:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_01JAN2024_2345_L2B_CMK_V01R00.h5",
+          "id": "12888092",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2024-01-01T23:45:00Z",
+          "dcDate": "2024-01-01T23:45:00Z/2024-01-02T00:15:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12888092",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12888092",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "12888008",
+        "identifier": "3RIMG_01JAN2024_2315_L2B_CMK_V01R00.h5",
+        "updated": "2024-01-01T23:15:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_01JAN2024_2315_L2B_CMK_V01R00.h5",
+          "id": "12888008",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2024-01-01T23:15:00Z",
+          "dcDate": "2024-01-01T23:15:00Z/2024-01-01T23:45:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12888008",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12888008",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "12887904",
+        "identifier": "3RIMG_01JAN2024_2245_L2B_CMK_V01R00.h5",
+        "updated": "2024-01-01T22:45:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_01JAN2024_2245_L2B_CMK_V01R00.h5",
+          "id": "12887904",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2024-01-01T22:45:00Z",
+          "dcDate": "2024-01-01T22:45:00Z/2024-01-01T23:15:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12887904",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12887904",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "12887796",
+        "identifier": "3RIMG_01JAN2024_2215_L2B_CMK_V01R00.h5",
+        "updated": "2024-01-01T22:15:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_01JAN2024_2215_L2B_CMK_V01R00.h5",
+          "id": "12887796",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2024-01-01T22:15:00Z",
+          "dcDate": "2024-01-01T22:15:00Z/2024-01-01T22:45:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12887796",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12887796",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "12887710",
+        "identifier": "3RIMG_01JAN2024_2145_L2B_CMK_V01R00.h5",
+        "updated": "2024-01-01T21:45:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_01JAN2024_2145_L2B_CMK_V01R00.h5",
+          "id": "12887710",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2024-01-01T21:45:00Z",
+          "dcDate": "2024-01-01T21:45:00Z/2024-01-01T22:15:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12887710",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12887710",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "12887612",
+        "identifier": "3RIMG_01JAN2024_2115_L2B_CMK_V01R00.h5",
+        "updated": "2024-01-01T21:15:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_01JAN2024_2115_L2B_CMK_V01R00.h5",
+          "id": "12887612",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2024-01-01T21:15:00Z",
+          "dcDate": "2024-01-01T21:15:00Z/2024-01-01T21:45:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12887612",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12887612",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "12887542",
+        "identifier": "3RIMG_01JAN2024_2045_L2B_CMK_V01R00.h5",
+        "updated": "2024-01-01T20:45:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_01JAN2024_2045_L2B_CMK_V01R00.h5",
+          "id": "12887542",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2024-01-01T20:45:00Z",
+          "dcDate": "2024-01-01T20:45:00Z/2024-01-01T21:15:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12887542",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12887542",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "12887442",
+        "identifier": "3RIMG_01JAN2024_2015_L2B_CMK_V01R00.h5",
+        "updated": "2024-01-01T20:15:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_01JAN2024_2015_L2B_CMK_V01R00.h5",
+          "id": "12887442",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2024-01-01T20:15:00Z",
+          "dcDate": "2024-01-01T20:15:00Z/2024-01-01T20:45:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12887442",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12887442",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      }
+    ],
+    "raw_truncated": {
+      "title": "MOSDAC Opensearch Response",
+      "updated": "2026-09-22T21:06:27Z",
+      "author": {
+        "name": "MOSDAC,SAC-ISRO,India",
+        "email": "admin@mosdac.gov.in"
+      },
+      "links": [
+        {
+          "type": "application/opensearchdescription+xml",
+          "href": "https://mosdac.gov.in/apios/osdd.xml",
+          "rel": "search"
+        },
+        {
+          "type": "application/json",
+          "href": "https://mosdac.gov.in/apios/datasets.json?datasetId=3RIMG_L2B_CMK",
+          "rel": "self"
+        },
+        {
+          "type": "application/json",
+          "href": "https://mosdac.gov.in/apios/datasets.json?datasetId=3RIMG_L2B_CMK",
+          "rel": "up"
+        }
+      ],
+      "startIndex": 1,
+      "itemsPerPage": 100,
+      "totalResults": 44,
+      "totalSizeMB": 403,
+      "message": "Your search yielded following matches",
+      "query": {
+        "role": "request",
+        "name": "3RIMG_L2B_CMK"
+      },
+      "first_entry": {
+        "identifier": "3RIMG_01JAN2024_2345_L2B_CMK_V01R00.h5",
+        "id": "12888092",
+        "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+        "updated": "2024-01-01T23:45:00Z",
+        "dcDate": "2024-01-01T23:45:00Z/2024-01-02T00:15:00Z",
+        "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12888092",
+        "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12888092",
+        "boundbox": [
+          {
+            "west": "-7.15",
+            "south": "-81.04",
+            "east": "155.15",
+            "north": "81.04"
+          }
+        ]
+      },
+      "last_entry_in_page": {
+        "identifier": "3RIMG_01JAN2024_0015_L2B_CMK_V01R00.h5",
+        "id": "12883164",
+        "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+        "updated": "2024-01-01T00:15:00Z",
+        "dcDate": "2024-01-01T00:15:00Z/2024-01-01T00:45:00Z",
+        "enclosureLink": "https://mosdac.gov.in/uops/?metaid=12883164",
+        "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=12883164",
+        "boundbox": [
+          {
+            "west": "-7.15",
+            "south": "-81.04",
+            "east": "155.15",
+            "north": "81.04"
+          }
+        ]
+      }
+    }
+  },
+  "search_bbox_india_count5": {
+    "request_url": "https://mosdac.gov.in/apios/datasets.json?datasetId=3RIMG_L2B_CMK&startTime=2016-10-11&endTime=2025-12-31&boundingBox=68.0%2C6.0%2C98.0%2C37.0&count=5",
+    "status_code": 200,
+    "ok": true,
+    "response_type": "dict",
+    "top_level_keys": [
+      "author",
+      "entries",
+      "itemsPerPage",
+      "links",
+      "message",
+      "query",
+      "startIndex",
+      "title",
+      "totalResults",
+      "totalSizeMB",
+      "updated"
+    ],
+    "totalResults": 153845,
+    "totalSizeMB": 1397877,
+    "itemsPerPage": 5,
+    "startIndex": 1,
+    "n_entries_returned": 5,
+    "sample_entries": [
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905652",
+        "identifier": "3RIMG_31DEC2025_2345_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T23:45:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2345_L2B_CMK_V01R00.h5",
+          "id": "16905652",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T23:45:00Z",
+          "dcDate": "2025-12-31T23:45:00Z/2026-01-01T00:15:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905652",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905652",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905714",
+        "identifier": "3RIMG_31DEC2025_2344_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T23:44:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2344_L2B_CMK_V01R00.h5",
+          "id": "16905714",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T23:44:00Z",
+          "dcDate": "2025-12-31T23:44:00Z/2026-01-01T00:14:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905714",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905714",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905476",
+        "identifier": "3RIMG_31DEC2025_2315_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T23:15:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2315_L2B_CMK_V01R00.h5",
+          "id": "16905476",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T23:15:00Z",
+          "dcDate": "2025-12-31T23:15:00Z/2025-12-31T23:45:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905476",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905476",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905586",
+        "identifier": "3RIMG_31DEC2025_2314_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T23:14:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2314_L2B_CMK_V01R00.h5",
+          "id": "16905586",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T23:14:00Z",
+          "dcDate": "2025-12-31T23:14:00Z/2025-12-31T23:44:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905586",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905586",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      },
+      {
+        "keys": [
+          "boundbox",
+          "dcDate",
+          "enclosureLink",
+          "id",
+          "identifier",
+          "searchLink",
+          "summary",
+          "updated"
+        ],
+        "id": "16905384",
+        "identifier": "3RIMG_31DEC2025_2245_L2B_CMK_V01R00.h5",
+        "updated": "2025-12-31T22:45:00Z",
+        "size": null,
+        "preview": {
+          "identifier": "3RIMG_31DEC2025_2245_L2B_CMK_V01R00.h5",
+          "id": "16905384",
+          "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+          "updated": "2025-12-31T22:45:00Z",
+          "dcDate": "2025-12-31T22:45:00Z/2025-12-31T23:15:00Z",
+          "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905384",
+          "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905384",
+          "boundbox": [
+            {
+              "west": "-7.15",
+              "south": "-81.04",
+              "east": "155.15",
+              "north": "81.04"
+            }
+          ]
+        }
+      }
+    ],
+    "raw_truncated": {
+      "title": "MOSDAC Opensearch Response",
+      "updated": "2026-09-22T21:06:04Z",
+      "author": {
+        "name": "MOSDAC,SAC-ISRO,India",
+        "email": "admin@mosdac.gov.in"
+      },
+      "links": [
+        {
+          "type": "application/opensearchdescription+xml",
+          "href": "https://mosdac.gov.in/apios/osdd.xml",
+          "rel": "search"
+        },
+        {
+          "type": "application/json",
+          "href": "https://mosdac.gov.in/apios/datasets.json?datasetId=3RIMG_L2B_CMK",
+          "rel": "self"
+        },
+        {
+          "type": "application/json",
+          "href": "https://mosdac.gov.in/apios/datasets.json?datasetId=3RIMG_L2B_CMK",
+          "rel": "up"
+        }
+      ],
+      "startIndex": 1,
+      "itemsPerPage": 5,
+      "totalResults": 153845,
+      "totalSizeMB": 1397877,
+      "message": "Your search yielded following matches",
+      "query": {
+        "role": "request",
+        "name": "3RIMG_L2B_CMK"
+      },
+      "first_entry": {
+        "identifier": "3RIMG_31DEC2025_2345_L2B_CMK_V01R00.h5",
+        "id": "16905652",
+        "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+        "updated": "2025-12-31T23:45:00Z",
+        "dcDate": "2025-12-31T23:45:00Z/2026-01-01T00:15:00Z",
+        "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905652",
+        "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905652",
+        "boundbox": [
+          {
+            "west": "-7.15",
+            "south": "-81.04",
+            "east": "155.15",
+            "north": "81.04"
+          }
+        ]
+      },
+      "last_entry_in_page": {
+        "identifier": "3RIMG_31DEC2025_2245_L2B_CMK_V01R00.h5",
+        "id": "16905384",
+        "summary": "INSAT-3DR VHRR measures radiances in one visible and one SWIR band at 1 km spatial resolution, one MIR and two TIR bands at 4 km resolution, and one WV band at 8 km resolution. Radiances from 3 IR spectral bands TIR-1 , TIR-2 and MIR which are of same resolution of 4km are used in the INSAT cloud mask algorithm to estimate whether a given view of the earth surface is unobstructed by clouds",
+        "updated": "2025-12-31T22:45:00Z",
+        "dcDate": "2025-12-31T22:45:00Z/2025-12-31T23:15:00Z",
+        "enclosureLink": "https://mosdac.gov.in/uops/?metaid=16905384",
+        "searchLink": "https://mosdac.gov.in/apios/datasets.json?gId=16905384",
+        "boundbox": [
+          {
+            "west": "-7.15",
+            "south": "-81.04",
+            "east": "155.15",
+            "north": "81.04"
+          }
+        ]
+      }
+    }
+  },
+  "answers": {
+    "A_n_files_2016_10_11_to_2025_12_31": 153845,
+    "B_total_volume": {
+      "totalSizeMB": 1397877,
+      "source": "API field totalSizeMB on unpaginated search (mdapi uses this as archive total, not page sum)"
+    },
+    "C_complete_archive_practically_reasonable": {
+      "total_files_api": 153845,
+      "total_size_mb_api": 1397877,
+      "total_size_gb_api": 1365.1142578125,
+      "mosdac_daily_download_quota_files": 5000,
+      "calendar_days_at_quota_if_all_files_wanted": 30.769,
+      "complete_archive_practically_reasonable": false,
+      "note": "Quota 5000 files/day is from the official mdapi manual. Complete-archive reasonableness uses API totals, not estimates."
+    },
+    "D_historical_station_features": "Not yet. Totals show the product exists in the catalog for the window, but building five-station hourly features still requires authenticated download, timestamp join, and NOT_OBSERVED for missing scans. Search \u2260 local archive.",
+    "E_next": "Do not pull the complete archive in one shot. Next: selected periods / case-study sampling after MOSDAC login, or stop satellite training until institutional download capacity exists. Daily quota is 5000 files."
+  },
+  "limitations": [
+    "Search result page is limited (mdapi count max 100; itemsPerPage is the page).",
+    "This audit did not paginate startIndex beyond the first page.",
+    "Did not download any CMK HDF files.",
+    "Did not use MOSDAC credentials."
+  ],
+  "timestamp_utc": "2026-09-22T15:36:26.032002+00:00",
+  "cadence_estimate_not_from_api": {
+    "label": "ESTIMATE_ONLY not used as availability",
+    "if_half_hourly_every_day_2017_2025": "not computed as fact"
+  },
+  "one_day_totalResults": 44,
+  "first_day_2016_10_11_totalResults": 35,
+  "temporal_span_from_search": {
+    "earliest_observed_on_start_day_utc": "2016-10-11T00:45:00Z",
+    "latest_observed_on_end_window_utc": "2025-12-31T23:45:00Z",
+    "note": "Start-day and first-page (newest) searches only; not a full 153845-record walk."
+  },
+  "classification": "CATALOG_SEARCH_OK / DOWNLOAD_NOT_PERFORMED"
+}

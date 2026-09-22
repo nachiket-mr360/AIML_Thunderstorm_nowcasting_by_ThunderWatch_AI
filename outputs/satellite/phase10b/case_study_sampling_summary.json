@@ -1,0 +1,55 @@
+{
+  "phase": "10B-B",
+  "search_only": true,
+  "downloaded_granules": 0,
+  "label_source": "dataset/multilocation/targets/*_nowcast_targets_2014_2025.csv",
+  "positive_hours_2016_10_11_2025_12_31": {
+    "VOTV": 2904,
+    "VECC": 2867,
+    "VIDP": 1561,
+    "VOCI": 1935,
+    "VABB": 1315
+  },
+  "episodes_all": {
+    "VOTV": 907,
+    "VECC": 974,
+    "VIDP": 595,
+    "VOCI": 797,
+    "VABB": 382
+  },
+  "n_thunderstorm_episodes_selected": 25,
+  "n_controls_selected": 22,
+  "distribution_episodes_by_station": {
+    "VABB": 5,
+    "VECC": 5,
+    "VIDP": 5,
+    "VOCI": 5,
+    "VOTV": 5
+  },
+  "unique_cmk_files_to_download_later": 1357,
+  "expected_15_45_slots_across_windows": 1514,
+  "missing_expected_scans_rows": 345,
+  "estimated_storage_mb": 12330.066553999155,
+  "estimated_storage_gb": 12.0410806191398,
+  "storage_estimate_basis": "Phase 10B-A mean file size totalSizeMB/totalResults; labeled estimate",
+  "sample_practical_to_download": false,
+  "temporal_alignment": {
+    "status": "PROPOSED / PENDING PILOT VALIDATION",
+    "rule": "Let T be the atmospheric/model timestamp (hourly, UTC). A CMK granule may be associated with T only if its filename UTC (DDMMMYYYY_HHMM) falls in [T, T+1h). Do not use acquisition end as T. If later HDF attributes give Acquisition_Start/End, require the acquisition interval to overlap [T, T+1h) and still record start, end, and filename time separately. Never copy one granule into other hours. Hours with no overlapping granule are NOT_OBSERVED.",
+    "rationale": "Phase 10A pilot 0015 file acquired 00:15:19\u201300:42:13 UTC; filename slot is scan start, not an instant. Alignment needs HDF-level validation on a downloaded case before freezing the contract."
+  },
+  "extraction_contract_future": {
+    "cloud_mask_at_station": "nearest valid CMK pixel (Phase 10A)",
+    "nearby_cloud_fraction": "valid pixels within radius; Cloudy+Probably_Cloudy / valid",
+    "clear_cloudy_indicator": "map flags 0/2 vs 1/3; do not hide Probably_*",
+    "missing": "NOT_OBSERVED never 0",
+    "not_computed_this_phase": true
+  },
+  "unresolved_before_extraction": [
+    "No historical HDF files downloaded.",
+    "Acquisition interval vs filename slot not validated on case-study files.",
+    "MOSDAC login required to download.",
+    "Duplicate near-slots (e.g. 2344 vs 2345) need a keep-one rule after inspection."
+  ],
+  "classification": "CASE_STUDY_SAMPLE_DESIGNED / DOWNLOAD_NOT_PERFORMED"
+}

@@ -1,0 +1,570 @@
+{
+  "task": "10B-B.2 fetch 3 missing catalog days",
+  "mosdac_queried": true,
+  "internet_used": true,
+  "source_csv": "outputs/satellite/phase10b/local_case_candidates.csv",
+  "window_rule": "event_start_utc - 2h through event_end_utc + 2h, unique UTC calendar dates",
+  "n_candidate_rows": 38,
+  "total_unique_dates_required": 65,
+  "unique_dates_required": [
+    "2017-05-04",
+    "2017-05-12",
+    "2017-05-13",
+    "2017-05-18",
+    "2017-06-02",
+    "2017-06-03",
+    "2017-06-05",
+    "2017-06-06",
+    "2017-06-19",
+    "2017-06-20",
+    "2017-11-02",
+    "2017-11-23",
+    "2018-04-13",
+    "2018-04-14",
+    "2018-07-30",
+    "2018-07-31",
+    "2018-08-13",
+    "2018-08-14",
+    "2019-05-24",
+    "2019-07-25",
+    "2019-08-08",
+    "2019-09-10",
+    "2019-09-11",
+    "2019-09-24",
+    "2019-09-25",
+    "2020-07-29",
+    "2020-07-30",
+    "2020-08-12",
+    "2020-08-13",
+    "2021-05-13",
+    "2021-05-27",
+    "2021-06-08",
+    "2021-06-09",
+    "2021-06-22",
+    "2021-06-23",
+    "2021-08-27",
+    "2021-08-28",
+    "2021-09-10",
+    "2021-09-11",
+    "2021-09-19",
+    "2021-09-20",
+    "2021-10-10",
+    "2021-10-11",
+    "2021-12-24",
+    "2021-12-25",
+    "2022-01-07",
+    "2022-01-08",
+    "2023-10-20",
+    "2023-11-03",
+    "2024-04-22",
+    "2024-04-23",
+    "2024-05-06",
+    "2024-05-07",
+    "2024-05-27",
+    "2024-05-28",
+    "2024-06-10",
+    "2024-06-11",
+    "2024-12-26",
+    "2024-12-27",
+    "2025-01-09",
+    "2025-01-10",
+    "2025-05-31",
+    "2025-06-01",
+    "2025-06-14",
+    "2025-06-15"
+  ],
+  "n_cache_json_files": 74,
+  "n_required_dates_already_cached": 65,
+  "dates_already_cached": [
+    "2017-05-04",
+    "2017-05-12",
+    "2017-05-13",
+    "2017-05-18",
+    "2017-06-02",
+    "2017-06-03",
+    "2017-06-05",
+    "2017-06-06",
+    "2017-06-19",
+    "2017-06-20",
+    "2017-11-02",
+    "2017-11-23",
+    "2018-04-13",
+    "2018-04-14",
+    "2018-07-30",
+    "2018-07-31",
+    "2018-08-13",
+    "2018-08-14",
+    "2019-05-24",
+    "2019-07-25",
+    "2019-08-08",
+    "2019-09-10",
+    "2019-09-11",
+    "2019-09-24",
+    "2019-09-25",
+    "2020-07-29",
+    "2020-07-30",
+    "2020-08-12",
+    "2020-08-13",
+    "2021-05-13",
+    "2021-05-27",
+    "2021-06-08",
+    "2021-06-09",
+    "2021-06-22",
+    "2021-06-23",
+    "2021-08-27",
+    "2021-08-28",
+    "2021-09-10",
+    "2021-09-11",
+    "2021-09-19",
+    "2021-09-20",
+    "2021-10-10",
+    "2021-10-11",
+    "2021-12-24",
+    "2021-12-25",
+    "2022-01-07",
+    "2022-01-08",
+    "2023-10-20",
+    "2023-11-03",
+    "2024-04-22",
+    "2024-04-23",
+    "2024-05-06",
+    "2024-05-07",
+    "2024-05-27",
+    "2024-05-28",
+    "2024-06-10",
+    "2024-06-11",
+    "2024-12-26",
+    "2024-12-27",
+    "2025-01-09",
+    "2025-01-10",
+    "2025-05-31",
+    "2025-06-01",
+    "2025-06-14",
+    "2025-06-15"
+  ],
+  "n_required_dates_still_missing": 0,
+  "dates_still_missing": [],
+  "mosdac_api_requests_that_would_be_required": 0,
+  "note": "One search request per missing calendar date if MOSDAC is queried later with startTime=endTime=that date. Cached dates need no new request. Extra cache files from prior interrupted work are not counted as required.",
+  "n_cache_files_not_in_required_set": 12,
+  "cache_files_not_in_required_set": [
+    "2018-09-14",
+    "2018-09-28",
+    "2023-09-22",
+    "2023-09-23",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-26",
+    "2023-10-27",
+    "2023-11-09",
+    "2023-11-10",
+    "2024-09-30",
+    "2024-10-14"
+  ],
+  "per_event_windows": [
+    {
+      "event_id": "VOTV_TS_01_20180413T06",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2018-04-13T04:00:00+00:00",
+      "window_end_utc": "2018-04-14T00:00:00+00:00",
+      "calendar_dates": [
+        "2018-04-13",
+        "2018-04-14"
+      ]
+    },
+    {
+      "event_id": "VOTV_TS_02_20180730T19",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2018-07-30T17:00:00+00:00",
+      "window_end_utc": "2018-07-31T12:00:00+00:00",
+      "calendar_dates": [
+        "2018-07-30",
+        "2018-07-31"
+      ]
+    },
+    {
+      "event_id": "VOTV_CTL_02_20180730T19",
+      "case_type": "control",
+      "window_start_utc": "2018-08-13T17:00:00+00:00",
+      "window_end_utc": "2018-08-14T12:00:00+00:00",
+      "calendar_dates": [
+        "2018-08-13",
+        "2018-08-14"
+      ]
+    },
+    {
+      "event_id": "VOTV_TS_03_20170518T08",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2017-05-18T06:00:00+00:00",
+      "window_end_utc": "2017-05-18T23:00:00+00:00",
+      "calendar_dates": [
+        "2017-05-18"
+      ]
+    },
+    {
+      "event_id": "VOTV_CTL_03_20170518T08",
+      "case_type": "control",
+      "window_start_utc": "2017-05-04T06:00:00+00:00",
+      "window_end_utc": "2017-05-04T23:00:00+00:00",
+      "calendar_dates": [
+        "2017-05-04"
+      ]
+    },
+    {
+      "event_id": "VOTV_TS_04_20190524T09",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2019-05-24T07:00:00+00:00",
+      "window_end_utc": "2019-05-24T23:00:00+00:00",
+      "calendar_dates": [
+        "2019-05-24"
+      ]
+    },
+    {
+      "event_id": "VECC_TS_01_20170619T10",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2017-06-19T08:00:00+00:00",
+      "window_end_utc": "2017-06-20T03:00:00+00:00",
+      "calendar_dates": [
+        "2017-06-19",
+        "2017-06-20"
+      ]
+    },
+    {
+      "event_id": "VECC_CTL_01_20170619T10",
+      "case_type": "control",
+      "window_start_utc": "2017-06-05T08:00:00+00:00",
+      "window_end_utc": "2017-06-06T03:00:00+00:00",
+      "calendar_dates": [
+        "2017-06-05",
+        "2017-06-06"
+      ]
+    },
+    {
+      "event_id": "VECC_TS_02_20210919T18",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2021-09-19T16:00:00+00:00",
+      "window_end_utc": "2021-09-20T10:00:00+00:00",
+      "calendar_dates": [
+        "2021-09-19",
+        "2021-09-20"
+      ]
+    },
+    {
+      "event_id": "VECC_CTL_02_20210919T18",
+      "case_type": "control",
+      "window_start_utc": "2021-10-10T16:00:00+00:00",
+      "window_end_utc": "2021-10-11T10:00:00+00:00",
+      "calendar_dates": [
+        "2021-10-10",
+        "2021-10-11"
+      ]
+    },
+    {
+      "event_id": "VECC_TS_03_20210527T03",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2021-05-27T01:00:00+00:00",
+      "window_end_utc": "2021-05-27T18:00:00+00:00",
+      "calendar_dates": [
+        "2021-05-27"
+      ]
+    },
+    {
+      "event_id": "VECC_CTL_03_20210527T03",
+      "case_type": "control",
+      "window_start_utc": "2021-05-13T01:00:00+00:00",
+      "window_end_utc": "2021-05-13T18:00:00+00:00",
+      "calendar_dates": [
+        "2021-05-13"
+      ]
+    },
+    {
+      "event_id": "VECC_TS_04_20240506T13",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2024-05-06T11:00:00+00:00",
+      "window_end_utc": "2024-05-07T03:00:00+00:00",
+      "calendar_dates": [
+        "2024-05-06",
+        "2024-05-07"
+      ]
+    },
+    {
+      "event_id": "VECC_CTL_04_20240506T13",
+      "case_type": "control",
+      "window_start_utc": "2024-04-22T11:00:00+00:00",
+      "window_end_utc": "2024-04-23T03:00:00+00:00",
+      "calendar_dates": [
+        "2024-04-22",
+        "2024-04-23"
+      ]
+    },
+    {
+      "event_id": "VIDP_TS_01_20210910T23",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2021-09-10T21:00:00+00:00",
+      "window_end_utc": "2021-09-11T14:00:00+00:00",
+      "calendar_dates": [
+        "2021-09-10",
+        "2021-09-11"
+      ]
+    },
+    {
+      "event_id": "VIDP_CTL_01_20210910T23",
+      "case_type": "control",
+      "window_start_utc": "2021-08-27T21:00:00+00:00",
+      "window_end_utc": "2021-08-28T14:00:00+00:00",
+      "calendar_dates": [
+        "2021-08-27",
+        "2021-08-28"
+      ]
+    },
+    {
+      "event_id": "VIDP_TS_02_20241227T01",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2024-12-26T23:00:00+00:00",
+      "window_end_utc": "2024-12-27T17:00:00+00:00",
+      "calendar_dates": [
+        "2024-12-26",
+        "2024-12-27"
+      ]
+    },
+    {
+      "event_id": "VIDP_CTL_02_20241227T01",
+      "case_type": "control",
+      "window_start_utc": "2025-01-09T23:00:00+00:00",
+      "window_end_utc": "2025-01-10T17:00:00+00:00",
+      "calendar_dates": [
+        "2025-01-09",
+        "2025-01-10"
+      ]
+    },
+    {
+      "event_id": "VIDP_TS_03_20220107T19",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2022-01-07T17:00:00+00:00",
+      "window_end_utc": "2022-01-08T09:00:00+00:00",
+      "calendar_dates": [
+        "2022-01-07",
+        "2022-01-08"
+      ]
+    },
+    {
+      "event_id": "VIDP_CTL_03_20220107T19",
+      "case_type": "control",
+      "window_start_utc": "2021-12-24T17:00:00+00:00",
+      "window_end_utc": "2021-12-25T09:00:00+00:00",
+      "calendar_dates": [
+        "2021-12-24",
+        "2021-12-25"
+      ]
+    },
+    {
+      "event_id": "VIDP_TS_04_20200812T15",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2020-08-12T13:00:00+00:00",
+      "window_end_utc": "2020-08-13T02:00:00+00:00",
+      "calendar_dates": [
+        "2020-08-12",
+        "2020-08-13"
+      ]
+    },
+    {
+      "event_id": "VIDP_CTL_04_20200812T15",
+      "case_type": "control",
+      "window_start_utc": "2020-07-29T13:00:00+00:00",
+      "window_end_utc": "2020-07-30T02:00:00+00:00",
+      "calendar_dates": [
+        "2020-07-29",
+        "2020-07-30"
+      ]
+    },
+    {
+      "event_id": "VOCI_TS_01_20170512T11",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2017-05-12T09:00:00+00:00",
+      "window_end_utc": "2017-05-13T03:00:00+00:00",
+      "calendar_dates": [
+        "2017-05-12",
+        "2017-05-13"
+      ]
+    },
+    {
+      "event_id": "VOCI_CTL_01_20170512T11",
+      "case_type": "control",
+      "window_start_utc": "2017-06-02T09:00:00+00:00",
+      "window_end_utc": "2017-06-03T03:00:00+00:00",
+      "calendar_dates": [
+        "2017-06-02",
+        "2017-06-03"
+      ]
+    },
+    {
+      "event_id": "VOCI_TS_02_20231103T08",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2023-11-03T06:00:00+00:00",
+      "window_end_utc": "2023-11-03T23:00:00+00:00",
+      "calendar_dates": [
+        "2023-11-03"
+      ]
+    },
+    {
+      "event_id": "VOCI_CTL_02_20231103T08",
+      "case_type": "control",
+      "window_start_utc": "2023-10-20T06:00:00+00:00",
+      "window_end_utc": "2023-10-20T23:00:00+00:00",
+      "calendar_dates": [
+        "2023-10-20"
+      ]
+    },
+    {
+      "event_id": "VOCI_TS_03_20190808T03",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2019-08-08T01:00:00+00:00",
+      "window_end_utc": "2019-08-08T15:00:00+00:00",
+      "calendar_dates": [
+        "2019-08-08"
+      ]
+    },
+    {
+      "event_id": "VOCI_CTL_03_20190808T03",
+      "case_type": "control",
+      "window_start_utc": "2019-07-25T01:00:00+00:00",
+      "window_end_utc": "2019-07-25T15:00:00+00:00",
+      "calendar_dates": [
+        "2019-07-25"
+      ]
+    },
+    {
+      "event_id": "VOCI_TS_04_20171102T11",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2017-11-02T09:00:00+00:00",
+      "window_end_utc": "2017-11-02T20:00:00+00:00",
+      "calendar_dates": [
+        "2017-11-02"
+      ]
+    },
+    {
+      "event_id": "VOCI_CTL_04_20171102T11",
+      "case_type": "control",
+      "window_start_utc": "2017-11-23T09:00:00+00:00",
+      "window_end_utc": "2017-11-23T20:00:00+00:00",
+      "calendar_dates": [
+        "2017-11-23"
+      ]
+    },
+    {
+      "event_id": "VABB_TS_01_20190924T13",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2019-09-24T11:00:00+00:00",
+      "window_end_utc": "2019-09-25T04:00:00+00:00",
+      "calendar_dates": [
+        "2019-09-24",
+        "2019-09-25"
+      ]
+    },
+    {
+      "event_id": "VABB_CTL_01_20190924T13",
+      "case_type": "control",
+      "window_start_utc": "2019-09-10T11:00:00+00:00",
+      "window_end_utc": "2019-09-11T04:00:00+00:00",
+      "calendar_dates": [
+        "2019-09-10",
+        "2019-09-11"
+      ]
+    },
+    {
+      "event_id": "VABB_TS_02_20210608T22",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2021-06-08T20:00:00+00:00",
+      "window_end_utc": "2021-06-09T12:00:00+00:00",
+      "calendar_dates": [
+        "2021-06-08",
+        "2021-06-09"
+      ]
+    },
+    {
+      "event_id": "VABB_CTL_02_20210608T22",
+      "case_type": "control",
+      "window_start_utc": "2021-06-22T20:00:00+00:00",
+      "window_end_utc": "2021-06-23T12:00:00+00:00",
+      "calendar_dates": [
+        "2021-06-22",
+        "2021-06-23"
+      ]
+    },
+    {
+      "event_id": "VABB_TS_03_20250614T14",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2025-06-14T12:00:00+00:00",
+      "window_end_utc": "2025-06-15T03:00:00+00:00",
+      "calendar_dates": [
+        "2025-06-14",
+        "2025-06-15"
+      ]
+    },
+    {
+      "event_id": "VABB_CTL_03_20250614T14",
+      "case_type": "control",
+      "window_start_utc": "2025-05-31T12:00:00+00:00",
+      "window_end_utc": "2025-06-01T03:00:00+00:00",
+      "calendar_dates": [
+        "2025-05-31",
+        "2025-06-01"
+      ]
+    },
+    {
+      "event_id": "VABB_TS_04_20240610T15",
+      "case_type": "thunderstorm_episode",
+      "window_start_utc": "2024-06-10T13:00:00+00:00",
+      "window_end_utc": "2024-06-11T03:00:00+00:00",
+      "calendar_dates": [
+        "2024-06-10",
+        "2024-06-11"
+      ]
+    },
+    {
+      "event_id": "VABB_CTL_04_20240610T15",
+      "case_type": "control",
+      "window_start_utc": "2024-05-27T13:00:00+00:00",
+      "window_end_utc": "2024-05-28T03:00:00+00:00",
+      "calendar_dates": [
+        "2024-05-27",
+        "2024-05-28"
+      ]
+    }
+  ],
+  "downloaded_granules": 0,
+  "authenticated": false,
+  "dates_queried_this_task": [
+    "2018-08-13",
+    "2018-08-14",
+    "2019-05-24"
+  ],
+  "query_results": {
+    "2018-08-13": {
+      "success": true,
+      "status": 200,
+      "totalResults": 44,
+      "n_entries": 44,
+      "attempts": 1,
+      "error": null
+    },
+    "2018-08-14": {
+      "success": true,
+      "status": 200,
+      "totalResults": 45,
+      "n_entries": 45,
+      "attempts": 1,
+      "error": null
+    },
+    "2019-05-24": {
+      "success": true,
+      "status": 200,
+      "totalResults": 39,
+      "n_entries": 39,
+      "attempts": 1,
+      "error": null
+    }
+  },
+  "cache_coverage": "65/65",
+  "required_coverage_complete": true
+}

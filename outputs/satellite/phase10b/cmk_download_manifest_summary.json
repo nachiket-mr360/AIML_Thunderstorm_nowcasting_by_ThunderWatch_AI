@@ -1,0 +1,30 @@
+{
+  "phase": "10B-D",
+  "local_only": true,
+  "downloaded_hdf": 0,
+  "source_audit": "outputs/satellite/phase10b/case_study_catalog_audit.csv",
+  "unique_gids": 1094,
+  "unique_filenames": 1094,
+  "stations_represented": [
+    "VABB",
+    "VECC",
+    "VIDP",
+    "VOCI",
+    "VOTV"
+  ],
+  "n_stations": 5,
+  "event_control_count": {
+    "unique_event_ids": 38,
+    "thunderstorm_episodes": 20,
+    "controls": 18
+  },
+  "first_timestamp_utc": "2017-05-04T06:15:00Z",
+  "last_timestamp_utc": "2025-06-15T02:45:00Z",
+  "verified": {
+    "unique_gids_eq_1094": true,
+    "every_gid_has_filename": true,
+    "every_filename_is_3RIMG_L2B_CMK": true,
+    "sorted_by_catalog_timestamp_utc_then_gId": true,
+    "no_granules_outside_phase10bc_audit": true
+  }
+}

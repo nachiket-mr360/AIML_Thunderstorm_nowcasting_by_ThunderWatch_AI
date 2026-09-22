@@ -1,0 +1,295 @@
+{
+  "status": 200,
+  "totalResults": 48,
+  "entries": [
+    {
+      "filename": "3RIMG_23JUN2021_2345_L2B_CMK_V01R00.h5",
+      "gId": "9379539",
+      "catalog_timestamp": "2021-06-23T23:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T23:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_2315_L2B_CMK_V01R00.h5",
+      "gId": "9379494",
+      "catalog_timestamp": "2021-06-23T23:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T23:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_2245_L2B_CMK_V01R00.h5",
+      "gId": "9379458",
+      "catalog_timestamp": "2021-06-23T22:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T22:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_2215_L2B_CMK_V01R00.h5",
+      "gId": "9379417",
+      "catalog_timestamp": "2021-06-23T22:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T22:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_2145_L2B_CMK_V01R00.h5",
+      "gId": "9379379",
+      "catalog_timestamp": "2021-06-23T21:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T21:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_2115_L2B_CMK_V01R00.h5",
+      "gId": "9379341",
+      "catalog_timestamp": "2021-06-23T21:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T21:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_2045_L2B_CMK_V01R00.h5",
+      "gId": "9379305",
+      "catalog_timestamp": "2021-06-23T20:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T20:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_2015_L2B_CMK_V01R00.h5",
+      "gId": "9379265",
+      "catalog_timestamp": "2021-06-23T20:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T20:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1945_L2B_CMK_V01R00.h5",
+      "gId": "9379188",
+      "catalog_timestamp": "2021-06-23T19:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T19:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1915_L2B_CMK_V01R00.h5",
+      "gId": "9379143",
+      "catalog_timestamp": "2021-06-23T19:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T19:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1845_L2B_CMK_V01R00.h5",
+      "gId": "9379102",
+      "catalog_timestamp": "2021-06-23T18:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T18:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1815_L2B_CMK_V01R00.h5",
+      "gId": "9379057",
+      "catalog_timestamp": "2021-06-23T18:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T18:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1745_L2B_CMK_V01R00.h5",
+      "gId": "9379017",
+      "catalog_timestamp": "2021-06-23T17:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T17:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1715_L2B_CMK_V01R00.h5",
+      "gId": "9378970",
+      "catalog_timestamp": "2021-06-23T17:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T17:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1645_L2B_CMK_V01R00.h5",
+      "gId": "9378924",
+      "catalog_timestamp": "2021-06-23T16:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T16:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1615_L2B_CMK_V01R00.h5",
+      "gId": "9378877",
+      "catalog_timestamp": "2021-06-23T16:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T16:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1545_L2B_CMK_V01R00.h5",
+      "gId": "9378830",
+      "catalog_timestamp": "2021-06-23T15:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T15:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1515_L2B_CMK_V01R00.h5",
+      "gId": "9378784",
+      "catalog_timestamp": "2021-06-23T15:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T15:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1445_L2B_CMK_V01R00.h5",
+      "gId": "9378735",
+      "catalog_timestamp": "2021-06-23T14:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T14:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1415_L2B_CMK_V01R00.h5",
+      "gId": "9378684",
+      "catalog_timestamp": "2021-06-23T14:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T14:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1345_L2B_CMK_V01R00.h5",
+      "gId": "9378640",
+      "catalog_timestamp": "2021-06-23T13:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T13:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1315_L2B_CMK_V01R00.h5",
+      "gId": "9378593",
+      "catalog_timestamp": "2021-06-23T13:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T13:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1245_L2B_CMK_V01R00.h5",
+      "gId": "9378543",
+      "catalog_timestamp": "2021-06-23T12:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T12:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1215_L2B_CMK_V01R00.h5",
+      "gId": "9378499",
+      "catalog_timestamp": "2021-06-23T12:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T12:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1145_L2B_CMK_V01R00.h5",
+      "gId": "9378448",
+      "catalog_timestamp": "2021-06-23T11:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T11:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1115_L2B_CMK_V01R00.h5",
+      "gId": "9378398",
+      "catalog_timestamp": "2021-06-23T11:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T11:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1045_L2B_CMK_V01R00.h5",
+      "gId": "9378348",
+      "catalog_timestamp": "2021-06-23T10:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T10:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_1015_L2B_CMK_V01R00.h5",
+      "gId": "9378284",
+      "catalog_timestamp": "2021-06-23T10:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T10:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0945_L2B_CMK_V01R00.h5",
+      "gId": "9378228",
+      "catalog_timestamp": "2021-06-23T09:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T09:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0915_L2B_CMK_V01R00.h5",
+      "gId": "9378166",
+      "catalog_timestamp": "2021-06-23T09:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T09:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0845_L2B_CMK_V01R00.h5",
+      "gId": "9378118",
+      "catalog_timestamp": "2021-06-23T08:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T08:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0815_L2B_CMK_V01R00.h5",
+      "gId": "9378062",
+      "catalog_timestamp": "2021-06-23T08:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T08:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0745_L2B_CMK_V01R00.h5",
+      "gId": "9378013",
+      "catalog_timestamp": "2021-06-23T07:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T07:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0715_L2B_CMK_V01R00.h5",
+      "gId": "9377957",
+      "catalog_timestamp": "2021-06-23T07:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T07:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0645_L2B_CMK_V01R00.h5",
+      "gId": "9377905",
+      "catalog_timestamp": "2021-06-23T06:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T06:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0615_L2B_CMK_V01R00.h5",
+      "gId": "9377847",
+      "catalog_timestamp": "2021-06-23T06:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T06:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0545_L2B_CMK_V01R00.h5",
+      "gId": "9377789",
+      "catalog_timestamp": "2021-06-23T05:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T05:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0515_L2B_CMK_V01R00.h5",
+      "gId": "9377727",
+      "catalog_timestamp": "2021-06-23T05:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T05:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0445_L2B_CMK_V01R00.h5",
+      "gId": "9377673",
+      "catalog_timestamp": "2021-06-23T04:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T04:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0415_L2B_CMK_V01R00.h5",
+      "gId": "9377602",
+      "catalog_timestamp": "2021-06-23T04:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T04:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0345_L2B_CMK_V01R00.h5",
+      "gId": "9377555",
+      "catalog_timestamp": "2021-06-23T03:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T03:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0315_L2B_CMK_V01R00.h5",
+      "gId": "9377509",
+      "catalog_timestamp": "2021-06-23T03:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T03:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0245_L2B_CMK_V01R00.h5",
+      "gId": "9377441",
+      "catalog_timestamp": "2021-06-23T02:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T02:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0215_L2B_CMK_V01R00.h5",
+      "gId": "9377385",
+      "catalog_timestamp": "2021-06-23T02:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T02:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0145_L2B_CMK_V01R00.h5",
+      "gId": "9377341",
+      "catalog_timestamp": "2021-06-23T01:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T01:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0115_L2B_CMK_V01R00.h5",
+      "gId": "9377289",
+      "catalog_timestamp": "2021-06-23T01:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T01:15:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0045_L2B_CMK_V01R00.h5",
+      "gId": "9377246",
+      "catalog_timestamp": "2021-06-23T00:45:00Z",
+      "filename_timestamp_utc": "2021-06-23T00:45:00+00:00"
+    },
+    {
+      "filename": "3RIMG_23JUN2021_0015_L2B_CMK_V01R00.h5",
+      "gId": "9377193",
+      "catalog_timestamp": "2021-06-23T00:15:00Z",
+      "filename_timestamp_utc": "2021-06-23T00:15:00+00:00"
+    }
+  ],
+  "error": null
+}
