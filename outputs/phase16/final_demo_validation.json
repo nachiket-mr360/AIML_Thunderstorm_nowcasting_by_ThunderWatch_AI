@@ -1,0 +1,149 @@
+{
+  "timestamp": "2026-09-23T21:34:13+05:30",
+  "phase": "16",
+  "status": "PHASE16_FINAL_DEMO_READY",
+  "checkpoint_expected": "b08575c0fcf3471d5f9015b4675dbca279949b15",
+  "test_suite": {
+    "command": "python -m pytest tests",
+    "baseline_passed": 113,
+    "final_passed": 113,
+    "failed": 0,
+    "result": "PASS"
+  },
+  "live_all": {
+    "endpoint": "POST /api/inference/live/all",
+    "stations": ["VABB", "VIDP", "VECC", "VOCI", "VOTV"],
+    "http_status": 200,
+    "ok": true,
+    "status": "LIVE",
+    "available_stations": 5,
+    "completed_stations": 5,
+    "cache_hit_cold": false,
+    "observation_time_utc": "2026-09-23T16:00:00+00:00",
+    "data_age_minutes": 29.626,
+    "result": "PASS"
+  },
+  "live_single": {
+    "endpoint": "POST /api/inference/live",
+    "station": "VABB",
+    "http_status": 200,
+    "ok": true,
+    "elapsed_seconds": 10.896,
+    "result": "PASS"
+  },
+  "historical_replay": {
+    "endpoint": "POST /replay/all",
+    "timestamp_utc": "2023-06-15T12:00:00Z",
+    "http_status": 200,
+    "stations": 5,
+    "all_unavailable": false,
+    "elapsed_seconds": 42.066,
+    "result": "PASS"
+  },
+  "spatial_replay": {
+    "endpoint": "POST /api/spatial/replay",
+    "timestamp_utc": "2023-06-15T12:00:00Z",
+    "http_status": 200,
+    "ok": true,
+    "stations": 5,
+    "mode": "HISTORICAL",
+    "elapsed_seconds": 2.371,
+    "result": "PASS"
+  },
+  "live_timing": {
+    "single_station_seconds": 10.896,
+    "five_location_cold_seconds": 4.809,
+    "five_location_cached_seconds": 1.327,
+    "note": "Five-location path is concurrent; not comparable 1:1 with sequential single-station fetch."
+  },
+  "replay_timing": {
+    "five_location_seconds": 42.066
+  },
+  "browser_viewport_checks": {
+    "desktop_1920x1080": "PASS",
+    "laptop_1366x768": "PASS",
+    "android_390x844": "PASS",
+    "horizontal_overflow": false,
+    "root_defaults_to_live": true,
+    "tool": "playwright chromium headless"
+  },
+  "failure_path_checks": {
+    "live_invalid_station_XXXX_mixed": {
+      "status": "LIVE_PARTIAL",
+      "available_stations": 2,
+      "requested_stations": 3,
+      "fake_predictions_on_failure": false,
+      "result": "PASS"
+    },
+    "live_unknown_station_only": {
+      "http_status": 400,
+      "result": "PASS"
+    },
+    "historical_invalid_timestamp": {
+      "all_unavailable": true,
+      "unavailable_reason": "Invalid timestamp",
+      "fake_predictions": false,
+      "result": "PASS"
+    },
+    "historical_outside_overlap_1990": {
+      "all_unavailable": true,
+      "result": "PASS"
+    },
+    "spatial_invalid_timestamp": {
+      "http_status": 400,
+      "result": "PASS"
+    }
+  },
+  "api_regression": {
+    "GET /health": {"http_status": 200, "body": {"status": "ok"}},
+    "GET /": {"http_status": 200},
+    "POST /replay/all": {"http_status": 200},
+    "POST /api/inference/live": {"http_status": 200},
+    "POST /api/inference/live/all": {"http_status": 200},
+    "POST /api/spatial/replay": {"http_status": 200},
+    "GET /api/spatial/replay/timestamps": {"http_status": 200, "count": 6826},
+    "result": "PASS"
+  },
+  "duplicate_action_protection": {
+    "live_button_disabled_while_processing": true,
+    "liveRunning_guard": true,
+    "replay_button_disabled_while_processing": true,
+    "result": "PASS"
+  },
+  "model_immutability": {
+    "modified": false,
+    "joblib_sha256_16": {
+      "B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea",
+      "B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8",
+      "B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17"
+    },
+    "result": "UNCHANGED"
+  },
+  "scientific_pipeline_immutability": {
+    "modified": false,
+    "files_hashed": {
+      "final_multi_lead_engine.py": "137e8f62d14abb74",
+      "live_openmeteo_client.py": "c7dc5b741bb585d0",
+      "v2_historical_replay.py": "b53a3d5061ffeba7"
+    },
+    "result": "UNCHANGED"
+  },
+  "production_smoke": {
+    "local_flask_start": true,
+    "health": true,
+    "root": true,
+    "replay": true,
+    "live_external_network": true,
+    "docker_image_build": "NOT_RUN_CLI_UNRESPONSIVE",
+    "result": "LOCAL_PASS"
+  },
+  "public_claims": {
+    "research_prototype": true,
+    "no_official_imd_warning": true,
+    "uncalibrated": true,
+    "no_live_radar_active": true,
+    "satellite_not_model_b_input": true,
+    "result": "PASS"
+  },
+  "blockers": []
+}

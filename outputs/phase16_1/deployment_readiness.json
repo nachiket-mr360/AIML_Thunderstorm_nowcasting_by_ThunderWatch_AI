@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-09-23T16:53:36Z",
+  "overall_status": "DEPLOYMENT_CONFIGURATION_OK",
+  "dockerfile_status": "PASS",
+  "requirements_status": "PASS",
+  "runtime_paths_status": "PASS",
+  "model_hash_status": "PASS",
+  "model_hashes": {
+    "B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed"
+  },
+  "dockerignore_status": "PASS_AFTER_FIX",
+  "gitignore_status": "PASS",
+  "secret_exposure_status": "NO_SECRET_EXPOSURE",
+  "startup_status": "PASS",
+  "api_status": "PASS",
+  "live_status": "PASS_5_OF_5",
+  "replay_status": "PASS_5_COMPLETE",
+  "spatial_status": "PASS_5_COMPLETE",
+  "docker_build_status": "PASS",
+  "container_image": "thunderwatch-ai:phase16_1",
+  "gunicorn": {
+    "bind": "0.0.0.0:${PORT:-10000}",
+    "workers": 1,
+    "threads": 4,
+    "timeout": 180
+  },
+  "blockers": [],
+  "modified_files": [
+    ".dockerignore",
+    ".env.example"
+  ]
+}

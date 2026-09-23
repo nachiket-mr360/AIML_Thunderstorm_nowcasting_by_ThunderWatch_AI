@@ -42,6 +42,11 @@ outputs/v2_inference/*
 !outputs/v2_inference/phase13a/
 outputs/v2_inference/phase13a/*
 !outputs/v2_inference/phase13a/inference_contract.json
+!outputs/v2_replay/
+outputs/v2_replay/*
+!outputs/v2_replay/phase15b/
+outputs/v2_replay/phase15b/*
+!outputs/v2_replay/phase15b/replay_predictions.csv
 
 # ============================================================
 # Dataset
@@ -51,6 +56,10 @@ dataset/*
 !dataset/multilocation/
 dataset/multilocation/*
 !dataset/multilocation/feature_engineering_phase3.py
+!dataset/multilocation/iem_station_metadata.json
+!dataset/multilocation/features/
+dataset/multilocation/features/*
+!dataset/multilocation/features/multilocation_features_2014_2025_metadata.json
 !dataset/multilocation/features_nwp/
 dataset/multilocation/features_nwp/*
 !dataset/multilocation/features_nwp/multilocation_features_nwp_overlap_2021_2025.csv

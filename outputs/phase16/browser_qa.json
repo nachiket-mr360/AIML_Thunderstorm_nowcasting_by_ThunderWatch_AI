@@ -1,0 +1,80 @@
+[
+  {
+    "viewport": "desktop_1920x1080",
+    "checks": {
+      "open_live": true,
+      "live_run": true,
+      "live_ready": true,
+      "replay_run": true,
+      "back_live": true,
+      "live_processing_seen": false,
+      "live_banner": "LIVE DATA READY \u00b7 5 / 5 LOCATIONS AVAILABLE",
+      "map": true,
+      "replay_processing_seen": true,
+      "replay_scan": "HISTORICAL REPLAY PROCESSING \u2014 Loading and processing the selected historical data for 5 locations. This may take several minutes. Please wait..."
+    },
+    "layout": {
+      "innerWidth": 1920,
+      "scrollWidth": 1920,
+      "overflowX": false,
+      "clipped": [],
+      "title": "THUNDERWATCH AI \u2014 FANTASTIC6 \u00b7 SIH26072",
+      "defaultView": "live",
+      "liveBtn": true,
+      "replayBtn": true
+    },
+    "screenshot": "C:\\College\\SIH2_v2\\outputs\\phase16\\browser_desktop_1920x1080.png"
+  },
+  {
+    "viewport": "laptop_1366x768",
+    "checks": {
+      "open_live": true,
+      "live_run": true,
+      "live_ready": true,
+      "replay_run": true,
+      "back_live": true,
+      "live_processing_seen": true,
+      "live_banner": "LIVE DATA READY \u00b7 5 / 5 LOCATIONS AVAILABLE",
+      "map": true,
+      "replay_processing_seen": true,
+      "replay_scan": "HISTORICAL REPLAY PROCESSING \u2014 Loading and processing the selected historical data for 5 locations. This may take several minutes. Please wait..."
+    },
+    "layout": {
+      "innerWidth": 1366,
+      "scrollWidth": 1366,
+      "overflowX": false,
+      "clipped": [],
+      "title": "THUNDERWATCH AI \u2014 FANTASTIC6 \u00b7 SIH26072",
+      "defaultView": "live",
+      "liveBtn": true,
+      "replayBtn": true
+    },
+    "screenshot": "C:\\College\\SIH2_v2\\outputs\\phase16\\browser_laptop_1366x768.png"
+  },
+  {
+    "viewport": "android_390x844",
+    "checks": {
+      "open_live": true,
+      "live_run": true,
+      "live_ready": true,
+      "replay_run": true,
+      "back_live": true,
+      "live_processing_seen": true,
+      "live_banner": "LIVE DATA READY \u00b7 5 / 5 LOCATIONS AVAILABLE",
+      "map": true,
+      "replay_processing_seen": true,
+      "replay_scan": "HISTORICAL REPLAY PROCESSING \u2014 Loading and processing the selected historical data for 5 locations. This may take several minutes. Please wait..."
+    },
+    "layout": {
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "overflowX": false,
+      "clipped": [],
+      "title": "THUNDERWATCH AI \u2014 FANTASTIC6 \u00b7 SIH26072",
+      "defaultView": "live",
+      "liveBtn": true,
+      "replayBtn": true
+    },
+    "screenshot": "C:\\College\\SIH2_v2\\outputs\\phase16\\browser_android_390x844.png"
+  }
+]
