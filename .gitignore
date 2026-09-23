@@ -70,6 +70,32 @@ dataset/.cache.sqlite
 dataset/_tmp_*
 
 # ============================================================
+# Research / local-only dataset families (Flask runtime does not read these)
+# Keep tracked: NWP overlap CSV, CMK hourly aligned CSV, IEM metadata,
+# multilocation features metadata JSON, feature_engineering_phase3.py
+# ============================================================
+dataset/lightning/
+dataset/raw_metar/
+dataset/raw_openmeteo/
+dataset/weather_data.csv
+dataset/weather_data_with_code.csv
+dataset/historical_thunderstorm_labels_votv.csv
+dataset/votv_thunderstorm_features_2014_2025.csv
+dataset/votv_thunderstorm_nowcast_2014_2025.csv
+dataset/votv_thunderstorm_synchronized_2014_2025.csv
+dataset/multilocation/features/*.csv
+dataset/multilocation/nwp_full/
+dataset/multilocation/nwp_pilot/
+dataset/multilocation/raw_metar/
+dataset/multilocation/raw_openmeteo/
+dataset/multilocation/synchronized/
+dataset/multilocation/targets/
+dataset/satellite/insat3dr_cmk/
+dataset/satellite/insat3dr_cmk_download_test/
+dataset/satellite/insat3dr_cmk_pilot/
+dataset/satellite/insat3dr_cmk_features/cmk_scan_level_features.csv
+
+# ============================================================
 # Build artifacts
 # ============================================================
 build/
