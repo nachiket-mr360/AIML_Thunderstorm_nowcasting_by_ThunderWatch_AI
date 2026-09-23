@@ -404,10 +404,6 @@
   });
   console.info("[TW] replay button wired");
 
-  var scanMsgs = [
-    "HISTORICAL REPLAY PROCESSING — Processing the five reference locations... This may take several minutes. Please wait..."
-  ];
-
   async function runAll(ev) {
     if (ev && ev.preventDefault) ev.preventDefault();
     var timeEl = $("hist-time");
@@ -422,13 +418,9 @@
     var scan = $("scan");
     if (scan) {
       scan.classList.remove("hidden");
-      scan.textContent = scanMsgs[0];
+      scan.className = "banner scan";
+      scan.textContent = "HISTORICAL REPLAY PROCESSING — Loading and processing the selected historical data for 5 locations. This may take several minutes. Please wait...";
     }
-    var i = 0;
-    var iv = setInterval(function () {
-      i = Math.min(i + 1, scanMsgs.length - 1);
-      if (scan) scan.textContent = scanMsgs[i];
-    }, 280);
     if (btn) btn.disabled = true;
     try {
       console.info("[TW] POST /replay/all start");
@@ -440,6 +432,10 @@
       var data = await res.json().catch(function () { return {}; });
       console.info("[TW] POST /replay/all status", res.status);
       if (!res.ok) {
+        if (scan) {
+          scan.classList.add("hidden");
+          scan.textContent = "";
+        }
         showDashError(data.error || "REPLAY ERROR. Replay could not be completed.");
         if (!lastPayload) {
           $("hero-loc").textContent = "REPLAY ERROR";
@@ -468,9 +464,16 @@
       if (tIst) tIst.textContent = "Replay T: " + fmtIst(raw) + " (input stored as UTC)";
       setChrome("replay");
       renderAll(data, { autoFocus: true });
-      if (scan) scan.textContent = "HISTORICAL REPLAY READY";
+      if (scan) {
+        scan.classList.add("hidden");
+        scan.textContent = "";
+      }
       showView("replay");
     } catch (err) {
+      if (scan) {
+        scan.classList.add("hidden");
+        scan.textContent = "";
+      }
       showDashError("REPLAY ERROR. Replay could not be completed.");
       if (!lastPayload) {
         $("hero-loc").textContent = "REPLAY ERROR";
@@ -478,7 +481,6 @@
         $("hero-state").textContent = "TRY AGAIN";
       }
     } finally {
-      clearInterval(iv);
       if (btn) btn.disabled = false;
     }
   }
@@ -755,11 +757,11 @@
     var box = $("live-storm");
     if (!box) return;
     if (liveRunning && !liveAllDone) {
-      box.innerHTML = "<p class='proc-note'>LIVE DATA PROCESSING — Fetching current atmospheric and NWP data for 5 locations. This may take several minutes depending on external data availability. Please wait...</p>";
+      box.innerHTML = "";
       return;
     }
     var names = window.TW && window.TW.stations ? window.TW.stations : {};
-    box.innerHTML = LIVE_ORDER.map(function (sid) {
+    box.innerHTML = liveSortedIds().map(function (sid) {
       var rec = liveByStation[sid];
       var p1 = "--", p2 = "--", p3 = "--", st = liveAllDone ? "UNAVAILABLE" : "AWAITING LIVE DATA";
       var cls = "storm-card";
@@ -827,7 +829,9 @@
     if (btn) { btn.disabled = true; btn.textContent = "PROCESSING..."; }
     if (errEl) { errEl.textContent = ""; errEl.classList.add("hidden"); }
     clearLiveCards();
+    document.querySelectorAll(".live-note").forEach(function (n) { n.classList.add("hidden"); });
     if (fetchEl) {
+      fetchEl.className = "banner live-fetch";
       fetchEl.textContent = "LIVE DATA PROCESSING — Fetching current atmospheric and NWP data for 5 locations. This may take several minutes depending on external data availability. Please wait... PROCESSING 5 LOCATIONS";
     }
     renderLiveStorm();
@@ -865,16 +869,21 @@
       });
       var avail = data.available_stations != null ? data.available_stations : 0;
       var reqn = data.requested_stations || 5;
+      document.querySelectorAll(".live-note").forEach(function (n) { n.classList.remove("hidden"); });
       if (avail === 0) {
-        if (fetchEl) fetchEl.textContent = "LIVE DATA UNAVAILABLE · 0 / " + reqn + " locations available. No prediction was generated.";
+        if (fetchEl) {
+          fetchEl.className = "banner live-fetch";
+          fetchEl.textContent = "LIVE DATA UNAVAILABLE · 0 / " + reqn + " locations available. No prediction was generated.";
+        }
         if (errEl) {
           errEl.textContent = "External atmospheric/NWP data could not be obtained safely.";
           errEl.classList.remove("hidden");
         }
-      } else if (avail < reqn) {
-        if (fetchEl) fetchEl.textContent = "LIVE DATA READY · " + avail + " / " + reqn + " LOCATIONS AVAILABLE";
       } else {
-        if (fetchEl) fetchEl.textContent = "LIVE DATA READY · " + avail + " / " + reqn + " LOCATIONS AVAILABLE";
+        if (fetchEl) {
+          fetchEl.className = "banner live-fetch ready";
+          fetchEl.textContent = "LIVE DATA READY · " + avail + " / " + reqn + " LOCATIONS AVAILABLE";
+        }
       }
       var ids = liveSortedIds();
       focusId = ids[0];
@@ -882,7 +891,11 @@
     } catch (e) {
       if (token !== liveFetchToken) return;
       liveAllDone = true;
-      if (fetchEl) fetchEl.textContent = "LIVE DATA UNAVAILABLE";
+      document.querySelectorAll(".live-note").forEach(function (n) { n.classList.remove("hidden"); });
+      if (fetchEl) {
+        fetchEl.className = "banner live-fetch";
+        fetchEl.textContent = "LIVE DATA UNAVAILABLE";
+      }
       if (errEl) {
         errEl.textContent = liveErrorText("LIVE_DATA_UNAVAILABLE");
         errEl.classList.remove("hidden");

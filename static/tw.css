@@ -13,7 +13,7 @@
   --disp: "Orbitron", "Rajdhani", sans-serif;
 }
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+html, body { height: 100%; max-width: 100%; overflow-x: hidden; }
 body.tw-body {
   margin: 0;
   color: var(--text);
@@ -324,7 +324,7 @@ dt { color: var(--muted); }
 .off { color: #627084; }
 .banner { background: #16110a; border-left: 3px solid var(--amber); color: #f3e2b8; padding: .55rem .7rem; font-size: .82rem; }
 .quick { display: flex; gap: .4rem; flex-wrap: wrap; }
-.scan { margin-top: .6rem; color: var(--cyan); letter-spacing: .12em; font-family: var(--disp); }
+.scan { margin: .45rem 0 .5rem; color: var(--cyan); letter-spacing: .04em; font-family: var(--disp); white-space: normal; overflow-wrap: anywhere; }
 .error { color: var(--alert); }
 .pipe { display: flex; flex-wrap: wrap; gap: .35rem; padding: 0; list-style: none; }
 .pipe li { border: 1px solid var(--line); padding: .28rem .45rem; font-size: .68rem; }
@@ -347,10 +347,18 @@ dt { color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   *, .clouds { animation: none !important; transition: none !important; }
 }
+@media (max-width: 1280px) {
+  .live-storm { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .live-map-wrap { min-height: 440px; height: min(56vh, 560px); }
+}
 @media (max-width: 1180px) {
   .desk, .bottom-grid { grid-template-columns: 1fr; }
   .hdr { grid-template-columns: 1fr; }
-  .live-desk { grid-template-columns: minmax(0, 1.55fr) minmax(220px, 1fr); }
+}
+@media (max-width: 1100px) {
+  .live-desk { grid-template-columns: 1fr; }
+  .live-desk #live-hero { order: -1; }
+  .live-map-wrap { min-height: 380px; height: min(50vh, 480px); }
 }
 @media (max-width: 860px) {
   .app { grid-template-columns: 1fr; }
@@ -363,7 +371,14 @@ dt { color: var(--muted); }
   .live-context { grid-template-columns: 1fr; }
   .live-desk { grid-template-columns: 1fr; }
   .live-desk #live-hero { order: -1; }
-  .live-map-wrap { min-height: 320px; height: min(48vh, 420px); }
+  .live-map-wrap { min-height: 280px; height: min(42vh, 360px); }
+  .live-run { width: 100%; }
+  .nav-item { white-space: normal; }
+}
+@media (max-width: 420px) {
+  .live-storm { grid-template-columns: 1fr; }
+  .mm-grid { grid-template-columns: 1fr; }
+  .hdr-tools { width: 100%; }
 }
 
 body.mode-live .hdr-replay-only { display: none; }
@@ -382,6 +397,8 @@ body.mode-replay .live-run { }
   height: min(64vh, 680px);
 }
 .live-arch { padding: .55rem .7rem; }
+.live-fetch.banner { margin: .45rem 0 .5rem; }
+.live-fetch.ready { border-left-color: var(--ok); color: #c8f5df; background: #0a1612; }
 .live-arch h2 { margin: 0 .2rem 0 0; display: inline; }
 .live-desk #live-hero { display: flex; flex-direction: column; min-width: 0; }
 .live-desk #live-hero .live-leads { grid-template-columns: 1fr; }
@@ -417,6 +434,39 @@ body.mode-replay .live-run { }
 .main, .view, .panel { min-width: 0; }
 body { overflow-x: hidden; }
 .live-leads { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; }
+@media (max-width: 1280px) {
+  .live-storm { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .live-map-wrap { min-height: 440px; height: min(56vh, 560px); }
+}
+@media (max-width: 1180px) {
+  .desk, .bottom-grid { grid-template-columns: 1fr; }
+  .hdr { grid-template-columns: 1fr; }
+}
+@media (max-width: 1100px) {
+  .live-desk { grid-template-columns: 1fr; }
+  .live-desk #live-hero { order: -1; }
+  .live-map-wrap { min-height: 380px; height: min(50vh, 480px); }
+}
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; }
+  .nav { display: none; }
+  .mob-nav { display: flex; }
+  .main { padding: .55rem .55rem 4.4rem; }
+  .big { font-size: 2.1rem; }
+  .land-team { letter-spacing: .12em; }
+  .live-storm { grid-template-columns: 1fr 1fr; }
+  .live-context { grid-template-columns: 1fr; }
+  .live-desk { grid-template-columns: 1fr; }
+  .live-desk #live-hero { order: -1; }
+  .live-map-wrap { min-height: 280px; height: min(42vh, 360px); }
+  .live-run { width: 100%; }
+  .nav-item { white-space: normal; }
+}
 @media (max-width: 720px) {
   .live-leads { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .live-storm { grid-template-columns: 1fr; }
+  .mm-grid { grid-template-columns: 1fr; }
+  .hdr-tools { width: 100%; }
 }

@@ -90,6 +90,7 @@
       <section class="view" data-view="replay">
         <article class="panel lab">
           <h2>HISTORICAL REPLAY</h2>
+          <p id="scan" class="banner scan hidden" role="status"></p>
           <p class="banner">Historical Replay uses archived atmospheric and NWP data. It is not a live, near-real-time, or operational forecasting system. Model probabilities are uncalibrated. This is not Live Research.</p>
           <p class="cap" id="replay-t-ist">Replay time displays in IST after a run. Input remains UTC.</p>
           <p class="cap">Quick verified scenarios</p>
@@ -98,7 +99,6 @@
             <button type="button" class="demo" data-ts="{{ case.timestamp_utc }}">{{ case.label }}</button>
             {% endfor %}
           </div>
-          <div id="scan" class="scan hidden" role="status"></div>
           <p id="page-error" class="error hidden"></p>
         </article>
         <div class="desk">
@@ -218,10 +218,10 @@
         <article class="panel live-arch">
           <p class="kicker">LIVE AI PREDICTION</p>
           <h2>RESEARCH PROTOTYPE</h2>
-          <p class="banner live-note">AI research prototype — predictions are experimental and not an official meteorological warning. Model probabilities are uncalibrated.</p>
-          <button type="button" id="run-live-all" class="live-run">RUN 5-LOCATION LIVE DATA</button>
-          <p id="live-fetch" class="live-fetch muted" role="status">LIVE DATA · AWAITING RUN</p>
+          <p id="live-fetch" class="banner live-fetch" role="status">LIVE DATA · AWAITING RUN</p>
+          <p class="banner live-note hidden">AI research prototype — predictions are experimental and not an official meteorological warning. Model probabilities are uncalibrated.</p>
           <p id="live-error" class="error hidden" role="alert"></p>
+          <button type="button" id="run-live-all" class="live-run">RUN 5-LOCATION LIVE DATA</button>
           <dl class="live-meta">
             <div><dt>SOURCE</dt><dd id="live-src">—</dd></div>
             <div><dt>OBSERVATION (IST)</dt><dd id="live-obs">—</dd></div>
@@ -275,13 +275,8 @@
         </div>
 
         <article class="panel" id="live-storm-panel">
-          <div class="panel-h"><h2>LIVE THUNDERSTORM RISK</h2><span class="cap">+1H · +2H · +3H · threshold 6.5%</span></div>
-          <div id="live-storm" class="live-storm"></div>
-        </article>
-
-        <article class="panel">
           <div class="panel-h">
-            <h2>LOCATION RISK</h2>
+            <h2>LIVE THUNDERSTORM RISK</h2>
             <span class="cap" id="live-sort-lab">SORTED BY +1H MODEL RISK</span>
           </div>
           <div class="live-sort" role="group" aria-label="Sort lead">
@@ -289,16 +284,7 @@
             <button type="button" class="live-sort-btn" data-lead="2h">+2H</button>
             <button type="button" class="live-sort-btn" data-lead="3h">+3H</button>
           </div>
-          <div class="table-wrap">
-            <table class="risk-table">
-              <thead><tr><th>#</th><th>Location</th><th>+1H</th><th>+2H</th><th>+3H</th><th>Status</th></tr></thead>
-              <tbody id="live-loc-body">
-                {% for sid, name in station_labels.items() %}
-                <tr data-sid="{{ sid }}"><td>—</td><td>{{ name }} <span class="icao">{{ sid }}</span></td><td>—</td><td>—</td><td>—</td><td>AWAITING LIVE DATA</td></tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
+          <div id="live-storm" class="live-storm"></div>
         </article>
 
         <div class="live-context">
