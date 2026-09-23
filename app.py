@@ -356,6 +356,7 @@ def map_basemap_config() -> dict[str, Any]:
         "styles": {
             "dark": f"https://api.maptiler.com/maps/dataviz-dark/style.json?key={key}",
             "terrain": f"https://api.maptiler.com/maps/outdoor-v2/style.json?key={key}",
+            "hybrid": f"https://api.maptiler.com/maps/hybrid/style.json?key={key}",
         },
         "terrain": f"https://api.maptiler.com/tiles/terrain-rgb-v2/tiles.json?key={key}",
     }

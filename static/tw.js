@@ -186,21 +186,27 @@
   }
 
   function showView(name) {
+    if (name === "overview") name = "replay";
     document.querySelectorAll(".view").forEach(function (v) {
       v.classList.toggle("active", v.getAttribute("data-view") === name);
     });
     document.querySelectorAll(".nav-item").forEach(function (b) {
       b.classList.toggle("active", b.getAttribute("data-view") === name);
     });
+    document.querySelectorAll(".mob-nav button").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-view") === name);
+    });
+    try { history.replaceState(null, "", "#" + name); } catch (e) {}
     if (name === "live") {
       setChrome("live");
       initLiveMap();
       renderLiveTable();
+      if (liveMap && liveMap._resize) liveMap._resize();
       if (!liveAllDone && !liveRunning) requestLiveAll();
-    } else if (name === "replay" || name === "overview") {
-      if (name === "replay") setChrome("replay");
-      if (appMode === "replay" && lastPayload) renderAll(lastPayload, { autoFocus: false });
-      if (appMode === "live") renderLiveTable();
+    } else if (name === "replay") {
+      setChrome("replay");
+      if (lastPayload) renderAll(lastPayload, { autoFocus: false });
+      if (indiaMap && indiaMap._resize) indiaMap._resize();
     }
   }
   document.querySelectorAll(".nav-item, .mob-nav button").forEach(function (b) {
@@ -264,6 +270,12 @@
     if (liveMapPending && liveMap && liveMap.setResults) liveMap.setResults(liveMapPending);
   }
   function startLiveFallback() {
+    var modeEl = $("live-map-mode");
+    if (modeEl) {
+      modeEl.textContent = (liveMapCfg && liveMapCfg.enabled)
+        ? "Satellite Hybrid unavailable · fallback geographic view"
+        : "MAPTILER_KEY_REQUIRED · fallback geographic view";
+    }
     if (!window.IndiaMap || !$("live-map-wrap") || liveMap) return;
     var inst = new window.IndiaMap();
     inst.init($("live-map-wrap"), {
@@ -274,10 +286,13 @@
   }
   function startLiveGeo(cfg) {
     if (!$("live-map-wrap") || liveMap) return;
+    var modeEl = $("live-map-mode");
+    if (modeEl) modeEl.textContent = "MapTiler Satellite Hybrid";
     var inst = new window.TWGeoMap();
     var ok = inst.init($("live-map-wrap"), {
       reduced: reduced,
       config: cfg,
+      styleMode: (cfg.styles && cfg.styles.hybrid) ? "hybrid" : "dark",
       onSelect: function (sid) { selectStation(sid); },
       onFail: function () {
         if (inst.map) { try { inst.map.remove(); } catch (e) {} }
@@ -374,11 +389,7 @@
   console.info("[TW] replay button wired");
 
   var scanMsgs = [
-    "SCANNING LOCATIONS",
-    "BUILDING FEATURE STATE",
-    "RUNNING MODEL",
-    "COMPARING LOCATIONS",
-    "IDENTIFYING HIGHEST RISK"
+    "HISTORICAL REPLAY PROCESSING — Processing the five reference locations... This may take several minutes. Please wait..."
   ];
 
   async function runAll(ev) {
@@ -441,7 +452,8 @@
       if (tIst) tIst.textContent = "Replay T: " + fmtIst(raw) + " (input stored as UTC)";
       setChrome("replay");
       renderAll(data, { autoFocus: true });
-      showView("overview");
+      if (scan) scan.textContent = "HISTORICAL REPLAY READY";
+      showView("replay");
     } catch (err) {
       showDashError("REPLAY ERROR. Replay could not be completed.");
       if (!lastPayload) {
@@ -451,7 +463,6 @@
       }
     } finally {
       clearInterval(iv);
-      if (scan) scan.classList.add("hidden");
       if (btn) btn.disabled = false;
     }
   }
@@ -507,11 +518,8 @@
     $("hero-thr").textContent = "Threshold: " + (s.threshold_pct || "6.5%");
     $("hero-state").textContent = s.threshold_state || "";
     $("hero-state").className = "state " + (s.threshold_state === "ABOVE THRESHOLD" ? "above" : "below");
-    if (!isHighest) {
-      document.querySelector(".hero-risk .kicker").textContent = "FOCUSED LOCATION";
-    } else {
-      document.querySelector(".hero-risk .kicker").textContent = "HIGHEST MODEL RISK";
-    }
+    var kick = document.querySelector("#hero-risk .kicker");
+    if (kick) kick.textContent = isHighest ? "HIGHEST MODEL RISK" : "FOCUSED LOCATION";
     setRing("r1", s.lead_1h_pct == null ? null : Number(s.lead_1h_pct));
     setRing("r2", s.lead_2h_pct == null ? null : Number(s.lead_2h_pct));
     setRing("r3", s.lead_3h_pct == null ? null : Number(s.lead_3h_pct));
@@ -641,34 +649,19 @@
     if ($("live-v1")) $("live-v1").textContent = vt["1h"] ? "valid " + fmtIst(vt["1h"]) : "valid —";
     if ($("live-v2")) $("live-v2").textContent = vt["2h"] ? "valid " + fmtIst(vt["2h"]) : "valid —";
     if ($("live-v3")) $("live-v3").textContent = vt["3h"] ? "valid " + fmtIst(vt["3h"]) : "valid —";
-    renderSatellite(data.station_id);
+    var sat = $("live-sat-grid");
+    if (sat) sat.innerHTML = "<p class='muted'>Satellite case replay is historical only. Not used in live Model B.</p>";
 
-    var names = window.TW && window.TW.stations ? window.TW.stations : {};
-    $("hero-loc").textContent = names[data.station_id] || data.station_id;
-    $("hero-icao").textContent = data.station_id;
-    var p1 = pctFromProb(preds["1h"] && preds["1h"].probability);
-    countUp($("hero-pct"), p1);
-    $("hero-thr").textContent = "Threshold: 6.5%";
-    var a1 = preds["1h"] && preds["1h"].alert;
-    $("hero-state").textContent = a1 ? "ALERT" : "NO ALERT";
-    $("hero-state").className = "state " + (a1 ? "above" : "below");
-    var kick = document.querySelector(".hero-risk .kicker");
-    if (kick) kick.textContent = "LIVE THUNDERSTORM RISK";
-    setRing("r1", p1);
-    setRing("r2", pctFromProb(preds["2h"] && preds["2h"].probability));
-    setRing("r3", pctFromProb(preds["3h"] && preds["3h"].probability));
-
-    var ag = $("atmo-grid");
+    var ag = $("live-atmo-grid");
     var sig = data.signals || {};
-    ag.innerHTML = SIGNAL_LABELS.map(function (row) {
-      var val = sig[row[0]];
-      if (val == null || val === "" || !isFinite(Number(val))) {
-        return "<div><span>" + row[1] + "</span><strong>NOT AVAILABLE</strong></div>";
-      }
-      return "<div><span>" + row[1] + "</span><strong>" + Number(val).toFixed(1) + " " + row[2] + "</strong></div>";
-    }).join("");
-    if ($("verify-body")) {
-      $("verify-body").innerHTML = "<p class='muted'>Live mode has no historical METAR labels.</p>";
+    if (ag) {
+      ag.innerHTML = SIGNAL_LABELS.map(function (row) {
+        var val = sig[row[0]];
+        if (val == null || val === "" || !isFinite(Number(val))) {
+          return "<div><span>" + row[1] + "</span><strong>NOT AVAILABLE</strong></div>";
+        }
+        return "<div><span>" + row[1] + "</span><strong>" + Number(val).toFixed(1) + " " + row[2] + "</strong></div>";
+      }).join("");
     }
   }
 
@@ -733,6 +726,40 @@
     if ($("live-hero-icao")) $("live-hero-icao").textContent = top.station_id;
     var p1 = pctFromProb(top.predictions["1h"] && top.predictions["1h"].probability);
     if ($("live-hero-pct")) $("live-hero-pct").textContent = p1 == null ? "--" : p1.toFixed(1) + "%";
+    var a1 = top.predictions["1h"] && top.predictions["1h"].alert;
+    if ($("live-hero-state")) {
+      $("live-hero-state").textContent = a1 ? "ALERT" : "NO ALERT";
+      $("live-hero-state").className = "state " + (a1 ? "above" : "below");
+    }
+  }
+
+  function renderLiveStorm() {
+    var box = $("live-storm");
+    if (!box) return;
+    if (liveRunning && !liveAllDone) {
+      box.innerHTML = "<p class='proc-note'>LIVE DATA PROCESSING — Fetching current atmospheric and NWP data for 5 locations. This may take several minutes depending on external data availability. Please wait...</p>";
+      return;
+    }
+    var names = window.TW && window.TW.stations ? window.TW.stations : {};
+    box.innerHTML = LIVE_ORDER.map(function (sid) {
+      var rec = liveByStation[sid];
+      var p1 = "--", p2 = "--", p3 = "--", st = liveAllDone ? "UNAVAILABLE" : "AWAITING LIVE DATA";
+      var cls = "storm-card";
+      if (rec && rec.ok && rec.predictions) {
+        var q1 = pctFromProb(rec.predictions["1h"].probability);
+        var q2 = pctFromProb(rec.predictions["2h"].probability);
+        var q3 = pctFromProb(rec.predictions["3h"].probability);
+        p1 = q1 == null ? "--" : q1.toFixed(1) + "%";
+        p2 = q2 == null ? "--" : q2.toFixed(1) + "%";
+        p3 = q3 == null ? "--" : q3.toFixed(1) + "%";
+        st = rec.predictions["1h"].alert ? "ALERT" : "NO ALERT";
+        cls += rec.predictions["1h"].alert ? " alert" : " ok";
+      }
+      return "<button type='button' class='" + cls + "' data-sid='" + sid + "'><strong>" + (names[sid] || sid) + "</strong><span class='icao'>" + sid + "</span><span>+1H " + p1 + "</span><span>+2H " + p2 + "</span><span>+3H " + p3 + "</span><em>6.5% · " + st + "</em></button>";
+    }).join("");
+    box.querySelectorAll(".storm-card").forEach(function (btn) {
+      btn.addEventListener("click", function () { selectStation(btn.getAttribute("data-sid")); });
+    });
   }
 
   function renderLiveTable() {
@@ -764,11 +791,10 @@
       });
     }
     fill($("live-loc-body"));
-    if (appMode === "live") fill($("loc-body"));
+    renderLiveStorm();
     var payload = liveMapPayload();
     liveMapPending = payload;
     if (liveMap && liveMap.setResults) liveMap.setResults(payload, { autoFocus: false });
-    if (appMode === "live") drawStations(payload, false);
     updateLiveHero();
     if (focusId && liveByStation[focusId] && liveByStation[focusId].ok) renderLiveFocus(liveByStation[focusId]);
   }
@@ -784,8 +810,9 @@
     if (errEl) { errEl.textContent = ""; errEl.classList.add("hidden"); }
     clearLiveCards();
     if (fetchEl) {
-      fetchEl.textContent = "LIVE DATA PROCESSING · Fetching current atmospheric and NWP data for 5 locations. This may take several minutes depending on external data availability. PROCESSING 5 LOCATIONS...";
+      fetchEl.textContent = "LIVE DATA PROCESSING — Fetching current atmospheric and NWP data for 5 locations. This may take several minutes depending on external data availability. Please wait... PROCESSING 5 LOCATIONS";
     }
+    renderLiveStorm();
     try {
       var res = await fetch("/api/inference/live/all", {
         method: "POST",
@@ -827,9 +854,9 @@
           errEl.classList.remove("hidden");
         }
       } else if (avail < reqn) {
-        if (fetchEl) fetchEl.textContent = "LIVE DATA PARTIALLY AVAILABLE · " + avail + " / " + reqn + " locations available";
+        if (fetchEl) fetchEl.textContent = "LIVE DATA READY · " + avail + " / " + reqn + " LOCATIONS AVAILABLE";
       } else {
-        if (fetchEl) fetchEl.textContent = "LIVE DATA READY · " + avail + " / " + reqn + " locations available";
+        if (fetchEl) fetchEl.textContent = "LIVE DATA READY · " + avail + " / " + reqn + " LOCATIONS AVAILABLE";
       }
       var ids = liveSortedIds();
       focusId = ids[0];
@@ -865,4 +892,12 @@
       renderLiveTable();
     });
   });
+
+  var initialView = "live";
+  try {
+    var h = String(location.hash || "").replace("#", "");
+    if (h === "overview") h = "replay";
+    if (h) initialView = h;
+  } catch (eHash) {}
+  showView(initialView);
 })();

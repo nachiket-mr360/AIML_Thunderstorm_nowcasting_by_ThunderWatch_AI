@@ -33,6 +33,7 @@
     this.callout = wrap.querySelector(".js-map-callout") || wrap.querySelector("#map-callout");
     this.host = wrap.querySelector(".js-india-gl") || wrap.querySelector("#india-gl");
     this.cfg = opts.config;
+    this.styleMode = opts.styleMode || "dark";
     if (!global.maplibregl || !this.cfg || !this.cfg.enabled) return false;
 
     var fb = wrap.querySelector(".js-india-fallback") || wrap.querySelector("#india-fallback");
@@ -43,7 +44,7 @@
     try {
       this.map = new maplibregl.Map({
         container: this.host,
-        style: this.cfg.styles.dark,
+        style: (this.cfg.styles && this.cfg.styles[this.styleMode]) || this.cfg.styles.dark,
         center: INDIA.center,
         zoom: INDIA.zoom,
         pitch: this.reduced ? 0 : INDIA.pitch,
@@ -86,7 +87,7 @@
   };
 
   GeoMap.prototype._terrain = function () {
-    if (this.reduced || !this.cfg.terrain || !this.map) return;
+    if (this.reduced || !this.cfg.terrain || !this.map || this.styleMode === "hybrid") return;
     try {
       if (!this.map.getSource("tw-dem")) {
         this.map.addSource("tw-dem", { type: "raster-dem", url: this.cfg.terrain, tileSize: 256 });

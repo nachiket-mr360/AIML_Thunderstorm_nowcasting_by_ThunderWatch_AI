@@ -61,9 +61,11 @@
         <span class="pill live" title="Research application status, not live forecasting">SYSTEM ONLINE</span>
       </div>
       <div class="hdr-tools">
+        <span class="hdr-replay-only">
         <label class="tiny" for="hist-time">T (UTC)</label>
         <input id="hist-time" type="datetime-local" value="2023-06-15T12:00">
         <button id="run-all" type="button">RUN 5-LOCATION REPLAY</button>
+        </span>
         <select id="motion" aria-label="Animation intensity">
           <option value="full">FULL</option>
           <option value="reduced">REDUCED</option>
@@ -74,9 +76,8 @@
     </header>
 
     <aside class="nav" aria-label="Primary">
-      <button class="nav-item active" data-view="overview">◉ OVERVIEW</button>
+      <button class="nav-item active" data-view="live">⚡ LIVE PREDICTION <em class="nav-live">RESEARCH LIVE</em></button>
       <button class="nav-item" data-view="replay">◷ HISTORICAL REPLAY</button>
-      <button class="nav-item" data-view="live">⚡ LIVE PREDICTION <em class="nav-live">RESEARCH LIVE</em></button>
       <button class="nav-item" data-view="locations">⌖ LOCATIONS</button>
       <button class="nav-item" data-view="layers">▦ DATA LAYERS</button>
       <button class="nav-item" data-view="model">▣ AI MODEL</button>
@@ -86,12 +87,25 @@
 
     <main class="main">
       <p id="dash-error" class="dash-error hidden" role="alert"></p>
-      <section class="view view-overview active" data-view="overview">
+      <section class="view" data-view="replay">
+        <article class="panel lab">
+          <h2>HISTORICAL REPLAY</h2>
+          <p class="banner">Historical Replay uses archived atmospheric and NWP data. It is not a live, near-real-time, or operational forecasting system. Model probabilities are uncalibrated. This is not Live Research.</p>
+          <p class="cap" id="replay-t-ist">Replay time displays in IST after a run. Input remains UTC.</p>
+          <p class="cap">Quick verified scenarios</p>
+          <div class="quick">
+            {% for case in demo_cases %}
+            <button type="button" class="demo" data-ts="{{ case.timestamp_utc }}">{{ case.label }}</button>
+            {% endfor %}
+          </div>
+          <div id="scan" class="scan hidden" role="status"></div>
+          <p id="page-error" class="error hidden"></p>
+        </article>
         <div class="desk">
           <article class="panel map-panel">
             <div class="panel-h">
               <h2>STATION-BASED AI RISK</h2>
-              <p class="cap">Five reference stations · discrete model probability · not a continuous heatmap or radar</p>
+              <p class="cap">Historical station-based AI risk · five reference locations · not a continuous heatmap or radar</p>
             </div>
             <div class="map-wrap" id="map-wrap">
               <div id="india-gl" class="india-gl" aria-label="India station risk map"></div>
@@ -193,22 +207,6 @@
             </dl>
           </article>
         </div>
-      </section>
-
-      <section class="view" data-view="replay">
-        <article class="panel lab">
-          <h2>HISTORICAL REPLAY</h2>
-          <p class="banner">Historical Replay uses archived atmospheric and NWP data. It is not a live, near-real-time, or operational forecasting system. Model probabilities are uncalibrated. This is not Live Research.</p>
-          <p class="cap" id="replay-t-ist">Replay time displays in IST after a run. Input remains UTC.</p>
-          <p class="cap">Quick verified scenarios</p>
-          <div class="quick">
-            {% for case in demo_cases %}
-            <button type="button" class="demo" data-ts="{{ case.timestamp_utc }}">{{ case.label }}</button>
-            {% endfor %}
-          </div>
-          <div id="scan" class="scan hidden" role="status"></div>
-          <p id="page-error" class="error hidden"></p>
-        </article>
         <article class="panel">
           <h2>MODEL PREDICTION vs OBSERVATION</h2>
           <p class="cap">Historical outcomes are revealed after prediction and are not model inputs.</p>
@@ -216,7 +214,7 @@
         </article>
       </section>
 
-      <section class="view" data-view="live">
+      <section class="view view-live active" data-view="live">
         <article class="panel live-arch">
           <p class="kicker">LIVE AI PREDICTION</p>
           <h2>RESEARCH PROTOTYPE</h2>
@@ -224,44 +222,43 @@
           <button type="button" id="run-live-all" class="live-run">RUN 5-LOCATION LIVE DATA</button>
           <p id="live-fetch" class="live-fetch muted" role="status">LIVE DATA · AWAITING RUN</p>
           <p id="live-error" class="error hidden" role="alert"></p>
-          <p class="cap" id="live-sort-lab">SORTED BY +1H MODEL RISK</p>
-          <div class="live-sort" role="group" aria-label="Sort lead">
-            <button type="button" class="live-sort-btn active" data-lead="1h">+1H</button>
-            <button type="button" class="live-sort-btn" data-lead="2h">+2H</button>
-            <button type="button" class="live-sort-btn" data-lead="3h">+3H</button>
+          <dl class="live-meta">
+            <div><dt>SOURCE</dt><dd id="live-src">—</dd></div>
+            <div><dt>OBSERVATION (IST)</dt><dd id="live-obs">—</dd></div>
+            <div><dt>PREDICTION TIME (IST)</dt><dd id="live-ptime">—</dd></div>
+            <div><dt>DATA AGE</dt><dd id="live-age">—</dd></div>
+            <div><dt>MODE</dt><dd id="live-mode">LIVE</dd></div>
+          </dl>
+        </article>
+
+        <article class="panel" id="live-storm-panel">
+          <div class="panel-h"><h2>LIVE THUNDERSTORM RISK</h2><span class="cap">+1H · +2H · +3H · threshold 6.5%</span></div>
+          <div id="live-storm" class="live-storm"></div>
+        </article>
+
+        <article class="panel hero-risk" id="live-hero">
+          <p class="kicker">HIGHEST MODEL RISK</p>
+          <div class="hero-row">
+            <div>
+              <h2 id="live-hero-loc">AWAITING LIVE DATA</h2>
+              <p class="icao" id="live-hero-icao">—</p>
+            </div>
+            <p class="big" id="live-hero-pct">--</p>
           </div>
-          <article class="panel hero-risk" id="live-hero">
-            <p class="kicker">HIGHEST MODEL RISK</p>
-            <div class="hero-row">
-              <div>
-                <h2 id="live-hero-loc">AWAITING LIVE DATA</h2>
-                <p class="icao" id="live-hero-icao">—</p>
-              </div>
-              <p class="big" id="live-hero-pct">--</p>
-            </div>
-            <p class="lead-lab">THUNDERSTORM RISK (+1H)</p>
-            <p class="thr">Threshold: 6.5% · uncalibrated</p>
-          </article>
-          <div id="live-risk" class="live-risk">
-            <h3>STATION DETAIL</h3>
-            <div class="live-leads">
-              <div class="live-lead" data-lead="1h"><span>+1 H</span><strong id="live-p1">--</strong><em id="live-a1">—</em><small id="live-v1">valid —</small><small>Threshold 6.5%</small></div>
-              <div class="live-lead" data-lead="2h"><span>+2 H</span><strong id="live-p2">--</strong><em id="live-a2">—</em><small id="live-v2">valid —</small><small>Threshold 6.5%</small></div>
-              <div class="live-lead" data-lead="3h"><span>+3 H</span><strong id="live-p3">--</strong><em id="live-a3">—</em><small id="live-v3">valid —</small><small>Threshold 6.5%</small></div>
-            </div>
-            <dl class="live-meta">
-              <div><dt>SOURCE</dt><dd id="live-src">—</dd></div>
-              <div><dt>OBSERVATION (IST)</dt><dd id="live-obs">—</dd></div>
-              <div><dt>PREDICTION TIME (IST)</dt><dd id="live-ptime">—</dd></div>
-              <div><dt>DATA AGE</dt><dd id="live-age">—</dd></div>
-              <div><dt>MODE</dt><dd id="live-mode">LIVE</dd></div>
-            </dl>
+          <p class="lead-lab">MODEL RISK (+1H)</p>
+          <p class="thr">Threshold: 6.5% · uncalibrated</p>
+          <p class="state" id="live-hero-state">AWAITING LIVE DATA</p>
+          <div class="live-leads">
+            <div class="live-lead" data-lead="1h"><span>+1 H</span><strong id="live-p1">--</strong><em id="live-a1">—</em><small id="live-v1">valid —</small><small>Threshold 6.5%</small></div>
+            <div class="live-lead" data-lead="2h"><span>+2 H</span><strong id="live-p2">--</strong><em id="live-a2">—</em><small id="live-v2">valid —</small><small>Threshold 6.5%</small></div>
+            <div class="live-lead" data-lead="3h"><span>+3 H</span><strong id="live-p3">--</strong><em id="live-a3">—</em><small id="live-v3">valid —</small><small>Threshold 6.5%</small></div>
           </div>
         </article>
+
         <article class="panel map-panel">
           <div class="panel-h">
             <h2>LIVE STATION RISK</h2>
-            <p class="cap">Station-based AI risk · five reference locations · not a heatmap</p>
+            <p class="cap">Satellite Hybrid · station-based AI risk · five reference locations</p>
           </div>
           <div class="map-wrap" id="live-map-wrap">
             <div class="india-gl js-india-gl" aria-label="Live station risk map"></div>
@@ -271,6 +268,7 @@
             </svg>
             <div class="map-tip js-map-tip" hidden></div>
             <div class="map-callout js-map-callout" hidden></div>
+            <p id="live-map-mode" class="map-mode"></p>
             <div class="map-tools">
               <button type="button" class="js-map-zoom-in" aria-label="Zoom in">+</button>
               <button type="button" class="js-map-zoom-out" aria-label="Zoom out">−</button>
@@ -278,8 +276,17 @@
             </div>
           </div>
         </article>
+
         <article class="panel">
-          <div class="panel-h"><h2>LOCATION RISK</h2><span class="cap">REFERENCE LOCATIONS</span></div>
+          <div class="panel-h">
+            <h2>LOCATION RISK</h2>
+            <span class="cap" id="live-sort-lab">SORTED BY +1H MODEL RISK</span>
+          </div>
+          <div class="live-sort" role="group" aria-label="Sort lead">
+            <button type="button" class="live-sort-btn active" data-lead="1h">+1H</button>
+            <button type="button" class="live-sort-btn" data-lead="2h">+2H</button>
+            <button type="button" class="live-sort-btn" data-lead="3h">+3H</button>
+          </div>
           <div class="table-wrap">
             <table class="risk-table">
               <thead><tr><th>#</th><th>Location</th><th>+1H</th><th>+2H</th><th>+3H</th><th>Status</th></tr></thead>
@@ -291,6 +298,38 @@
             </table>
           </div>
         </article>
+
+        <div class="live-context">
+          <article class="panel atmo-panel">
+            <h2>ATMOSPHERIC SIGNALS</h2>
+            <div id="live-atmo-grid" class="atmo-grid"><p class="muted">AWAITING LIVE DATA</p></div>
+          </article>
+          <article class="panel">
+            <h2>NWP / MULTIMODAL INTELLIGENCE</h2>
+            <div class="mm-grid">
+              <div class="mm ok"><h3>ATMOSPHERIC OBSERVATIONS</h3><p class="st">CONNECTED</p></div>
+              <div class="mm ok"><h3>NWP</h3><p class="st">CONNECTED WHERE VALIDATED</p></div>
+              <div class="mm case"><h3>SATELLITE</h3><p class="st">CASE REPLAY READY</p><p class="cap">Historical evidence only — not a live Model B input</p></div>
+              <div class="mm warn"><h3>RADAR</h3><p class="st">CONDITIONAL ACCESS</p></div>
+              <div class="mm pending"><h3>GROUND LIGHTNING</h3><p class="st">DATA ACCESS PENDING</p></div>
+            </div>
+          </article>
+          <article class="panel sat-panel">
+            <h2>SATELLITE EVIDENCE / CONTEXT</h2>
+            <p class="cap">INSAT-3DR CMK is historical case evidence. Not used in live Model B.</p>
+            <div id="live-sat-grid" class="atmo-grid"><p class="muted">Satellite case replay is historical only.</p></div>
+          </article>
+          <article class="panel status-panel">
+            <h2>MODEL &amp; SYSTEM</h2>
+            <dl>
+              <dt>MODEL</dt><dd>ThunderWatch AI Model B</dd>
+              <dt>LEADS</dt><dd>1h / 2h / 3h</dd>
+              <dt>THRESHOLD</dt><dd>6.5%</dd>
+              <dt>MODEL TYPE</dt><dd>Random Forest</dd>
+              <dt>STATUS</dt><dd>Research Prototype</dd>
+            </dl>
+          </article>
+        </div>
       </section>
       <section class="view" data-view="locations">
         <article class="panel">
@@ -336,11 +375,11 @@
       </section>
     </main>
 
-    <footer class="foot" id="app-foot">FANTASTIC6 · SIH26072 · THUNDERWATCH AI · Research Prototype · HISTORICAL REPLAY</footer>
+    <footer class="foot" id="app-foot">FANTASTIC6 · SIH26072 · THUNDERWATCH AI · Research Prototype · LIVE RESEARCH</footer>
     <nav class="mob-nav" aria-label="Mobile">
-      <button data-view="overview">HOME</button>
-      <button data-view="replay">REPLAY</button>
       <button data-view="live">LIVE</button>
+      <button data-view="replay">REPLAY</button>
+      <button data-view="locations">SITES</button>
       <button data-view="about">TEAM</button>
     </nav>
   </div>
