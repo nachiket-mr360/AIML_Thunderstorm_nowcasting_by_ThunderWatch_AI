@@ -9,10 +9,21 @@ import ssl
 import urllib.error
 from typing import Any
 
+NAMED_HTTP_4XX = {
+    400: "HTTP_400",
+    401: "HTTP_401",
+    403: "HTTP_403",
+    429: "HTTP_429",
+}
+
 ALLOWED_CATEGORIES = frozenset(
     {
         "DNS_ERROR",
         "TIMEOUT",
+        "HTTP_400",
+        "HTTP_401",
+        "HTTP_403",
+        "HTTP_429",
         "HTTP_4XX",
         "HTTP_5XX",
         "SSL_ERROR",
@@ -63,6 +74,17 @@ def _haystack(exc: BaseException) -> str:
     return " ".join(parts).lower()
 
 
+def classify_http_status(status: int) -> str:
+    named = NAMED_HTTP_4XX.get(int(status))
+    if named:
+        return named
+    if 400 <= int(status) < 500:
+        return "HTTP_4XX"
+    if 500 <= int(status) <= 599:
+        return "HTTP_5XX"
+    return "UNKNOWN_EXTERNAL_ERROR"
+
+
 def classify_live_exception(exc: BaseException) -> str:
     preset = getattr(exc, "category", None)
     if isinstance(preset, str) and preset.strip().upper() in ALLOWED_CATEGORIES:
@@ -80,11 +102,7 @@ def classify_live_exception(exc: BaseException) -> str:
         return "DNS_ERROR"
     if isinstance(exc, urllib.error.HTTPError):
         status = int(getattr(exc, "code", 0) or 0)
-        if 400 <= status < 500:
-            return "HTTP_4XX"
-        if status >= 500:
-            return "HTTP_5XX"
-        return "UNKNOWN_EXTERNAL_ERROR"
+        return classify_http_status(status)
     if isinstance(exc, urllib.error.URLError):
         reason = getattr(exc, "reason", None)
         if isinstance(reason, TimeoutError):
