@@ -1,0 +1,191 @@
+{
+  "phase": "12D",
+  "kind": "design_audit_only",
+  "created_at_local": "2026-09-23",
+  "status": "MULTIMODAL_EXPERIMENT_DESIGN_READY",
+  "trained": false,
+  "fused_training_dataset_created": false,
+  "phase8d_8e_untouched": true,
+  "phase10i_outputs_untouched": true,
+  "experiment_type": "EXPLORATORY_CASE_BASED_MULTIMODAL_EXPERIMENT",
+  "not_independent_held_out_benchmark": true,
+  "preservation": {
+    "quantitative_benchmark": "Phase 8D Model B complete-case atmosphere+NWP",
+    "phase_8e_role": "robustness_check_not_used_here",
+    "do_not_retrain_or_overwrite_model_B": true
+  },
+  "groups": {
+    "BASELINE_B": {
+      "atmospheric_features": 73,
+      "nwp_features": 10,
+      "identical_to_phase8d_model_B": true,
+      "model_ids": [
+        "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib",
+        "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib",
+        "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib"
+      ],
+      "frozen_thresholds": {"target_1h": 0.065, "target_2h": 0.065, "target_3h": 0.065}
+    },
+    "MULTIMODAL_D": {
+      "definition": "BASELINE_B plus selected satellite predictors",
+      "trained_in_this_phase": false,
+      "training_decision": "B_descriptive_feature_response_without_claiming_model_skill",
+      "can_train_without_event_leakage": false
+    }
+  },
+  "satellite_predictors_allowed": [
+    "sat_cloud_mask_at_station",
+    "sat_valid_pixel_count_25km",
+    "sat_cloudy_fraction_25km",
+    "sat_clear_fraction_25km"
+  ],
+  "satellite_fields_not_predictors": [
+    "sat_nearby_cloud_fraction_25km",
+    "gId",
+    "filename",
+    "source_filename",
+    "event_id",
+    "case_type",
+    "sat_observation_time_utc",
+    "sat_acquisition_start_utc",
+    "sat_acquisition_end_utc"
+  ],
+  "sat_age_minutes": {
+    "decision": "provenance_analysis_only",
+    "option": "B",
+    "not_a_D_predictor": true,
+    "reason": "Age is truncated by the 90-min causal gate; remaining 17.48-77.67 min range on n=73 is MVP cadence, confounded with 10 selected events, not an independent convective predictor."
+  },
+  "sat_observation_available": {
+    "role": "explicit_missingness_context",
+    "constant_1_on_primary_73": true,
+    "not_useful_as_D_predictor_on_primary_universe": true,
+    "required_on_all_134_window_hours": true
+  },
+  "causal_rule": {
+    "acquisition_end_utc_lte_T": true,
+    "age_minutes_max": 90,
+    "source_must_be_phase10h_validated": true,
+    "gid_7680747": "do_not_retry_or_impute",
+    "no_forward_fill": true,
+    "no_backward_fill": true,
+    "no_interpolation": true,
+    "no_zero_as_clear": true,
+    "phase10i3_full_overlap": {
+      "hourly_rows": 208320,
+      "causal_matches": 505,
+      "future_ending_matches": 0,
+      "age_gt_90_matches": 0
+    }
+  },
+  "universes": {
+    "do_not_use_full_208320_as_dense_satellite": true,
+    "window_hours": 134,
+    "primary_satellite_complete_rows": 73,
+    "context_no_satellite_rows": 61,
+    "stations_present": ["VABB", "VECC", "VIDP", "VOCI"],
+    "stations_absent": ["VOTV"],
+    "event_ids": [
+      "VABB_CTL_03_20250614T14",
+      "VABB_TS_03_20250614T14",
+      "VECC_CTL_04_20240506T13",
+      "VECC_TS_04_20240506T13",
+      "VIDP_CTL_02_20241227T01",
+      "VIDP_CTL_03_20220107T19",
+      "VIDP_TS_02_20241227T01",
+      "VIDP_TS_03_20220107T19",
+      "VOCI_CTL_02_20231103T08",
+      "VOCI_TS_02_20231103T08"
+    ],
+    "do_not_silently_expand": true,
+    "same_row_B_and_D_comparison_universe": "primary_73",
+    "no_sat_61_not_equivalent_test_population": true
+  },
+  "targets": {
+    "names": ["target_1h", "target_2h", "target_3h"],
+    "definition": "genuine METAR thunderstorm at T+L",
+    "missing_null_exclude": true,
+    "primary_73_observed": {
+      "target_1h": {"n_available": 73, "n_positive": 35, "n_negative": 38, "n_missing": 0},
+      "target_2h": {"n_available": 72, "n_positive": 33, "n_negative": 39, "n_missing": 1},
+      "target_3h": {"n_available": 73, "n_positive": 33, "n_negative": 40, "n_missing": 0}
+    }
+  },
+  "splits": {
+    "random_split_forbidden": true,
+    "train_val_test_inside_cases_forbidden": true,
+    "primary_73_across_frozen_phase8d_splits": {
+      "train": 15,
+      "validation": 18,
+      "test": 40
+    }
+  },
+  "redundancy_audit": {
+    "sat_nearby_equals_sat_cloudy": true,
+    "max_abs_diff_primary_73": 0.0,
+    "max_abs_diff_scan_level": 0.0,
+    "exclude_nearby_alias_from_predictors": true,
+    "clear_plus_cloudy_equals_1": true,
+    "primary_73_sum_min": 0.9999999999999999,
+    "primary_73_sum_max": 1.0,
+    "retain_both_clear_and_cloudy": true,
+    "later_fit_must_not_use_both_as_independent_linear_terms": true
+  },
+  "missingness_61": {
+    "sat_observation_available": 0,
+    "physical_fields": "null",
+    "forbidden_fills": ["clear", "cloudy", "zero", "average", "previous_observation"]
+  },
+  "allowed_now": [
+    "same_row_frozen_B_context",
+    "satellite_cloud_context",
+    "case_timelines",
+    "event_state_distributions",
+    "baseline_predictions_alongside_satellite",
+    "qualitative_descriptive_differences",
+    "coverage_and_availability"
+  ],
+  "forbidden_claims": [
+    "satellite_improves_accuracy",
+    "satellite_improves_recall_f1_auc",
+    "ranking_B_vs_D",
+    "operational_superiority",
+    "satellite_operationally_predictive",
+    "73_vs_61_as_skill_test"
+  ],
+  "strongest_valid_experiment": "descriptive overlay of frozen Model B probabilities and causal CMK on the same 73 hours; 61 hours coverage context only; no D training; no skill ranking",
+  "dashboard_replay_may_show": [
+    "case_timelines",
+    "sat_observation_available",
+    "cmk_class_and_fractions",
+    "sat_age_minutes_as_latency",
+    "frozen_B_probability",
+    "future_METAR_labels_for_verification_only",
+    "explicit_exploratory_status"
+  ],
+  "provenance_required": [
+    "station_id",
+    "timestamp_utc",
+    "lead_hours",
+    "target",
+    "source_filename",
+    "gId",
+    "sat_observation_time_utc",
+    "sat_acquisition_start_utc",
+    "sat_acquisition_end_utc",
+    "sat_age_minutes",
+    "sat_observation_available",
+    "event_id",
+    "phase3_catalog",
+    "phase8b_nwp_source",
+    "phase8d_model_B_id",
+    "phase10h_manifest",
+    "phase10i3_causal_rule",
+    "exploratory_status"
+  ],
+  "artifacts": {
+    "markdown": "docs/PHASE12D_MULTIMODAL_EXPERIMENT_DESIGN.md",
+    "json": "outputs/multimodal/phase12d_multimodal_experiment_design.json",
+    "primary_row_audit": "outputs/multimodal/phase12d_primary_row_audit.csv"
+  }
+}

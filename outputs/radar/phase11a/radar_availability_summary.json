@@ -1,0 +1,166 @@
+{
+  "phase": "11A",
+  "title": "Radar data availability audit",
+  "date": "2026-09-23",
+  "audit_only": true,
+  "downloaded_files": 0,
+  "training_performed": false,
+  "existing_datasets_modified": false,
+  "commit_push": false,
+  "locations": [
+    {"station_id": "VOTV", "city": "Thiruvananthapuram", "lat": 8.482, "lon": 76.92},
+    {"station_id": "VECC", "city": "Kolkata", "lat": 22.6547, "lon": 88.4467},
+    {"station_id": "VIDP", "city": "Delhi", "lat": 28.5667, "lon": 77.1167},
+    {"station_id": "VOCI", "city": "Kochi", "lat": 10.15, "lon": 76.4},
+    {"station_id": "VABB", "city": "Mumbai", "lat": 19.1005, "lon": 72.8585}
+  ],
+  "training_window_utc": {"start": "2014-01-01", "end": "2025-12-31"},
+  "method": {
+    "mosdac_home": {"url": "https://www.mosdac.gov.in/", "http_status": 200, "page_mentions_radar_or_dwr": true},
+    "mosdac_search_api": {
+      "url_pattern": "https://mosdac.gov.in/apios/datasets.json?datasetId={id}",
+      "authenticated": false,
+      "download_api_called": false,
+      "probed_datasetIds": ["DWR", "DWR_MUMBAI", "DWR_MUM", "DWR_DELHI"],
+      "confirmed_radar_datasetId": null,
+      "note": "Unlike 3RIMG_L2B_CMK in Phase 10B, no radar datasetId returned a usable granule catalog in this session."
+    },
+    "imd_radar_page": {
+      "url": "https://mausam.imd.gov.in/imd_latest/contents/index_radar.php",
+      "http_status": 200,
+      "html_title": "Delhi - Radar",
+      "type": "current_visualization"
+    },
+    "radar_imd_gov_in": {"url": "https://radar.imd.gov.in/", "resolved": false}
+  },
+  "distinctions": {
+    "current_visualization": "IMD Mausam radar map/animation; not an archive.",
+    "downloadable_historical": "Timed quantitative files in a catalog; not demonstrated for radar.",
+    "training_ready": "Multi-year, five-station, joinable Z (or equivalent) without broadcasting scans; none found."
+  },
+  "classification_counts": {
+    "TRAINING_READY": 0,
+    "PILOT_READY": 0,
+    "REFERENCE_ONLY": 1,
+    "CONDITIONAL_INSTITUTIONAL_ACCESS": 2,
+    "NOT_USABLE": 3
+  },
+  "candidates": [
+    {
+      "id": "IMD_MAUSAM_RADAR_VIEWER",
+      "radar_or_station_name": "IMD DWR network as shown on Mausam radar page (title: Delhi - Radar)",
+      "organization": "India Meteorological Department",
+      "geographic_coverage": "Site-centric DWR umbrellas; five ICAOs in principle inside some IMD DWR, not verified from files",
+      "product_type": "PPI/MAX/composite images (visualization)",
+      "spatial_resolution": "not measured from files; operational DWR often ~0.5-1 km near radar",
+      "temporal_resolution": "latest frames; operational volumes typically ~6-10 min (not verified as archive)",
+      "historical_period_available": "not demonstrated",
+      "file_format": "GIF/PNG/JPEG on website",
+      "access_method": "HTTPS browser page",
+      "historical_bulk_download_possible": false,
+      "authentication_required": false,
+      "suitable_for_thunderwatch_features": false,
+      "layer": "current_visualization",
+      "classification": "NOT_USABLE"
+    },
+    {
+      "id": "IMD_DWR_MOSAIC_WEB",
+      "radar_or_station_name": "IMD radar mosaic / nowcast web products",
+      "organization": "India Meteorological Department",
+      "geographic_coverage": "national mosaic in principle",
+      "product_type": "current images/overlays",
+      "spatial_resolution": "not verified",
+      "temporal_resolution": "latest frames",
+      "historical_period_available": "not demonstrated",
+      "file_format": "web images",
+      "access_method": "public IMD web pages",
+      "historical_bulk_download_possible": false,
+      "authentication_required": false,
+      "suitable_for_thunderwatch_features": false,
+      "layer": "current_visualization",
+      "classification": "NOT_USABLE"
+    },
+    {
+      "id": "IMD_DWR_INSTITUTIONAL_ARCHIVE",
+      "radar_or_station_name": "IMD Doppler Weather Radars covering VOTV, VECC, VIDP, VOCI, VABB (request by named station)",
+      "organization": "India Meteorological Department",
+      "geographic_coverage": "named DWR sites after grant; commissioning dates not assumed for full 2014-2025",
+      "product_type": "likely volume reflectivity / rain products if granted; data dictionary not verified",
+      "spatial_resolution": "TBD from grant",
+      "temporal_resolution": "TBD; typically polar volumes ~6-10 min",
+      "historical_period_available": "conditional on IMD supply",
+      "file_format": "unverified (IRIS/UF/HDF5/PNG possible)",
+      "access_method": "institutional letter / data-supply portal",
+      "historical_bulk_download_possible": false,
+      "authentication_required": true,
+      "suitable_for_thunderwatch_features": "only after files and timestamps exist; no radar columns until then",
+      "layer": "downloadable_historical_conditional",
+      "classification": "CONDITIONAL_INSTITUTIONAL_ACCESS"
+    },
+    {
+      "id": "MOSDAC_DWR_PORTAL",
+      "radar_or_station_name": "MOSDAC-advertised DWR / ISRO site radars (not confirmed as five airport DWRs)",
+      "organization": "ISRO / MOSDAC (Space Applications Centre)",
+      "geographic_coverage": "ISRO site radars; TERLS may be near VOTV; VECC/VIDP/VOCI/VABB airport DWRs are IMD",
+      "product_type": "DWR advertised on portal; datasetId not confirmed",
+      "spatial_resolution": "not confirmed",
+      "temporal_resolution": "not confirmed",
+      "historical_period_available": "not confirmed (search probes failed)",
+      "file_format": "unknown; do not assume HDF5 from CMK",
+      "access_method": "MOSDAC search API if datasetId known; download requires MOSDAC account",
+      "historical_bulk_download_possible": false,
+      "authentication_required": "search no if ID valid; download yes",
+      "suitable_for_thunderwatch_features": false,
+      "layer": "catalog_unconfirmed",
+      "classification": "CONDITIONAL_INSTITUTIONAL_ACCESS"
+    },
+    {
+      "id": "OPEN_FOREIGN_RADAR_ARCHIVES",
+      "radar_or_station_name": "NEXRAD / OPERA / similar",
+      "organization": "NOAA / EUMETNET / others",
+      "geographic_coverage": "not India; none of the five ICAOs",
+      "product_type": "n/a for ThunderWatch sites",
+      "spatial_resolution": "n/a",
+      "temporal_resolution": "n/a",
+      "historical_period_available": "n/a",
+      "file_format": "n/a",
+      "access_method": "public foreign archives",
+      "historical_bulk_download_possible": false,
+      "authentication_required": "varies",
+      "suitable_for_thunderwatch_features": false,
+      "layer": "wrong_geography",
+      "classification": "NOT_USABLE"
+    },
+    {
+      "id": "PUBLISHED_CASE_STUDY_DWR",
+      "radar_or_station_name": "ad hoc DWR samples in papers",
+      "organization": "various authors",
+      "geographic_coverage": "event-specific",
+      "product_type": "case dumps",
+      "spatial_resolution": "paper-dependent",
+      "temporal_resolution": "paper-dependent",
+      "historical_period_available": "days not decades",
+      "file_format": "varies",
+      "access_method": "supplementary material if any",
+      "historical_bulk_download_possible": false,
+      "authentication_required": "varies",
+      "suitable_for_thunderwatch_features": false,
+      "layer": "reference",
+      "classification": "REFERENCE_ONLY"
+    }
+  ],
+  "per_location": [
+    {"station_id": "VOTV", "nearest_family": "IMD Thiruvananthapuram DWR; possible ISRO TERLS on MOSDAC", "public_historical_files_found": false, "classification": "CONDITIONAL_INSTITUTIONAL_ACCESS"},
+    {"station_id": "VECC", "nearest_family": "IMD Kolkata Dum Dum DWR", "public_historical_files_found": false, "classification": "CONDITIONAL_INSTITUTIONAL_ACCESS"},
+    {"station_id": "VIDP", "nearest_family": "IMD Delhi/Palam DWR; public viewer is live viz", "public_historical_files_found": false, "classification": "CONDITIONAL_INSTITUTIONAL_ACCESS"},
+    {"station_id": "VOCI", "nearest_family": "IMD Kochi/Cochin DWR", "public_historical_files_found": false, "classification": "CONDITIONAL_INSTITUTIONAL_ACCESS"},
+    {"station_id": "VABB", "nearest_family": "IMD Mumbai DWR", "public_historical_files_found": false, "classification": "CONDITIONAL_INSTITUTIONAL_ACCESS"}
+  ],
+  "recommended_next_pilot": {
+    "do_not_download_now": true,
+    "source_id": "IMD_DWR_INSTITUTIONAL_ARCHIVE",
+    "action": "College letter requesting volume reflectivity with UTC scan times for a short case window at the five sites. Optional MOSDAC search-only for a real DWR datasetId. Keep radar feature group absent until files exist.",
+    "not_recommended": ["scrape Mausam GIF/PNG", "invent MOSDAC radar endpoints", "NEXRAD"]
+  },
+  "status": "PHASE_11A_COMPLETE_NO_DOWNLOAD"
+}

@@ -1,0 +1,79 @@
+{
+  "phase": "14A",
+  "status": "SPATIAL_RISK_CAPABILITY_AUDIT_READY",
+  "audit_only": true,
+  "frozen_engine": "FINAL_MULTI_LEAD_ENGINE_FROZEN",
+  "station_count": 5,
+  "station_coordinates": {
+    "VOTV": {"latitude": 8.4667, "longitude": 76.95, "elevation_m": 8.0},
+    "VECC": {"latitude": 22.6547, "longitude": 88.4467, "elevation_m": 6.0},
+    "VIDP": {"latitude": 28.5667, "longitude": 77.1167, "elevation_m": 233.0},
+    "VOCI": {"latitude": 10.15, "longitude": 76.4, "elevation_m": 8.0},
+    "VABB": {"latitude": 19.1005, "longitude": 72.8585, "elevation_m": 8.0}
+  },
+  "coordinate_source": "dataset/multilocation/features/multilocation_features_2014_2025_metadata.json",
+  "core_model_b": {
+    "n_features": 83,
+    "leads": ["1h", "2h", "3h"],
+    "threshold": 0.065,
+    "modified": false
+  },
+  "station_level_risk_status": "CASE_REPLAY_READY",
+  "station_level_risk_label": "STATION_LEVEL_RISK_READY",
+  "multi_station_status": "CASE_REPLAY_READY",
+  "atmospheric_spatial_context_status": "CASE_REPLAY_READY",
+  "atmospheric_spatial_context_note": "Station-point NWP/atmosphere only; no stored gridded fields for mapping.",
+  "satellite_spatial_status": "CASE_REPLAY_READY",
+  "satellite_spatial_note": "Nearest-pixel CMK and 25 km neighborhood; hourly match rate 0.2424%; no continuous cloud map from tabular artifacts.",
+  "radar_spatial_status": "CONDITIONAL_INSTITUTIONAL_ACCESS",
+  "lightning_spatial_status": "NOT_SUPPORTED",
+  "lightning_climatology_status": "REFERENCE_ONLY",
+  "continuous_risk_surface_status": "NOT_SUPPORTED",
+  "storm_cell_forecast_status": "NOT_SUPPORTED",
+  "interpolation_detected": false,
+  "interpolation_search": ["IDW", "Kriging", "nearest-neighbour spatial spreading", "Gaussian smoothing", "heatmap interpolation", "artificial grid generation of Model B probabilities"],
+  "historical_snapshot_test": {
+    "source": "outputs/v2_replay/phase15b/replay_predictions.csv",
+    "complete_rows": 34130,
+    "timestamps_with_all_five_stations_complete": 6826,
+    "timestamp_utc": "2021-04-02T00:00:00+00:00",
+    "mode": "HISTORICAL_REPLAY",
+    "future_observations_used_as_predictors": false,
+    "targets_used_as_predictors": false,
+    "stations": [
+      {"station_id": "VABB", "latitude": 19.1005, "longitude": 72.8585, "lead_1h_probability": 0.0, "lead_2h_probability": 0.0, "lead_3h_probability": 0.0, "alert_1h": false, "alert_2h": false, "alert_3h": false, "data_status": "COMPLETE"},
+      {"station_id": "VECC", "latitude": 22.6547, "longitude": 88.4467, "lead_1h_probability": 0.01, "lead_2h_probability": 0.01, "lead_3h_probability": 0.005, "alert_1h": false, "alert_2h": false, "alert_3h": false, "data_status": "COMPLETE"},
+      {"station_id": "VIDP", "latitude": 28.5667, "longitude": 77.1167, "lead_1h_probability": 0.0, "lead_2h_probability": 0.0, "lead_3h_probability": 0.0, "alert_1h": false, "alert_2h": false, "alert_3h": false, "data_status": "COMPLETE"},
+      {"station_id": "VOCI", "latitude": 10.15, "longitude": 76.4, "lead_1h_probability": 0.0, "lead_2h_probability": 0.0, "lead_3h_probability": 0.0, "alert_1h": false, "alert_2h": false, "alert_3h": false, "data_status": "COMPLETE"},
+      {"station_id": "VOTV", "latitude": 8.4667, "longitude": 76.95, "lead_1h_probability": 0.0, "lead_2h_probability": 0.005, "lead_3h_probability": 0.0, "alert_1h": false, "alert_2h": false, "alert_3h": false, "data_status": "COMPLETE"}
+    ],
+    "pass": true
+  },
+  "proposed_spatial_output_contract": {
+    "implemented": false,
+    "mode": "HISTORICAL_REPLAY",
+    "stations": "array of station_id, lat, lon, lead_1h/2h/3h probability and alerts, data_status",
+    "satellite_context": "object or empty when no causal CMK match",
+    "radar_context": null,
+    "lightning_context": null
+  },
+  "allowed_map_claims": [
+    "AI risk at observed locations",
+    "multi-station historical risk"
+  ],
+  "forbidden_map_claims": [
+    "predicted storm cell",
+    "predicted thunderstorm boundary",
+    "radar forecast",
+    "lightning forecast"
+  ],
+  "final_classification": {
+    "station_risk_markers": "CASE_REPLAY_READY",
+    "multi_station_risk_map": "CASE_REPLAY_READY",
+    "continuous_risk_surface": "NOT_SUPPORTED",
+    "satellite_cloud_context": "CASE_REPLAY_READY",
+    "radar_reflectivity_map": "CONDITIONAL_INSTITUTIONAL_ACCESS",
+    "lightning_density_map": "NOT_SUPPORTED",
+    "storm_cell_forecast_map": "NOT_SUPPORTED"
+  }
+}

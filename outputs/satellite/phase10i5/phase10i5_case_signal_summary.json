@@ -1,0 +1,151 @@
+{
+  "phase": "10I.5",
+  "analysis_only": true,
+  "no_skill_metrics": true,
+  "n_timeseries_rows": 253,
+  "n_scan_rows": 119,
+  "n_hourly_causal_rows": 134,
+  "n_hourly_causal_available": 73,
+  "scan_level": {
+    "thunderstorm_cloudy_fraction": {
+      "n": 59,
+      "min": 0.5172413793103449,
+      "median": 1.0,
+      "max": 1.0,
+      "mean": 0.9874461766003888
+    },
+    "control_cloudy_fraction": {
+      "n": 60,
+      "min": 0.0,
+      "median": 0.6311413454270598,
+      "max": 1.0,
+      "mean": 0.5376993604826116
+    },
+    "thunderstorm_clear_fraction": {
+      "n": 59,
+      "min": 0.0,
+      "median": 0.0,
+      "max": 0.4827586206896552,
+      "mean": 0.012553823399611159
+    },
+    "control_clear_fraction": {
+      "n": 60,
+      "min": 0.0,
+      "median": 0.36885865457294026,
+      "max": 1.0,
+      "mean": 0.46230063951738826
+    },
+    "mean_cloudy_delta_ts_minus_ctl": 0.4497468161177772,
+    "thunderstorm_cmk_counts": {
+      "1": 55,
+      "3": 2,
+      "2": 2
+    },
+    "control_cmk_counts": {
+      "1": 20,
+      "3": 8,
+      "0": 14,
+      "2": 18
+    },
+    "valid_pixel_count": {
+      "n": 119,
+      "min": 98.0,
+      "median": 108.0,
+      "max": 121.0,
+      "mean": 108.2016806722689
+    },
+    "sat_age_minutes_vs_event_start": {
+      "n": 119,
+      "min": -1032.25,
+      "median": -402.167,
+      "max": 100.567,
+      "mean": -408.5532184873948
+    },
+    "availability_scan_rows": {
+      "n": 119,
+      "available": 119
+    },
+    "pre_event_cloudy_ts": {
+      "n": 10,
+      "min": 0.5172413793103449,
+      "median": 1.0,
+      "max": 1.0,
+      "mean": 0.9517241379310345
+    },
+    "event_cloudy_ts": {
+      "n": 38,
+      "min": 0.7931034482758621,
+      "median": 1.0,
+      "max": 1.0,
+      "mean": 0.9945553539019962
+    },
+    "pre_event_cloudy_ctl": {
+      "n": 10,
+      "min": 0.0,
+      "median": 0.22268135904499542,
+      "max": 1.0,
+      "mean": 0.3725279957142922
+    },
+    "event_cloudy_ctl": {
+      "n": 38,
+      "min": 0.0,
+      "median": 0.7961073318216175,
+      "max": 1.0,
+      "mean": 0.5823054948140389
+    },
+    "per_station": {
+      "VABB": {
+        "thunderstorm_mean_cloudy": 1.0,
+        "control_mean_cloudy": 0.8240740740740741,
+        "n_scan": 23
+      },
+      "VECC": {
+        "thunderstorm_mean_cloudy": 1.0,
+        "control_mean_cloudy": 0.6267006802721088,
+        "n_scan": 24
+      },
+      "VIDP": {
+        "thunderstorm_mean_cloudy": 0.995748299319728,
+        "control_mean_cloudy": 0.08333333333333331,
+        "n_scan": 24
+      },
+      "VOCI": {
+        "thunderstorm_mean_cloudy": 0.9425287356321839,
+        "control_mean_cloudy": 0.5862068965517241,
+        "n_scan": 24
+      },
+      "VOTV": {
+        "thunderstorm_mean_cloudy": 1.0,
+        "control_mean_cloudy": 0.5681818181818182,
+        "n_scan": 24
+      }
+    }
+  },
+  "hourly_causal_in_universe_windows": {
+    "thunderstorm_cloudy_fraction": {
+      "n": 40,
+      "min": 0.5172413793103449,
+      "median": 1.0,
+      "max": 1.0,
+      "mean": 0.9775862068965516
+    },
+    "control_cloudy_fraction": {
+      "n": 33,
+      "min": 0.0,
+      "median": 0.1379310344827586,
+      "max": 0.9722222222222222,
+      "mean": 0.2880527457703156
+    },
+    "mean_cloudy_delta_ts_minus_ctl": 0.689533461126236,
+    "age_minutes": {
+      "n": 73,
+      "min": 17.483333333333334,
+      "median": 47.53333333333333,
+      "max": 77.66666666666667,
+      "mean": 50.452511415525116
+    }
+  },
+  "classification": "SATELLITE_SIGNAL_WORTH_EXPERIMENTING",
+  "classification_reason": "Scan-level 25 km cloudy fraction mean is higher in thunderstorm windows (0.987, n=59) than controls (0.538, n=60); delta=0.450. This is descriptive only, not predictive skill.",
+  "station_case_summary_csv": "C:/College/SIH2_v2/outputs/satellite/phase10i5/phase10i5_station_case_summary.csv"
+}

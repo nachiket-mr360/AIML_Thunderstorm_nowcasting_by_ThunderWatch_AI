@@ -29,13 +29,14 @@
     this.wrap = wrap;
     this.onSelect = opts.onSelect || function () {};
     this.reduced = !!opts.reduced;
-    this.tooltip = wrap.querySelector("#map-tip");
-    this.callout = wrap.querySelector("#map-callout");
-    this.host = wrap.querySelector("#india-gl");
+    this.tooltip = wrap.querySelector(".js-map-tip") || wrap.querySelector("#map-tip");
+    this.callout = wrap.querySelector(".js-map-callout") || wrap.querySelector("#map-callout");
+    this.host = wrap.querySelector(".js-india-gl") || wrap.querySelector("#india-gl");
     this.cfg = opts.config;
     if (!global.maplibregl || !this.cfg || !this.cfg.enabled) return false;
 
-    if (wrap.querySelector("#india-fallback")) wrap.querySelector("#india-fallback").hidden = true;
+    var fb = wrap.querySelector(".js-india-fallback") || wrap.querySelector("#india-fallback");
+    if (fb) fb.hidden = true;
     this.host.hidden = false;
     this.host.innerHTML = "";
 
@@ -70,10 +71,13 @@
       if (self.payload) self.setResults(self.payload);
     });
 
-    wrap.querySelector("#map-zoom-in") && wrap.querySelector("#map-zoom-in").addEventListener("click", function () { self.zoom(-1); });
-    wrap.querySelector("#map-zoom-out") && wrap.querySelector("#map-zoom-out").addEventListener("click", function () { self.zoom(1); });
-    wrap.querySelector("#map-reset") && wrap.querySelector("#map-reset").addEventListener("click", function () { self.reset(); });
-    var basemap = wrap.querySelector("#map-basemap");
+    var zin = wrap.querySelector(".js-map-zoom-in") || wrap.querySelector("#map-zoom-in");
+    var zout = wrap.querySelector(".js-map-zoom-out") || wrap.querySelector("#map-zoom-out");
+    var zreset = wrap.querySelector(".js-map-reset") || wrap.querySelector("#map-reset");
+    zin && zin.addEventListener("click", function () { self.zoom(-1); });
+    zout && zout.addEventListener("click", function () { self.zoom(1); });
+    zreset && zreset.addEventListener("click", function () { self.reset(); });
+    var basemap = wrap.querySelector(".js-map-basemap") || wrap.querySelector("#map-basemap");
     if (basemap) {
       basemap.hidden = false;
       basemap.addEventListener("click", function () { self.toggleStyle(); });
@@ -118,9 +122,12 @@
     if (!this.tooltip) return;
     var st = STATIONS[sid];
     var rec = this._rec(sid);
-    var line = "1h model probability: Awaiting replay";
-    if (rec && rec.unavailable) line = "1h model probability: DATA UNAVAILABLE";
-    else if (rec && rec.lead_1h_pct != null) line = "1h model probability: " + rec.lead_1h_pct + "%";
+    var line = "1h model probability: Awaiting data";
+    if (rec && rec.unavailable) line = rec.live_status || "DATA UNAVAILABLE";
+    else if (rec && rec.lead_1h_pct != null) {
+      line = "+1H " + rec.lead_1h_pct + "% · +2H " + rec.lead_2h_pct + "% · +3H " + rec.lead_3h_pct + "%";
+      if (rec.live_status) line += " · " + rec.live_status;
+    }
     this.tooltip.hidden = false;
     this.tooltip.style.left = "12px";
     this.tooltip.style.top = "auto";

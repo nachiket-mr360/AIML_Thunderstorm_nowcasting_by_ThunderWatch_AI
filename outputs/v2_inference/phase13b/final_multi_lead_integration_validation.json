@@ -1,0 +1,339 @@
+{
+  "phase": "13B_final_multi_lead_integration",
+  "generated_at_utc": "2026-09-23T10:01:55.085501+00:00",
+  "passed": true,
+  "n_checks": 42,
+  "n_failed": 0,
+  "checks": [
+    {
+      "name": "engine_initialization",
+      "passed": true,
+      "detail": "V2-MODEL-B-MULTILEAD-PHASE8D-RESEARCH"
+    },
+    {
+      "name": "models_loaded",
+      "passed": true,
+      "detail": [
+        "1h",
+        "2h",
+        "3h"
+      ]
+    },
+    {
+      "name": "feature_count_83",
+      "passed": true,
+      "detail": 83
+    },
+    {
+      "name": "pick_VABB",
+      "passed": true,
+      "detail": "2025-05-31 14:00:00+00:00"
+    },
+    {
+      "name": "pick_VECC",
+      "passed": true,
+      "detail": "2024-04-22 13:00:00+00:00"
+    },
+    {
+      "name": "pick_VIDP",
+      "passed": true,
+      "detail": "2025-01-10 01:00:00+00:00"
+    },
+    {
+      "name": "pick_VOCI",
+      "passed": true,
+      "detail": "2023-10-20 08:00:00+00:00"
+    },
+    {
+      "name": "historical_lookup_VABB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "feature_construction_VABB",
+      "passed": true,
+      "detail": 83
+    },
+    {
+      "name": "consistency_VABB_1h",
+      "passed": true,
+      "detail": {
+        "engine": 0.03,
+        "phase12e": 0.03,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "consistency_VABB_2h",
+      "passed": true,
+      "detail": {
+        "engine": 0.025,
+        "phase12e": 0.025,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "consistency_VABB_3h",
+      "passed": true,
+      "detail": {
+        "engine": 0.025,
+        "phase12e": 0.025,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "satellite_context_separated_VABB",
+      "passed": true,
+      "detail": {
+        "available": true,
+        "event_id": "VABB_CTL_03_20250614T14",
+        "case_type": "control",
+        "sat_cloudy_fraction_25km": 0.2222222222222222,
+        "sat_clear_fraction_25km": 0.7777777777777778,
+        "sat_observation_time_utc": "2025-05-31 12:15:00+00:00",
+        "sat_age_minutes": 77.51666666666667,
+        "note": "INSAT-3DR CMK evidence/context only. Not a Model B predictor. Not a multimodal probability."
+      }
+    },
+    {
+      "name": "historical_lookup_VECC",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "feature_construction_VECC",
+      "passed": true,
+      "detail": 83
+    },
+    {
+      "name": "consistency_VECC_1h",
+      "passed": true,
+      "detail": {
+        "engine": 0.015,
+        "phase12e": 0.015,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "consistency_VECC_2h",
+      "passed": true,
+      "detail": {
+        "engine": 0.02,
+        "phase12e": 0.02,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "consistency_VECC_3h",
+      "passed": true,
+      "detail": {
+        "engine": 0.02,
+        "phase12e": 0.02,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "satellite_context_separated_VECC",
+      "passed": true,
+      "detail": {
+        "available": true,
+        "event_id": "VECC_CTL_04_20240506T13",
+        "case_type": "control",
+        "sat_cloudy_fraction_25km": 0.6326530612244898,
+        "sat_clear_fraction_25km": 0.3673469387755102,
+        "sat_observation_time_utc": "2024-04-22 11:15:00+00:00",
+        "sat_age_minutes": 77.51666666666667,
+        "note": "INSAT-3DR CMK evidence/context only. Not a Model B predictor. Not a multimodal probability."
+      }
+    },
+    {
+      "name": "historical_lookup_VIDP",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "feature_construction_VIDP",
+      "passed": true,
+      "detail": 83
+    },
+    {
+      "name": "consistency_VIDP_1h",
+      "passed": true,
+      "detail": {
+        "engine": 0.0,
+        "phase12e": 0.0,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "consistency_VIDP_2h",
+      "passed": true,
+      "detail": {
+        "engine": 0.0,
+        "phase12e": 0.0,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "consistency_VIDP_3h",
+      "passed": true,
+      "detail": {
+        "engine": 0.0,
+        "phase12e": 0.0,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "satellite_context_separated_VIDP",
+      "passed": true,
+      "detail": {
+        "available": true,
+        "event_id": "VIDP_CTL_02_20241227T01",
+        "case_type": "control",
+        "sat_cloudy_fraction_25km": 0.0,
+        "sat_clear_fraction_25km": 1.0,
+        "sat_observation_time_utc": "2025-01-09 23:15:00+00:00",
+        "sat_age_minutes": 77.51666666666667,
+        "note": "INSAT-3DR CMK evidence/context only. Not a Model B predictor. Not a multimodal probability."
+      }
+    },
+    {
+      "name": "historical_lookup_VOCI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "feature_construction_VOCI",
+      "passed": true,
+      "detail": 83
+    },
+    {
+      "name": "consistency_VOCI_1h",
+      "passed": true,
+      "detail": {
+        "engine": 0.02,
+        "phase12e": 0.02,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "consistency_VOCI_2h",
+      "passed": true,
+      "detail": {
+        "engine": 0.04,
+        "phase12e": 0.04,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "consistency_VOCI_3h",
+      "passed": true,
+      "detail": {
+        "engine": 0.15,
+        "phase12e": 0.15,
+        "abs_diff": 0.0
+      }
+    },
+    {
+      "name": "satellite_context_separated_VOCI",
+      "passed": true,
+      "detail": {
+        "available": true,
+        "event_id": "VOCI_CTL_02_20231103T08",
+        "case_type": "control",
+        "sat_cloudy_fraction_25km": 0.1724137931034483,
+        "sat_clear_fraction_25km": 0.8275862068965517,
+        "sat_observation_time_utc": "2023-10-20 06:15:00+00:00",
+        "sat_age_minutes": 77.61666666666666,
+        "note": "INSAT-3DR CMK evidence/context only. Not a Model B predictor. Not a multimodal probability."
+      }
+    },
+    {
+      "name": "all_replay_probabilities_match",
+      "passed": true,
+      "detail": "tol=0.001"
+    },
+    {
+      "name": "fail_closed_missing_feature",
+      "passed": true,
+      "detail": {
+        "code": "MISSING_FEATURES",
+        "message": "required Model B columns missing: temperature_2m"
+      }
+    },
+    {
+      "name": "fail_closed_feature_count",
+      "passed": true,
+      "detail": {
+        "code": "FEATURE_COUNT_MISMATCH",
+        "message": "expected 83 values, got 10"
+      }
+    },
+    {
+      "name": "fail_closed_invalid_station",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_STATION",
+        "message": "station 'XXXX' is not in frozen station set ['VABB', 'VECC', 'VIDP', 'VOCI', 'VOTV']"
+      }
+    },
+    {
+      "name": "fail_closed_invalid_timestamp",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_TIMESTAMP",
+        "message": "timestamp_utc must be a valid timezone-aware UTC datetime"
+      }
+    },
+    {
+      "name": "fail_closed_non_finite",
+      "passed": true,
+      "detail": {
+        "code": "NON_FINITE_FEATURE",
+        "message": "feature nwp_cape is missing or non-finite; fail-closed (no fill)"
+      }
+    },
+    {
+      "name": "fail_closed_forbidden_predictor",
+      "passed": true,
+      "detail": {
+        "code": "FORBIDDEN_FEATURE_SUBSTITUTION",
+        "message": "refusing to substitute satellite/radar/lightning into core Model B: sat_cloudy_fraction_25km"
+      }
+    },
+    {
+      "name": "api_health",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "replay_all_endpoint",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "keys": [
+          "all_unavailable",
+          "focus_station_id",
+          "replay_mode",
+          "sort_rule",
+          "stations",
+          "stations_attempted",
+          "timestamp_utc"
+        ]
+      }
+    },
+    {
+      "name": "api_multilead_invalid_station",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_STATION",
+        "message": "station 'XXXX' is not in frozen station set ['VABB', 'VECC', 'VIDP', 'VOCI', 'VOTV']"
+      }
+    },
+    {
+      "name": "frozen_artifacts_unmodified",
+      "passed": true,
+      "detail": "8D/8E/12/10I hashes"
+    }
+  ]
+}

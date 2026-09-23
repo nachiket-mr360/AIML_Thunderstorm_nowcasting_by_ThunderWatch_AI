@@ -1,0 +1,92 @@
+{
+  "phase": "10I.1",
+  "status": "SPECIFICATION_ONLY",
+  "extracted": false,
+  "trained": false,
+  "downloaded": false,
+  "source_of_truth": {
+    "phase10a": "docs/PHASE10A_INSAT3DR_CMK_PILOT_AUDIT.md",
+    "phase10h": "docs/PHASE10H_INSAT3DR_CMK_MVP_VALIDATION.md",
+    "mvp_manifest": "outputs/satellite/phase10b/cmk_mvp_download_manifest.csv",
+    "validated_hdf_count": 119,
+    "missing_gids_do_not_retry": ["7680747"]
+  },
+  "stations": {
+    "VOTV": {"lat": 8.4667, "lon": 76.95},
+    "VECC": {"lat": 22.6547, "lon": 88.4467},
+    "VIDP": {"lat": 28.5667, "lon": 77.1167},
+    "VOCI": {"lat": 10.15, "lon": 76.4},
+    "VABB": {"lat": 19.1005, "lon": 72.8585}
+  },
+  "cmk": {
+    "dataset": "/CMK",
+    "fill_value": 9,
+    "flag_values": [0, 1, 2, 3],
+    "flag_meanings": ["Clear", "Cloudy", "Probably_Clear", "Probably_Cloudy"],
+    "valid_values": [0, 1, 2, 3],
+    "cloudy_side": [1, 3],
+    "clear_side": [0, 2],
+    "lat_lon_fill": 32767,
+    "lat_lon_scale_factor_pilot": 0.01,
+    "never_treat_fill_or_missing_as_zero": true
+  },
+  "neighborhood_km": 25,
+  "distance": "haversine_km",
+  "grain_scan_level": ["gId", "station", "event_id"],
+  "scan_level_features": [
+    {
+      "name": "sat_observation_available",
+      "dtype": "int",
+      "domain": [0, 1],
+      "definition": "1 if validated HDF and at least one valid station or 25 km CMK pixel; else 0. Missing file stays 0 with other fields null."
+    },
+    {
+      "name": "sat_observation_time_utc",
+      "dtype": "datetime_utc",
+      "definition": "Decoded /time (minutes since 2000-01-01 00:00:00). Scan time, not an hour."
+    },
+    {
+      "name": "sat_cloud_mask_at_station",
+      "dtype": "int_or_null",
+      "definition": "Official CMK flag_value of nearest valid pixel to station. Null if none. Do not recode missing to 0."
+    },
+    {
+      "name": "sat_valid_pixel_count_25km",
+      "dtype": "int_or_null",
+      "definition": "Count of valid CMK pixels within 25 km haversine. Null if file missing."
+    },
+    {
+      "name": "sat_clear_fraction_25km",
+      "dtype": "float_or_null",
+      "definition": "Fraction of valid 25 km pixels with CMK in {0, 2}. Null if no valid pixels or observation unavailable."
+    },
+    {
+      "name": "sat_cloudy_fraction_25km",
+      "dtype": "float_or_null",
+      "definition": "Fraction of valid 25 km pixels with CMK in {1, 3}. Null if no valid pixels or observation unavailable."
+    },
+    {
+      "name": "sat_nearby_cloud_fraction_25km",
+      "dtype": "float_or_null",
+      "definition": "Alias of sat_cloudy_fraction_25km (Phase 10A cloud_fraction_among_valid)."
+    }
+  ],
+  "temporal_matching_future_hourly_join": {
+    "implemented_in_this_phase": false,
+    "rule_id": "SCAN_IN_HOUR_AND_ACQUISITION_OVERLAP",
+    "statement": "Let T be the hourly atmospheric timestamp [T, T+1h). Let S be decoded /time UTC. Attach a granule to T only if T <= S < T+1h AND (if parseable) acquisition [start,end] overlaps [T, T+1h). Do not broadcast a scan to any other hour. If none match: sat_observation_available=0 and remaining satellite fields null, never 0-filled. If several match: keep S closest to T (tie: smaller gId).",
+    "do_not_treat_scan_as_hourly_observation": true
+  },
+  "deferred": {
+    "hourly_aligned_feature_table": true,
+    "temporal_change_features": true,
+    "temporal_change_reason": "MVP scans are thinned and irregular; one granule missing. Deltas are not scientifically supported yet.",
+    "multimodal_dataset": true,
+    "training": true
+  },
+  "missing_policy": {
+    "gId_7680747": "MISSING_DOWNLOAD; no imputed features; do not retry",
+    "fill_value_9": "not a cloud class; not zero",
+    "no_write_into_nwp_or_atmosphere_tables": true
+  }
+}

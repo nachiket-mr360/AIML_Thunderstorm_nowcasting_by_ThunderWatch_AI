@@ -1,0 +1,27 @@
+﻿{
+  "phase": "11D",
+  "date": "2026-09-23",
+  "basis": ["PHASE11A", "PHASE11B"],
+  "phase_11a_modified": false,
+  "downloaded_files": 0,
+  "RADAR_STATUS": "CONDITIONAL_INSTITUTIONAL_ACCESS",
+  "current_training_pipeline_must_not_contain_radar_features": true,
+  "radar_placeholder_columns_forbidden": true,
+  "phase_11c": {
+    "status": "BLOCKED",
+    "conditional": true,
+    "reopen_trigger_all_required": [
+      "actual radar files",
+      "data dictionary",
+      "UTC scan timestamps",
+      "quantitative reflectivity or equivalent radar variable"
+    ],
+    "not_sufficient_to_reopen": [
+      "IMD Mausam visualization page",
+      "GIF/PNG radar loops",
+      "undocumented API",
+      "empty dataset directory"
+    ]
+  },
+  "status": "PHASE_11D_COMPLETE_NO_DOWNLOAD"
+}

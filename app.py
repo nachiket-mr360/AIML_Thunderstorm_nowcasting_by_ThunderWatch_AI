@@ -13,11 +13,14 @@ from typing import Any, Callable
 import pandas as pd
 from flask import Flask, jsonify, render_template, request
 
+from src.inference.live_prediction_service import LivePredictionService
+from src.inference.multilead_service import MultiLeadInferenceService, predict_multilead
 from src.replay.v2_historical_replay import (
     DEFAULT_DATASET,
     KNOWN_STATIONS,
     run_historical_replay,
 )
+from src.spatial.historical_spatial_replay import HistoricalSpatialReplay
 
 BASE_DIR = Path(__file__).resolve().parent
 try:
@@ -358,13 +361,16 @@ def map_basemap_config() -> dict[str, Any]:
     }
 
 
-def create_app(*, replay_fn: ReplayFn | None = None) -> Flask:
+def create_app(*, replay_fn: ReplayFn | None = None, live_service: LivePredictionService | None = None) -> Flask:
     app = Flask(
         __name__,
         template_folder=str(BASE_DIR / "templates"),
         static_folder=str(BASE_DIR / "static"),
     )
     runner = replay_fn or run_historical_replay
+    multilead_service = MultiLeadInferenceService()
+    live_service = live_service if live_service is not None else LivePredictionService()
+    spatial_service = HistoricalSpatialReplay()
 
     @app.get("/health")
     def health():
@@ -468,6 +474,60 @@ def create_app(*, replay_fn: ReplayFn | None = None) -> Flask:
     @app.get("/api/map-config")
     def map_config():
         return jsonify(map_basemap_config())
+
+    @app.post("/api/inference/multilead")
+    def inference_multilead():
+        """Historical/replay multi-lead scores from frozen Phase 8D Model B.
+
+        Not a live operational forecast API. Not satellite-enhanced.
+        """
+        payload = request.get_json(silent=True) or {}
+        station_id = payload.get("station_id")
+        timestamp_utc = payload.get("timestamp_utc")
+        inference_mode = payload.get("inference_mode") or "HISTORICAL_REPLAY"
+        evidence = payload.get("evidence_context") or {}
+        features = payload.get("features")
+        result = predict_multilead(
+            station_id,
+            timestamp_utc,
+            features=features,
+            inference_mode=str(inference_mode),
+            evidence_context=evidence,
+            service=multilead_service,
+        )
+        status = 200 if result.get("ok") else 400
+        return jsonify(result), status
+
+    @app.post("/api/inference/live")
+    def inference_live():
+        """Live Open-Meteo Forecast/GFS → frozen Model B. Not historical replay."""
+        payload = request.get_json(silent=True) or {}
+        station_id = payload.get("station_id")
+        result = live_service.predict_live(station_id)
+        status = 200 if result.get("ok") else 400
+        return jsonify(result), status
+
+    @app.post("/api/inference/live/all")
+    def inference_live_all():
+        """Concurrent five-station live inference. Not historical replay."""
+        payload = request.get_json(silent=True) or {}
+        stations = payload.get("stations")
+        result = live_service.predict_live_all(stations)
+        return jsonify(result), 200
+
+    @app.post("/api/spatial/replay")
+    def spatial_replay():
+        """Historical multi-station risk markers. Not a storm-cell forecast."""
+        payload = request.get_json(silent=True) or {}
+        timestamp_utc = payload.get("timestamp_utc")
+        result = spatial_service.get_multi_station_snapshot(timestamp_utc)
+        status = 200 if result.get("ok") else 400
+        return jsonify(result), status
+
+    @app.get("/api/spatial/replay/timestamps")
+    def spatial_replay_timestamps():
+        stamps = spatial_service.list_available_spatial_timestamps()
+        return jsonify({"ok": True, "count": len(stamps), "timestamps": stamps})
 
     return app
 

@@ -1,0 +1,44 @@
+{
+  "phase": "10B-E",
+  "one_file_only": true,
+  "gId": "4946414",
+  "filename": "3RIMG_04MAY2017_0615_L2B_CMK_V01R00.h5",
+  "catalog_timestamp_utc": "2017-05-04T06:15:00Z",
+  "station": "VOTV",
+  "event_id": "VOTV_CTL_03_20170518T08",
+  "case_type": "control",
+  "auth_method": "MOSDAC gettoken via untracked .env MOSDAC_USERNAME/MOSDAC_PASSWORD; Bearer download",
+  "credentials_hardcoded": false,
+  "credentials_printed": false,
+  "gettoken_status": 200,
+  "download_status": 200,
+  "success": true,
+  "file_exists": true,
+  "file_size_bytes": 9555435,
+  "output_path": "C:/College/SIH2_v2/dataset/satellite/insat3dr_cmk_download_test/3RIMG_04MAY2017_0615_L2B_CMK_V01R00.h5",
+  "download_duration_seconds": 28.388,
+  "hdf5_validation": {
+    "opens": true,
+    "CMK": true,
+    "Latitude": true,
+    "Longitude": true,
+    "time": true,
+    "keys": [
+      "CMK",
+      "GeoX",
+      "GeoY",
+      "Latitude",
+      "Longitude",
+      "time"
+    ],
+    "attrs": {
+      "Satellite_Name": "INSAT-3DR",
+      "Sensor_Name": "IMAGER",
+      "Unique_Id": "3RIMG_04MAY2017_0615"
+    },
+    "error": null,
+    "n_attrs": 26
+  },
+  "error": null,
+  "warnings": []
+}

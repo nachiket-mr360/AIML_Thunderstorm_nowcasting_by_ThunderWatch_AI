@@ -1,0 +1,87 @@
+{
+  "phase": "10I.3",
+  "timestamp_universe": "C:/College/SIH2_v2/dataset/multilocation/features_nwp/multilocation_features_nwp_overlap_2021_2025.csv",
+  "join_key": [
+    "station",
+    "timestamp_utc"
+  ],
+  "causal_rule": {
+    "availability": "sat_acquisition_end_utc <= T",
+    "max_age_minutes": 90,
+    "multiple": "latest sat_acquisition_end_utc, tie smaller gId",
+    "no_match": "sat_observation_available=0 and satellite fields null",
+    "not_used_as_availability": "sat_observation_time_utc"
+  },
+  "n_hourly_station_rows": 208320,
+  "n_matched": 505,
+  "n_unmatched": 207815,
+  "match_pct_overall": 0.2424,
+  "per_station": {
+    "VABB": {
+      "n_hours": 41664,
+      "n_matched": 101,
+      "n_unmatched": 41563,
+      "match_pct": 0.2424
+    },
+    "VECC": {
+      "n_hours": 41664,
+      "n_matched": 101,
+      "n_unmatched": 41563,
+      "match_pct": 0.2424
+    },
+    "VIDP": {
+      "n_hours": 41664,
+      "n_matched": 101,
+      "n_unmatched": 41563,
+      "match_pct": 0.2424
+    },
+    "VOCI": {
+      "n_hours": 41664,
+      "n_matched": 101,
+      "n_unmatched": 41563,
+      "match_pct": 0.2424
+    },
+    "VOTV": {
+      "n_hours": 41664,
+      "n_matched": 101,
+      "n_unmatched": 41563,
+      "match_pct": 0.2424
+    }
+  },
+  "sat_age_minutes_matches": {
+    "min": 17.483333333333334,
+    "median": 47.516666666666666,
+    "max": 77.66666666666667
+  },
+  "n_matches_age_gt_90": 0,
+  "n_matches_end_after_T": 0,
+  "n_duplicate_station_timestamp": 0,
+  "cmk_class_counts_matches": {
+    "0.0": 187,
+    "1.0": 157,
+    "2.0": 114,
+    "3.0": 47
+  },
+  "cloudy_fraction_matches": {
+    "min": 0.0,
+    "median": 0.336734693877551,
+    "max": 1.0
+  },
+  "clear_fraction_matches": {
+    "min": 0.0,
+    "median": 0.6632653061224489,
+    "max": 1.0
+  },
+  "no_forward_fill": true,
+  "unmatched_fields_null": true,
+  "all_source_files_in_phase10h_ok": true,
+  "unique_source_files_used": 60,
+  "nwp_or_atmosphere_tables_modified": false,
+  "sanity": {
+    "age_gt_90_is_0": true,
+    "end_after_T_is_0": true,
+    "dups_is_0": true
+  },
+  "output_csv": "C:/College/SIH2_v2/dataset/satellite/insat3dr_cmk_features/cmk_hourly_aligned_features.csv",
+  "provenance_sample_csv": "C:/College/SIH2_v2/outputs/satellite/phase10i3/phase10i3_match_provenance_sample.csv"
+}

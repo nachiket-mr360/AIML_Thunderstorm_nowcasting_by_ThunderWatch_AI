@@ -37,10 +37,10 @@
     this.wrap = wrap;
     this.onSelect = opts.onSelect || function () {};
     this.reduced = !!opts.reduced || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    this.tooltip = wrap.querySelector("#map-tip");
-    this.callout = wrap.querySelector("#map-callout");
-    this.fallback = wrap.querySelector("#india-fallback");
-    this.canvasHost = wrap.querySelector("#india-gl");
+    this.tooltip = wrap.querySelector(".js-map-tip") || wrap.querySelector("#map-tip");
+    this.callout = wrap.querySelector(".js-map-callout") || wrap.querySelector("#map-callout");
+    this.fallback = wrap.querySelector(".js-india-fallback") || wrap.querySelector("#india-fallback");
+    this.canvasHost = wrap.querySelector(".js-india-gl") || wrap.querySelector("#india-gl");
 
     var self = this;
     fetch("/static/india-outline.json")
@@ -52,9 +52,12 @@
       })
       .catch(function () { self._initFallback(); });
 
-    wrap.querySelector("#map-zoom-in") && wrap.querySelector("#map-zoom-in").addEventListener("click", function () { self.zoom(-0.8); });
-    wrap.querySelector("#map-zoom-out") && wrap.querySelector("#map-zoom-out").addEventListener("click", function () { self.zoom(0.8); });
-    wrap.querySelector("#map-reset") && wrap.querySelector("#map-reset").addEventListener("click", function () { self.reset(); });
+    var zin = wrap.querySelector(".js-map-zoom-in") || wrap.querySelector("#map-zoom-in");
+    var zout = wrap.querySelector(".js-map-zoom-out") || wrap.querySelector("#map-zoom-out");
+    var zreset = wrap.querySelector(".js-map-reset") || wrap.querySelector("#map-reset");
+    zin && zin.addEventListener("click", function () { self.zoom(-0.8); });
+    zout && zout.addEventListener("click", function () { self.zoom(0.8); });
+    zreset && zreset.addEventListener("click", function () { self.reset(); });
   };
 
   IndiaMap.prototype._initGL = function () {
@@ -234,9 +237,12 @@
     if (!sid) { this.tooltip.hidden = true; return; }
     var st = STATIONS[sid];
     var rec = this._rec(sid);
-    var line = "1h model probability: Awaiting replay";
-    if (rec && rec.unavailable) line = "1h model probability: DATA UNAVAILABLE";
-    else if (rec && rec.lead_1h_pct != null) line = "1h model probability: " + rec.lead_1h_pct + "%";
+    var line = "1h model probability: Awaiting data";
+    if (rec && rec.unavailable) line = rec.live_status || "DATA UNAVAILABLE";
+    else if (rec && rec.lead_1h_pct != null) {
+      line = "+1H " + rec.lead_1h_pct + "% · +2H " + rec.lead_2h_pct + "% · +3H " + rec.lead_3h_pct + "%";
+      if (rec.live_status) line += " · " + rec.live_status;
+    }
     this.tooltip.hidden = false;
     this.tooltip.style.left = e.offsetX + 12 + "px";
     this.tooltip.style.top = e.offsetY + 12 + "px";
@@ -333,8 +339,8 @@
     var svg = this.fallback;
     if (!svg) return;
     svg.hidden = false;
-    var gLand = svg.querySelector("#fb-land");
-    var gSt = svg.querySelector("#fb-stations");
+    var gLand = svg.querySelector(".js-fb-land") || svg.querySelector("#fb-land");
+    var gSt = svg.querySelector(".js-fb-stations") || svg.querySelector("#fb-stations");
     if (!gLand || !this.ring) return;
     var d = this.ring.map(function (pt, i) {
       var x = (pt[0] - 68) * 12.2;

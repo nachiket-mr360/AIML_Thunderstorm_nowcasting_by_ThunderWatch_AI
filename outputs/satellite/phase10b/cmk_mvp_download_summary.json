@@ -1,0 +1,90 @@
+{
+  "phase": "10B-MVP",
+  "local_only": true,
+  "source_audit": "outputs/satellite/phase10b/case_study_catalog_audit.csv",
+  "frozen_1094_manifest_untouched": true,
+  "total_unique_granules": 120,
+  "n_manifest_rows": 120,
+  "thunderstorm_episode_count": 10,
+  "control_count": 10,
+  "selected_event_ids": {
+    "VOTV": [
+      "VOTV_TS_03_20170518T08",
+      "VOTV_TS_02_20180730T19",
+      "VOTV_CTL_03_20170518T08",
+      "VOTV_CTL_02_20180730T19"
+    ],
+    "VECC": [
+      "VECC_TS_01_20170619T10",
+      "VECC_TS_04_20240506T13",
+      "VECC_CTL_01_20170619T10",
+      "VECC_CTL_04_20240506T13"
+    ],
+    "VIDP": [
+      "VIDP_TS_03_20220107T19",
+      "VIDP_TS_02_20241227T01",
+      "VIDP_CTL_03_20220107T19",
+      "VIDP_CTL_02_20241227T01"
+    ],
+    "VOCI": [
+      "VOCI_TS_03_20190808T03",
+      "VOCI_TS_02_20231103T08",
+      "VOCI_CTL_03_20190808T03",
+      "VOCI_CTL_02_20231103T08"
+    ],
+    "VABB": [
+      "VABB_TS_01_20190924T13",
+      "VABB_TS_03_20250614T14",
+      "VABB_CTL_01_20190924T13",
+      "VABB_CTL_03_20250614T14"
+    ]
+  },
+  "granules_per_selected_event": {
+    "VOTV_TS_03_20170518T08": 6,
+    "VOTV_TS_02_20180730T19": 6,
+    "VOTV_CTL_03_20170518T08": 6,
+    "VOTV_CTL_02_20180730T19": 6,
+    "VECC_TS_01_20170619T10": 6,
+    "VECC_TS_04_20240506T13": 6,
+    "VECC_CTL_01_20170619T10": 6,
+    "VECC_CTL_04_20240506T13": 6,
+    "VIDP_TS_03_20220107T19": 6,
+    "VIDP_TS_02_20241227T01": 6,
+    "VIDP_CTL_03_20220107T19": 6,
+    "VIDP_CTL_02_20241227T01": 6,
+    "VOCI_TS_03_20190808T03": 6,
+    "VOCI_TS_02_20231103T08": 6,
+    "VOCI_CTL_03_20190808T03": 6,
+    "VOCI_CTL_02_20231103T08": 6,
+    "VABB_TS_01_20190924T13": 6,
+    "VABB_TS_03_20250614T14": 6,
+    "VABB_CTL_01_20190924T13": 6,
+    "VABB_CTL_03_20250614T14": 6
+  },
+  "station_distribution": {
+    "VOTV": 24,
+    "VECC": 24,
+    "VOCI": 24,
+    "VABB": 24,
+    "VIDP": 24
+  },
+  "year_distribution": {
+    "2017": 24,
+    "2018": 12,
+    "2019": 24,
+    "2021": 6,
+    "2022": 6,
+    "2023": 12,
+    "2024": 18,
+    "2025": 18
+  },
+  "case_type_distribution": {
+    "control": 60,
+    "thunderstorm_episode": 60
+  },
+  "first_timestamp_utc": "2017-05-04T06:15:00Z",
+  "last_timestamp_utc": "2025-06-15T02:45:00Z",
+  "number_already_downloaded": 6,
+  "number_still_needing_download": 114,
+  "scientific_note": "Granules are actual catalog timestamps, not hourly observations. Approximately 6 scans per selected window after 40-minute thinning."
+}

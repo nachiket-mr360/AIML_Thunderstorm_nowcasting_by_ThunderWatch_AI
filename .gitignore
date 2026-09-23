@@ -88,3 +88,5 @@ models/thunderstorm_nowcast_2h.joblib
 models/thunderstorm_nowcast_3h.joblib
 tests/
 test.txt*
+.env/
+docs/*

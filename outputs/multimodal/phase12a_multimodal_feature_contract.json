@@ -1,0 +1,272 @@
+{
+  "phase": "12A",
+  "title": "ThunderWatch AI multimodal fusion feature contract",
+  "kind": "design_audit_only",
+  "created_at_local": "2026-09-23",
+  "status": "CONTRACT_FROZEN",
+  "not_done": [
+    "train_models",
+    "create_final_training_data",
+    "modify_phase8d_8e_models",
+    "modify_nwp_overlap_table",
+    "download",
+    "add_radar_features",
+    "retry_gid_7680747",
+    "git_commit_or_push"
+  ],
+  "preservation": {
+    "quantitative_benchmark": "Phase 8D complete-case atmosphere+NWP",
+    "phase_8e_role": "robustness_check_not_replacement_benchmark",
+    "satellite_experiment": "exploratory_case_based_not_independent_held_out_ml",
+    "radar_in_contract": false,
+    "hourly_lightning_in_contract": false,
+    "do_not_rewrite_source_tables": true
+  },
+  "primary_key": ["station_id", "timestamp_utc"],
+  "stations": ["VABB", "VECC", "VIDP", "VOCI", "VOTV"],
+  "identity_not_features": [
+    "station_id",
+    "timestamp_utc",
+    "city",
+    "thunderstorm_target",
+    "label_status",
+    "target_1h",
+    "target_2h",
+    "target_3h"
+  ],
+  "targets": {
+    "names": ["target_1h", "target_2h", "target_3h"],
+    "definition": "genuine METAR thunderstorm at T+L on the same station",
+    "source": "Phase 5 contiguous hourly shift of thunderstorm_target",
+    "missing_policy": "null_not_zero_exclude_from_supervised_learning",
+    "compacted_shift_forbidden": true,
+    "same_hour_thunderstorm_target_is_predictor": false
+  },
+  "feature_groups": {
+    "atmospheric_location_temporal": {
+      "phase": "3",
+      "allowed_in_first_multimodal_experiment": true,
+      "feature_count": 73,
+      "catalog": "dataset/multilocation/features/multilocation_features_2014_2025_metadata.json",
+      "causal": true,
+      "missing_after_lookback": 0,
+      "features": [
+        "temperature_2m",
+        "relative_humidity_2m",
+        "surface_pressure",
+        "wind_speed_10m",
+        "precipitation",
+        "cloud_cover",
+        "hour_sin",
+        "hour_cos",
+        "month_sin",
+        "month_cos",
+        "wind_direction_sin",
+        "wind_direction_cos",
+        "wind_u_10m",
+        "wind_v_10m",
+        "temperature_lag_1h",
+        "temperature_lag_3h",
+        "temperature_lag_6h",
+        "temperature_lag_12h",
+        "temperature_lag_24h",
+        "humidity_lag_1h",
+        "humidity_lag_3h",
+        "humidity_lag_6h",
+        "humidity_lag_12h",
+        "humidity_lag_24h",
+        "pressure_lag_1h",
+        "pressure_lag_3h",
+        "pressure_lag_6h",
+        "pressure_lag_12h",
+        "pressure_lag_24h",
+        "wind_speed_lag_1h",
+        "wind_speed_lag_3h",
+        "wind_speed_lag_6h",
+        "wind_speed_lag_12h",
+        "wind_speed_lag_24h",
+        "precipitation_lag_1h",
+        "precipitation_lag_3h",
+        "precipitation_lag_6h",
+        "precipitation_lag_12h",
+        "precipitation_lag_24h",
+        "cloud_cover_lag_1h",
+        "cloud_cover_lag_3h",
+        "cloud_cover_lag_6h",
+        "cloud_cover_lag_12h",
+        "cloud_cover_lag_24h",
+        "temperature_change_1h",
+        "temperature_change_3h",
+        "humidity_change_1h",
+        "humidity_change_3h",
+        "pressure_change_1h",
+        "pressure_change_3h",
+        "wind_speed_change_1h",
+        "wind_speed_change_3h",
+        "precipitation_change_1h",
+        "precipitation_change_3h",
+        "cloud_cover_change_1h",
+        "cloud_cover_change_3h",
+        "precipitation_roll_sum_3h",
+        "precipitation_roll_sum_6h",
+        "precipitation_roll_sum_12h",
+        "precipitation_roll_sum_24h",
+        "humidity_roll_mean_3h",
+        "humidity_roll_mean_6h",
+        "pressure_roll_mean_3h",
+        "pressure_roll_mean_6h",
+        "temperature_roll_mean_3h",
+        "temperature_roll_mean_6h",
+        "wind_speed_roll_mean_3h",
+        "wind_speed_roll_mean_6h",
+        "cloud_cover_roll_mean_3h",
+        "cloud_cover_roll_mean_6h",
+        "latitude",
+        "longitude",
+        "elevation_m"
+      ],
+      "forbidden": ["weather_code", "future_open_meteo", "target_derived_features"]
+    },
+    "nwp": {
+      "phase": "7C/8D",
+      "allowed_in_first_multimodal_experiment": true,
+      "source": "Open-Meteo Historical Forecast gfs_global",
+      "nwp_time_shift": false,
+      "overlap_start_utc": "2021-04-01T00:00:00+00:00",
+      "overlap_end_utc": "2025-12-31T23:00:00+00:00",
+      "features": [
+        "nwp_cape",
+        "nwp_convective_inhibition",
+        "nwp_lifted_index",
+        "nwp_temperature_2m",
+        "nwp_relative_humidity_2m",
+        "nwp_surface_pressure",
+        "nwp_wind_speed_10m",
+        "nwp_wind_direction_10m",
+        "nwp_precipitation",
+        "nwp_cloud_cover"
+      ],
+      "user_aliases": {
+        "CAPE": "nwp_cape",
+        "CIN": "nwp_convective_inhibition",
+        "LI": "nwp_lifted_index",
+        "T2m": "nwp_temperature_2m",
+        "RH": "nwp_relative_humidity_2m",
+        "surface_pressure": "nwp_surface_pressure",
+        "wind_speed": "nwp_wind_speed_10m",
+        "wind_direction": "nwp_wind_direction_10m",
+        "precipitation": "nwp_precipitation",
+        "cloud_cover": "nwp_cloud_cover"
+      }
+    },
+    "satellite": {
+      "phase": "10I.2/10I.3",
+      "product": "INSAT-3DR L2B CMK",
+      "allowed_in_first_multimodal_experiment": true,
+      "exploratory_only": true,
+      "gid_7680747": "MISSING_DOWNLOAD_do_not_retry_or_impute",
+      "model_features": [
+        "sat_cloud_mask_at_station",
+        "sat_valid_pixel_count_25km",
+        "sat_cloudy_fraction_25km",
+        "sat_clear_fraction_25km",
+        "sat_nearby_cloud_fraction_25km",
+        "sat_observation_available"
+      ],
+      "provenance_or_optional_covariate": [
+        "sat_observation_time_utc",
+        "sat_acquisition_start_utc",
+        "sat_acquisition_end_utc",
+        "sat_age_minutes"
+      ],
+      "availability_clock": "sat_acquisition_end_utc",
+      "causal_rules": {
+        "acquisition_end_utc_lte_prediction_timestamp": true,
+        "age_minutes_max": 90,
+        "missing_remains_null": true,
+        "sat_observation_available_indicates_missingness": true,
+        "no_forward_fill": true,
+        "no_zero_as_clear": true,
+        "no_cross_station_broadcast": true
+      },
+      "cmk_classes": {
+        "0": "Clear",
+        "1": "Cloudy",
+        "2": "Probably_Clear",
+        "3": "Probably_Cloudy",
+        "9": "fill_not_a_class"
+      }
+    },
+    "radar": {
+      "allowed_in_first_multimodal_experiment": false,
+      "status": "CONDITIONAL_INSTITUTIONAL_ACCESS",
+      "phase_ref": "11D"
+    },
+    "lightning_hourly": {
+      "allowed_in_first_multimodal_experiment": false,
+      "reason": "no_training_ready_historical_hourly_lightning_archive"
+    },
+    "lightning_climatology": {
+      "allowed_in_first_multimodal_experiment": false,
+      "reason": "station_scalar_not_hourly_nowcast_deferred_from_this_fusion_contract",
+      "phase_ref": "9C/12B"
+    }
+  },
+  "missing_value_policy": {
+    "labels": "null_not_zero",
+    "atmospheric": "no_imputation_complete_after_24h_lookback",
+    "satellite": "null_with_sat_observation_available_0_no_ffill_no_zero_as_clear",
+    "forward_fill_forbidden": true,
+    "test_set_statistics_forbidden": true
+  },
+  "nwp_missing_value_policy_phase8e": {
+    "benchmark": "phase_8d_complete_case",
+    "genuinely_missing_columns": ["nwp_convective_inhibition", "nwp_precipitation"],
+    "robustness_imputation": {
+      "method": "train_only_median",
+      "columns": ["nwp_convective_inhibition", "nwp_precipitation"],
+      "no_forward_fill": true,
+      "no_time_interpolation": true,
+      "do_not_impute_other_eight_nwp_fields": true,
+      "do_not_fill_targets": true,
+      "not_a_production_model": true
+    },
+    "structurally_unavailable_before": "2021-04-01T00:00:00+00:00"
+  },
+  "leakage_prevention": [
+    "no_future_metar_as_feature",
+    "no_future_open_meteo",
+    "no_future_nwp_valid_time",
+    "no_satellite_after_T_or_age_gt_90",
+    "no_scan_broadcast_across_hours_or_stations",
+    "no_weather_code_radar_image_lightning_zero_fill_proxies",
+    "no_random_row_split_inside_satellite_case_windows_as_independent_skill",
+    "cyclic_time_from_current_T_only"
+  ],
+  "first_multimodal_experiment_allowed": {
+    "atmospheric_73": true,
+    "nwp_10": true,
+    "satellite_physical_when_available": true,
+    "sat_observation_available": true,
+    "sat_age_minutes_on_matched_rows_only": true,
+    "targets_1h_2h_3h": true,
+    "radar": false,
+    "hourly_lightning": false,
+    "interpretation": "exploratory_not_8d_replacement"
+  },
+  "deferred": [
+    "radar_features",
+    "hourly_lightning",
+    "lis_annual_thunder_hours_in_this_contract",
+    "satellite_scan_to_scan_deltas",
+    "non_mvp_hdf5",
+    "invented_gid_7680747",
+    "nan_placeholders_in_phase3_8_tables",
+    "independent_satellite_vs_8d_claim_without_new_eval_design",
+    "fused_training_csv_this_phase"
+  ],
+  "artifacts": {
+    "markdown": "docs/PHASE12A_MULTIMODAL_FEATURE_CONTRACT.md",
+    "json": "outputs/multimodal/phase12a_multimodal_feature_contract.json"
+  }
+}

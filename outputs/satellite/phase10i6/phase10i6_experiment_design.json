@@ -1,0 +1,99 @@
+{
+  "phase": "10I.6",
+  "design_only": true,
+  "trained": false,
+  "phase8de_untouched": true,
+  "distinction": {
+    "phase_8d_8e": "quantitative NWP benchmark on frozen chronological split",
+    "phase_10i": "exploratory case-based satellite augmentation on 10 MVP windows in 8B time"
+  },
+  "n_windows_in_8b_universe": 10,
+  "n_hourly_rows_in_windows": 134,
+  "n_atm_nwp_tgt_sat": 73,
+  "n_atm_nwp_tgt_no_sat": 61,
+  "n_other": 0,
+  "target_counts_sat_group": {
+    "target_1h": {
+      "n_available": 73,
+      "n_positive": 35,
+      "n_negative": 38
+    },
+    "target_2h": {
+      "n_available": 72,
+      "n_positive": 33,
+      "n_negative": 39
+    },
+    "target_3h": {
+      "n_available": 73,
+      "n_positive": 33,
+      "n_negative": 40
+    }
+  },
+  "target_counts_no_sat_group": {
+    "target_1h": {
+      "n_available": 60,
+      "n_positive": 25,
+      "n_negative": 35
+    },
+    "target_2h": {
+      "n_available": 61,
+      "n_positive": 22,
+      "n_negative": 39
+    },
+    "target_3h": {
+      "n_available": 61,
+      "n_positive": 19,
+      "n_negative": 42
+    }
+  },
+  "sat_group_by_station": {
+    "VABB": 15,
+    "VECC": 12,
+    "VIDP": 28,
+    "VOCI": 18
+  },
+  "no_sat_group_by_station": {
+    "VABB": 9,
+    "VECC": 14,
+    "VIDP": 28,
+    "VOCI": 10
+  },
+  "sat_group_by_case_type": {
+    "control": 33,
+    "thunderstorm_episode": 40
+  },
+  "no_sat_group_by_case_type": {
+    "control": 34,
+    "thunderstorm_episode": 27
+  },
+  "causal_violations_among_available_flag": {
+    "available_but_end_after_T": 0,
+    "available_but_age_gt_90": 0,
+    "available_but_incomplete_features": 0
+  },
+  "atm_incomplete_rows": 0,
+  "nwp_strict_incomplete_rows": 0,
+  "nwp_core_incomplete_rows": 0,
+  "support": {
+    "A_descriptive_paired_comparison": true,
+    "B_case_based_satellite_augmentation_experiment": true,
+    "C_independent_held_out_ml_benchmark": false
+  },
+  "support_reason": {
+    "A": "73 sat-complete rows vs 61 no-sat rows inside the same 10 case windows can support descriptive paired cloudy/target counts. Not a skill test.",
+    "B": "73 rows with atm+NWP+target+causal sat across 10 events / 4 stations can support an exploratory case-based augmentation (e.g. error review when sat is present). Sample is tiny vs Phase 8D/8E.",
+    "C": "Independent held-out ML is not valid: only 10 events, 134 hours, no unused time block, same cases would leak between train/test if split by row, and n is far below Phase 8 chronological split. Do not treat row count as a benchmark."
+  },
+  "event_ids": [
+    "VABB_CTL_03_20250614T14",
+    "VABB_TS_03_20250614T14",
+    "VECC_CTL_04_20240506T13",
+    "VECC_TS_04_20240506T13",
+    "VIDP_CTL_02_20241227T01",
+    "VIDP_CTL_03_20220107T19",
+    "VIDP_TS_02_20241227T01",
+    "VIDP_TS_03_20220107T19",
+    "VOCI_CTL_02_20231103T08",
+    "VOCI_TS_02_20231103T08"
+  ]
+}

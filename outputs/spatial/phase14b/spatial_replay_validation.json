@@ -1,0 +1,516 @@
+{
+  "phase": "14B",
+  "generated_at_utc": "2026-09-23T10:24:29.852497+00:00",
+  "station_count": 5,
+  "station_ids": [
+    "VOTV",
+    "VECC",
+    "VIDP",
+    "VOCI",
+    "VABB"
+  ],
+  "coordinate_validation": {
+    "VOTV": {
+      "latitude": 8.4667,
+      "longitude": 76.95,
+      "elevation_m": 8.0
+    },
+    "VECC": {
+      "latitude": 22.6547,
+      "longitude": 88.4467,
+      "elevation_m": 6.0
+    },
+    "VIDP": {
+      "latitude": 28.5667,
+      "longitude": 77.1167,
+      "elevation_m": 233.0
+    },
+    "VOCI": {
+      "latitude": 10.15,
+      "longitude": 76.4,
+      "elevation_m": 8.0
+    },
+    "VABB": {
+      "latitude": 19.1005,
+      "longitude": 72.8585,
+      "elevation_m": 8.0
+    }
+  },
+  "all_station_timestamp_count": 6826,
+  "validation_timestamp": "2021-04-02T00:00:00Z",
+  "probability_match_results": {
+    "VOTV_1h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VOTV_2h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.005,
+      "csv": 0.005
+    },
+    "VOTV_3h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VECC_1h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.01,
+      "csv": 0.01
+    },
+    "VECC_2h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.01,
+      "csv": 0.01
+    },
+    "VECC_3h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.005,
+      "csv": 0.005
+    },
+    "VIDP_1h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VIDP_2h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VIDP_3h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VOCI_1h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VOCI_2h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VOCI_3h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VABB_1h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VABB_2h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    },
+    "VABB_3h": {
+      "delta": 0.0,
+      "ok": true,
+      "got": 0.0,
+      "csv": 0.0
+    }
+  },
+  "threshold_results": {
+    "VOTV_1h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VOTV_2h": {
+      "probability": 0.005,
+      "alert": false,
+      "expected": false
+    },
+    "VOTV_3h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VECC_1h": {
+      "probability": 0.01,
+      "alert": false,
+      "expected": false
+    },
+    "VECC_2h": {
+      "probability": 0.01,
+      "alert": false,
+      "expected": false
+    },
+    "VECC_3h": {
+      "probability": 0.005,
+      "alert": false,
+      "expected": false
+    },
+    "VIDP_1h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VIDP_2h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VIDP_3h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VOCI_1h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VOCI_2h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VOCI_3h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VABB_1h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VABB_2h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    },
+    "VABB_3h": {
+      "probability": 0.0,
+      "alert": false,
+      "expected": false
+    }
+  },
+  "interpolation_check": {
+    "passed": true,
+    "hits": []
+  },
+  "target_leakage_check": true,
+  "satellite_separation_check": true,
+  "radar_context": null,
+  "lightning_context": null,
+  "endpoint_tests": {
+    "health": 200,
+    "index": 200,
+    "replay_all": 200,
+    "multilead": 200,
+    "spatial": 200,
+    "timestamps": 200,
+    "timestamp_count": 6826
+  },
+  "checks": [
+    {
+      "name": "A_station_metadata",
+      "passed": true,
+      "detail": [
+        "VOTV",
+        "VECC",
+        "VIDP",
+        "VOCI",
+        "VABB"
+      ]
+    },
+    {
+      "name": "B_coordinate_join",
+      "passed": true,
+      "detail": {
+        "VOTV": {
+          "latitude": 8.4667,
+          "longitude": 76.95,
+          "elevation_m": 8.0
+        },
+        "VECC": {
+          "latitude": 22.6547,
+          "longitude": 88.4467,
+          "elevation_m": 6.0
+        },
+        "VIDP": {
+          "latitude": 28.5667,
+          "longitude": 77.1167,
+          "elevation_m": 233.0
+        },
+        "VOCI": {
+          "latitude": 10.15,
+          "longitude": 76.4,
+          "elevation_m": 8.0
+        },
+        "VABB": {
+          "latitude": 19.1005,
+          "longitude": 72.8585,
+          "elevation_m": 8.0
+        }
+      }
+    },
+    {
+      "name": "C_five_station_snapshot",
+      "passed": true,
+      "detail": "2021-04-02T00:00:00Z"
+    },
+    {
+      "name": "D_probability_consistency",
+      "passed": true,
+      "detail": {
+        "VOTV_1h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VOTV_2h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.005,
+          "csv": 0.005
+        },
+        "VOTV_3h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VECC_1h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.01,
+          "csv": 0.01
+        },
+        "VECC_2h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.01,
+          "csv": 0.01
+        },
+        "VECC_3h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.005,
+          "csv": 0.005
+        },
+        "VIDP_1h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VIDP_2h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VIDP_3h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VOCI_1h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VOCI_2h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VOCI_3h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VABB_1h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VABB_2h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        },
+        "VABB_3h": {
+          "delta": 0.0,
+          "ok": true,
+          "got": 0.0,
+          "csv": 0.0
+        }
+      }
+    },
+    {
+      "name": "E_threshold",
+      "passed": true,
+      "detail": {
+        "VOTV_1h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VOTV_2h": {
+          "probability": 0.005,
+          "alert": false,
+          "expected": false
+        },
+        "VOTV_3h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VECC_1h": {
+          "probability": 0.01,
+          "alert": false,
+          "expected": false
+        },
+        "VECC_2h": {
+          "probability": 0.01,
+          "alert": false,
+          "expected": false
+        },
+        "VECC_3h": {
+          "probability": 0.005,
+          "alert": false,
+          "expected": false
+        },
+        "VIDP_1h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VIDP_2h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VIDP_3h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VOCI_1h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VOCI_2h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VOCI_3h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VABB_1h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VABB_2h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        },
+        "VABB_3h": {
+          "probability": 0.0,
+          "alert": false,
+          "expected": false
+        }
+      }
+    },
+    {
+      "name": "F_no_interpolation",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "G_no_target_leakage",
+      "passed": true,
+      "detail": {
+        "replay_has_targets": false
+      }
+    },
+    {
+      "name": "H_satellite_separation",
+      "passed": true,
+      "detail": {
+        "satellite_does_not_alter_probabilities": true
+      }
+    },
+    {
+      "name": "I_radar_null",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "J_lightning_null",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "K_unavailable_and_invalid",
+      "passed": true,
+      "detail": {
+        "missing": true,
+        "invalid": true
+      }
+    },
+    {
+      "name": "all_five_timestamp_count",
+      "passed": true,
+      "detail": 6826
+    },
+    {
+      "name": "L_api",
+      "passed": true,
+      "detail": {
+        "health": 200,
+        "index": 200,
+        "replay_all": 200,
+        "multilead": 200,
+        "spatial": 200,
+        "timestamps": 200,
+        "timestamp_count": 6826
+      }
+    },
+    {
+      "name": "frozen_artifacts_unchanged",
+      "passed": true,
+      "detail": true
+    }
+  ],
+  "frozen_artifacts_unchanged": true,
+  "final_status": "SPATIAL_HISTORICAL_REPLAY_READY",
+  "disclaimer": "This spatial layer represents discrete AI risk at observed station locations. It does not interpolate risk between stations and does not constitute a storm-cell forecast."
+}

@@ -163,6 +163,45 @@ button { cursor: pointer; }
   background: rgba(78,200,255,.1);
 }
 .build { margin-left: auto; color: var(--amber); font-size: .55rem; font-style: normal; animation: pulse 1.8s ease infinite; }
+.nav-live { margin-left: auto; color: var(--ok); font-size: .55rem; font-style: normal; letter-spacing: .12em; }
+.live-run {
+  margin: .55rem 0; background: rgba(78,200,255,.12); color: var(--cyan);
+  border: 1px solid var(--line); padding: .5rem .85rem; font-family: var(--disp);
+  letter-spacing: .1em; cursor: pointer; border-radius: 6px;
+}
+.live-run:disabled { opacity: .55; cursor: wait; }
+.live-sort { display: flex; gap: .35rem; margin: .35rem 0 .7rem; }
+.live-sort-btn {
+  background: transparent; color: var(--muted); border: 1px solid var(--line);
+  padding: .28rem .55rem; font-family: var(--disp); font-size: .68rem; cursor: pointer;
+}
+.live-sort-btn.active { color: var(--cyan); border-color: var(--cyan); }
+.live-stations { display: flex; flex-wrap: wrap; gap: .4rem; margin: .7rem 0; }
+.live-stations button {
+  background: rgba(8,20,36,.7); color: var(--text); border: 1px solid var(--line);
+  padding: .4rem .65rem; font-family: var(--disp); font-size: .68rem; letter-spacing: .08em; cursor: pointer; border-radius: 6px;
+}
+.live-stations button.active { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 12px rgba(78,200,255,.25); }
+.live-fetch { letter-spacing: .12em; font-family: var(--disp); font-size: .72rem; }
+.live-note { max-width: 42rem; }
+.live-leads { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin: .6rem 0; }
+.live-lead {
+  border: 1px solid var(--line); border-radius: 8px; padding: .55rem .5rem; text-align: center;
+  background: rgba(6,14,26,.55);
+}
+.live-lead span { display: block; color: var(--muted); letter-spacing: .14em; font-size: .68rem; font-family: var(--disp); }
+.live-lead strong { display: block; font-size: 1.6rem; font-family: var(--disp); margin: .2rem 0; }
+.live-lead em { display: block; font-style: normal; letter-spacing: .14em; font-size: .72rem; font-family: var(--disp); }
+.live-lead.alert { border-color: var(--alert); }
+.live-lead.alert em { color: var(--alert); }
+.live-lead.ok { border-color: rgba(62,224,160,.45); }
+.live-lead.ok em { color: var(--ok); }
+.live-lead.cleared strong, .live-lead.cleared em { color: var(--muted); }
+.live-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .4rem; margin: 0; }
+.live-meta div { border: 1px solid var(--line); padding: .35rem .45rem; border-radius: 6px; }
+.live-meta dt { color: var(--muted); font-size: .62rem; letter-spacing: .12em; }
+.live-meta dd { margin: .1rem 0 0; font-size: .85rem; }
+@media (max-width: 720px) { .live-leads { grid-template-columns: 1fr; } }
 @keyframes pulse { 50% { opacity: .4; } }
 
 .main { padding: .65rem .7rem .5rem; }
@@ -243,7 +282,10 @@ button { cursor: pointer; }
 .map-layers p { margin: 0 0 .2rem; font-family: var(--disp); color: var(--cyan); }
 .map-layers span { display: block; color: var(--muted); }
 .map-layers .on { color: var(--ok); }
+.map-layers .case { color: var(--cyan); }
 .map-layers .off { color: #6a7788; }
+.disc-line { margin: .35rem 0 0; max-width: 36rem; line-height: 1.35; }
+.status-list { margin: .4rem 0 0; padding-left: 1.1rem; color: #c5d6e8; font-size: .82rem; line-height: 1.55; }
 .map-mode {
   position: absolute; right: .5rem; top: .45rem; margin: 0; z-index: 4;
   font-size: .62rem; color: var(--muted); letter-spacing: .08em;
@@ -273,7 +315,10 @@ button { cursor: pointer; }
 .mm { background: rgba(7,16,28,.85); padding: .5rem; border: 1px solid #163044; border-radius: 6px; }
 .mm h3 { margin: 0; font-size: .62rem; letter-spacing: .08em; font-family: var(--disp); }
 .mm .st { color: var(--ok); font-size: .68rem; margin: .15rem 0 0; }
-.mm.build .st { color: var(--amber); }
+.mm.build .st, .mm.warn .st { color: var(--amber); }
+.mm.case .st { color: var(--cyan); }
+.mm.pending .st { color: #8a9bb0; }
+body.mode-live .pill.gold { color: #7dffc4; border-color: rgba(62,224,160,.45); }
 .status-panel dl { display: grid; grid-template-columns: 6.6rem 1fr; gap: .12rem .45rem; margin: 0; font-size: .78rem; }
 dt { color: var(--muted); }
 .off { color: #627084; }

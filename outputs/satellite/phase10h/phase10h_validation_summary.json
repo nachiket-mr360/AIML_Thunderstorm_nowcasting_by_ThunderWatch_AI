@@ -1,0 +1,238 @@
+{
+  "phase": "10H",
+  "local_only": true,
+  "downloaded_nothing": true,
+  "mvp_manifest": "outputs/satellite/phase10b/cmk_mvp_download_manifest.csv",
+  "data_dir": "dataset/satellite/insat3dr_cmk",
+  "manifest_rows": 120,
+  "unique_gids": 120,
+  "files_present_on_disk_matching_manifest": 119,
+  "files_missing_from_disk": 1,
+  "empty_files": 0,
+  "hdf5_opens": 119,
+  "valid_ok": 119,
+  "corrupt_or_incomplete": 0,
+  "time_vs_catalog": {
+    "match_within_1_min": 119,
+    "mismatch": 0,
+    "unparsed": 0,
+    "note": "Decoded /time is scan time, not an hourly observation."
+  },
+  "forced_missing_gids": [
+    {
+      "gId": "7680747",
+      "reason": "MISSING_DOWNLOAD prior DNS/network error; do not retry"
+    }
+  ],
+  "extra_h5_on_disk_not_in_mvp_manifest": 39,
+  "station_ok_vs_missing": {
+    "VOTV": {
+      "ok": 24,
+      "missing": 0
+    },
+    "VECC": {
+      "ok": 24,
+      "missing": 0
+    },
+    "VOCI": {
+      "ok": 24,
+      "missing": 0
+    },
+    "VABB": {
+      "ok": 23,
+      "missing": 1
+    },
+    "VIDP": {
+      "ok": 24,
+      "missing": 0
+    }
+  },
+  "ok_by_case_type": {
+    "control": 60,
+    "thunderstorm_episode": 59
+  },
+  "windows": [
+    {
+      "event_id": "VABB_CTL_01_20190924T13",
+      "station": "VABB",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VABB_CTL_03_20250614T14",
+      "station": "VABB",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VABB_TS_01_20190924T13",
+      "station": "VABB",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 5,
+      "n_missing": 1,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VABB_TS_03_20250614T14",
+      "station": "VABB",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VECC_CTL_01_20170619T10",
+      "station": "VECC",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VECC_CTL_04_20240506T13",
+      "station": "VECC",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VECC_TS_01_20170619T10",
+      "station": "VECC",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VECC_TS_04_20240506T13",
+      "station": "VECC",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VIDP_CTL_02_20241227T01",
+      "station": "VIDP",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VIDP_CTL_03_20220107T19",
+      "station": "VIDP",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VIDP_TS_02_20241227T01",
+      "station": "VIDP",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VIDP_TS_03_20220107T19",
+      "station": "VIDP",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VOCI_CTL_02_20231103T08",
+      "station": "VOCI",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VOCI_CTL_03_20190808T03",
+      "station": "VOCI",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VOCI_TS_02_20231103T08",
+      "station": "VOCI",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VOCI_TS_03_20190808T03",
+      "station": "VOCI",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VOTV_CTL_02_20180730T19",
+      "station": "VOTV",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VOTV_CTL_03_20170518T08",
+      "station": "VOTV",
+      "case_type": "control",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VOTV_TS_02_20180730T19",
+      "station": "VOTV",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    },
+    {
+      "event_id": "VOTV_TS_03_20170518T08",
+      "station": "VOTV",
+      "case_type": "thunderstorm_episode",
+      "n_manifest": 6,
+      "n_ok": 6,
+      "n_missing": 0,
+      "sufficient_downloaded_coverage": true
+    }
+  ],
+  "windows_insufficient_coverage": [],
+  "scientific_note": "Do not treat granules as hourly observations. No ML features extracted."
+}

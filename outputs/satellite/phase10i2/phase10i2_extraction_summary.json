@@ -1,0 +1,46 @@
+{
+  "phase": "10I.2",
+  "extracted": true,
+  "hourly_join": false,
+  "trained": false,
+  "source_files_processed": 119,
+  "errors": [],
+  "station_rows_expected": 595,
+  "station_rows_produced": 595,
+  "sat_observation_available_1": 595,
+  "nearest_pixel_valid": 595,
+  "neighborhood_zero_valid": 0,
+  "cmk_station_class_counts": {
+    "0": 184,
+    "1": 262,
+    "2": 76,
+    "3": 73
+  },
+  "valid_pixel_count_25km": {
+    "min": 98,
+    "median": 108.0,
+    "max": 121
+  },
+  "nearest_distance_km": {
+    "min": 0.745027,
+    "median": 2.180837,
+    "max": 2.713503
+  },
+  "acquisition_duration_minutes": {
+    "min": 4.283333333333333,
+    "median": 26.9,
+    "max": 26.9
+  },
+  "skipped_gid": "7680747",
+  "output_csv": "C:/College/SIH2_v2/dataset/satellite/insat3dr_cmk_features/cmk_scan_level_features.csv",
+  "sanity": {
+    "expected_rows_119x5": 595,
+    "produced_rows": 595,
+    "rows_match_expected": true,
+    "duplicate_file_station_keys": 0,
+    "cmk_fill_9_as_station_class": 0,
+    "fractions_outside_0_1": 0,
+    "cloudy_ne_nearby_alias": 0,
+    "nwp_tables_modified": false
+  }
+}

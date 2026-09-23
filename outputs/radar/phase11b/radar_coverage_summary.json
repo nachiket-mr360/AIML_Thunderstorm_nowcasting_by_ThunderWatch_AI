@@ -1,0 +1,69 @@
+﻿{
+  "phase": "11B",
+  "date": "2026-09-23",
+  "basis": "PHASE11A_only",
+  "phase_11a_modified": false,
+  "downloaded_files": 0,
+  "training_window_utc": {"start": "2014-01-01", "end": "2025-12-31"},
+  "any_site_public_historical_quantitative_files": false,
+  "any_site_training_ready": false,
+  "invented_ranges_or_commissioning_dates": false,
+  "coverage": [
+    {
+      "station_id": "VOTV",
+      "city": "Thiruvananthapuram",
+      "lat": 8.482,
+      "lon": 76.92,
+      "nearest_associated_radar_family": "IMD Thiruvananthapuram DWR; possible ISRO TERLS DWR on MOSDAC",
+      "public_historical_quantitative_files_found": false,
+      "training_ready_coverage_demonstrated": false,
+      "uncertainty": "Commissioning period, range, overlap, and beam blockage not verified in Phase 11A. MOSDAC TERLS vs airport DWR not confirmed as the same instrument.",
+      "institutional_access_required": true
+    },
+    {
+      "station_id": "VECC",
+      "city": "Kolkata",
+      "lat": 22.6547,
+      "lon": 88.4467,
+      "nearest_associated_radar_family": "IMD Kolkata (Dum Dum) DWR",
+      "public_historical_quantitative_files_found": false,
+      "training_ready_coverage_demonstrated": false,
+      "uncertainty": "Commissioning period, range, overlap, and beam blockage not verified. Airport DWR is IMD, not MOSDAC-owned.",
+      "institutional_access_required": true
+    },
+    {
+      "station_id": "VIDP",
+      "city": "Delhi",
+      "lat": 28.5667,
+      "lon": 77.1167,
+      "nearest_associated_radar_family": "IMD Delhi / Palam DWR; public Mausam page is live visualization titled Delhi - Radar",
+      "public_historical_quantitative_files_found": false,
+      "training_ready_coverage_demonstrated": false,
+      "uncertainty": "Live webpage is not an archive. Commissioning period, range, overlap, and beam blockage not verified.",
+      "institutional_access_required": true
+    },
+    {
+      "station_id": "VOCI",
+      "city": "Kochi",
+      "lat": 10.15,
+      "lon": 76.4,
+      "nearest_associated_radar_family": "IMD Kochi / Cochin DWR",
+      "public_historical_quantitative_files_found": false,
+      "training_ready_coverage_demonstrated": false,
+      "uncertainty": "Commissioning date not verified from files in Phase 11A. Range, overlap, and beam blockage not verified.",
+      "institutional_access_required": true
+    },
+    {
+      "station_id": "VABB",
+      "city": "Mumbai",
+      "lat": 19.1005,
+      "lon": 72.8585,
+      "nearest_associated_radar_family": "IMD Mumbai DWR",
+      "public_historical_quantitative_files_found": false,
+      "training_ready_coverage_demonstrated": false,
+      "uncertainty": "Commissioning period, range, overlap, and beam blockage not verified. Airport DWR is IMD.",
+      "institutional_access_required": true
+    }
+  ],
+  "status": "PHASE_11B_COMPLETE_NO_DOWNLOAD"
+}

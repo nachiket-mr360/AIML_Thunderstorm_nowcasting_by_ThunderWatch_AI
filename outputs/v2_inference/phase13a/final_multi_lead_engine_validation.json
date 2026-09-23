@@ -1,0 +1,106 @@
+{
+  "phase": "13A_final_multi_lead_engine",
+  "generated_at_utc": "2026-09-23T09:52:19.856065+00:00",
+  "passed": true,
+  "n_checks": 10,
+  "n_failed": 0,
+  "artifact_sha256_before": {
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed"
+  },
+  "checks": [
+    {
+      "name": "all_three_models_load",
+      "passed": true,
+      "detail": [
+        "1h",
+        "2h",
+        "3h"
+      ]
+    },
+    {
+      "name": "feature_count_order",
+      "passed": true,
+      "detail": 83
+    },
+    {
+      "name": "thresholds_0_065",
+      "passed": true,
+      "detail": {
+        "1h": 0.065,
+        "2h": 0.065,
+        "3h": 0.065
+      }
+    },
+    {
+      "name": "replay_row_found",
+      "passed": true,
+      "detail": "VABB 2025-05-31T14:00:00+00:00"
+    },
+    {
+      "name": "structured_three_leads",
+      "passed": true,
+      "detail": [
+        "ok",
+        "station_id",
+        "timestamp_utc",
+        "model_version",
+        "inference_mode",
+        "lead_1h",
+        "lead_2h",
+        "lead_3h",
+        "data_status",
+        "error",
+        "warnings",
+        "core_model_output",
+        "satellite_context",
+        "radar_context",
+        "lightning_context"
+      ]
+    },
+    {
+      "name": "replay_probability_match",
+      "passed": true,
+      "detail": {
+        "engine": {
+          "1h": 0.03,
+          "2h": 0.025,
+          "3h": 0.025
+        },
+        "phase12e": {
+          "1h": 0.03,
+          "2h": 0.025,
+          "3h": 0.025
+        },
+        "tol": 0.001
+      }
+    },
+    {
+      "name": "satellite_not_in_core",
+      "passed": true,
+      "detail": "satellite attached as context only"
+    },
+    {
+      "name": "fail_closed_missing_feature",
+      "passed": true,
+      "detail": {
+        "code": "MISSING_NWP_FIELDS",
+        "message": "required Model B columns missing: nwp_cape"
+      }
+    },
+    {
+      "name": "fail_closed_satellite_substitution",
+      "passed": true,
+      "detail": {
+        "code": "FORBIDDEN_FEATURE_SUBSTITUTION",
+        "message": "refusing to substitute satellite/radar/lightning into core Model B: sat_cloudy_fraction_25km"
+      }
+    },
+    {
+      "name": "frozen_artifacts_unmodified",
+      "passed": true,
+      "detail": "sha256 of three Model B joblibs unchanged"
+    }
+  ]
+}

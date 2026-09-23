@@ -1,0 +1,517 @@
+{
+  "phase": "13C",
+  "generated_at_utc": "2026-09-23T10:08:48.358864+00:00",
+  "feature_count": 83,
+  "feature_order_hash": "47ed7f1bd528d82bdd8911176d84d0c298a99ec0f8adb7aa1b0dd8e0990609bc",
+  "thresholds": {
+    "1h": 0.065,
+    "2h": 0.065,
+    "3h": 0.065
+  },
+  "model_hashes": {
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed"
+  },
+  "phase13a_expected_hashes": {
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_1h.joblib": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_2h.joblib": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+    "models/v2/nwp_experiment/B_atmospheric_nwp_target_3h.joblib": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed"
+  },
+  "replay_consistency": [
+    {
+      "station": "VABB",
+      "timestamp_utc": "2025-05-31 14:00:00+00:00",
+      "elapsed_s": 8.566567199999554,
+      "leads": {
+        "1h": {
+          "engine": 0.03,
+          "phase12e": 0.03,
+          "match": true,
+          "alert": false
+        },
+        "2h": {
+          "engine": 0.025,
+          "phase12e": 0.025,
+          "match": true,
+          "alert": false
+        },
+        "3h": {
+          "engine": 0.025,
+          "phase12e": 0.025,
+          "match": true,
+          "alert": false
+        }
+      }
+    },
+    {
+      "station": "VECC",
+      "timestamp_utc": "2024-04-22 13:00:00+00:00",
+      "elapsed_s": 0.15455040000233566,
+      "leads": {
+        "1h": {
+          "engine": 0.015,
+          "phase12e": 0.015,
+          "match": true,
+          "alert": false
+        },
+        "2h": {
+          "engine": 0.02,
+          "phase12e": 0.02,
+          "match": true,
+          "alert": false
+        },
+        "3h": {
+          "engine": 0.02,
+          "phase12e": 0.02,
+          "match": true,
+          "alert": false
+        }
+      }
+    },
+    {
+      "station": "VIDP",
+      "timestamp_utc": "2025-01-10 01:00:00+00:00",
+      "elapsed_s": 0.14077479999832576,
+      "leads": {
+        "1h": {
+          "engine": 0.0,
+          "phase12e": 0.0,
+          "match": true,
+          "alert": false
+        },
+        "2h": {
+          "engine": 0.0,
+          "phase12e": 0.0,
+          "match": true,
+          "alert": false
+        },
+        "3h": {
+          "engine": 0.0,
+          "phase12e": 0.0,
+          "match": true,
+          "alert": false
+        }
+      }
+    },
+    {
+      "station": "VOCI",
+      "timestamp_utc": "2023-10-20 08:00:00+00:00",
+      "elapsed_s": 0.1528534999997646,
+      "leads": {
+        "1h": {
+          "engine": 0.02,
+          "phase12e": 0.02,
+          "match": true,
+          "alert": false
+        },
+        "2h": {
+          "engine": 0.04,
+          "phase12e": 0.04,
+          "match": true,
+          "alert": false
+        },
+        "3h": {
+          "engine": 0.15,
+          "phase12e": 0.15,
+          "match": true,
+          "alert": true
+        }
+      }
+    }
+  ],
+  "fail_closed": {
+    "A_missing_feature": {
+      "passed": true,
+      "code": "MISSING_FEATURES",
+      "elapsed_s": 0.0003007000013894867
+    },
+    "B_wrong_count": {
+      "passed": true,
+      "code": "FEATURE_COUNT_MISMATCH",
+      "elapsed_s": 0.001379500001348788
+    },
+    "C_invalid_station": {
+      "passed": true,
+      "code": "INVALID_STATION",
+      "elapsed_s": 2.2399999579647556e-05
+    },
+    "D_invalid_timestamp": {
+      "passed": true,
+      "code": "INVALID_TIMESTAMP",
+      "elapsed_s": 0.009558399997331435
+    },
+    "E_non_finite": {
+      "passed": true,
+      "code": "NON_FINITE_FEATURE",
+      "elapsed_s": 0.000644200001261197
+    },
+    "F_satellite": {
+      "passed": true,
+      "code": "FORBIDDEN_FEATURE_SUBSTITUTION",
+      "elapsed_s": 0.0002808999997796491
+    },
+    "G_radar": {
+      "passed": true,
+      "code": "FORBIDDEN_FEATURE_SUBSTITUTION",
+      "elapsed_s": 0.00018050000289804302
+    },
+    "H_lightning": {
+      "passed": true,
+      "code": "FORBIDDEN_FEATURE_SUBSTITUTION",
+      "elapsed_s": 8.800000068731606e-05
+    },
+    "I_wrong_order": {
+      "passed": true,
+      "code": "FEATURE_ORDER_MISMATCH",
+      "elapsed_s": 0.00016529999993508682
+    },
+    "J_missing_nwp": {
+      "passed": true,
+      "code": "MISSING_NWP_FIELDS",
+      "elapsed_s": 0.00013490000128513202
+    }
+  },
+  "api_regression": {
+    "health": 200,
+    "index": 200,
+    "get_replay": 405,
+    "replay_all": 200,
+    "multilead_valid": 200
+  },
+  "determinism": true,
+  "evidence_separation": true,
+  "source_immutability": true,
+  "engine_init_seconds": 3.440693399999873,
+  "n_checks": 35,
+  "n_failed": 0,
+  "passed": true,
+  "final_status": "FINAL_MULTI_LEAD_ENGINE_FROZEN",
+  "checks": [
+    {
+      "name": "engine_initializes",
+      "passed": true,
+      "detail": "3.441s"
+    },
+    {
+      "name": "frozen_joblib_1h",
+      "passed": true,
+      "detail": {
+        "exists": true,
+        "sha256": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+        "expected": "a266c71bf901c4ea9392882b619e1a40905279af89db58123227a07f49733f21",
+        "n_features_in_": 83,
+        "type": "RandomForestClassifier"
+      }
+    },
+    {
+      "name": "frozen_joblib_2h",
+      "passed": true,
+      "detail": {
+        "exists": true,
+        "sha256": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+        "expected": "e99ff3e9fba4cef8a3e1d15e6c29cfdbee801200369230bd652a45a71b376c6c",
+        "n_features_in_": 83,
+        "type": "RandomForestClassifier"
+      }
+    },
+    {
+      "name": "frozen_joblib_3h",
+      "passed": true,
+      "detail": {
+        "exists": true,
+        "sha256": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed",
+        "expected": "20692e504594ad17ea6fcc43dfe6e8899a5d5bdc2df93015df92327b97dc16ed",
+        "n_features_in_": 83,
+        "type": "RandomForestClassifier"
+      }
+    },
+    {
+      "name": "feature_count_83",
+      "passed": true,
+      "detail": 83
+    },
+    {
+      "name": "engine_uses_contract_order",
+      "passed": true,
+      "detail": "47ed7f1bd528d82bdd8911176d84d0c298a99ec0f8adb7aa1b0dd8e0990609bc"
+    },
+    {
+      "name": "no_forbidden_predictors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "no_future_predictors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "thresholds_0_065",
+      "passed": true,
+      "detail": {
+        "1h": 0.065,
+        "2h": 0.065,
+        "3h": 0.065
+      }
+    },
+    {
+      "name": "replay_consistency_VABB",
+      "passed": true,
+      "detail": {
+        "1h": {
+          "engine": 0.03,
+          "phase12e": 0.03,
+          "match": true,
+          "alert": false
+        },
+        "2h": {
+          "engine": 0.025,
+          "phase12e": 0.025,
+          "match": true,
+          "alert": false
+        },
+        "3h": {
+          "engine": 0.025,
+          "phase12e": 0.025,
+          "match": true,
+          "alert": false
+        }
+      }
+    },
+    {
+      "name": "replay_consistency_VECC",
+      "passed": true,
+      "detail": {
+        "1h": {
+          "engine": 0.015,
+          "phase12e": 0.015,
+          "match": true,
+          "alert": false
+        },
+        "2h": {
+          "engine": 0.02,
+          "phase12e": 0.02,
+          "match": true,
+          "alert": false
+        },
+        "3h": {
+          "engine": 0.02,
+          "phase12e": 0.02,
+          "match": true,
+          "alert": false
+        }
+      }
+    },
+    {
+      "name": "replay_consistency_VIDP",
+      "passed": true,
+      "detail": {
+        "1h": {
+          "engine": 0.0,
+          "phase12e": 0.0,
+          "match": true,
+          "alert": false
+        },
+        "2h": {
+          "engine": 0.0,
+          "phase12e": 0.0,
+          "match": true,
+          "alert": false
+        },
+        "3h": {
+          "engine": 0.0,
+          "phase12e": 0.0,
+          "match": true,
+          "alert": false
+        }
+      }
+    },
+    {
+      "name": "replay_consistency_VOCI",
+      "passed": true,
+      "detail": {
+        "1h": {
+          "engine": 0.02,
+          "phase12e": 0.02,
+          "match": true,
+          "alert": false
+        },
+        "2h": {
+          "engine": 0.04,
+          "phase12e": 0.04,
+          "match": true,
+          "alert": false
+        },
+        "3h": {
+          "engine": 0.15,
+          "phase12e": 0.15,
+          "match": true,
+          "alert": true
+        }
+      }
+    },
+    {
+      "name": "determinism",
+      "passed": true,
+      "detail": {
+        "p1": {
+          "probability": 0.03,
+          "threshold": 0.065,
+          "alert": false
+        }
+      }
+    },
+    {
+      "name": "evidence_separation_none",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "evidence_separation_sat",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "evidence_separation_radar",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "evidence_separation_lightning",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "evidence_separation_all",
+      "passed": true,
+      "detail": "context does not change Model B p"
+    },
+    {
+      "name": "fail_closed_A_missing_feature",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "MISSING_FEATURES",
+        "elapsed_s": 0.0003007000013894867
+      }
+    },
+    {
+      "name": "fail_closed_B_wrong_count",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "FEATURE_COUNT_MISMATCH",
+        "elapsed_s": 0.001379500001348788
+      }
+    },
+    {
+      "name": "fail_closed_C_invalid_station",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "INVALID_STATION",
+        "elapsed_s": 2.2399999579647556e-05
+      }
+    },
+    {
+      "name": "fail_closed_D_invalid_timestamp",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "INVALID_TIMESTAMP",
+        "elapsed_s": 0.009558399997331435
+      }
+    },
+    {
+      "name": "fail_closed_E_non_finite",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "NON_FINITE_FEATURE",
+        "elapsed_s": 0.000644200001261197
+      }
+    },
+    {
+      "name": "fail_closed_F_satellite",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "FORBIDDEN_FEATURE_SUBSTITUTION",
+        "elapsed_s": 0.0002808999997796491
+      }
+    },
+    {
+      "name": "fail_closed_G_radar",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "FORBIDDEN_FEATURE_SUBSTITUTION",
+        "elapsed_s": 0.00018050000289804302
+      }
+    },
+    {
+      "name": "fail_closed_H_lightning",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "FORBIDDEN_FEATURE_SUBSTITUTION",
+        "elapsed_s": 8.800000068731606e-05
+      }
+    },
+    {
+      "name": "fail_closed_I_wrong_order",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "FEATURE_ORDER_MISMATCH",
+        "elapsed_s": 0.00016529999993508682
+      }
+    },
+    {
+      "name": "fail_closed_J_missing_nwp",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "code": "MISSING_NWP_FIELDS",
+        "elapsed_s": 0.00013490000128513202
+      }
+    },
+    {
+      "name": "api_health",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "api_index",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "api_get_replay_existing_behavior",
+      "passed": true,
+      "detail": {
+        "status": 405,
+        "note": "Phase 16 uses POST /replay"
+      }
+    },
+    {
+      "name": "api_replay_all",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "api_multilead_valid",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "ok": true
+      }
+    },
+    {
+      "name": "source_immutability",
+      "passed": true,
+      "detail": "8D/8E/12/10I/contract hashes"
+    }
+  ]
+}
