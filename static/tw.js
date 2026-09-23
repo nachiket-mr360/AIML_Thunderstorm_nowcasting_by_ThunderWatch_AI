@@ -828,6 +828,8 @@
     var errEl = $("live-error");
     if (btn) { btn.disabled = true; btn.textContent = "PROCESSING..."; }
     if (errEl) { errEl.textContent = ""; errEl.classList.add("hidden"); }
+    var diagEl0 = $("live-diagnostics");
+    if (diagEl0) { diagEl0.textContent = ""; diagEl0.classList.add("hidden"); diagEl0.hidden = true; }
     clearLiveCards();
     document.querySelectorAll(".live-note").forEach(function (n) { n.classList.add("hidden"); });
     if (fetchEl) {
@@ -867,6 +869,22 @@
           };
         }
       });
+      var diagEl = $("live-diagnostics");
+      if (diagEl) {
+        if (data.diagnostics && data.diagnostics.stations) {
+          var lines = (data.diagnostics.stations || []).map(function (d) {
+            if (d.ok) return (d.station_id || "") + " OK";
+            return (d.station_id || "") + " " + (d.provider || "external") + " " + (d.category || "UNKNOWN_EXTERNAL_ERROR");
+          });
+          diagEl.hidden = false;
+          diagEl.classList.remove("hidden");
+          diagEl.textContent = lines.join("\n");
+        } else {
+          diagEl.hidden = true;
+          diagEl.classList.add("hidden");
+          diagEl.textContent = "";
+        }
+      }
       var avail = data.available_stations != null ? data.available_stations : 0;
       var reqn = data.requested_stations || 5;
       document.querySelectorAll(".live-note").forEach(function (n) { n.classList.remove("hidden"); });

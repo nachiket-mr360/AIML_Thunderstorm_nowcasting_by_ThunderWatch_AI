@@ -11,6 +11,8 @@ import urllib.parse
 import urllib.request
 from typing import Any
 
+from src.inference.live_failure_diagnostics import classify_live_exception
+
 FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 GFS_URL = "https://api.open-meteo.com/v1/gfs"
 USER_AGENT = "ThunderWatchAI-V2-phase15A-live"
@@ -42,10 +44,19 @@ NWP_HOURLY = [
 
 
 class LiveDataError(Exception):
-    def __init__(self, code: str, message: str) -> None:
+    def __init__(
+        self,
+        code: str,
+        message: str,
+        *,
+        category: str | None = None,
+        provider: str | None = None,
+    ) -> None:
         super().__init__(message)
         self.code = code
         self.message = message
+        self.category = category
+        self.provider = provider
 
 
 def http_get_json(url: str, timeout_s: float = DEFAULT_TIMEOUT_S) -> dict[str, Any]:
@@ -54,23 +65,46 @@ def http_get_json(url: str, timeout_s: float = DEFAULT_TIMEOUT_S) -> dict[str, A
         with urllib.request.urlopen(req, timeout=timeout_s) as resp:
             raw = resp.read().decode("utf-8")
     except TimeoutError as exc:
-        raise LiveDataError("LIVE_DATA_UNAVAILABLE", f"timeout fetching {url}") from exc
+        raise LiveDataError(
+            "LIVE_DATA_UNAVAILABLE",
+            "timeout fetching live atmospheric/NWP data",
+            category="TIMEOUT",
+        ) from exc
     except urllib.error.HTTPError as exc:
-        raise LiveDataError("LIVE_DATA_UNAVAILABLE", f"http {exc.code} for {url}") from exc
+        cat = classify_live_exception(exc)
+        raise LiveDataError(
+            "LIVE_DATA_UNAVAILABLE",
+            "http error fetching live atmospheric/NWP data",
+            category=cat,
+        ) from exc
     except urllib.error.URLError as exc:
-        reason = getattr(exc, "reason", exc)
-        text = str(reason).lower()
-        if "timed out" in text or "timeout" in text:
-            raise LiveDataError("LIVE_DATA_UNAVAILABLE", f"timeout fetching {url}") from exc
-        raise LiveDataError("LIVE_DATA_UNAVAILABLE", f"http error: {reason}") from exc
+        cat = classify_live_exception(exc)
+        raise LiveDataError(
+            "LIVE_DATA_UNAVAILABLE",
+            "network error fetching live atmospheric/NWP data",
+            category=cat,
+        ) from exc
     except OSError as exc:
-        raise LiveDataError("LIVE_DATA_UNAVAILABLE", f"network error: {exc}") from exc
+        cat = classify_live_exception(exc)
+        raise LiveDataError(
+            "LIVE_DATA_UNAVAILABLE",
+            "network error fetching live atmospheric/NWP data",
+            category=cat,
+        ) from exc
     try:
         payload = json.loads(raw)
     except json.JSONDecodeError as exc:
-        raise LiveDataError("LIVE_DATA_UNAVAILABLE", "malformed JSON from Open-Meteo") from exc
+        raise LiveDataError(
+            "LIVE_DATA_UNAVAILABLE",
+            "malformed JSON from Open-Meteo",
+            category="INVALID_RESPONSE",
+        ) from exc
     if not isinstance(payload, dict):
-        raise LiveDataError("LIVE_DATA_UNAVAILABLE", "malformed Open-Meteo payload")
+        raise LiveDataError(
+            "LIVE_DATA_UNAVAILABLE",
+            "malformed Open-Meteo payload",
+            category="INVALID_RESPONSE",
+        )
     return payload
 
 
@@ -108,6 +142,16 @@ def fetch_live_payloads(
     timeout_s: float = DEFAULT_TIMEOUT_S,
     get_json=http_get_json,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
-    atmo = get_json(forecast_url(lat, lon), timeout_s)
-    nwp = get_json(gfs_url(lat, lon), timeout_s)
+    try:
+        atmo = get_json(forecast_url(lat, lon), timeout_s)
+    except LiveDataError as exc:
+        if exc.provider is None:
+            exc.provider = "forecast"
+        raise
+    try:
+        nwp = get_json(gfs_url(lat, lon), timeout_s)
+    except LiveDataError as exc:
+        if exc.provider is None:
+            exc.provider = "gfs"
+        raise
     return atmo, nwp

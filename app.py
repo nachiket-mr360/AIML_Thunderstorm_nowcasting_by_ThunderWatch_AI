@@ -13,6 +13,7 @@ from typing import Any, Callable
 import pandas as pd
 from flask import Flask, jsonify, render_template, request
 
+from src.inference.live_failure_diagnostics import live_diagnostics_enabled
 from src.inference.live_prediction_service import LivePredictionService
 from src.inference.multilead_service import MultiLeadInferenceService, predict_multilead
 from src.replay.v2_historical_replay import (
@@ -505,6 +506,8 @@ def create_app(*, replay_fn: ReplayFn | None = None, live_service: LivePredictio
         payload = request.get_json(silent=True) or {}
         station_id = payload.get("station_id")
         result = live_service.predict_live(station_id)
+        result.pop("_diag_category", None)
+        result.pop("_diag_provider", None)
         status = 200 if result.get("ok") else 400
         return jsonify(result), status
 
@@ -513,7 +516,10 @@ def create_app(*, replay_fn: ReplayFn | None = None, live_service: LivePredictio
         """Concurrent five-station live inference. Not historical replay."""
         payload = request.get_json(silent=True) or {}
         stations = payload.get("stations")
-        result = live_service.predict_live_all(stations)
+        result = live_service.predict_live_all(
+            stations,
+            include_diagnostics=live_diagnostics_enabled(),
+        )
         return jsonify(result), 200
 
     @app.post("/api/spatial/replay")

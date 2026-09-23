@@ -17,6 +17,12 @@ from src.inference.live_feature_adapter import (
     build_live_history,
     load_station_catalog,
 )
+from src.inference.live_failure_diagnostics import (
+    classify_live_exception,
+    live_diagnostics_enabled,
+    sanitize_provider,
+    station_diagnostic_entry,
+)
 from src.inference.live_openmeteo_client import LiveDataError, fetch_live_payloads
 
 CACHE_TTL_S = 300.0
@@ -69,7 +75,15 @@ class LivePredictionService:
         self._cache: dict[str, tuple[float, dict[str, Any]]] = {}
         self._lock = threading.Lock()
 
-    def _error(self, code: str, message: str, station_id: Any = None) -> dict[str, Any]:
+    def _error(
+        self,
+        code: str,
+        message: str,
+        station_id: Any = None,
+        *,
+        category: str | None = None,
+        provider: str | None = None,
+    ) -> dict[str, Any]:
         return {
             "ok": False,
             "mode": "LIVE",
@@ -77,6 +91,8 @@ class LivePredictionService:
             "station_id": station_id,
             "error": {"code": code, "message": message},
             "predictions": None,
+            "_diag_category": category,
+            "_diag_provider": provider,
         }
 
     def predict_live(
@@ -130,9 +146,20 @@ class LivePredictionService:
                 meta["request_longitude"],
             )
         except LiveDataError as exc:
-            return self._error(exc.code, exc.message, sid)
+            return self._error(
+                exc.code,
+                exc.message,
+                sid,
+                category=classify_live_exception(exc),
+                provider=sanitize_provider(getattr(exc, "provider", None)),
+            )
         except Exception as exc:
-            return self._error("LIVE_DATA_UNAVAILABLE", str(exc), sid)
+            return self._error(
+                "LIVE_DATA_UNAVAILABLE",
+                "external atmospheric/NWP data unavailable",
+                sid,
+                category=classify_live_exception(exc),
+            )
 
         try:
             _, prov = build_live_history(
@@ -144,7 +171,13 @@ class LivePredictionService:
                 max_age_minutes=self.max_age_minutes,
             )
         except LiveDataError as exc:
-            return self._error(exc.code, exc.message, sid)
+            return self._error(
+                exc.code,
+                exc.message,
+                sid,
+                category="FEATURE_BUILD_ERROR",
+                provider=sanitize_provider(getattr(exc, "provider", None)),
+            )
 
         engine_out = self.engine.predict(
             sid,
@@ -159,6 +192,7 @@ class LivePredictionService:
                 "LIVE_MODEL_INPUT_INVALID",
                 str(err.get("message") or "engine rejected live vector"),
                 sid,
+                category="FEATURE_BUILD_ERROR",
             )
 
         result = {
@@ -217,6 +251,8 @@ class LivePredictionService:
             "error": result.get("error"),
             "cache_hit": False,
             "predictions_ok": False,
+            "_diag_category": result.get("_diag_category"),
+            "_diag_provider": result.get("_diag_provider"),
         }
 
     def predict_live_all(
@@ -225,6 +261,7 @@ class LivePredictionService:
         *,
         now_utc: datetime | None = None,
         use_cache: bool = True,
+        include_diagnostics: bool | None = None,
     ) -> dict[str, Any]:
         requested = [str(s).strip().upper() for s in (station_ids or LIVE_STATIONS)]
         if not requested:
@@ -244,15 +281,34 @@ class LivePredictionService:
 
         rows = [by_id.get(sid) or self._as_all_row(self._error("LIVE_DATA_UNAVAILABLE", "missing", sid)) for sid in requested]
         live_n = sum(1 for r in rows if r.get("status") == "LIVE")
-        return {
+        diag_on = live_diagnostics_enabled() if include_diagnostics is None else bool(include_diagnostics)
+        stations_diag = [
+            station_diagnostic_entry(
+                str(row.get("station_id") or ""),
+                ok=row.get("status") == "LIVE",
+                category=row.get("_diag_category"),
+                provider=row.get("_diag_provider"),
+            )
+            for row in rows
+        ]
+        public_rows = []
+        for row in rows:
+            public = dict(row)
+            public.pop("_diag_category", None)
+            public.pop("_diag_provider", None)
+            public_rows.append(public)
+        out: dict[str, Any] = {
             "ok": live_n > 0,
             "mode": "LIVE",
             "status": "LIVE" if live_n == len(rows) else ("LIVE_PARTIAL" if live_n else "LIVE_DATA_UNAVAILABLE"),
             "requested_stations": len(requested),
             "completed_stations": len(rows),
             "available_stations": live_n,
-            "results": rows,
+            "results": public_rows,
         }
+        if diag_on:
+            out["diagnostics"] = {"stations": stations_diag}
+        return out
 
 
 def predict_live(station_id: Any, *, service: LivePredictionService | None = None) -> dict[str, Any]:
