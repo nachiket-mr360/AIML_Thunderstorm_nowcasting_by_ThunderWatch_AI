@@ -350,6 +350,7 @@ dt { color: var(--muted); }
 @media (max-width: 1180px) {
   .desk, .bottom-grid { grid-template-columns: 1fr; }
   .hdr { grid-template-columns: 1fr; }
+  .live-desk { grid-template-columns: minmax(0, 1.55fr) minmax(220px, 1fr); }
 }
 @media (max-width: 860px) {
   .app { grid-template-columns: 1fr; }
@@ -358,8 +359,11 @@ dt { color: var(--muted); }
   .main { padding: .55rem .55rem 4.4rem; }
   .big { font-size: 2.1rem; }
   .land-team { letter-spacing: .12em; }
-  .live-storm { grid-template-columns: 1fr; }
+  .live-storm { grid-template-columns: 1fr 1fr; }
   .live-context { grid-template-columns: 1fr; }
+  .live-desk { grid-template-columns: 1fr; }
+  .live-desk #live-hero { order: -1; }
+  .live-map-wrap { min-height: 320px; height: min(48vh, 420px); }
 }
 
 body.mode-live .hdr-replay-only { display: none; }
@@ -367,6 +371,20 @@ body.mode-replay .live-run { }
 .hdr-replay-only { display: inline-flex; gap: .4rem; flex-wrap: wrap; align-items: center; }
 .view-live { display: none; flex-direction: column; gap: .65rem; }
 .view-live.active { display: flex; }
+.live-desk {
+  display: grid;
+  grid-template-columns: minmax(0, 1.95fr) minmax(240px, .95fr);
+  gap: .65rem;
+  align-items: stretch;
+}
+.live-map-wrap {
+  min-height: 520px;
+  height: min(64vh, 680px);
+}
+.live-arch { padding: .55rem .7rem; }
+.live-arch h2 { margin: 0 .2rem 0 0; display: inline; }
+.live-desk #live-hero { display: flex; flex-direction: column; min-width: 0; }
+.live-desk #live-hero .live-leads { grid-template-columns: 1fr; }
 .live-storm {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));

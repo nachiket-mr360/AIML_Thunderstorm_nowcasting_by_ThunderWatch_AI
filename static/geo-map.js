@@ -168,11 +168,14 @@
       this.markers[id].el.classList.toggle("sel", id === sid);
     }, this);
     var rec = this._rec(sid);
-    var pct = rec && rec.lead_1h_pct != null ? rec.lead_1h_pct + "%" : "--";
-    var title = (this.payload && sid === this.payload.focus_station_id) ? "HIGHEST MODEL PROBABILITY" : "STATION";
+    var p1 = rec && rec.lead_1h_pct != null ? rec.lead_1h_pct + "%" : "--";
+    var p2 = rec && rec.lead_2h_pct != null ? rec.lead_2h_pct + "%" : "--";
+    var p3 = rec && rec.lead_3h_pct != null ? rec.lead_3h_pct + "%" : "--";
+    var stLine = rec && rec.unavailable ? (rec.live_status || "UNAVAILABLE") : (rec && rec.live_status ? rec.live_status : (rec && rec.lead_1h_probability != null && rec.lead_1h_probability >= 0.065 ? "ALERT" : "NO ALERT"));
+    var title = (this.payload && sid === this.payload.focus_station_id) ? "HIGHEST MODEL RISK" : "STATION";
     if (this.callout) {
       this.callout.hidden = false;
-      this.callout.innerHTML = "<small>" + title + "</small><strong>" + st.name + "</strong><span>" + sid + " · " + pct + "</span>";
+      this.callout.innerHTML = "<small>" + title + "</small><strong>" + st.name + "</strong><span>" + sid + "</span><span>+1H " + p1 + " · +2H " + p2 + " · +3H " + p3 + "</span><span>" + stLine + "</span>";
     }
     this.map.flyTo({
       center: [st.lon, st.lat],

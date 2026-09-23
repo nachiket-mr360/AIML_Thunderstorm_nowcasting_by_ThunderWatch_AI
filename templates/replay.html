@@ -231,9 +231,27 @@
           </dl>
         </article>
 
-        <article class="panel" id="live-storm-panel">
-          <div class="panel-h"><h2>LIVE THUNDERSTORM RISK</h2><span class="cap">+1H · +2H · +3H · threshold 6.5%</span></div>
-          <div id="live-storm" class="live-storm"></div>
+        <div class="live-desk">
+        <article class="panel map-panel">
+          <div class="panel-h">
+            <h2>LIVE STATION RISK</h2>
+            <p class="cap">Satellite Hybrid · station-based AI risk · five reference locations</p>
+          </div>
+          <div class="map-wrap live-map-wrap" id="live-map-wrap">
+            <div class="india-gl js-india-gl" aria-label="Live station risk map"></div>
+            <svg class="india-fallback js-india-fallback" hidden viewBox="0 0 360 380" aria-label="Fallback geographic view">
+              <path class="js-fb-land" fill="#163e58" stroke="#6ad4ff" stroke-width="1.4"/>
+              <g class="js-fb-stations"></g>
+            </svg>
+            <div class="map-tip js-map-tip" hidden></div>
+            <div class="map-callout js-map-callout" hidden></div>
+            <p id="live-map-mode" class="map-mode"></p>
+            <div class="map-tools">
+              <button type="button" class="js-map-zoom-in" aria-label="Zoom in">+</button>
+              <button type="button" class="js-map-zoom-out" aria-label="Zoom out">−</button>
+              <button type="button" class="js-map-reset">RESET VIEW</button>
+            </div>
+          </div>
         </article>
 
         <article class="panel hero-risk" id="live-hero">
@@ -254,27 +272,11 @@
             <div class="live-lead" data-lead="3h"><span>+3 H</span><strong id="live-p3">--</strong><em id="live-a3">—</em><small id="live-v3">valid —</small><small>Threshold 6.5%</small></div>
           </div>
         </article>
+        </div>
 
-        <article class="panel map-panel">
-          <div class="panel-h">
-            <h2>LIVE STATION RISK</h2>
-            <p class="cap">Satellite Hybrid · station-based AI risk · five reference locations</p>
-          </div>
-          <div class="map-wrap" id="live-map-wrap">
-            <div class="india-gl js-india-gl" aria-label="Live station risk map"></div>
-            <svg class="india-fallback js-india-fallback" hidden viewBox="0 0 360 380" aria-label="Fallback geographic view">
-              <path class="js-fb-land" fill="#163e58" stroke="#6ad4ff" stroke-width="1.4"/>
-              <g class="js-fb-stations"></g>
-            </svg>
-            <div class="map-tip js-map-tip" hidden></div>
-            <div class="map-callout js-map-callout" hidden></div>
-            <p id="live-map-mode" class="map-mode"></p>
-            <div class="map-tools">
-              <button type="button" class="js-map-zoom-in" aria-label="Zoom in">+</button>
-              <button type="button" class="js-map-zoom-out" aria-label="Zoom out">−</button>
-              <button type="button" class="js-map-reset">RESET VIEW</button>
-            </div>
-          </div>
+        <article class="panel" id="live-storm-panel">
+          <div class="panel-h"><h2>LIVE THUNDERSTORM RISK</h2><span class="cap">+1H · +2H · +3H · threshold 6.5%</span></div>
+          <div id="live-storm" class="live-storm"></div>
         </article>
 
         <article class="panel">

@@ -305,13 +305,29 @@
   }
   function initLiveMap() {
     if (liveMap || !$("live-map-wrap")) return;
-    if (liveMapCfg && liveMapCfg.enabled && window.maplibregl && window.TWGeoMap) startLiveGeo(liveMapCfg);
-    else startLiveFallback();
+    function attempt() {
+      if (liveMap) return true;
+      if (liveMapCfg == null) return false;
+      if (liveMapCfg.enabled && window.maplibregl && window.TWGeoMap) {
+        startLiveGeo(liveMapCfg);
+        return !!liveMap;
+      }
+      if (liveMapCfg.enabled && !window.maplibregl) return false;
+      startLiveFallback();
+      return !!liveMap;
+    }
+    if (attempt()) return;
+    var n = 0;
+    var t = setInterval(function () {
+      n += 1;
+      if (attempt() || n > 40) clearInterval(t);
+      if (n > 40 && !liveMap) startLiveFallback();
+    }, 120);
   }
   fetch("/api/map-config", { headers: { Accept: "application/json" } })
     .then(function (r) { return r.json(); })
-    .then(function (cfg) { liveMapCfg = cfg; })
-    .catch(function () { liveMapCfg = { enabled: false }; });
+    .then(function (cfg) { liveMapCfg = cfg; if (appMode === "live") initLiveMap(); })
+    .catch(function () { liveMapCfg = { enabled: false }; if (appMode === "live") initLiveMap(); });
 
   function selectStation(sid) {
     if (!sid) return;
@@ -632,10 +648,6 @@
   }
 
   function renderLiveFocus(data) {
-    var preds = data.predictions || {};
-    paintLiveLead("live-p1", "live-a1", preds["1h"], document.querySelector('.live-lead[data-lead="1h"]'));
-    paintLiveLead("live-p2", "live-a2", preds["2h"], document.querySelector('.live-lead[data-lead="2h"]'));
-    paintLiveLead("live-p3", "live-a3", preds["3h"], document.querySelector('.live-lead[data-lead="3h"]'));
     var src = data.data_source || "Open-Meteo";
     if ($("live-src")) $("live-src").textContent = /open-meteo/i.test(src) ? "Open-Meteo" : src;
     if ($("live-obs")) $("live-obs").textContent = fmtIst(data.data_observation_time_utc);
@@ -648,7 +660,6 @@
     var vt = data.forecast_valid_times_utc || {};
     if ($("live-v1")) $("live-v1").textContent = vt["1h"] ? "valid " + fmtIst(vt["1h"]) : "valid —";
     if ($("live-v2")) $("live-v2").textContent = vt["2h"] ? "valid " + fmtIst(vt["2h"]) : "valid —";
-    if ($("live-v3")) $("live-v3").textContent = vt["3h"] ? "valid " + fmtIst(vt["3h"]) : "valid —";
     var sat = $("live-sat-grid");
     if (sat) sat.innerHTML = "<p class='muted'>Satellite case replay is historical only. Not used in live Model B.</p>";
 
@@ -726,6 +737,13 @@
     if ($("live-hero-icao")) $("live-hero-icao").textContent = top.station_id;
     var p1 = pctFromProb(top.predictions["1h"] && top.predictions["1h"].probability);
     if ($("live-hero-pct")) $("live-hero-pct").textContent = p1 == null ? "--" : p1.toFixed(1) + "%";
+    paintLiveLead("live-p1", "live-a1", top.predictions["1h"], document.querySelector('.live-lead[data-lead="1h"]'));
+    paintLiveLead("live-p2", "live-a2", top.predictions["2h"], document.querySelector('.live-lead[data-lead="2h"]'));
+    paintLiveLead("live-p3", "live-a3", top.predictions["3h"], document.querySelector('.live-lead[data-lead="3h"]'));
+    var vt = top.forecast_valid_times_utc || {};
+    if ($("live-v1")) $("live-v1").textContent = vt["1h"] ? "valid " + fmtIst(vt["1h"]) : "valid —";
+    if ($("live-v2")) $("live-v2").textContent = vt["2h"] ? "valid " + fmtIst(vt["2h"]) : "valid —";
+    if ($("live-v3")) $("live-v3").textContent = vt["3h"] ? "valid " + fmtIst(vt["3h"]) : "valid —";
     var a1 = top.predictions["1h"] && top.predictions["1h"].alert;
     if ($("live-hero-state")) {
       $("live-hero-state").textContent = a1 ? "ALERT" : "NO ALERT";
