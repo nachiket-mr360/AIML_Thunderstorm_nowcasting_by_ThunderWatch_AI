@@ -23,7 +23,11 @@ from src.inference.live_failure_diagnostics import (
     sanitize_provider,
     station_diagnostic_entry,
 )
-from src.inference.live_openmeteo_client import LiveDataError, fetch_live_payloads
+from src.inference.live_openmeteo_client import (
+    LiveDataError,
+    fetch_live_payloads,
+    fetch_live_payloads_batch,
+)
 
 CACHE_TTL_S = 300.0
 FROZEN_THRESHOLD = 0.065
@@ -64,11 +68,18 @@ class LivePredictionService:
         *,
         engine: FinalMultiLeadEngine | None = None,
         fetch_fn: Callable[..., tuple[dict, dict]] | None = None,
+        batch_fetch_fn: Callable[..., dict[str, tuple[dict, dict]]] | None = None,
         cache_ttl_s: float = CACHE_TTL_S,
         max_age_minutes: int = MAX_DATA_AGE_MINUTES,
     ) -> None:
         self.engine = engine if engine is not None else FinalMultiLeadEngine()
+        self._default_fetch = fetch_fn is None
         self.fetch_fn = fetch_fn if fetch_fn is not None else fetch_live_payloads
+        self.batch_fetch_fn = (
+            batch_fetch_fn
+            if batch_fetch_fn is not None
+            else (fetch_live_payloads_batch if self._default_fetch else None)
+        )
         self.cache_ttl_s = cache_ttl_s
         self.max_age_minutes = max_age_minutes
         self.catalog = load_station_catalog()
@@ -101,6 +112,7 @@ class LivePredictionService:
         *,
         now_utc: datetime | None = None,
         use_cache: bool = True,
+        payloads: tuple[dict[str, Any], dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
         if station_id is None or str(station_id).strip() == "":
             return self._error("LIVE_DATA_UNAVAILABLE", "station_id is required")
@@ -141,10 +153,13 @@ class LivePredictionService:
 
         meta = self.catalog[sid]
         try:
-            forecast_payload, gfs_payload = self.fetch_fn(
-                meta["request_latitude"],
-                meta["request_longitude"],
-            )
+            if payloads is not None:
+                forecast_payload, gfs_payload = payloads
+            else:
+                forecast_payload, gfs_payload = self.fetch_fn(
+                    meta["request_latitude"],
+                    meta["request_longitude"],
+                )
         except LiveDataError as exc:
             return self._error(
                 exc.code,
@@ -269,15 +284,62 @@ class LivePredictionService:
         now = now_utc if now_utc is not None else datetime.now(timezone.utc)
         by_id: dict[str, dict[str, Any]] = {}
 
-        def run_one(sid: str) -> tuple[str, dict[str, Any]]:
-            return sid, self.predict_live(sid, now_utc=now, use_cache=use_cache)
+        def run_one(
+            sid: str,
+            station_payloads: tuple[dict[str, Any], dict[str, Any]] | None = None,
+        ) -> tuple[str, dict[str, Any]]:
+            return sid, self.predict_live(
+                sid,
+                now_utc=now,
+                use_cache=use_cache,
+                payloads=station_payloads,
+            )
 
-        workers = min(5, max(1, len(requested)))
-        with ThreadPoolExecutor(max_workers=workers) as pool:
-            futs = [pool.submit(run_one, sid) for sid in requested]
-            for fut in as_completed(futs):
-                sid, raw = fut.result()
-                by_id[sid] = self._as_all_row(raw)
+        if self.batch_fetch_fn is not None:
+            locations: list[tuple[str, float, float]] = []
+            for sid in requested:
+                meta = self.catalog.get(sid)
+                if not meta:
+                    by_id[sid] = self._as_all_row(
+                        self._error("LIVE_DATA_UNAVAILABLE", f"invalid station {sid!r}", sid)
+                    )
+                    continue
+                locations.append((sid, float(meta["request_latitude"]), float(meta["request_longitude"])))
+            batch_map: dict[str, tuple[dict[str, Any], dict[str, Any]]] | None = None
+            batch_err: LiveDataError | None = None
+            if locations:
+                try:
+                    batch_map = self.batch_fetch_fn(locations)
+                except LiveDataError as exc:
+                    batch_err = exc
+            for sid in requested:
+                if sid in by_id:
+                    continue
+                if batch_err is not None:
+                    by_id[sid] = self._as_all_row(
+                        self._error(
+                            batch_err.code,
+                            batch_err.message,
+                            sid,
+                            category=classify_live_exception(batch_err),
+                            provider=sanitize_provider(getattr(batch_err, "provider", None)),
+                        )
+                    )
+                    continue
+                pair = (batch_map or {}).get(sid)
+                if pair is None:
+                    by_id[sid] = self._as_all_row(
+                        self._error("LIVE_DATA_UNAVAILABLE", "missing batch payload", sid)
+                    )
+                    continue
+                by_id[sid] = self._as_all_row(run_one(sid, pair)[1])
+        else:
+            workers = min(5, max(1, len(requested)))
+            with ThreadPoolExecutor(max_workers=workers) as pool:
+                futs = [pool.submit(run_one, sid) for sid in requested]
+                for fut in as_completed(futs):
+                    sid, raw = fut.result()
+                    by_id[sid] = self._as_all_row(raw)
 
         rows = [by_id.get(sid) or self._as_all_row(self._error("LIVE_DATA_UNAVAILABLE", "missing", sid)) for sid in requested]
         live_n = sum(1 for r in rows if r.get("status") == "LIVE")

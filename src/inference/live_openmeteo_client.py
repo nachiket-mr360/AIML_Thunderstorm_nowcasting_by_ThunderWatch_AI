@@ -59,7 +59,7 @@ class LiveDataError(Exception):
         self.provider = provider
 
 
-def http_get_json(url: str, timeout_s: float = DEFAULT_TIMEOUT_S) -> dict[str, Any]:
+def http_get_json_payload(url: str, timeout_s: float = DEFAULT_TIMEOUT_S) -> Any:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     try:
         with urllib.request.urlopen(req, timeout=timeout_s) as resp:
@@ -99,6 +99,11 @@ def http_get_json(url: str, timeout_s: float = DEFAULT_TIMEOUT_S) -> dict[str, A
             "malformed JSON from Open-Meteo",
             category="INVALID_RESPONSE",
         ) from exc
+    return payload
+
+
+def http_get_json(url: str, timeout_s: float = DEFAULT_TIMEOUT_S) -> dict[str, Any]:
+    payload = http_get_json_payload(url, timeout_s)
     if not isinstance(payload, dict):
         raise LiveDataError(
             "LIVE_DATA_UNAVAILABLE",
@@ -155,3 +160,117 @@ def fetch_live_payloads(
             exc.provider = "gfs"
         raise
     return atmo, nwp
+
+
+def forecast_batch_url(
+    latitudes: list[float],
+    longitudes: list[float],
+    *,
+    past_days: int = 3,
+    forecast_days: int = 2,
+) -> str:
+    if len(latitudes) != len(longitudes) or not latitudes:
+        raise LiveDataError(
+            "LIVE_DATA_UNAVAILABLE",
+            "malformed Open-Meteo payload",
+            category="INVALID_RESPONSE",
+            provider="forecast",
+        )
+    params = {
+        "latitude": ",".join(str(v) for v in latitudes),
+        "longitude": ",".join(str(v) for v in longitudes),
+        "hourly": ",".join(ATMOSPHERIC_HOURLY),
+        "timezone": "GMT",
+        "past_days": past_days,
+        "forecast_days": forecast_days,
+        "wind_speed_unit": "kmh",
+    }
+    return FORECAST_URL + "?" + urllib.parse.urlencode(params)
+
+
+def gfs_batch_url(
+    latitudes: list[float],
+    longitudes: list[float],
+    *,
+    past_days: int = 1,
+    forecast_days: int = 2,
+) -> str:
+    if len(latitudes) != len(longitudes) or not latitudes:
+        raise LiveDataError(
+            "LIVE_DATA_UNAVAILABLE",
+            "malformed Open-Meteo payload",
+            category="INVALID_RESPONSE",
+            provider="gfs",
+        )
+    params = {
+        "latitude": ",".join(str(v) for v in latitudes),
+        "longitude": ",".join(str(v) for v in longitudes),
+        "hourly": ",".join(NWP_HOURLY),
+        "timezone": "GMT",
+        "past_days": past_days,
+        "forecast_days": forecast_days,
+        "wind_speed_unit": "kmh",
+        "models": "gfs_global",
+    }
+    return GFS_URL + "?" + urllib.parse.urlencode(params)
+
+
+def split_multilocation_response(
+    payload: Any,
+    expected_n: int,
+    *,
+    provider: str,
+) -> list[dict[str, Any]]:
+    if expected_n == 1 and isinstance(payload, dict):
+        return [payload]
+    if not isinstance(payload, list) or len(payload) != expected_n:
+        raise LiveDataError(
+            "LIVE_DATA_UNAVAILABLE",
+            "malformed Open-Meteo payload",
+            category="INVALID_RESPONSE",
+            provider=provider,
+        )
+    out: list[dict[str, Any]] = []
+    for item in payload:
+        if not isinstance(item, dict):
+            raise LiveDataError(
+                "LIVE_DATA_UNAVAILABLE",
+                "malformed Open-Meteo payload",
+                category="INVALID_RESPONSE",
+                provider=provider,
+            )
+        out.append(item)
+    return out
+
+
+def fetch_live_payloads_batch(
+    locations: list[tuple[str, float, float]],
+    *,
+    timeout_s: float = DEFAULT_TIMEOUT_S,
+    get_json=http_get_json_payload,
+) -> dict[str, tuple[dict[str, Any], dict[str, Any]]]:
+    """One Forecast request and one GFS request for all locations. No retries."""
+    if not locations:
+        return {}
+    station_ids = [str(sid) for sid, _, _ in locations]
+    lats = [float(lat) for _, lat, _ in locations]
+    lons = [float(lon) for _, _, lon in locations]
+    n = len(locations)
+    try:
+        raw_fc = get_json(forecast_batch_url(lats, lons), timeout_s)
+    except LiveDataError as exc:
+        if exc.provider is None:
+            exc.provider = "forecast"
+        raise
+    try:
+        raw_gfs = get_json(gfs_batch_url(lats, lons), timeout_s)
+    except LiveDataError as exc:
+        if exc.provider is None:
+            exc.provider = "gfs"
+        raise
+    fc_list = split_multilocation_response(raw_fc, n, provider="forecast")
+    gfs_list = split_multilocation_response(raw_gfs, n, provider="gfs")
+    mapped: dict[str, tuple[dict[str, Any], dict[str, Any]]] = {}
+    for i, sid in enumerate(station_ids):
+        mapped[sid] = (fc_list[i], gfs_list[i])
+    return mapped
